@@ -1,0 +1,37 @@
+/build
+/captures
+.externalNativeBuild
+
+# Eclipse
+.project
+.classpath
+.settings
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
+out
+
+# ignore .idea directory
+.idea/
+
+# Ant
+build.xml
+local.properties
+proguard.cfg
+
+# Gradle
+.gradle
+
+# OSX
+.DS_Store
+
+# Windows
+*.db
+
+# Android
+*.apk
+
+# Secret keys
+secrets.properties
