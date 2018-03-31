@@ -1,13 +1,5 @@
-package com.itinordic.a2d2.User;
-
-import android.support.annotation.Nullable;
-
-import com.google.auto.value.AutoValue;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 /**
- * Created by regnatpopulus on 28/03/2018.
+ * Created by regnatpopulus on 31/03/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -34,36 +26,40 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-@AutoValue
-public abstract class UserAccessToken {
+package com.itinordic.a2d2.oauthclient;
 
-    private static final String ACCESS_TOKEN = "access_token";
-    private static final String REFRESH_TOKEN = "refresh_token";
-    private static final String TOKEN_TYPE = "token_type";
+import java.util.List;
 
+class OAuthClientBuilder {
+    private  String name;
+    private  String cid;
+    private  String secret;
+    private List<GrantType> grantTypes;
 
-    @Nullable
-    @JsonProperty(ACCESS_TOKEN)
-    public abstract String accessToken();
-
-    @Nullable
-    @JsonProperty(REFRESH_TOKEN)
-    public abstract String refreshToken();
-
-    @Nullable
-    @JsonProperty(TOKEN_TYPE)
-    public abstract String tokenType();
-
-    @JsonCreator
-    public static UserAccessToken create(
-            @JsonProperty(ACCESS_TOKEN) String accessToken,
-            @JsonProperty(REFRESH_TOKEN) String refreshToken,
-            @JsonProperty(TOKEN_TYPE) String tokenType) {
-        return new AutoValue_UserAccessToken(
-                accessToken,
-                refreshToken,
-                tokenType
-        );
+    public OAuthClientBuilder(){
     }
 
+    public OAuthClientBuilder setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public OAuthClientBuilder setCid(String cid) {
+        this.cid = cid;
+        return this;
+    }
+
+    public OAuthClientBuilder setSecret(String secret) {
+        this.secret = secret;
+        return this;
+    }
+
+    public OAuthClientBuilder setGrantTypes(List<GrantType> grantTypes) {
+        this.grantTypes = grantTypes;
+        return this;
+    }
+
+    public OAuthClient build(){
+           return new OAuthClient(name,cid,grantTypes);
+    }
 }

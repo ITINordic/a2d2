@@ -30,6 +30,7 @@ dependencies {
     // ReactiveX
     implementation "io.reactivex.rxjava2:rxandroid:${libraries.rxandroid}"
     implementation "io.reactivex.rxjava2:rxjava:${libraries.rxjava}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${libraries.retrofitrxjava}"
 
     //sqlBrite
     implementation "com.squareup.sqlbrite3:sqlbrite:${libraries.sqlbrite}"
@@ -50,4 +51,8 @@ dependencies {
 
     //jackson
     implementation "com.fasterxml.jackson.core:jackson-databind:${libraries.jackson}"
+
+    //moshi
+    implementation "com.squareup.moshi:moshi:${libraries.moshi}"
+    implementation "com.squareup.retrofit2:converter-moshi:${libraries.moshiconverter}"
 }

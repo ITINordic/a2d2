@@ -25,22 +25,20 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.accesstoken;
 
 
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;
 import android.accounts.AccountAuthenticatorResponse;
-import android.accounts.AccountManager;
 import android.accounts.NetworkErrorException;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 
-public class DHIS2Authenticator extends AbstractAccountAuthenticator {
+public class UserAuthenticator extends AbstractAccountAuthenticator {
 
-    public DHIS2Authenticator(Context context) {
+
+    public UserAuthenticator(Context context) {
         super(context);
     }
 
@@ -119,4 +117,6 @@ public class DHIS2Authenticator extends AbstractAccountAuthenticator {
     public Bundle hasFeatures(AccountAuthenticatorResponse response, Account account, String[] features) throws NetworkErrorException {
         return null;
     }
+
+
 }

@@ -40,7 +40,9 @@ ext {
             autovalue        : "1.5",
             retrofit         : "2.4.0",
             okhttp           : "3.10.0",
-            jackson          : "2.9.4"
-
+            jackson          : "2.9.4",
+            moshi            : "1.5.0",
+            moshiconverter   : "2.4.0",
+            retrofitrxjava   : "2.4.0"
     ]
 }
