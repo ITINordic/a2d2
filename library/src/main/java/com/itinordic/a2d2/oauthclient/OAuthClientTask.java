@@ -29,17 +29,12 @@
 package com.itinordic.a2d2.oauthclient;
 
 import com.itinordic.a2d2.Daggera2d2Component;
-import com.itinordic.a2d2.a2d2Service;
-import com.itinordic.a2d2.scope.PerService;
 
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
-import retrofit2.Retrofit;
-
-public class OAuthClientTasks {
+public class OAuthClientTask {
 
     //Dagger
     @Inject OAuthClientService oAuthClientService;
@@ -47,8 +42,9 @@ public class OAuthClientTasks {
     private  OAuthClient oAuthClient;
     private  String credentials;
 
-    private OAuthClientTasks (OAuthClient oAuthClient){
+    private OAuthClientTask(OAuthClient oAuthClient){
 
+        this.oAuthClient = oAuthClient;
         Daggera2d2Component.builder()
                 .build()
                 .oAuthClientComponent()
@@ -85,7 +81,7 @@ public class OAuthClientTasks {
         }
 
 
-        public OAuthClientTasks build(){
+        public OAuthClientTask build(){
 
             if (this.name == null) {
                 throw new IllegalStateException("The name of the OAuth2 client must be set first");
@@ -106,7 +102,7 @@ public class OAuthClientTasks {
                     .setGrantTypes(this.grantTypes)
                     .build();
 
-            return new OAuthClientTasks(oAuthClient);
+            return new OAuthClientTask(oAuthClient);
         }
 
     }

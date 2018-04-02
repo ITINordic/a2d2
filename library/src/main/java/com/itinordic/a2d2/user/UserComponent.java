@@ -26,7 +26,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2.user;
 
 import com.itinordic.a2d2.scope.PerService;
 
@@ -34,16 +34,16 @@ import dagger.Subcomponent;
 
 @PerService
 @Subcomponent(modules =
-        OAuthClientModule.class)
-public interface OAuthClientComponent {
+        UserModule.class)
+public interface UserComponent {
 
     // injection targets
-    void inject(OAuthClientTask oAuthClientTasks);
+    void inject(UserTask userTask);
 
     //specifies an interface to supply necessary modules to construct the subcomponent
     @Subcomponent.Builder
     interface Builder {
-        Builder requestModule(OAuthClientModule module);
-        OAuthClientComponent build();
+        Builder requestModule(UserModule module);
+        UserComponent build();
     }
 }

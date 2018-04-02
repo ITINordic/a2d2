@@ -40,79 +40,8 @@ import java.util.Date;
 public abstract class BaseIdentifiableObject implements IdentifiableObject {
     /* date format which should be used for all Date instances
     within models which extend BaseIdentifiableObject */
-    public static final SafeDateFormat DATE_FORMAT = new SafeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
-    public static final SafeDateFormat SPACE_DATE_FORMAT = new SafeDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
-    public static final String UID = "id";
-    protected static final String CODE = "code";
-    protected static final String NAME = "name";
-    protected static final String DISPLAY_NAME = "displayName";
-    protected static final String CREATED = "created";
-    protected static final String LAST_UPDATED = "lastUpdated";
-    protected static final String DELETED = "deleted";
 
-    @Override
-    @JsonProperty(UID)
-    public abstract String uid();
 
-    @Override
-    @Nullable
-    @JsonProperty(CODE)
-    public abstract String code();
 
-    @Override
-    @Nullable
-    @JsonProperty(NAME)
-    public abstract String name();
-
-    @Override
-    @Nullable
-    @JsonProperty(DISPLAY_NAME)
-    public abstract String displayName();
-
-    @Override
-    @Nullable
-    @JsonProperty(CREATED)
-    public abstract Date created();
-
-    @Override
-    @Nullable
-    @JsonProperty(LAST_UPDATED)
-    public abstract Date lastUpdated();
-
-    @Nullable
-    @JsonProperty(DELETED)
-    public abstract Boolean deleted();
-
-    public static Date parseDate(String dateStr) throws ParseException {
-        return BaseIdentifiableObject.DATE_FORMAT.parse(dateStr);
-    }
-
-    public static Date parseSpaceDate(String dateStr) throws ParseException {
-        return BaseIdentifiableObject.SPACE_DATE_FORMAT.parse(dateStr);
-    }
-
-    protected static abstract class Builder<T extends Builder> {
-
-        @JsonProperty(UID)
-        public abstract T uid(String uid);
-
-        @JsonProperty(CODE)
-        public abstract T code(@Nullable String code);
-
-        @JsonProperty(NAME)
-        public abstract T name(@Nullable String name);
-
-        @JsonProperty(DISPLAY_NAME)
-        public abstract T displayName(@Nullable String displayName);
-
-        @JsonProperty(CREATED)
-        public abstract T created(@Nullable Date created);
-
-        @JsonProperty(LAST_UPDATED)
-        public abstract T lastUpdated(@Nullable Date lastUpdated);
-
-        @JsonProperty(DELETED)
-        public abstract T deleted(@Nullable Boolean deleted);
-    }
 }

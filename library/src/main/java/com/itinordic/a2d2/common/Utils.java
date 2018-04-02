@@ -26,24 +26,21 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2.common;
 
-import com.itinordic.a2d2.scope.PerService;
+import java.text.ParseException;
+import java.util.Date;
 
-import dagger.Subcomponent;
+public class Utils {
 
-@PerService
-@Subcomponent(modules =
-        OAuthClientModule.class)
-public interface OAuthClientComponent {
+    public static final SafeDateFormat DATE_FORMAT = new SafeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    public static final SafeDateFormat SPACE_DATE_FORMAT = new SafeDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
-    // injection targets
-    void inject(OAuthClientTask oAuthClientTasks);
+    public static Date parseDate(String dateStr) throws ParseException {
+        return Utils.DATE_FORMAT.parse(dateStr);
+    }
 
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(OAuthClientModule module);
-        OAuthClientComponent build();
+    public static Date parseSpaceDate(String dateStr) throws ParseException {
+        return Utils.SPACE_DATE_FORMAT.parse(dateStr);
     }
 }

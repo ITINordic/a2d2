@@ -1,3 +1,15 @@
+package com.itinordic.a2d2.user;
+
+import com.itinordic.a2d2.Daggera2d2Component;
+
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import okhttp3.Credentials;
+import retrofit2.Response;
+
+import static okhttp3.Credentials.basic;
+
 /**
  * Created by regnatpopulus on 02/04/2018.
  * dev@itinordic.com
@@ -26,24 +38,29 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+public class UserTask {
+    @Inject UserService userService;
 
-import com.itinordic.a2d2.scope.PerService;
+    public UserTask() {
 
-import dagger.Subcomponent;
+        Daggera2d2Component.builder()
+                .build()
+                .userComponent()
+                .build();
 
-@PerService
-@Subcomponent(modules =
-        OAuthClientModule.class)
-public interface OAuthClientComponent {
-
-    // injection targets
-    void inject(OAuthClientTask oAuthClientTasks);
-
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(OAuthClientModule module);
-        OAuthClientComponent build();
     }
+
+    public Observable<Response<User>> authenticate(String username, String password){
+
+        if (username == null) {
+            throw new IllegalStateException("The username must be set first");
+        }
+
+        if (password == null) {
+            throw new IllegalArgumentException("The password must be set first");
+        }
+
+        return userService.authenticate(basic(username,password));
+    }
+
 }

@@ -29,6 +29,7 @@
 package com.itinordic.a2d2;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
+import com.itinordic.a2d2.user.UserComponent;
 
 import javax.inject.Singleton;
 
@@ -40,7 +41,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-@Module (subcomponents = OAuthClientComponent.class)
+@Module (subcomponents = {OAuthClientComponent.class, UserComponent.class})
 public class a2d2Module {
 
     private HttpUrl serverUrl;

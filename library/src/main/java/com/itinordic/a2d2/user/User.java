@@ -26,24 +26,36 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2.user;
 
-import com.itinordic.a2d2.scope.PerService;
+public class User {
 
-import dagger.Subcomponent;
+    public final String id;
+    public final String code;
+    public final String name;
+    public final String displayName;
+    public final String created;
+    public final String lastUpdated;
+    public final String deleted;
+    public final String surname;
+    public final String firstName;
+    public final String email;
+    public final String phoneNumber;
+    public final String username;
 
-@PerService
-@Subcomponent(modules =
-        OAuthClientModule.class)
-public interface OAuthClientComponent {
 
-    // injection targets
-    void inject(OAuthClientTask oAuthClientTasks);
-
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(OAuthClientModule module);
-        OAuthClientComponent build();
+    public User(String id, String code, String name, String displayName, String created, String lastUpdated, String deleted, String surname, String firstName, String email, String phoneNumber, String username) {
+        this.id = id;
+        this.code = code;
+        this.name = name;
+        this.displayName = displayName;
+        this.created = created;
+        this.lastUpdated = lastUpdated;
+        this.deleted = deleted;
+        this.surname = surname;
+        this.firstName = firstName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
     }
 }

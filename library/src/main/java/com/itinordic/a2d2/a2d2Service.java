@@ -28,13 +28,15 @@
 
 package com.itinordic.a2d2;
 
+import android.support.annotation.NonNull;
+
 import javax.inject.Inject;
 
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-public final class a2d2Service {
+public class a2d2Service {
 
 @Inject  Retrofit retrofit;
 @Inject  OkHttpClient okHttpClient;
@@ -57,7 +59,12 @@ public final class a2d2Service {
     {
         private HttpUrl serverUrl;
 
-        public Builder serverUrl(HttpUrl serverURL){
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder serverUrl(@NonNull HttpUrl serverURL){
             this.serverUrl = serverUrl;
             return this;
         }
