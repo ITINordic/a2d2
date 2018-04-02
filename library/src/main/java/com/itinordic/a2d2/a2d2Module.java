@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 30/03/2018.
+ * Created by regnatpopulus on 01/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,65 +28,43 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
+
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
-public final class D2 {
+@Module (subcomponents = OAuthClientComponent.class)
+public class a2d2Module {
 
-    private final Retrofit retrofit;
+    private HttpUrl serverUrl;
 
-    //D2 class constructor. It is instantiated by the builder method below
-    private D2(Retrofit retrofit) {
-        this.retrofit=retrofit;
+    public a2d2Module (HttpUrl serverUrl) {
+        this.serverUrl = serverUrl;
     }
 
-    public Retrofit getRetrofit() {
-        return retrofit;
+    @Provides @Singleton
+    OkHttpClient provideOkHttpClient() {
+        return new OkHttpClient();
     }
 
-    //builder that returns the retrofit instance when it is give an okHttpClient and the URL
-    public static class Builder
-    {
-        private Retrofit retrofit;
-        private OkHttpClient okHttpClient;
-        private HttpUrl serverUrl;
+    @Provides @Singleton
+    Retrofit provideRetrofit( OkHttpClient okHttpClient){
 
-        public Builder okhttpclient(OkHttpClient okHttpClient){
-            this.okHttpClient = okHttpClient;
-            return this;
-        }
-
-        public Builder serverUrl(HttpUrl serverURL){
-            this.serverUrl = serverUrl;
-            return this;
-        }
-
-        public D2 build(){
-
-            if (serverUrl == null) {
-                throw new IllegalStateException("Server Url must be set first");
-            }
-
-            if (okHttpClient == null) {
-                throw new IllegalArgumentException("okHttpClient == null");
-            }
-
-            Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(serverUrl)
-                    .client(okHttpClient)
-                    .addConverterFactory(MoshiConverterFactory.create())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                    .validateEagerly(true)
-                    .build();
-
-            return new D2(retrofit);
-        }
+        return  new Retrofit.Builder()
+                .baseUrl(serverUrl)
+                .client(okHttpClient)
+                .addConverterFactory(MoshiConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .validateEagerly(true)
+                .build();
     }
-
-
 
 
 }

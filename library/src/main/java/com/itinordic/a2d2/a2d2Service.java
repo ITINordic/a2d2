@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 29/03/2018.
+ * Created by regnatpopulus on 30/03/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,22 +26,53 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2;
 
-import java.util.Date;
-import java.util.List;
+import javax.inject.Inject;
 
-public class OAuthClient {
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
 
-    public final String name;
-    public final String cid;
-    public String secret;
-    public final List<GrantType> grantTypes;
+public final class a2d2Service {
 
-    public OAuthClient(String name, String cid, List<GrantType> grantTypes) {
-        this.name = name;
-        this.cid = cid;
-        this.grantTypes = grantTypes;
+@Inject  Retrofit retrofit;
+@Inject  OkHttpClient okHttpClient;
+
+    private final HttpUrl serverUrl;
+
+    //a2d2Service class constructor. It is instantiated by the builder method below
+    private a2d2Service(HttpUrl serverUrl) {
+
+        this.serverUrl = serverUrl;
+        Daggera2d2Component.builder()
+                .a2d2Module(new a2d2Module(serverUrl))
+                .build();
+
     }
+
+
+    //builder that returns a new a2d2Service instance when it is passed a URL
+    public static class Builder
+    {
+        private HttpUrl serverUrl;
+
+        public Builder serverUrl(HttpUrl serverURL){
+            this.serverUrl = serverUrl;
+            return this;
+        }
+
+
+        public a2d2Service build(){
+
+            if (serverUrl == null) {
+                throw new IllegalStateException("Server Url must be set first");
+            }
+
+            return new a2d2Service(serverUrl);
+        }
+
     }
 
+
+}

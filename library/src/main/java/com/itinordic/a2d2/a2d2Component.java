@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 29/03/2018.
+ * Created by regnatpopulus on 01/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,22 +26,24 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2;
 
-import java.util.Date;
-import java.util.List;
+import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
+import com.itinordic.a2d2.oauthclient.OAuthClientModule;
 
-public class OAuthClient {
+import javax.inject.Singleton;
 
-    public final String name;
-    public final String cid;
-    public String secret;
-    public final List<GrantType> grantTypes;
+import dagger.Component;
 
-    public OAuthClient(String name, String cid, List<GrantType> grantTypes) {
-        this.name = name;
-        this.cid = cid;
-        this.grantTypes = grantTypes;
-    }
-    }
+@Singleton
+@Component(modules = {
+        a2d2Module.class
+})
+public interface a2d2Component {
 
+    //subcomponents
+    OAuthClientComponent.Builder oAuthClientComponent();
+
+    //Field injection
+    void inject(a2d2Service target);
+}

@@ -28,22 +28,31 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import com.itinordic.a2d2.D2;
+import com.itinordic.a2d2.Daggera2d2Component;
+import com.itinordic.a2d2.a2d2Service;
+import com.itinordic.a2d2.scope.PerService;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import retrofit2.Retrofit;
+
 public class OAuthClientTasks {
 
-    private final OAuthClient oAuthClient;
-    private final OAuthClientService oAuthClientService;
-    private final String credentials;
+    //Dagger
+    @Inject OAuthClientService oAuthClientService;
 
+    private  OAuthClient oAuthClient;
+    private  String credentials;
 
-    private OAuthClientTasks (OAuthClient oAuthClient, D2 d2){
-        this.oAuthClient = oAuthClient;
-        this.oAuthClientService = d2.getRetrofit().create(OAuthClientService.class);
-        this.credentials = null;
-        saveOAuthClient();
+    private OAuthClientTasks (OAuthClient oAuthClient){
+
+        Daggera2d2Component.builder()
+                .build()
+                .oAuthClientComponent()
+                .build();
     }
 
     void saveOAuthClient(){
@@ -56,7 +65,6 @@ public class OAuthClientTasks {
         private  String name;
         private  String cid;
         private List<GrantType> grantTypes;
-        private D2 d2;
 
         public Builder(){
         }
@@ -76,10 +84,6 @@ public class OAuthClientTasks {
             return this;
         }
 
-        public Builder setD2(D2 d2) {
-            this.d2 = d2;
-            return this;
-        }
 
         public OAuthClientTasks build(){
 
@@ -96,17 +100,13 @@ public class OAuthClientTasks {
             }
 
 
-            if (this.d2 == null) {
-                throw new IllegalStateException("D2 == null");
-            }
-
             OAuthClient oAuthClient = new OAuthClientBuilder()
                     .setCid(this.cid)
                     .setName(this.name)
                     .setGrantTypes(this.grantTypes)
                     .build();
 
-            return new OAuthClientTasks(oAuthClient, d2);
+            return new OAuthClientTasks(oAuthClient);
         }
 
     }

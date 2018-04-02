@@ -1,5 +1,13 @@
+package com.itinordic.a2d2.oauthclient;
+
+import com.itinordic.a2d2.scope.PerService;
+
+import dagger.Module;
+import dagger.Provides;
+import retrofit2.Retrofit;
+
 /**
- * Created by regnatpopulus on 29/03/2018.
+ * Created by regnatpopulus on 02/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,22 +34,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+@Module
+public class OAuthClientModule {
 
-import java.util.Date;
-import java.util.List;
-
-public class OAuthClient {
-
-    public final String name;
-    public final String cid;
-    public String secret;
-    public final List<GrantType> grantTypes;
-
-    public OAuthClient(String name, String cid, List<GrantType> grantTypes) {
-        this.name = name;
-        this.cid = cid;
-        this.grantTypes = grantTypes;
-    }
+    @Provides @PerService
+    OAuthClientService provideOAuthClientService (Retrofit retrofit){
+        return retrofit.create(OAuthClientService.class);
     }
 
+}
