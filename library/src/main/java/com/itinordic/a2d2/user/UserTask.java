@@ -1,6 +1,9 @@
 package com.itinordic.a2d2.user;
 
+import android.support.annotation.NonNull;
+
 import com.itinordic.a2d2.Daggera2d2Component;
+import com.itinordic.a2d2.a2d2Component;
 
 import javax.inject.Inject;
 
@@ -39,18 +42,18 @@ import static okhttp3.Credentials.basic;
  */
 
 public class UserTask {
-    @Inject UserService userService;
+    @Inject
+    UserService userService;
 
-    public UserTask() {
+    private a2d2Component a2d2component;
 
-        Daggera2d2Component.builder()
-                .build()
-                .userComponent()
-                .build();
+    public UserTask(a2d2Component a2d2component) {
+
+        a2d2component.userComponent().build().inject(this);
 
     }
 
-    public Observable<Response<User>> authenticate(String username, String password){
+    public Observable<Response<User>> authenticate(String username, String password) {
 
         if (username == null) {
             throw new IllegalStateException("The username must be set first");
@@ -60,7 +63,32 @@ public class UserTask {
             throw new IllegalArgumentException("The password must be set first");
         }
 
-        return userService.authenticate(basic(username,password));
+        return userService.authenticate(basic(username, password));
     }
 
+    //builder that returns a new a2d2Service instance when it is passed a URL
+    public static class Builder {
+        private a2d2Component component;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder a2d2Component(@NonNull a2d2Component component) {
+            this.component = component;
+            return this;
+        }
+        
+        public UserTask build() {
+
+            if (component == null) {
+                throw new IllegalStateException("a2d2 component is null");
+            }
+
+            return new UserTask(component);
+        }
+
+
+    }
 }

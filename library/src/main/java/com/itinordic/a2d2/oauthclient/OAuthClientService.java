@@ -36,7 +36,7 @@ import retrofit2.http.POST;
 
 interface OAuthClientService {
 
-    @POST("oAuth2Clients")
+    @POST("api/oAuth2Clients")
     Observable<OAuthClient> addOAuthClient(@Header("Authorization") String credentials,
                                            @Body OAuthClient oAuthClient);
 }

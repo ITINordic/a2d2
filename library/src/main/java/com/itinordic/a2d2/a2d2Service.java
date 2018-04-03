@@ -36,20 +36,27 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
-public class a2d2Service {
+public final class a2d2Service {
 
 @Inject  Retrofit retrofit;
 @Inject  OkHttpClient okHttpClient;
 
-    private final HttpUrl serverUrl;
+    private final HttpUrl baseUrl;
+
+    public a2d2Component getA2d2component() {
+        return a2d2component;
+    }
+
+    private a2d2Component a2d2component;
 
     //a2d2Service class constructor. It is instantiated by the builder method below
-    private a2d2Service(HttpUrl serverUrl) {
+    private a2d2Service(HttpUrl baseUrl) {
 
-        this.serverUrl = serverUrl;
-        Daggera2d2Component.builder()
-                .a2d2Module(new a2d2Module(serverUrl))
+        this.baseUrl = baseUrl;
+        a2d2component = Daggera2d2Component.builder()
+                .a2d2Module(new a2d2Module(baseUrl))
                 .build();
+        a2d2component.inject(this);
 
     }
 
@@ -57,29 +64,33 @@ public class a2d2Service {
     //builder that returns a new a2d2Service instance when it is passed a URL
     public static class Builder
     {
-        private HttpUrl serverUrl;
+        private HttpUrl httpUrl;
 
         public Builder() {
             // empty constructor
         }
 
         @NonNull
-        public Builder serverUrl(@NonNull HttpUrl serverURL){
-            this.serverUrl = serverUrl;
+        public Builder serverUrl(@NonNull HttpUrl url){
+            this.httpUrl = url;
             return this;
         }
 
 
         public a2d2Service build(){
 
-            if (serverUrl == null) {
+            if (httpUrl == null) {
                 throw new IllegalStateException("Server Url must be set first");
             }
 
-            return new a2d2Service(serverUrl);
+            return new a2d2Service(httpUrl);
         }
 
     }
+
+
+
+
 
 
 }
