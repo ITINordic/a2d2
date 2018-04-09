@@ -29,6 +29,7 @@
 package com.itinordic.a2d2.oauthclient;
 
 import io.reactivex.Observable;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
@@ -36,6 +37,6 @@ import retrofit2.http.POST;
 interface OAuthClientService {
 
     @POST("api/oAuth2Clients")
-    Observable<OAuthClientModel> addOAuthClient(@Header("Authorization") String credentials,
-                                                @Body OAuthClientModel oAuthClientModel);
+    Observable<Response<OAuthClient>> addOAuthClient(@Header("Authorization") String credentials,
+                                        @Body OAuthClient oAuthClient);
 }

@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 31/03/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,22 +28,11 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import javax.inject.Inject;
+import io.reactivex.Observable;
+import retrofit2.Response;
 
-public class OAuthClientTask {
+public interface OAuthClientTask {
 
-    //Dagger
-    @Inject OAuthClientService oAuthClientService;
-
-    private OAuthClientModel oAuthClientModel;
-    private  String credentials;
-
-    public OAuthClientTask(OAuthClientModel oAuthClientModel) {
-        this.oAuthClientModel = oAuthClientModel;
-    }
-
-    void saveOAuthClient(){
-        oAuthClientService.addOAuthClient(credentials, oAuthClientModel);
-    }
+    Observable<Response<OAuthClient>> saveOAuthClient(String credentials, OAuthClient oAuthClient );
 
 }

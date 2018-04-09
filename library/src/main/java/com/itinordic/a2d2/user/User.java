@@ -28,24 +28,29 @@
 
 package com.itinordic.a2d2.user;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
-
-@Entity
 public class User {
 
-    private transient String id;
+    public final String id;
+    public final String name;
+    public final String displayName;
+    public final String created;
+    public final String lastUpdated;
+    public final String surname;
+    public final String firstName;
+    public final String email;
+    public final String phoneNumber;
+    public final UserCredentials userCredentials;
 
-    private String code;
-    private String name;
-    private String displayName;
-    private String created;
-    private String lastUpdated;
-    private String surname;
-    private String firstName;
-    private String email;
-    private String phoneNumber;
-    private String username;
-
+    public User(String id, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, UserCredentials userCredentials) {
+        this.id = id;
+        this.name = name;
+        this.displayName = displayName;
+        this.created = created;
+        this.lastUpdated = lastUpdated;
+        this.surname = surname;
+        this.firstName = firstName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.userCredentials = userCredentials;
+    }
 }

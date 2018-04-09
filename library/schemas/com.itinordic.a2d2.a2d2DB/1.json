@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "dc27b612ddeeef09c98da82a9be35cec",
+    "identityHash": "2526edcd8338193bbe1576a2ec4b7bca",
     "entities": [
       {
         "tableName": "UserModel",
@@ -130,12 +130,12 @@
       },
       {
         "tableName": "OAuthClientModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `cid` TEXT, `secret` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT, `cid` TEXT, `secret` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -161,7 +161,7 @@
           "columnNames": [
             "id"
           ],
-          "autoGenerate": true
+          "autoGenerate": false
         },
         "indices": [],
         "foreignKeys": []
@@ -194,12 +194,12 @@
       },
       {
         "tableName": "oauth_granttype_model_join",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`oAuthId` INTEGER NOT NULL, `grantTypeId` INTEGER NOT NULL, PRIMARY KEY(`oAuthId`, `grantTypeId`), FOREIGN KEY(`oAuthId`) REFERENCES `OAuthClientModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`grantTypeId`) REFERENCES `GrantTypeModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`oAuthId` TEXT NOT NULL, `grantTypeId` INTEGER NOT NULL, PRIMARY KEY(`oAuthId`, `grantTypeId`), FOREIGN KEY(`oAuthId`) REFERENCES `OAuthClientModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`grantTypeId`) REFERENCES `GrantTypeModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "oAuthId",
             "columnName": "oAuthId",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -254,7 +254,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"dc27b612ddeeef09c98da82a9be35cec\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"2526edcd8338193bbe1576a2ec4b7bca\")"
     ]
   }
 }

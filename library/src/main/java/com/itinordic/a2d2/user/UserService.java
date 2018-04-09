@@ -36,5 +36,5 @@ import retrofit2.http.Header;
 interface UserService {
 
     @GET("api/me")
-    Observable<Response<UserModel>> authenticate (@Header("Authorization") String credentials);
+    Observable<Response<User>> authenticate (@Header("Authorization") String credentials);
 }

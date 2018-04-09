@@ -33,6 +33,6 @@ import retrofit2.Response;
 
 public interface UserTask {
 
-    Observable<Response<UserModel>> authenticate(String username, String password);
+    Observable<Response<User>> authenticate(String username, String password);
 
 }

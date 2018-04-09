@@ -30,6 +30,8 @@ package com.itinordic.a2d2;
 
 import android.support.annotation.NonNull;
 
+import com.itinordic.a2d2.oauthclient.OAuthClientTask;
+import com.itinordic.a2d2.oauthclient.OAuthClientTaskImpl;
 import com.itinordic.a2d2.user.UserTask;
 import com.itinordic.a2d2.user.UserTaskImpl;
 
@@ -101,6 +103,9 @@ public final class a2d2 implements a2d2API {
         return new UserTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
+    public OAuthClientTask oAuthClientTaskBuilder(){
 
+        return new OAuthClientTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
 
 }

@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 29/03/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,22 +28,25 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import com.itinordic.a2d2.scope.PerService;
+import java.util.List;
 
-import dagger.Subcomponent;
+public class OAuthClient {
 
-@PerService
-@Subcomponent(modules =
-        OAuthClientModule.class)
-public interface OAuthClientComponent {
+    public  String id;
+    public final String name;
+    public final String cid;
+    public final String secret;
+    public final List<String> grantTypes;
+    public final List<String> redirectUris;
 
-    // injection targets
-    void inject(OAuthClientTaskImpl oAuthClientTasksImpl);
+    public OAuthClient(String name, String cid, String secret, List<String> grantTypes, List<String> redirectUris) {
 
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(OAuthClientModule module);
-        OAuthClientComponent build();
+        this.name = name;
+        this.cid = cid;
+        this.secret = secret;
+        this.grantTypes = grantTypes;
+        this.redirectUris = redirectUris;
     }
+
 }
+

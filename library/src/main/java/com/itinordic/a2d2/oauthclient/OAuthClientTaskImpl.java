@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 31/03/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,22 +28,56 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import com.itinordic.a2d2.scope.PerService;
+import android.support.annotation.NonNull;
 
-import dagger.Subcomponent;
+import com.itinordic.a2d2.a2d2Component;
 
-@PerService
-@Subcomponent(modules =
-        OAuthClientModule.class)
-public interface OAuthClientComponent {
+import javax.inject.Inject;
 
-    // injection targets
-    void inject(OAuthClientTaskImpl oAuthClientTasksImpl);
+import io.reactivex.Observable;
+import retrofit2.Response;
 
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(OAuthClientModule module);
-        OAuthClientComponent build();
+public class OAuthClientTaskImpl implements OAuthClientTask {
+
+    //Dagger
+    @Inject OAuthClientService oAuthClientService;
+
+    private OAuthClient oAuthClient;
+    private  String credentials;
+
+    public OAuthClientTaskImpl(a2d2Component a2d2component) {
+        a2d2component.oAuthClientComponent().build().inject(this);
     }
+
+    public Observable<Response<OAuthClient>> saveOAuthClient(String credentials, OAuthClient oAuthClient ){
+        return oAuthClientService.addOAuthClient(credentials, oAuthClient);
+    }
+
+
+    //builder that returns a new UserTask instance when it is passed a URL
+    public static class Builder {
+        private a2d2Component component;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder a2d2Component(@NonNull a2d2Component component) {
+            this.component = component;
+            return this;
+        }
+
+        public OAuthClientTaskImpl build() {
+
+            if (component == null) {
+                throw new IllegalStateException("a2d2 component is null");
+            }
+
+            return new OAuthClientTaskImpl(component);
+        }
+
+
+    }
+
 }

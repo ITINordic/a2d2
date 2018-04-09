@@ -37,20 +37,20 @@ import java.util.List;
 @Entity
 public class OAuthClientModel {
 
+    @PrimaryKey
     @NonNull
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    private String id;
 
     private String name;
     private String cid;
     public String secret;
 
     @NonNull
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(@NonNull int id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 

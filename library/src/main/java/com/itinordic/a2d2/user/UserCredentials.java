@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,24 +26,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2.user;
 
-import com.itinordic.a2d2.scope.PerService;
+public class UserCredentials {
+    public final String username;
 
-import dagger.Subcomponent;
-
-@PerService
-@Subcomponent(modules =
-        OAuthClientModule.class)
-public interface OAuthClientComponent {
-
-    // injection targets
-    void inject(OAuthClientTaskImpl oAuthClientTasksImpl);
-
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(OAuthClientModule module);
-        OAuthClientComponent build();
+    public UserCredentials(String username) {
+        this.username = username;
     }
 }

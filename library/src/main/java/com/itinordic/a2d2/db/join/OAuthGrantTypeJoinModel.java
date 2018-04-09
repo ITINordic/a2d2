@@ -31,6 +31,7 @@ package com.itinordic.a2d2.db.join;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Index;
+import android.support.annotation.NonNull;
 
 import com.itinordic.a2d2.granttype.GrantTypeModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientModel;
@@ -47,14 +48,15 @@ import com.itinordic.a2d2.oauthclient.OAuthClientModel;
         }, indices = {@Index("grantTypeId")})
 public class OAuthGrantTypeJoinModel {
 
-    private int oAuthId;
+    @NonNull
+    private String oAuthId;
     private int grantTypeId;
 
-    public int getOAuthId() {
+    public String getOAuthId() {
         return oAuthId;
     }
 
-    public void setOAuthId(int oAuthId) {
+    public void setOAuthId(String oAuthId) {
         this.oAuthId = oAuthId;
     }
 
