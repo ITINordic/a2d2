@@ -1,5 +1,9 @@
+package com.itinordic.a2d2.network;
+
+import okhttp3.Response;
+
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,24 +30,9 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.user;
+public interface AccessTokenTask {
 
-import com.itinordic.a2d2.scope.PerService;
+    public Response refreshAccessToken();
 
-import dagger.Subcomponent;
-
-@PerService
-@Subcomponent(modules =
-        UserModule.class)
-public interface UserComponent {
-
-    // injection targets
-    void inject(UserTaskImpl userTask);
-
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(UserModule module);
-        UserComponent build();
-    }
+    Response createToken(String username, String password, String serverUrl);
 }

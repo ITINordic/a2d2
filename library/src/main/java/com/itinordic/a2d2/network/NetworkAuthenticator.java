@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 08/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,24 +26,39 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.user;
+package com.itinordic.a2d2.network;
 
-import com.itinordic.a2d2.scope.PerService;
+import android.content.Context;
 
-import dagger.Subcomponent;
+import java.io.IOException;
 
-@PerService
-@Subcomponent(modules =
-        UserModule.class)
-public interface UserComponent {
+import okhttp3.Authenticator;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.Route;
 
-    // injection targets
-    void inject(UserTaskImpl userTask);
+public class NetworkAuthenticator implements Authenticator {
 
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(UserModule module);
-        UserComponent build();
+    private Response newAccessToken;
+    private AccessTokenTask accessTokenTask;
+
+    public NetworkAuthenticator(Context context) {
+
     }
+
+    @Override
+    public Request authenticate(Route proxy, Response response) throws IOException {
+
+        // Refresh your access_token using a synchronous api request
+        newAccessToken = accessTokenTask.refreshAccessToken();
+
+        // Add new header to rejected request and retry it
+        return response.request().newBuilder()
+                .header("Authorization", "Bearer " + newAccessToken)
+                .build();
+    }
+
+
+
+
 }

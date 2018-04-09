@@ -25,7 +25,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-package com.itinordic.a2d2.accesstoken;
+package com.itinordic.a2d2.network;
 
 
 import android.accounts.AbstractAccountAuthenticator;

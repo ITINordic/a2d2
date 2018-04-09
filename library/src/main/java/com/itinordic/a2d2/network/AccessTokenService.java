@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.accesstoken;
+package com.itinordic.a2d2.network;
 
 import retrofit2.Call;
 import retrofit2.http.Field;

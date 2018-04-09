@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 06/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,24 +26,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.user;
+package com.itinordic.a2d2;
 
-import com.itinordic.a2d2.scope.PerService;
+import com.itinordic.a2d2.user.UserTask;
 
-import dagger.Subcomponent;
+import okhttp3.OkHttpClient;
 
-@PerService
-@Subcomponent(modules =
-        UserModule.class)
-public interface UserComponent {
+public interface a2d2API {
 
-    // injection targets
-    void inject(UserTaskImpl userTask);
+    a2d2API init(OkHttpClient okHttpClient);
+    UserTask userTaskBuilder();
 
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(UserModule module);
-        UserComponent build();
-    }
 }

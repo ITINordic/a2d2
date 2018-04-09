@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.accesstoken;
+package com.itinordic.a2d2.network;
 
 import android.support.annotation.Nullable;
 

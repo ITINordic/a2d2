@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 08/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,22 +28,20 @@
 
 package com.itinordic.a2d2.user;
 
-import com.itinordic.a2d2.scope.PerService;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
 
-import dagger.Subcomponent;
+import io.reactivex.Flowable;
 
-@PerService
-@Subcomponent(modules =
-        UserModule.class)
-public interface UserComponent {
+@Dao
+public interface UserDao {
 
-    // injection targets
-    void inject(UserTaskImpl userTask);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(User user);
 
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(UserModule module);
-        UserComponent build();
-    }
+    @Query("SELECT * FROM user WHERE username LIKE :username LIMIT 1")
+    Flowable<User> findByUsername(String username);
+
 }

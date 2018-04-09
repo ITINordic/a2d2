@@ -1,0 +1,106 @@
+/**
+ * Created by regnatpopulus on 30/03/2018.
+ * dev@itinordic.com
+ * Copyright (c) 2018, ITINordic
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *
+ * * Redistributions of source code must retain the above copyright notice, this
+ * list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above copyright notice,
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ */
+
+package com.itinordic.a2d2;
+
+import android.support.annotation.NonNull;
+
+import com.itinordic.a2d2.user.UserTask;
+import com.itinordic.a2d2.user.UserTaskImpl;
+
+import javax.inject.Inject;
+
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+
+public final class a2d2 implements a2d2API {
+
+@Inject  Retrofit retrofit;
+@Inject  OkHttpClient okHttpClient;
+
+    private final HttpUrl baseUrl;
+
+    private a2d2Component a2d2component;
+
+    //a2d2 class constructor. It is instantiated by the builder method below
+    private a2d2(HttpUrl baseUrl) {
+
+        this.baseUrl = baseUrl;
+        a2d2component = Daggera2d2Component.builder()
+                .a2d2Module(new a2d2Module(baseUrl))
+                .build();
+        a2d2component.inject(this);
+
+    }
+
+    //builder that returns a new a2d2 instance when it is passed a URL
+    public static class Builder
+    {
+        private HttpUrl httpUrl;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder serverUrl(@NonNull HttpUrl url){
+            this.httpUrl = url;
+            return this;
+        }
+
+
+        public a2d2 build(){
+
+            if (httpUrl == null) {
+                throw new IllegalStateException("Server Url must be set first");
+            }
+
+            return new a2d2(httpUrl);
+        }
+
+    }
+
+    @Override
+    public a2d2API init(OkHttpClient okHttpClient) {
+
+        if (okHttpClient == null) {
+            throw new IllegalStateException("Server Url must be set first");
+        }
+
+        return null;
+    }
+
+    public UserTask userTaskBuilder(){
+
+        return new UserTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+
+
+}

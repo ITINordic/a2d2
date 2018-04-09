@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 30/03/2018.
+ * Created by regnatpopulus on 08/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,71 +26,69 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.network;
 
 import android.support.annotation.NonNull;
 
-import javax.inject.Inject;
+import java.io.IOException;
 
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
 
-public final class a2d2Service {
+public class NetworkInterceptor implements Interceptor {
 
-@Inject  Retrofit retrofit;
-@Inject  OkHttpClient okHttpClient;
+    private String accessToken;
 
-    private final HttpUrl baseUrl;
-
-    public a2d2Component getA2d2component() {
-        return a2d2component;
+    public NetworkInterceptor(String accessToken) {
+        this.accessToken = accessToken;
     }
 
-    private a2d2Component a2d2component;
+    @Override
+    public Response intercept(Chain chain) throws IOException {
+        Request originalRequest = chain.request();
 
-    //a2d2Service class constructor. It is instantiated by the builder method below
-    private a2d2Service(HttpUrl baseUrl) {
+        // Nothing to add to intercepted request if:
+        // a) Authorization value is empty because user is not logged in yet
+        // b) There is already a header with updated Authorization value
 
-        this.baseUrl = baseUrl;
-        a2d2component = Daggera2d2Component.builder()
-                .a2d2Module(new a2d2Module(baseUrl))
+        if (originalRequest.header("Authorization") !=  null) {
+            return chain.proceed(originalRequest);
+        }
+
+        // Add authorization header with updated authorization value to intercepted request
+        Request authorisedRequest = originalRequest.newBuilder()
+                .header("Authorization", "Bearer " + accessToken)
                 .build();
-        a2d2component.inject(this);
-
+        return chain.proceed(authorisedRequest);
     }
 
-
-    //builder that returns a new a2d2Service instance when it is passed a URL
+    //builder that returns a new a2d2 instance when it is passed a URL
     public static class Builder
     {
-        private HttpUrl httpUrl;
+        private String token;
 
         public Builder() {
             // empty constructor
         }
 
         @NonNull
-        public Builder serverUrl(@NonNull HttpUrl url){
-            this.httpUrl = url;
+        public Builder bearerToken(@NonNull String token){
+            this.token = token;
             return this;
         }
 
 
-        public a2d2Service build(){
+        public NetworkInterceptor build(){
 
-            if (httpUrl == null) {
-                throw new IllegalStateException("Server Url must be set first");
+            if (token == null) {
+                throw new IllegalStateException("Authorization token is null");
             }
 
-            return new a2d2Service(httpUrl);
+            return new NetworkInterceptor(token);
         }
 
     }
-
-
-
-
 
 
 }

@@ -45,6 +45,8 @@ ext {
             moshiconverter   : "2.4.0",
             retrofitrxjava   : "2.4.0",
             dagger           : "2.15",
-            daggercompiler   : "2.15"
+            daggercompiler   : "2.15",
+            room             : "1.0.0",
+            roomrxjava       : "1.0.0"
     ]
 }

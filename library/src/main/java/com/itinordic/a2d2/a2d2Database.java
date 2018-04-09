@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 08/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,24 +26,16 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.user;
+package com.itinordic.a2d2;
 
-import com.itinordic.a2d2.scope.PerService;
+import android.arch.persistence.room.Database;
+import android.arch.persistence.room.RoomDatabase;
 
-import dagger.Subcomponent;
+import com.itinordic.a2d2.user.User;
+import com.itinordic.a2d2.user.UserDao;
 
-@PerService
-@Subcomponent(modules =
-        UserModule.class)
-public interface UserComponent {
+@Database(entities = {User.class}, version = 1)
+public abstract class a2d2Database extends RoomDatabase {
 
-    // injection targets
-    void inject(UserTaskImpl userTask);
-
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(UserModule module);
-        UserComponent build();
-    }
+    public abstract UserDao userDao();
 }

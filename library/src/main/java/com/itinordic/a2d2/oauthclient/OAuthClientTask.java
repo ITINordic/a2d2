@@ -28,8 +28,6 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import com.itinordic.a2d2.Daggera2d2Component;
-
 import java.util.List;
 
 import javax.inject.Inject;
@@ -42,13 +40,8 @@ public class OAuthClientTask {
     private  OAuthClient oAuthClient;
     private  String credentials;
 
-    private OAuthClientTask(OAuthClient oAuthClient){
-
+    public OAuthClientTask(OAuthClient oAuthClient) {
         this.oAuthClient = oAuthClient;
-        Daggera2d2Component.builder()
-                .build()
-                .oAuthClientComponent()
-                .build();
     }
 
     void saveOAuthClient(){

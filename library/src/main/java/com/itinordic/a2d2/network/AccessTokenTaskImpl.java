@@ -1,5 +1,16 @@
+package com.itinordic.a2d2.network;
+
+import java.io.IOException;
+
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static okhttp3.Credentials.basic;
+
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,24 +37,33 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.user;
+public class AccessTokenTaskImpl implements AccessTokenTask {
 
-import com.itinordic.a2d2.scope.PerService;
+    @Override
+    public Response refreshAccessToken() {
+        OkHttpClient okHttpClient;
+        return null;
+    }
 
-import dagger.Subcomponent;
+    @Override
+    public Response createToken(String username, String password, String serverUrl) {
 
-@PerService
-@Subcomponent(modules =
-        UserModule.class)
-public interface UserComponent {
 
-    // injection targets
-    void inject(UserTaskImpl userTask);
 
-    //specifies an interface to supply necessary modules to construct the subcomponent
-    @Subcomponent.Builder
-    interface Builder {
-        Builder requestModule(UserModule module);
-        UserComponent build();
+        Request request = new Request.Builder()
+                .addHeader("Authorization", basic(username,password))
+                .url(HttpUrl.parse(serverUrl)).build();
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        try {
+
+             okHttpClient.newCall(request).execute();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
