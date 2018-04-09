@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 30/03/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,16 +26,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2;
 
-import io.reactivex.Observable;
-import retrofit2.http.Body;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
+public class GrantType {
 
-interface OAuthClientService {
 
-    @POST("api/oAuth2Clients")
-    Observable<OAuthClientModel> addOAuthClient(@Header("Authorization") String credentials,
-                                                @Body OAuthClientModel oAuthClientModel);
+
 }

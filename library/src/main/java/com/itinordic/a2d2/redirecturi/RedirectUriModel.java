@@ -1,7 +1,3 @@
-package com.itinordic.a2d2.network;
-
-import okhttp3.Response;
-
 /**
  * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
@@ -30,9 +26,33 @@ import okhttp3.Response;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-public interface AccessTokenTask {
+package com.itinordic.a2d2.redirecturi;
 
-    public Response refreshAccessToken();
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-    Response createToken(String username, String password, String serverUrl);
+public class RedirectUriModel {
+
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    private String redirectUri;
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
+    public String getRedirectUri() {
+        return redirectUri;
+    }
+
+    public void setRedirectUri(String redirectUri) {
+        this.redirectUri = redirectUri;
+    }
 }

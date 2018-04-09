@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 30/03/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,16 +26,43 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2.db.join;
 
-import io.reactivex.Observable;
-import retrofit2.http.Body;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 
-interface OAuthClientService {
+import com.itinordic.a2d2.granttype.GrantTypeModel;
+import com.itinordic.a2d2.oauthclient.OAuthClientModel;
 
-    @POST("api/oAuth2Clients")
-    Observable<OAuthClientModel> addOAuthClient(@Header("Authorization") String credentials,
-                                                @Body OAuthClientModel oAuthClientModel);
+@Entity(tableName = "oauth_granttype_model_join",
+        primaryKeys = { "oAuthId", "grantTypeId" },
+        foreignKeys = {
+                @ForeignKey(entity = OAuthClientModel.class,
+                        parentColumns = "id",
+                        childColumns = "oAuthId"),
+                @ForeignKey(entity = GrantTypeModel.class,
+                        parentColumns = "id",
+                        childColumns = "grantTypeId")
+        }, indices = {@Index("grantTypeId")})
+public class OAuthGrantTypeJoinModel {
+
+    private int oAuthId;
+    private int grantTypeId;
+
+    public int getOAuthId() {
+        return oAuthId;
+    }
+
+    public void setOAuthId(int oAuthId) {
+        this.oAuthId = oAuthId;
+    }
+
+    public int getGrantTypeId() {
+        return grantTypeId;
+    }
+
+    public void setGrantTypeId(int grantTypeId) {
+        this.grantTypeId = grantTypeId;
+    }
 }

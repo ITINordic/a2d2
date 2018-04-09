@@ -1,5 +1,15 @@
+package com.itinordic.a2d2.token;
+
+import okhttp3.Response;
+import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+
 /**
- * Created by regnatpopulus on 31/03/2018.
+ * Created by regnatpopulus on 28/03/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -8,11 +18,11 @@
  * modification, are permitted provided that the following conditions are met:
  *
  * * Redistributions of source code must retain the above copyright notice, this
- * list of conditions and the following disclaimer.
+ *  list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
+ *  this list of conditions and the following disclaimer in the documentation
+ *  and/or other materials provided with the distribution.
+ * <p>
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -26,8 +36,19 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+public interface AccessTokenService {
 
-enum GrantType {
-    password, refresh_token, authorization_code
+    @FormUrlEncoded
+    @POST("uaa/oauth/token")
+    Call<AccessTokenModel> getUserAccessToken(
+            @Field("code") String code,
+            @Field("grant_type") String grantType);
+
+    @FormUrlEncoded
+    @Headers("Cache-Control: no-cache")
+    @POST("uaa/oauth/token")
+    Response refreshUserToken(@Header("Accept") String accept,
+                              @Header("Content-Type") String contentType, @Field("grant_type") String grantType,
+                              @Field("client_id") String clientId, @Field("client_secret") String clientSecret,
+                              @Field("refresh_token") String refreshToken);
 }

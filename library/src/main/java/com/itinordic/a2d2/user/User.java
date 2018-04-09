@@ -35,9 +35,7 @@ import android.support.annotation.NonNull;
 @Entity
 public class User {
 
-    @NonNull
-    @PrimaryKey
-    private String id;
+    private transient String id;
 
     private String code;
     private String name;
@@ -50,106 +48,4 @@ public class User {
     private String phoneNumber;
     private String username;
 
-
-    public User(String id, String code, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, String username) {
-        this.id = id;
-        this.code = code;
-        this.name = name;
-        this.displayName = displayName;
-        this.created = created;
-        this.lastUpdated = lastUpdated;
-        this.surname = surname;
-        this.firstName = firstName;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.username = username;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public void setDisplayName(String displayName) {
-        this.displayName = displayName;
-    }
-
-    public String getCreated() {
-        return created;
-    }
-
-    public void setCreated(String created) {
-        this.created = created;
-    }
-
-    public String getLastUpdated() {
-        return lastUpdated;
-    }
-
-    public void setLastUpdated(String lastUpdated) {
-        this.lastUpdated = lastUpdated;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

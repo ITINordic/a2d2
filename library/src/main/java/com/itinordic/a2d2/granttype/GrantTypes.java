@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 29/03/2018.
+ * Created by regnatpopulus on 31/03/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,22 +26,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2.granttype;
 
-import java.util.Date;
-import java.util.List;
-
-public class OAuthClient {
-
-    public final String name;
-    public final String cid;
-    public String secret;
-    public final List<GrantType> grantTypes;
-
-    public OAuthClient(String name, String cid, List<GrantType> grantTypes) {
-        this.name = name;
-        this.cid = cid;
-        this.grantTypes = grantTypes;
-    }
-    }
-
+enum GrantTypes {
+    password, refresh_token, authorization_code
+}

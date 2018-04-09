@@ -28,8 +28,6 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 public class OAuthClientTask {
@@ -37,67 +35,15 @@ public class OAuthClientTask {
     //Dagger
     @Inject OAuthClientService oAuthClientService;
 
-    private  OAuthClient oAuthClient;
+    private OAuthClientModel oAuthClientModel;
     private  String credentials;
 
-    public OAuthClientTask(OAuthClient oAuthClient) {
-        this.oAuthClient = oAuthClient;
+    public OAuthClientTask(OAuthClientModel oAuthClientModel) {
+        this.oAuthClientModel = oAuthClientModel;
     }
 
     void saveOAuthClient(){
-        oAuthClientService.addOAuthClient(credentials, oAuthClient);
-    }
-
-
-    public static class Builder {
-
-        private  String name;
-        private  String cid;
-        private List<GrantType> grantTypes;
-
-        public Builder(){
-        }
-
-        public Builder setName(String name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder setCid(String cid) {
-            this.cid = cid;
-            return this;
-        }
-
-        public Builder setGrantTypes(List<GrantType> grantTypes) {
-            this.grantTypes = grantTypes;
-            return this;
-        }
-
-
-        public OAuthClientTask build(){
-
-            if (this.name == null) {
-                throw new IllegalStateException("The name of the OAuth2 client must be set first");
-            }
-
-            if (this.cid == null) {
-                throw new IllegalArgumentException("The Client ID of the OAuth2 client must be set first");
-            }
-
-            if (this.grantTypes == null || this.grantTypes.isEmpty() ) {
-                throw new IllegalArgumentException("Grant types for OAuth2 client must be set first");
-            }
-
-
-            OAuthClient oAuthClient = new OAuthClientBuilder()
-                    .setCid(this.cid)
-                    .setName(this.name)
-                    .setGrantTypes(this.grantTypes)
-                    .build();
-
-            return new OAuthClientTask(oAuthClient);
-        }
-
+        oAuthClientService.addOAuthClient(credentials, oAuthClientModel);
     }
 
 }

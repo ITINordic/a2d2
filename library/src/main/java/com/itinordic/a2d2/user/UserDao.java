@@ -39,9 +39,9 @@ import io.reactivex.Flowable;
 public interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(User user);
+    void insert(UserModel userModel);
 
-    @Query("SELECT * FROM user WHERE username LIKE :username LIMIT 1")
-    Flowable<User> findByUsername(String username);
+    @Query("SELECT * FROM UserModel WHERE username LIKE :username LIMIT 1")
+    Flowable<UserModel> findByUsername(String username);
 
 }

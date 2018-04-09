@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 30/03/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,16 +26,26 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+package com.itinordic.a2d2.db.join;
 
-import io.reactivex.Observable;
-import retrofit2.http.Body;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
 
-interface OAuthClientService {
+import com.itinordic.a2d2.granttype.GrantTypeModel;
 
-    @POST("api/oAuth2Clients")
-    Observable<OAuthClientModel> addOAuthClient(@Header("Authorization") String credentials,
-                                                @Body OAuthClientModel oAuthClientModel);
+import java.util.List;
+
+@Dao
+public interface OAuthGrantTypeJoinDao {
+
+    @Insert
+    void insert(OAuthGrantTypeJoinModel oAuthGrantTypeJoinModel);
+
+    @Query("SELECT GrantTypeModel.id, GrantTypeModel.grantType FROM GrantTypeModel INNER JOIN oauth_granttype_model_join " +
+            "ON GrantTypeModel.id = oauth_granttype_model_join.grantTypeId " +
+            "WHERE oauth_granttype_model_join.oAuthId=:oAuthId")
+    List<GrantTypeModel> getGrantTypesForOAuth (int oAuthId);
+
+
 }

@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 30/03/2018.
+ * Created by regnatpopulus on 29/03/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,14 +28,54 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import io.reactivex.Observable;
-import retrofit2.http.Body;
-import retrofit2.http.Header;
-import retrofit2.http.POST;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-interface OAuthClientService {
+import java.util.List;
 
-    @POST("api/oAuth2Clients")
-    Observable<OAuthClientModel> addOAuthClient(@Header("Authorization") String credentials,
-                                                @Body OAuthClientModel oAuthClientModel);
+@Entity
+public class OAuthClientModel {
+
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
+    private String name;
+    private String cid;
+    public String secret;
+
+    @NonNull
+    public int getId() {
+        return id;
+    }
+
+    public void setId(@NonNull int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCid() {
+        return cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getSecret() {
+        return secret;
+    }
+
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 }
+

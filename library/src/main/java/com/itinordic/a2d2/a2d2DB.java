@@ -31,11 +31,31 @@ package com.itinordic.a2d2;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
-import com.itinordic.a2d2.user.User;
+import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinModel;
+import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinDao;
+import com.itinordic.a2d2.granttype.*;
+import com.itinordic.a2d2.oauthclient.OAuthClientModel;
+import com.itinordic.a2d2.oauthclient.OAuthClientDao;
+import com.itinordic.a2d2.token.AccessTokenModel;
+import com.itinordic.a2d2.token.AccessTokenDao;
+import com.itinordic.a2d2.user.UserModel;
 import com.itinordic.a2d2.user.UserDao;
+import com.itinordic.a2d2.granttype.GrantTypeModel;
 
-@Database(entities = {User.class}, version = 1)
-public abstract class a2d2Database extends RoomDatabase {
+@Database(entities = {UserModel.class, AccessTokenModel.class,
+        OAuthClientModel.class, GrantTypeModel.class, OAuthGrantTypeJoinModel.class}, version = 1)
+public abstract class a2d2DB extends RoomDatabase {
 
+    //Users
     public abstract UserDao userDao();
+
+    //AccessTokens
+    public abstract AccessTokenDao accessTokenDao();
+
+    //OAuth Client
+    public abstract GrantTypeDao grantTypeDao();
+    public abstract OAuthGrantTypeJoinDao oAuthGrantTypeJoinDao();
+    public abstract OAuthClientDao oAuthClientDao();
+
+
 }

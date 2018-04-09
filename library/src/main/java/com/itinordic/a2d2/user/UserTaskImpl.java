@@ -51,7 +51,7 @@ public class UserTaskImpl implements UserTask {
 
     }
 
-    public Observable<Response<User>> authenticate(String username, String password) {
+    public Observable<Response<UserModel>> authenticate(String username, String password) {
 
         if (username == null) {
             throw new IllegalStateException("The username must be set first");

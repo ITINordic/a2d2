@@ -1,5 +1,18 @@
+package com.itinordic.a2d2.token;
+
+import com.itinordic.a2d2.token.AccessTokenTask;
+
+import java.io.IOException;
+
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+
+import static okhttp3.Credentials.basic;
+
 /**
- * Created by regnatpopulus on 31/03/2018.
+ * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,40 +39,33 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.oauthclient;
+public class AccessTokenTaskImpl implements AccessTokenTask {
 
-import java.util.List;
-
-class OAuthClientBuilder {
-    private  String name;
-    private  String cid;
-    private  String secret;
-    private List<GrantType> grantTypes;
-
-    public OAuthClientBuilder(){
+    @Override
+    public Response refreshAccessToken() {
+        OkHttpClient okHttpClient;
+        return null;
     }
 
-    public OAuthClientBuilder setName(String name) {
-        this.name = name;
-        return this;
-    }
+    @Override
+    public Response createToken(String username, String password, String serverUrl) {
 
-    public OAuthClientBuilder setCid(String cid) {
-        this.cid = cid;
-        return this;
-    }
 
-    public OAuthClientBuilder setSecret(String secret) {
-        this.secret = secret;
-        return this;
-    }
 
-    public OAuthClientBuilder setGrantTypes(List<GrantType> grantTypes) {
-        this.grantTypes = grantTypes;
-        return this;
-    }
+        Request request = new Request.Builder()
+                .addHeader("Authorization", basic(username,password))
+                .url(HttpUrl.parse(serverUrl)).build();
 
-    public OAuthClient build(){
-           return new OAuthClient(name,cid,grantTypes);
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        try {
+
+             okHttpClient.newCall(request).execute();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

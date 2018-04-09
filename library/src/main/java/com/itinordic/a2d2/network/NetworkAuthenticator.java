@@ -28,7 +28,9 @@
 
 package com.itinordic.a2d2.network;
 
-import android.content.Context;
+import android.support.annotation.NonNull;
+
+import com.itinordic.a2d2.token.AccessTokenTask;
 
 import java.io.IOException;
 
@@ -42,20 +44,56 @@ public class NetworkAuthenticator implements Authenticator {
     private Response newAccessToken;
     private AccessTokenTask accessTokenTask;
 
-    public NetworkAuthenticator(Context context) {
-
+    private NetworkAuthenticator(AccessTokenTask accessTokenTask) {
+        this.accessTokenTask=accessTokenTask;
     }
 
     @Override
-    public Request authenticate(Route proxy, Response response) throws IOException {
+    public Request authenticate(Route route, Response response) throws IOException {
+
+        //Check if the same call was made before and terminate if so
+
+        /*
+        if (response.request().header("Authorization") != null) {
+            return null; // Give up, we've already attempted to authenticate.
+        }
+        */
 
         // Refresh your access_token using a synchronous api request
         newAccessToken = accessTokenTask.refreshAccessToken();
+
+
 
         // Add new header to rejected request and retry it
         return response.request().newBuilder()
                 .header("Authorization", "Bearer " + newAccessToken)
                 .build();
+    }
+
+    //builder that returns a new UserTask instance when it is passed a URL
+    public static class Builder {
+        private AccessTokenTask task;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder accessTokenTask(@NonNull AccessTokenTask task) {
+            this.task = task;
+            return this;
+        }
+
+        public NetworkAuthenticator build() {
+
+            if (task == null) {
+                throw new IllegalStateException("Access Token task is null");
+            }
+
+            return new NetworkAuthenticator(task);
+        }
+
+
     }
 
 

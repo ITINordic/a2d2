@@ -1,13 +1,8 @@
-package com.itinordic.a2d2.network;
+package com.itinordic.a2d2.oauthclient;
 
-import java.io.IOException;
-
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import static okhttp3.Credentials.basic;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 
 /**
  * Created by regnatpopulus on 09/04/2018.
@@ -37,33 +32,9 @@ import static okhttp3.Credentials.basic;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-public class AccessTokenTaskImpl implements AccessTokenTask {
+@Dao
+public interface OAuthClientDao {
 
-    @Override
-    public Response refreshAccessToken() {
-        OkHttpClient okHttpClient;
-        return null;
-    }
-
-    @Override
-    public Response createToken(String username, String password, String serverUrl) {
-
-
-
-        Request request = new Request.Builder()
-                .addHeader("Authorization", basic(username,password))
-                .url(HttpUrl.parse(serverUrl)).build();
-
-        OkHttpClient okHttpClient = new OkHttpClient();
-
-        try {
-
-             okHttpClient.newCall(request).execute();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(OAuthClientModel oAuthClientModel);
 }
