@@ -1,10 +1,3 @@
-package com.itinordic.a2d2.token;
-
-
-import io.reactivex.Observable;
-import retrofit2.Call;
-import retrofit2.Response;
-
 /**
  * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
@@ -33,13 +26,24 @@ import retrofit2.Response;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-public interface AccessTokenTask {
+package com.itinordic.a2d2.token;
 
-    Observable<Response<AccessToken>> getAccessToken(String accept, String authorization,
-                                                     String grantType, String username,
-                                                     String password);
+import com.itinordic.a2d2.scope.PerService;
 
-    //This call should be synchronously executed since it can be executed in Authenticator
-    Call<AccessToken> refreshAccessToken(String accept, String authorization,
-                                         String grantType, String refreshToken);
+import dagger.Subcomponent;
+
+@PerService
+@Subcomponent(modules =
+        AccessTokenModule.class)
+public interface AccessTokenComponent {
+
+    // injection targets
+    void inject(AccessTokenTaskImpl accessTokenTaskImpl);
+
+    //specifies an interface to supply necessary modules to construct the subcomponent
+    @Subcomponent.Builder
+    interface Builder {
+        Builder requestModule(AccessTokenModule module);
+        AccessTokenComponent build();
+    }
 }

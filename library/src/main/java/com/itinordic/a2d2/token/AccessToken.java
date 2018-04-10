@@ -1,14 +1,3 @@
-package com.itinordic.a2d2.token;
-
-import io.reactivex.Observable;
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-
 /**
  * Created by regnatpopulus on 28/03/2018.
  * dev@itinordic.com
@@ -19,11 +8,11 @@ import retrofit2.http.POST;
  * modification, are permitted provided that the following conditions are met:
  *
  * * Redistributions of source code must retain the above copyright notice, this
- *  list of conditions and the following disclaimer.
+ * list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
- *  this list of conditions and the following disclaimer in the documentation
- *  and/or other materials provided with the distribution.
- * <p>
+ * this list of conditions and the following disclaimer in the documentation
+ * and/or other materials provided with the distribution.
+ *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -37,16 +26,21 @@ import retrofit2.http.POST;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-public interface AccessTokenService {
+package com.itinordic.a2d2.token;
 
-    @FormUrlEncoded
-    @POST("uaa/oauth/token")
-    Observable<Response<AccessToken>> getAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
-                                                    @Field("grant_type") String grantType, @Field("username") String username, @Field("password") String password);
+public class AccessToken {
 
-    @FormUrlEncoded
-    @Headers("Cache-Control: no-cache")
-    @POST("uaa/oauth/token")
-    Call<AccessToken> refreshAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
-                                         @Field("grant_type") String grantType, @Field("refresh_token") String refreshToken);
+    public final String expires_in;
+    public final String scope;
+    public final String access_token;
+    public final String refresh_token;
+    public final String token_type;
+
+    public AccessToken(String expires_in, String scope, String access_token, String refresh_token, String token_type) {
+        this.expires_in = expires_in;
+        this.scope = scope;
+        this.access_token = access_token;
+        this.refresh_token = refresh_token;
+        this.token_type = token_type;
+    }
 }

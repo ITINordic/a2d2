@@ -60,7 +60,7 @@ public class NetworkAuthenticator implements Authenticator {
         */
 
         // Refresh your access_token using a synchronous api request
-        newAccessToken = accessTokenTask.refreshAccessToken();
+        //newAccessToken = accessTokenTask.refreshAccessToken();
 
 
 

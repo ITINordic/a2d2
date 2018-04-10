@@ -29,6 +29,7 @@
 package com.itinordic.a2d2;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
+import com.itinordic.a2d2.token.AccessTokenComponent;
 import com.itinordic.a2d2.user.UserComponent;
 
 import javax.inject.Singleton;
@@ -44,6 +45,7 @@ public interface a2d2Component {
     //subcomponents
     OAuthClientComponent.Builder oAuthClientComponent();
     UserComponent.Builder userComponent();
+    AccessTokenComponent.Builder accessTokenComponent();
 
     //Field injection
     void inject(a2d2 target);

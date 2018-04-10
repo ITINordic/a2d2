@@ -1,16 +1,3 @@
-package com.itinordic.a2d2.token;
-
-import com.itinordic.a2d2.token.AccessTokenTask;
-
-import java.io.IOException;
-
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-import static okhttp3.Credentials.basic;
-
 /**
  * Created by regnatpopulus on 09/04/2018.
  * dev@itinordic.com
@@ -39,33 +26,61 @@ import static okhttp3.Credentials.basic;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+package com.itinordic.a2d2.token;
+
+import android.support.annotation.NonNull;
+
+import com.itinordic.a2d2.a2d2Component;
+import javax.inject.Inject;
+import io.reactivex.Observable;
+import retrofit2.Call;
+import retrofit2.Response;
+
+
 public class AccessTokenTaskImpl implements AccessTokenTask {
 
-    @Override
-    public Response refreshAccessToken() {
-        OkHttpClient okHttpClient;
-        return null;
+    @Inject AccessTokenService accessTokenService;
+
+    public AccessTokenTaskImpl(a2d2Component a2d2component) {
+        a2d2component.accessTokenComponent().build().inject(this);
     }
 
     @Override
-    public Response createToken(String username, String password, String serverUrl) {
+    public Observable<Response<AccessToken>> getAccessToken(String accept, String authorization,
+                                                            String grantType, String username,
+                                                            String password) {
+        return accessTokenService.getAccessToken(accept, authorization, grantType, username, password);
+    }
 
+    @Override
+    public Call<AccessToken> refreshAccessToken(String accept, String authorization,
+                                                String grantType, String refreshToken) {
+        return accessTokenService.refreshAccessToken(accept,authorization,grantType, refreshToken);
+    }
 
+    //builder that returns a new AccessTokenTask instance when it is passed a URL
+    public static class Builder {
+        private a2d2Component component;
 
-        Request request = new Request.Builder()
-                .addHeader("Authorization", basic(username,password))
-                .url(HttpUrl.parse(serverUrl)).build();
-
-        OkHttpClient okHttpClient = new OkHttpClient();
-
-        try {
-
-             okHttpClient.newCall(request).execute();
+        public Builder() {
+            // empty constructor
         }
-        catch (IOException e)
-        {
-            e.printStackTrace();
+
+        @NonNull
+        public Builder a2d2Component(@NonNull a2d2Component component) {
+            this.component = component;
+            return this;
         }
-        return null;
+
+        public AccessTokenTaskImpl build() {
+
+            if (component == null) {
+                throw new IllegalStateException("a2d2 component is null");
+            }
+
+            return new AccessTokenTaskImpl(component);
+        }
+
+
     }
 }
