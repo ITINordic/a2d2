@@ -1,8 +1,3 @@
-package com.itinordic.a2d2.user;
-
-import io.reactivex.Observable;
-import retrofit2.Response;
-
 /**
  * Created by regnatpopulus on 06/04/2018.
  * dev@itinordic.com
@@ -31,8 +26,12 @@ import retrofit2.Response;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+package com.itinordic.a2d2.user;
+
+import io.reactivex.Single;
+
 public interface UserTask {
 
-    Observable<Response<User>> authenticate(String username, String password);
+    Single<User> authenticate(String username, String password);
 
 }

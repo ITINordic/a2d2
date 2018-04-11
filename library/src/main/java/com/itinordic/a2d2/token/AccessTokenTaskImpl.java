@@ -32,9 +32,7 @@ import android.support.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
 import javax.inject.Inject;
-import io.reactivex.Observable;
-import retrofit2.Call;
-import retrofit2.Response;
+import io.reactivex.Single;
 
 
 public class AccessTokenTaskImpl implements AccessTokenTask {
@@ -46,14 +44,14 @@ public class AccessTokenTaskImpl implements AccessTokenTask {
     }
 
     @Override
-    public Observable<Response<AccessToken>> getAccessToken(String accept, String authorization,
-                                                            String grantType, String username,
-                                                            String password) {
+    public Single<AccessToken> getAccessToken(String accept, String authorization,
+                                              String grantType, String username,
+                                              String password) {
         return accessTokenService.getAccessToken(accept, authorization, grantType, username, password);
     }
 
     @Override
-    public Call<AccessToken> refreshAccessToken(String accept, String authorization,
+    public Single<AccessToken> refreshAccessToken(String accept, String authorization,
                                                 String grantType, String refreshToken) {
         return accessTokenService.refreshAccessToken(accept,authorization,grantType, refreshToken);
     }

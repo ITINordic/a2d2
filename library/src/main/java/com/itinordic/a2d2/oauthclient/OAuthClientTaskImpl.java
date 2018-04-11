@@ -29,12 +29,9 @@
 package com.itinordic.a2d2.oauthclient;
 
 import android.support.annotation.NonNull;
-
 import com.itinordic.a2d2.a2d2Component;
-
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 
 public class OAuthClientTaskImpl implements OAuthClientTask {
@@ -49,10 +46,20 @@ public class OAuthClientTaskImpl implements OAuthClientTask {
         a2d2component.oAuthClientComponent().build().inject(this);
     }
 
-    public Observable<Response<OAuthClient>> saveOAuthClient(String credentials, OAuthClient oAuthClient ){
+    @Override
+    public Single<Response<OAuthClient>> saveOAuthClient(String credentials, OAuthClient oAuthClient ){
         return oAuthClientService.addOAuthClient(credentials, oAuthClient);
     }
 
+    @Override
+    public Single<Response<OAuthClients>> getOAuthClientList(String credentials, String name) {
+        return oAuthClientService.getOAuthClientList(credentials, name);
+    }
+
+    @Override
+    public Single<Response<OAuthClient>> getOAuthClient(String credentials, String oAuthClientUid) {
+        return oAuthClientService.getOAuthClient(credentials,oAuthClientUid);
+    }
 
     //builder that returns a new UserTask instance when it is passed a URL
     public static class Builder {

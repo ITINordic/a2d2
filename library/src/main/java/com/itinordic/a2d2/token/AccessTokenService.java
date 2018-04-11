@@ -1,14 +1,3 @@
-package com.itinordic.a2d2.token;
-
-import io.reactivex.Observable;
-import retrofit2.Call;
-import retrofit2.Response;
-import retrofit2.http.Field;
-import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
-import retrofit2.http.POST;
-
 /**
  * Created by regnatpopulus on 28/03/2018.
  * dev@itinordic.com
@@ -37,16 +26,28 @@ import retrofit2.http.POST;
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
+package com.itinordic.a2d2.token;
+
+import io.reactivex.Single;
+import retrofit2.Response;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+
 public interface AccessTokenService {
 
     @FormUrlEncoded
     @POST("uaa/oauth/token")
-    Observable<Response<AccessToken>> getAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
-                                                    @Field("grant_type") String grantType, @Field("username") String username, @Field("password") String password);
+    Single<AccessToken> getAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
+                                                 @Field("grant_type") String grantType, @Field("username") String username, @Field("password") String password);
 
     @FormUrlEncoded
     @Headers("Cache-Control: no-cache")
     @POST("uaa/oauth/token")
-    Call<AccessToken> refreshAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
+    Single<AccessToken> refreshAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
                                          @Field("grant_type") String grantType, @Field("refresh_token") String refreshToken);
+
+
 }

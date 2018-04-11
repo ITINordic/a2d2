@@ -2,6 +2,7 @@ package com.itinordic.a2d2.token;
 
 
 import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -35,11 +36,12 @@ import retrofit2.Response;
 
 public interface AccessTokenTask {
 
-    Observable<Response<AccessToken>> getAccessToken(String accept, String authorization,
-                                                     String grantType, String username,
-                                                     String password);
+    Single<AccessToken> getAccessToken(String accept, String authorization,
+                                       String grantType, String username,
+                                       String password);
 
     //This call should be synchronously executed since it can be executed in Authenticator
-    Call<AccessToken> refreshAccessToken(String accept, String authorization,
+    //For synchronous calling use blocking method on observable within the main thread
+    Single<AccessToken>refreshAccessToken(String accept, String authorization,
                                          String grantType, String refreshToken);
 }

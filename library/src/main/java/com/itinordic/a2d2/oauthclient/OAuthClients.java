@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 09/04/2018.
+ * Created by regnatpopulus on 11/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,15 +28,16 @@
 
 package com.itinordic.a2d2.oauthclient;
 
-import io.reactivex.Single;
-import retrofit2.Response;
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
 
-public interface OAuthClientTask {
+import java.util.List;
 
-    Single<Response<OAuthClient>> saveOAuthClient(String credentials, OAuthClient oAuthClient );
+public class OAuthClients {
 
-    Single<Response<OAuthClients>> getOAuthClientList(String credentials, String name);
+    public final List<BaseIdentifiableObject> oAuth2Clients;
 
-    Single<Response<OAuthClient>> getOAuthClient(String credentials, String oAuthClientUid);
+    public OAuthClients(List<BaseIdentifiableObject> oAuth2Clients) {
+        this.oAuth2Clients = oAuth2Clients;
+    }
 
 }

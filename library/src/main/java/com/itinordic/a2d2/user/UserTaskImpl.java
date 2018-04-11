@@ -29,14 +29,9 @@
 package com.itinordic.a2d2.user;
 
 import android.support.annotation.NonNull;
-
 import com.itinordic.a2d2.a2d2Component;
-
 import javax.inject.Inject;
-
-import io.reactivex.Observable;
-import retrofit2.Response;
-
+import io.reactivex.Single;
 import static okhttp3.Credentials.basic;
 
 public class UserTaskImpl implements UserTask {
@@ -51,7 +46,7 @@ public class UserTaskImpl implements UserTask {
 
     }
 
-    public Observable<Response<User>> authenticate(String username, String password) {
+    public Single<User> authenticate(String username, String password) {
 
         if (username == null) {
             throw new IllegalStateException("The username must be set first");

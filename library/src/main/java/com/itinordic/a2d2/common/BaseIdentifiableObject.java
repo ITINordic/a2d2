@@ -37,11 +37,13 @@ import com.itinordic.a2d2.common.SafeDateFormat;
 import java.text.ParseException;
 import java.util.Date;
 
-public abstract class BaseIdentifiableObject implements IdentifiableObject {
-    /* date format which should be used for all Date instances
-    within models which extend BaseIdentifiableObject */
+public class BaseIdentifiableObject {
 
+    public final String id;
+    public final String displayName;
 
-
-
+    public BaseIdentifiableObject(String id, String displayName) {
+        this.id = id;
+        this.displayName = displayName;
+    }
 }
