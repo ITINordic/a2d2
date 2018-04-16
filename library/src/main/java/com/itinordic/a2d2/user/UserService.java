@@ -28,6 +28,7 @@
 
 package com.itinordic.a2d2.user;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -35,5 +36,5 @@ import retrofit2.http.Header;
 interface UserService {
 
     @GET("api/me")
-    Single<User> authenticate (@Header("Authorization") String credentials);
+    Observable<User> authenticate (@Header("Authorization") String credentials);
 }

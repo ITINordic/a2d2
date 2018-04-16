@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 01/04/2018.
+ * Created by regnatpopulus on 16/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,33 +26,45 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.usergroup;
 
-import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
-import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
-import com.itinordic.a2d2.token.AccessTokenComponent;
-import com.itinordic.a2d2.user.UserComponent;
-import com.itinordic.a2d2.usergroup.UserGroupComponent;
-import com.itinordic.a2d2.userrole.UserRoleComponent;
+import android.support.annotation.NonNull;
 
-import javax.inject.Singleton;
+import com.itinordic.a2d2.a2d2Component;
 
-import dagger.Component;
+import javax.inject.Inject;
 
-@Singleton
-@Component(modules = {
-        a2d2Module.class
-})
-public interface a2d2Component {
+public class UserGroupTaskImpl implements UserGroupTask {
+    @Inject UserGroupService userGroupService;
 
-    //subcomponents
-    OAuthClientComponent.Builder oAuthClientComponent();
-    UserComponent.Builder userComponent();
-    AccessTokenComponent.Builder accessTokenComponent();
-    UserGroupComponent.Builder userGroupComponent();
-    OrganisationUnitComponent.Builder organisationUnitComponent();
-    UserRoleComponent.Builder userRoleComponent();
+    private UserGroupTaskImpl(a2d2Component a2d2component) {
 
-    //Field injection
-    void inject(a2d2 target);
+        a2d2component.userGroupComponent().build().inject(this);
+    }
+
+    //builder that returns a new UserTask instance when it is passed a URL
+    public static class Builder {
+        private a2d2Component component;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder a2d2Component(@NonNull a2d2Component component) {
+            this.component = component;
+            return this;
+        }
+
+        public UserGroupTaskImpl build() {
+
+            if (component == null) {
+                throw new IllegalStateException("a2d2 component is null");
+            }
+
+            return new UserGroupTaskImpl(component);
+        }
+
+
+    }
 }

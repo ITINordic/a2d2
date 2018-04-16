@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 16/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,64 +26,78 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.user;
+package com.itinordic.a2d2.organisationunit;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
-import com.itinordic.a2d2.a2d2Component;
-import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.Single;
-import static okhttp3.Credentials.basic;
+@Entity
+public class OrganisationUnitModel {
 
-public class UserTaskImpl implements UserTask {
-    @Inject
-    UserService userService;
+    @NonNull
+    @PrimaryKey
+    private  String id;
 
-    private a2d2Component a2d2component;
+    private  String displayName;
 
-    private UserTaskImpl(a2d2Component a2d2component) {
-
-        a2d2component.userComponent().build().inject(this);
-
+    public OrganisationUnitModel(String id, String displayName) {
+        this.id = id;
+        this.displayName = displayName;
     }
 
-    public Observable<User> authenticate(String username, String password) {
 
-        if (username == null) {
-            throw new IllegalStateException("The username must be set first");
-        }
-
-        if (password == null) {
-            throw new IllegalArgumentException("The password must be set first");
-        }
-
-        return userService.authenticate(basic(username, password));
+    @NonNull
+    public String getId() {
+        return id;
     }
 
-    //builder that returns a new UserTask instance when it is passed a URL
+    public void setId(@NonNull String id) {
+        this.id = id;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    //Builder
     public static class Builder {
-        private a2d2Component component;
+        private String id;
+        private String displayName;
 
         public Builder() {
             // empty constructor
         }
 
         @NonNull
-        public Builder a2d2Component(@NonNull a2d2Component component) {
-            this.component = component;
+        public Builder id(@NonNull String id) {
+            this.id = id;
             return this;
         }
-        
-        public UserTaskImpl build() {
 
-            if (component == null) {
-                throw new IllegalStateException("a2d2 component is null");
-            }
-
-            return new UserTaskImpl(component);
+        @NonNull
+        public Builder displayName(@NonNull String displayName) {
+            this.displayName = displayName;
+            return this;
         }
 
 
+        public OrganisationUnitModel build() {
+
+            if (id == null) {
+                throw new IllegalStateException("UID must be set");
+            }
+
+            if ( displayName == null) {
+                throw new IllegalStateException("Display name must be set");
+            }
+
+
+            return new OrganisationUnitModel(id,displayName);
+        }
     }
 }

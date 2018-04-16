@@ -30,24 +30,39 @@ package com.itinordic.a2d2;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 
+import com.itinordic.a2d2.common.Utils;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinDao;
+import com.itinordic.a2d2.db.join.UserOrganisationUnitJoinDao;
+import com.itinordic.a2d2.db.join.UserOrganisationUnitJoinModel;
 import com.itinordic.a2d2.granttype.*;
 import com.itinordic.a2d2.oauthclient.OAuthClientModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientDao;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitDao;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
 import com.itinordic.a2d2.token.AccessTokenModel;
 import com.itinordic.a2d2.token.AccessTokenDao;
 import com.itinordic.a2d2.user.UserModel;
 import com.itinordic.a2d2.user.UserDao;
 import com.itinordic.a2d2.granttype.GrantTypeModel;
+import com.itinordic.a2d2.usergroup.UserGroupDao;
+import com.itinordic.a2d2.usergroup.UserGroupModel;
+import com.itinordic.a2d2.userrole.UserRoleDao;
+import com.itinordic.a2d2.userrole.UserRoleModel;
 
 @Database(entities = {UserModel.class, AccessTokenModel.class,
-        OAuthClientModel.class, GrantTypeModel.class, OAuthGrantTypeJoinModel.class}, version = 1)
+        OAuthClientModel.class, GrantTypeModel.class,
+        OAuthGrantTypeJoinModel.class, OrganisationUnitModel.class, UserRoleModel.class,
+        UserGroupModel.class, UserOrganisationUnitJoinModel.class}, version = 1)
+@TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
     //Users
     public abstract UserDao userDao();
+    public abstract UserRoleDao userRoleDao();
+    public abstract UserGroupDao userGroupDao();
 
     //AccessTokens
     public abstract AccessTokenDao accessTokenDao();
@@ -56,6 +71,13 @@ public abstract class a2d2DB extends RoomDatabase {
     public abstract GrantTypeDao grantTypeDao();
     public abstract OAuthGrantTypeJoinDao oAuthGrantTypeJoinDao();
     public abstract OAuthClientDao oAuthClientDao();
+
+    //org units
+    public abstract OrganisationUnitDao organisationUnitDao();
+
+    //user org unit
+    public abstract UserOrganisationUnitJoinDao userOrganisationUnitJoinDao();
+
 
 
 }

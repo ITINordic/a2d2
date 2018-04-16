@@ -28,6 +28,8 @@
 
 package com.itinordic.a2d2.user;
 
+import android.arch.persistence.room.PrimaryKey;
+
 public class User {
 
     public final String id;

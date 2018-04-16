@@ -29,12 +29,22 @@
 package com.itinordic.a2d2.oauthclient;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
+import com.itinordic.a2d2.user.UserModel;
+
 import java.util.List;
 
-@Entity
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
+@Entity(foreignKeys = @ForeignKey(entity = UserModel.class,
+        parentColumns = "id",
+        childColumns = "userid",
+        onDelete = CASCADE), indices = {@Index("userid")})
 public class OAuthClientModel {
 
     @PrimaryKey
@@ -43,7 +53,8 @@ public class OAuthClientModel {
 
     private String name;
     private String cid;
-    public String secret;
+    private String secret;
+    private String userid;
 
     @NonNull
     public String getId() {
@@ -76,6 +87,93 @@ public class OAuthClientModel {
 
     public void setSecret(String secret) {
         this.secret = secret;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public OAuthClientModel(@NonNull String id, String name, String cid, String secret, String userid) {
+        this.id = id;
+        this.name = name;
+        this.cid = cid;
+        this.secret = secret;
+        this.userid = userid;
+    }
+
+    //Builder
+    public static class Builder {
+        private String id;
+        private String name;
+        private String cid;
+        private String secret;
+        private String userid;
+
+
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder id(@NonNull String id) {
+            this.id = id;
+            return this;
+        }
+
+        @NonNull
+        public Builder name(@NonNull String name) {
+            this.name = name;
+            return this;
+        }
+
+        @NonNull
+        public Builder secret(@NonNull String secret) {
+            this.secret = secret;
+            return this;
+        }
+
+        @NonNull
+        public Builder cid(@NonNull String cid) {
+            this.cid = cid;
+            return this;
+        }
+
+        @NonNull
+        public Builder userid(@NonNull String userid) {
+            this.userid = userid;
+            return this;
+        }
+
+
+        public OAuthClientModel build() {
+
+            if (id == null) {
+                throw new IllegalStateException("OAuth client UID must be set");
+            }
+
+            if ( name == null) {
+                throw new IllegalStateException("OAuth client name must be set");
+            }
+
+            if ( secret == null) {
+                throw new IllegalStateException("OAuth client secret must be set");
+            }
+
+            if ( cid == null) {
+                throw new IllegalStateException("OAuth client cid must be set");
+            }
+
+            if ( userid == null) {
+                throw new IllegalStateException("OAuth client user id must be set");
+            }
+
+            return new OAuthClientModel( id, name, cid, secret, userid);
+        }
     }
 }
 

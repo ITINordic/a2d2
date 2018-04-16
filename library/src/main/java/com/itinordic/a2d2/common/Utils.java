@@ -28,6 +28,8 @@
 
 package com.itinordic.a2d2.common;
 
+import android.arch.persistence.room.TypeConverter;
+
 import java.text.ParseException;
 import java.util.Date;
 
@@ -36,11 +38,37 @@ public class Utils {
     public static final SafeDateFormat DATE_FORMAT = new SafeDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
     public static final SafeDateFormat SPACE_DATE_FORMAT = new SafeDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
-    public static Date parseDate(String dateStr) throws ParseException {
-        return Utils.DATE_FORMAT.parse(dateStr);
+    @TypeConverter
+    public static Date parseDate(String dateStr) {
+
+        if (dateStr != null) {
+            try {
+                return Utils.DATE_FORMAT.parse(dateStr);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return null;
+        } else {
+            return null;
+        }
     }
 
     public static Date parseSpaceDate(String dateStr) throws ParseException {
         return Utils.SPACE_DATE_FORMAT.parse(dateStr);
+    }
+
+    @TypeConverter
+    public static String formatDate(Date date) {
+
+        if (date != null) {
+            try {
+                return Utils.DATE_FORMAT.format(date);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        } else {
+            return null;
+        }
     }
 }

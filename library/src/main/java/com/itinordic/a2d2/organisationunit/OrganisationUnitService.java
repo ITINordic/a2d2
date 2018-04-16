@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 01/04/2018.
+ * Created by regnatpopulus on 16/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,33 +26,17 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.organisationunit;
 
-import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
-import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
-import com.itinordic.a2d2.token.AccessTokenComponent;
-import com.itinordic.a2d2.user.UserComponent;
-import com.itinordic.a2d2.usergroup.UserGroupComponent;
-import com.itinordic.a2d2.userrole.UserRoleComponent;
+import io.reactivex.Observable;
+import retrofit2.Response;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Path;
 
-import javax.inject.Singleton;
+public interface OrganisationUnitService {
 
-import dagger.Component;
-
-@Singleton
-@Component(modules = {
-        a2d2Module.class
-})
-public interface a2d2Component {
-
-    //subcomponents
-    OAuthClientComponent.Builder oAuthClientComponent();
-    UserComponent.Builder userComponent();
-    AccessTokenComponent.Builder accessTokenComponent();
-    UserGroupComponent.Builder userGroupComponent();
-    OrganisationUnitComponent.Builder organisationUnitComponent();
-    UserRoleComponent.Builder userRoleComponent();
-
-    //Field injection
-    void inject(a2d2 target);
+    @GET("api/organisationUnits/{id}")
+    Observable<Response<OrganisationUnit>> getOrganisationUnit(@Header("Authorization") String authorization,
+                                                               @Path("id") String organisationUnitUid);
 }

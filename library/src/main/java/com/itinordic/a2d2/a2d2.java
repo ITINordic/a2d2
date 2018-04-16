@@ -90,16 +90,6 @@ public final class a2d2 implements a2d2API {
 
     }
 
-    @Override
-    public a2d2API init(OkHttpClient okHttpClient) {
-
-        if (okHttpClient == null) {
-            throw new IllegalStateException("Server Url must be set first");
-        }
-
-        return null;
-    }
-
     public UserTask userTaskBuilder(){
 
         return new UserTaskImpl.Builder().a2d2Component(a2d2component).build();

@@ -28,10 +28,10 @@
 
 package com.itinordic.a2d2.user;
 
-import io.reactivex.Single;
+import io.reactivex.Observable;
 
 public interface UserTask {
 
-    Single<User> authenticate(String username, String password);
+    Observable<User> authenticate(String username, String password);
 
 }

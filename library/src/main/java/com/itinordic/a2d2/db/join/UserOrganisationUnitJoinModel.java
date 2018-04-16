@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 01/04/2018.
+ * Created by regnatpopulus on 16/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,33 +26,46 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.db.join;
 
-import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
-import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
-import com.itinordic.a2d2.token.AccessTokenComponent;
-import com.itinordic.a2d2.user.UserComponent;
-import com.itinordic.a2d2.usergroup.UserGroupComponent;
-import com.itinordic.a2d2.userrole.UserRoleComponent;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
+import android.support.annotation.NonNull;
 
-import javax.inject.Singleton;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
+import com.itinordic.a2d2.user.UserModel;
 
-import dagger.Component;
+@Entity(tableName = "user_organisationunit_model_join",
+        primaryKeys = { "userId", "organisationUnitId" },
+        foreignKeys = {
+                @ForeignKey(entity = UserModel.class,
+                        parentColumns = "id",
+                        childColumns = "userId"),
+                @ForeignKey(entity = OrganisationUnitModel.class,
+                        parentColumns = "id",
+                        childColumns = "organisationUnitId")
+        }, indices = {@Index("organisationUnitId")})
+public class UserOrganisationUnitJoinModel {
 
-@Singleton
-@Component(modules = {
-        a2d2Module.class
-})
-public interface a2d2Component {
+    @NonNull
+    private String userId;
+    private int organisationUnitId;
 
-    //subcomponents
-    OAuthClientComponent.Builder oAuthClientComponent();
-    UserComponent.Builder userComponent();
-    AccessTokenComponent.Builder accessTokenComponent();
-    UserGroupComponent.Builder userGroupComponent();
-    OrganisationUnitComponent.Builder organisationUnitComponent();
-    UserRoleComponent.Builder userRoleComponent();
+    @NonNull
+    public String getUserId() {
+        return userId;
+    }
 
-    //Field injection
-    void inject(a2d2 target);
+    public void setUserId(@NonNull String userId) {
+        this.userId = userId;
+    }
+
+    public int getOrganisationUnitId() {
+        return organisationUnitId;
+    }
+
+    public void setOrganisationUnitId(int organisationUnitId) {
+        this.organisationUnitId = organisationUnitId;
+    }
 }

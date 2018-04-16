@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 01/04/2018.
+ * Created by regnatpopulus on 16/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,33 +26,25 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.db.join;
 
-import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
-import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
-import com.itinordic.a2d2.token.AccessTokenComponent;
-import com.itinordic.a2d2.user.UserComponent;
-import com.itinordic.a2d2.usergroup.UserGroupComponent;
-import com.itinordic.a2d2.userrole.UserRoleComponent;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
 
-import javax.inject.Singleton;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
 
-import dagger.Component;
+import java.util.List;
 
-@Singleton
-@Component(modules = {
-        a2d2Module.class
-})
-public interface a2d2Component {
+@Dao
+public interface UserOrganisationUnitJoinDao {
 
-    //subcomponents
-    OAuthClientComponent.Builder oAuthClientComponent();
-    UserComponent.Builder userComponent();
-    AccessTokenComponent.Builder accessTokenComponent();
-    UserGroupComponent.Builder userGroupComponent();
-    OrganisationUnitComponent.Builder organisationUnitComponent();
-    UserRoleComponent.Builder userRoleComponent();
+    @Insert
+    void insert(UserOrganisationUnitJoinModel userOrganisationUnitJoinModel);
 
-    //Field injection
-    void inject(a2d2 target);
+    @Query("SELECT OrganisationUnitModel.id, OrganisationUnitModel.displayName FROM OrganisationUnitModel " +
+            "INNER JOIN user_organisationunit_model_join ON OrganisationUnitModel.id = user_organisationunit_model_join.organisationUnitId " +
+            "WHERE user_organisationunit_model_join.userId=:userId")
+    List<OrganisationUnitModel> getUserOrganisationUnits (int userId);
+
 }

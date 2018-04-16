@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 09/04/2018.
+ * Created by regnatpopulus on 16/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,10 +26,15 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.userrole;
 
-public class GrantType {
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 
+@Dao
+public interface UserRoleDao {
 
-
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(UserRoleModel userRoleModel);
 }

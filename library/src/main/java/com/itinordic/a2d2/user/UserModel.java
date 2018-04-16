@@ -30,7 +30,12 @@ package com.itinordic.a2d2.user;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
+
+import com.itinordic.a2d2.common.Utils;
+
+import java.util.Date;
 
 @Entity
 public class UserModel {
@@ -38,12 +43,12 @@ public class UserModel {
     @NonNull
     @PrimaryKey
     private String id;
-
-    private String code;
     private String name;
     private String displayName;
-    private String created;
-    private String lastUpdated;
+    @TypeConverters({Utils.class})
+    private Date created;
+    @TypeConverters({Utils.class})
+    private Date lastUpdated;
     private String surname;
     private String firstName;
     private String email;
@@ -51,9 +56,10 @@ public class UserModel {
     private String username;
 
 
-    public UserModel(String id, String code, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, String username) {
+    public UserModel(String id, String name, String displayName, Date created, Date lastUpdated,
+                     String surname, String firstName, String email,
+                     String phoneNumber, String username) {
         this.id = id;
-        this.code = code;
         this.name = name;
         this.displayName = displayName;
         this.created = created;
@@ -65,20 +71,13 @@ public class UserModel {
         this.username = username;
     }
 
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
     }
 
     public String getName() {
@@ -97,19 +96,19 @@ public class UserModel {
         this.displayName = displayName;
     }
 
-    public String getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
-    public String getLastUpdated() {
+    public Date getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(String lastUpdated) {
+    public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
@@ -151,5 +150,119 @@ public class UserModel {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    //Builder
+    public static class Builder {
+        private String id;
+        private String name;
+        private String displayName;
+        private Date created;
+        private Date lastUpdated;
+        private String surname;
+        private String firstName;
+        private String email;
+        private String phoneNumber;
+        private String username;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder name(@NonNull String name) {
+            this.name = name;
+            return this;
+        }
+
+        @NonNull
+        public Builder id(@NonNull String id) {
+            this.id = id;
+            return this;
+        }
+
+        @NonNull
+        public Builder displayName(@NonNull String displayName) {
+            this.displayName = displayName;
+            return this;
+        }
+
+        @NonNull
+        public Builder created(@NonNull Date created) {
+            this.created = created;
+            return this;
+        }
+
+        @NonNull
+        public Builder lastUpdated(@NonNull Date lastUpdated) {
+            this.lastUpdated = lastUpdated;
+            return this;
+        }
+
+        @NonNull
+        public Builder firstName(@NonNull String firstName) {
+            this.firstName = firstName;
+            return this;
+        }
+
+        @NonNull
+        public Builder surname(@NonNull String surname) {
+            this.surname = surname;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder phoneNumber(String phoneNumber) {
+            this.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        @NonNull
+        public Builder username(@NonNull String username) {
+            this.username = username;
+            return this;
+        }
+
+
+        public UserModel build() {
+
+            if (name == null) {
+                throw new IllegalStateException("Name must be set");
+            }
+
+            if (id == null) {
+                throw new IllegalStateException("ID must be set");
+            }
+
+            if (displayName == null) {
+                throw new IllegalStateException("Display name must be set");
+            }
+
+            if (created == null) {
+                throw new IllegalStateException("Date created can not be null");
+            }
+
+            if (lastUpdated == null) {
+                throw new IllegalStateException("Date last updated can not be null");
+            }
+
+            if (firstName == null) {
+                throw new IllegalStateException("First name must be set");
+            }
+
+            if (surname == null) {
+                throw new IllegalStateException("Surname must be set");
+            }
+
+            if (username == null) {
+                throw new IllegalStateException("Username must be set");
+            }
+
+            return new UserModel(id, name, displayName, created, lastUpdated, surname, firstName, email, phoneNumber, username);
+        }
     }
 }

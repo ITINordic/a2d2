@@ -28,13 +28,18 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.oauthclient.OAuthClientTask;
+import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.user.UserTask;
 
 import okhttp3.OkHttpClient;
 
 public interface a2d2API {
 
-    a2d2API init(OkHttpClient okHttpClient);
     UserTask userTaskBuilder();
+
+    OAuthClientTask oAuthClientTaskBuilder();
+
+    AccessTokenTask accessTokenTaskBuilder();
 
 }
