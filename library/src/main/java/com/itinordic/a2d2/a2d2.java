@@ -32,10 +32,16 @@ import android.support.annotation.NonNull;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTaskImpl;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitTaskImpl;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.token.AccessTokenTaskImpl;
 import com.itinordic.a2d2.user.UserTask;
 import com.itinordic.a2d2.user.UserTaskImpl;
+import com.itinordic.a2d2.usergroup.UserGroupTask;
+import com.itinordic.a2d2.usergroup.UserGroupTaskImpl;
+import com.itinordic.a2d2.userrole.UserRoleTask;
+import com.itinordic.a2d2.userrole.UserRoleTaskImpl;
 
 import javax.inject.Inject;
 
@@ -102,6 +108,18 @@ public final class a2d2 implements a2d2API {
 
     public AccessTokenTask accessTokenTaskBuilder(){
         return new AccessTokenTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    public OrganisationUnitTask organisationUnitTaskBuilder(){
+        return new OrganisationUnitTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    public UserRoleTask userRoleTaskBuilder(){
+        return new UserRoleTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    public UserGroupTask userGroupTaskBuilder(){
+        return new UserGroupTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
 }

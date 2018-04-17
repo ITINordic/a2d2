@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "3287f69440cb8c40e6981db1cd0e4248",
+    "identityHash": "eb3473b95336bc32499ff799b9e01c94",
     "entities": [
       {
         "tableName": "UserModel",
@@ -352,7 +352,7 @@
       },
       {
         "tableName": "user_organisationunit_model_join",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `organisationUnitId` INTEGER NOT NULL, PRIMARY KEY(`userId`, `organisationUnitId`), FOREIGN KEY(`userId`) REFERENCES `UserModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`organisationUnitId`) REFERENCES `OrganisationUnitModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `organisationUnitId` TEXT NOT NULL, PRIMARY KEY(`userId`, `organisationUnitId`), FOREIGN KEY(`userId`) REFERENCES `UserModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`organisationUnitId`) REFERENCES `OrganisationUnitModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "userId",
@@ -363,7 +363,7 @@
           {
             "fieldPath": "organisationUnitId",
             "columnName": "organisationUnitId",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
@@ -408,11 +408,129 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "user_userrole_model_join",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `userRoleId` TEXT NOT NULL, PRIMARY KEY(`userId`, `userRoleId`), FOREIGN KEY(`userId`) REFERENCES `UserModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`userRoleId`) REFERENCES `UserRoleModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userRoleId",
+            "columnName": "userRoleId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId",
+            "userRoleId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_user_userrole_model_join_userRoleId",
+            "unique": false,
+            "columnNames": [
+              "userRoleId"
+            ],
+            "createSql": "CREATE  INDEX `index_user_userrole_model_join_userRoleId` ON `${TABLE_NAME}` (`userRoleId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "UserModel",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "userId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "UserRoleModel",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "userRoleId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "user_usergroup_model_join",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `userGroupId` TEXT NOT NULL, PRIMARY KEY(`userId`, `userGroupId`), FOREIGN KEY(`userId`) REFERENCES `UserModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`userGroupId`) REFERENCES `UserGroupModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userGroupId",
+            "columnName": "userGroupId",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId",
+            "userGroupId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_user_usergroup_model_join_userGroupId",
+            "unique": false,
+            "columnNames": [
+              "userGroupId"
+            ],
+            "createSql": "CREATE  INDEX `index_user_usergroup_model_join_userGroupId` ON `${TABLE_NAME}` (`userGroupId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "UserModel",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "userId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "UserGroupModel",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "userGroupId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3287f69440cb8c40e6981db1cd0e4248\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"eb3473b95336bc32499ff799b9e01c94\")"
     ]
   }
 }

@@ -31,8 +31,16 @@ package com.itinordic.a2d2.usergroup;
 import android.support.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import retrofit2.Response;
+
+import static okhttp3.Credentials.basic;
 
 public class UserGroupTaskImpl implements UserGroupTask {
     @Inject UserGroupService userGroupService;
@@ -40,6 +48,40 @@ public class UserGroupTaskImpl implements UserGroupTask {
     private UserGroupTaskImpl(a2d2Component a2d2component) {
 
         a2d2component.userGroupComponent().build().inject(this);
+    }
+
+    public Observable<Response<UserGroup>> getUserGroup(String username, String password, String userGroupUid) {
+
+        if (username == null) {
+            throw new IllegalStateException("The username must be set first");
+        }
+
+        if (password == null) {
+            throw new IllegalArgumentException("The password must be set first");
+        }
+
+        if (userGroupUid == null) {
+            throw new IllegalArgumentException("The user group UID must be set first");
+        }
+
+        return userGroupService.getUserGroup(basic(username, password),userGroupUid);
+    }
+
+    public Observable<Response<List<BaseIdentifiableObject>>> getUserGroups(String username, String password, List<String> userGroupUids) {
+
+        if (username == null) {
+            throw new IllegalStateException("The username must be set first");
+        }
+
+        if (password == null) {
+            throw new IllegalArgumentException("The password must be set first");
+        }
+
+        if (userGroupUids == null) {
+            throw new IllegalArgumentException("The user group UID list must be set first");
+        }
+
+        return userGroupService.getUserGroups(basic(username, password),userGroupUids);
     }
 
     //builder that returns a new UserTask instance when it is passed a URL

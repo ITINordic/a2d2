@@ -28,15 +28,24 @@
 
 package com.itinordic.a2d2.userrole;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UserRoleService {
 
     @GET("api/userRoles/{id}")
     Observable<Response<UserRole>> getUserRole(@Header("Authorization") String authorization,
                                                @Path("id") String userRoleUid);
+
+    @GET("api/userRoles")
+    Observable<Response<List<BaseIdentifiableObject>>> getUserRoles(@Header("Authorization") String authorization,
+                                                                     @Query("id") List<String> userRoleUids);
 }

@@ -28,5 +28,17 @@
 
 package com.itinordic.a2d2.usergroup;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import retrofit2.Response;
+
 public interface UserGroupTask {
+
+    Observable<Response<UserGroup>> getUserGroup(String username, String password, String userGroupUid);
+
+    Observable<Response<List<BaseIdentifiableObject>>> getUserGroups(String username, String password, List<String> userGroupUids);
+
 }

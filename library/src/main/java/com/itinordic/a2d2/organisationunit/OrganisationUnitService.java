@@ -28,15 +28,24 @@
 
 package com.itinordic.a2d2.organisationunit;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface OrganisationUnitService {
 
     @GET("api/organisationUnits/{id}")
     Observable<Response<OrganisationUnit>> getOrganisationUnit(@Header("Authorization") String authorization,
                                                                @Path("id") String organisationUnitUid);
+
+    @GET("api/organisationUnits")
+    Observable<Response<List<BaseIdentifiableObject>>> getOrganisationUnits(@Header("Authorization") String authorization,
+                                                                            @Query("id") List<String> organisationUnitUids);
 }

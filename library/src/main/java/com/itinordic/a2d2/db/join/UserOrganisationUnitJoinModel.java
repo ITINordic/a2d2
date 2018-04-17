@@ -50,7 +50,8 @@ public class UserOrganisationUnitJoinModel {
 
     @NonNull
     private String userId;
-    private int organisationUnitId;
+    @NonNull
+    private String organisationUnitId;
 
     @NonNull
     public String getUserId() {
@@ -61,11 +62,12 @@ public class UserOrganisationUnitJoinModel {
         this.userId = userId;
     }
 
-    public int getOrganisationUnitId() {
+    @NonNull
+    public String getOrganisationUnitId() {
         return organisationUnitId;
     }
 
-    public void setOrganisationUnitId(int organisationUnitId) {
+    public void setOrganisationUnitId(@NonNull String organisationUnitId) {
         this.organisationUnitId = organisationUnitId;
     }
 }

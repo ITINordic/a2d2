@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 16/04/2018.
+ * Created by regnatpopulus on 17/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,23 +26,12 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.db.join;
+package com.itinordic.a2d2.user;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
+public class UserUserGroup {
+    public final String id;
 
-import com.itinordic.a2d2.usergroup.UserGroupModel;
-
-import java.util.List;
-
-@Dao
-public interface UserUserGroupJoinDao {
-    @Insert
-    void insert(UserUserGroupJoinModel userUserGroupJoinModel);
-
-    @Query("SELECT UserGroupModel.id, UserGroupModel.displayName FROM UserGroupModel INNER JOIN " +
-            "user_usergroup_model_join ON UserGroupModel.id = user_usergroup_model_join.userGroupId " +
-            "WHERE user_usergroup_model_join.userId=:userId")
-    List<UserGroupModel> getUserUserGroups (String userId);
+    public UserUserGroup(String id) {
+        this.id = id;
+    }
 }

@@ -28,15 +28,24 @@
 
 package com.itinordic.a2d2.usergroup;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface UserGroupService {
 
     @GET("api/userGroups/{id}")
     Observable<Response<UserGroup>> getUserGroup(@Header("Authorization") String authorization,
                                                  @Path("id") String userGroupUid);
+
+    @GET("api/userGroups")
+    Observable<Response<List<BaseIdentifiableObject>>> getUserGroups(@Header("Authorization") String authorization,
+                                                                            @Query("id") List<String> userGroupUids);
 }

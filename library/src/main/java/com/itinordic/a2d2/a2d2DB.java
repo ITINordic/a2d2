@@ -37,6 +37,10 @@ import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinDao;
 import com.itinordic.a2d2.db.join.UserOrganisationUnitJoinDao;
 import com.itinordic.a2d2.db.join.UserOrganisationUnitJoinModel;
+import com.itinordic.a2d2.db.join.UserUserGroupJoinDao;
+import com.itinordic.a2d2.db.join.UserUserGroupJoinModel;
+import com.itinordic.a2d2.db.join.UserUserRoleJoinDao;
+import com.itinordic.a2d2.db.join.UserUserRoleJoinModel;
 import com.itinordic.a2d2.granttype.*;
 import com.itinordic.a2d2.oauthclient.OAuthClientModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientDao;
@@ -55,7 +59,8 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
 @Database(entities = {UserModel.class, AccessTokenModel.class,
         OAuthClientModel.class, GrantTypeModel.class,
         OAuthGrantTypeJoinModel.class, OrganisationUnitModel.class, UserRoleModel.class,
-        UserGroupModel.class, UserOrganisationUnitJoinModel.class}, version = 1)
+        UserGroupModel.class, UserOrganisationUnitJoinModel.class, UserUserRoleJoinModel.class,
+        UserUserGroupJoinModel.class}, version = 1)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -77,6 +82,12 @@ public abstract class a2d2DB extends RoomDatabase {
 
     //user org unit
     public abstract UserOrganisationUnitJoinDao userOrganisationUnitJoinDao();
+
+    //User user role
+    public abstract UserUserRoleJoinDao userUserRoleJoinDao();
+
+    //User user group
+    public abstract UserUserGroupJoinDao userUserGroupJoinDao();
 
 
 

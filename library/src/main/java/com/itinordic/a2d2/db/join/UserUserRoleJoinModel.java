@@ -28,5 +28,45 @@
 
 package com.itinordic.a2d2.db.join;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
+import android.support.annotation.NonNull;
+
+import com.itinordic.a2d2.user.UserModel;
+import com.itinordic.a2d2.userrole.UserRoleModel;
+
+@Entity(tableName = "user_userrole_model_join",
+        primaryKeys = { "userId", "userRoleId" },
+        foreignKeys = {
+                @ForeignKey(entity = UserModel.class,
+                        parentColumns = "id",
+                        childColumns = "userId"),
+                @ForeignKey(entity = UserRoleModel.class,
+                        parentColumns = "id",
+                        childColumns = "userRoleId")
+        }, indices = {@Index("userRoleId")})
 public class UserUserRoleJoinModel {
+    @NonNull
+    private String userId;
+    @NonNull
+    private String userRoleId;
+
+    @NonNull
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(@NonNull String userId) {
+        this.userId = userId;
+    }
+
+    @NonNull
+    public String getUserRoleId() {
+        return userRoleId;
+    }
+
+    public void setUserRoleId(@NonNull String userRoleId) {
+        this.userRoleId = userRoleId;
+    }
 }

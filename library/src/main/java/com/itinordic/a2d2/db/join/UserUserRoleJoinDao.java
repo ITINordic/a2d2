@@ -28,5 +28,21 @@
 
 package com.itinordic.a2d2.db.join;
 
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.Query;
+
+import com.itinordic.a2d2.userrole.UserRoleModel;
+
+import java.util.List;
+
+@Dao
 public interface UserUserRoleJoinDao {
+    @Insert
+    void insert(UserUserGroupJoinModel userUserGroupJoinModel);
+
+    @Query("SELECT UserRoleModel.id, UserRoleModel.displayName FROM UserRoleModel INNER JOIN " +
+            "user_userrole_model_join ON UserRoleModel.id = user_userrole_model_join.userRoleId " +
+            "WHERE user_userrole_model_join.userId=:userId")
+    List<UserRoleModel> getUserUserRoles (String userId);
 }

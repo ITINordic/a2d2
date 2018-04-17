@@ -28,10 +28,14 @@
 
 package com.itinordic.a2d2.user;
 
+import java.util.List;
+
 public class UserCredentials {
     public final String username;
+    public final List<UserUserRole> userRoles;
 
-    public UserCredentials(String username) {
+    public UserCredentials(String username, List<UserUserRole> userRoles) {
         this.username = username;
+        this.userRoles = userRoles;
     }
 }

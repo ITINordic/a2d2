@@ -31,8 +31,16 @@ package com.itinordic.a2d2.userrole;
 import android.support.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import retrofit2.Response;
+
+import static okhttp3.Credentials.basic;
 
 public class UserRoleTaskImpl implements UserRoleTask {
     @Inject UserRoleService userRoleService;
@@ -40,6 +48,41 @@ public class UserRoleTaskImpl implements UserRoleTask {
     private UserRoleTaskImpl(a2d2Component a2d2component) {
 
         a2d2component.userRoleComponent().build().inject(this);
+    }
+
+
+    public Observable<Response<UserRole>> getUserRole(String username, String password, String userRoleUid) {
+
+        if (username == null) {
+            throw new IllegalStateException("The username must be set first");
+        }
+
+        if (password == null) {
+            throw new IllegalArgumentException("The password must be set first");
+        }
+
+        if (userRoleUid == null) {
+            throw new IllegalArgumentException("The user role UID must be set first");
+        }
+
+        return userRoleService.getUserRole(basic(username, password),userRoleUid);
+    }
+
+    public Observable<Response<List<BaseIdentifiableObject>>> getUserRoles(String username, String password, List<String> userRoleUids) {
+
+        if (username == null) {
+            throw new IllegalStateException("The username must be set first");
+        }
+
+        if (password == null) {
+            throw new IllegalArgumentException("The password must be set first");
+        }
+
+        if (userRoleUids == null) {
+            throw new IllegalArgumentException("The user role UID list must be set first");
+        }
+
+        return userRoleService.getUserRoles(basic(username, password),userRoleUids);
     }
 
     //builder that returns a new UserTask instance when it is passed a URL

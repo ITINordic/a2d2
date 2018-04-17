@@ -28,7 +28,7 @@
 
 package com.itinordic.a2d2.user;
 
-import android.arch.persistence.room.PrimaryKey;
+import java.util.List;
 
 public class User {
 
@@ -42,8 +42,11 @@ public class User {
     public final String email;
     public final String phoneNumber;
     public final UserCredentials userCredentials;
+    public final List<UserOrganisationUnit> organisationUnits;
+    public final List<UserUserGroup> userGroups;
 
-    public User(String id, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, UserCredentials userCredentials) {
+
+    public User(String id, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, UserCredentials userCredentials, List<UserOrganisationUnit> organisationUnits, List<UserUserGroup> userGroups) {
         this.id = id;
         this.name = name;
         this.displayName = displayName;
@@ -54,5 +57,7 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.userCredentials = userCredentials;
+        this.organisationUnits = organisationUnits;
+        this.userGroups = userGroups;
     }
 }

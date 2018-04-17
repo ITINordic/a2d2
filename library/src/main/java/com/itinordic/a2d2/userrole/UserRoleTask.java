@@ -28,5 +28,17 @@
 
 package com.itinordic.a2d2.userrole;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import retrofit2.Response;
+
 public interface UserRoleTask {
+
+    Observable<Response<UserRole>> getUserRole(String username, String password, String userRoleUid);
+
+    Observable<Response<List<BaseIdentifiableObject>>> getUserRoles(String username, String password, List<String> userRoleUids);
+
 }

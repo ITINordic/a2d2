@@ -31,8 +31,16 @@ package com.itinordic.a2d2.organisationunit;
 import android.support.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
 
 import javax.inject.Inject;
+
+import io.reactivex.Observable;
+import retrofit2.Response;
+
+import static okhttp3.Credentials.basic;
 
 public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
     @Inject
@@ -41,6 +49,40 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
     private OrganisationUnitTaskImpl(a2d2Component a2d2component) {
 
         a2d2component.organisationUnitComponent().build().inject(this);
+    }
+
+    public Observable<Response<OrganisationUnit>> getOrganisationUnit(String username, String password, String organisationUnitUid) {
+
+        if (username == null) {
+            throw new IllegalStateException("The username must be set first");
+        }
+
+        if (password == null) {
+            throw new IllegalArgumentException("The password must be set first");
+        }
+
+        if (organisationUnitUid == null) {
+            throw new IllegalArgumentException("The organisation unit UID must be set first");
+        }
+
+        return organisationUnitService.getOrganisationUnit(basic(username, password),organisationUnitUid);
+    }
+
+    public Observable<Response<List<BaseIdentifiableObject>>> getOrganisationUnits(String username, String password, List<String> organisationUnitUids) {
+
+        if (username == null) {
+            throw new IllegalStateException("The username must be set first");
+        }
+
+        if (password == null) {
+            throw new IllegalArgumentException("The password must be set first");
+        }
+
+        if (organisationUnitUids == null) {
+            throw new IllegalArgumentException("The organisation unit UID list must be set first");
+        }
+
+        return organisationUnitService.getOrganisationUnits(basic(username, password),organisationUnitUids);
     }
 
     //builder that returns a new UserTask instance when it is passed a URL

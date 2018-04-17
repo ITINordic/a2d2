@@ -45,6 +45,6 @@ public interface UserOrganisationUnitJoinDao {
     @Query("SELECT OrganisationUnitModel.id, OrganisationUnitModel.displayName FROM OrganisationUnitModel " +
             "INNER JOIN user_organisationunit_model_join ON OrganisationUnitModel.id = user_organisationunit_model_join.organisationUnitId " +
             "WHERE user_organisationunit_model_join.userId=:userId")
-    List<OrganisationUnitModel> getUserOrganisationUnits (int userId);
+    List<OrganisationUnitModel> getUserOrganisationUnits (String userId);
 
 }

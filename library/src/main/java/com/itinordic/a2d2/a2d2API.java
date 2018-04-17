@@ -29,8 +29,11 @@
 package com.itinordic.a2d2;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.user.UserTask;
+import com.itinordic.a2d2.usergroup.UserGroupTask;
+import com.itinordic.a2d2.userrole.UserRoleTask;
 
 import okhttp3.OkHttpClient;
 
@@ -41,5 +44,11 @@ public interface a2d2API {
     OAuthClientTask oAuthClientTaskBuilder();
 
     AccessTokenTask accessTokenTaskBuilder();
+
+    OrganisationUnitTask organisationUnitTaskBuilder();
+
+    UserRoleTask userRoleTaskBuilder();
+
+    UserGroupTask userGroupTaskBuilder();
 
 }

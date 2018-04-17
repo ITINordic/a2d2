@@ -28,5 +28,17 @@
 
 package com.itinordic.a2d2.organisationunit;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
+
+import java.util.List;
+
+import io.reactivex.Observable;
+import retrofit2.Response;
+
 public interface OrganisationUnitTask {
+
+    Observable<Response<OrganisationUnit>> getOrganisationUnit(String username, String password, String organisationUnitUid);
+
+    Observable<Response<List<BaseIdentifiableObject>>> getOrganisationUnits(String username, String password, List<String> organisationUnitUids);
+
 }
