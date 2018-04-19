@@ -47,12 +47,15 @@ public class UserCredentialsModel {
     private String username;
     private String pin;
     private String userid;
+    private Boolean isLogged;
 
-    public UserCredentialsModel(int usercredentialsid, String username, String pin, String userid) {
+    public UserCredentialsModel(int usercredentialsid, String username, String pin,
+                                String userid, Boolean isLogged) {
         this.usercredentialsid = usercredentialsid;
         this.username = username;
         this.pin = pin;
         this.userid = userid;
+        this.isLogged = isLogged;
     }
 
     public int getUsercredentialsid() {
@@ -87,12 +90,20 @@ public class UserCredentialsModel {
         this.userid = userid;
     }
 
+    public Boolean getLogged() {
+        return isLogged;
+    }
+
+    public void setLogged(Boolean logged) {
+        isLogged = logged;
+    }
+
     //Builder
     public static class Builder {
         private String username;
         private String pin;
         private String userid;
-
+        private Boolean isLogged;
 
         public Builder() {
             // empty constructor
@@ -116,6 +127,12 @@ public class UserCredentialsModel {
             return this;
         }
 
+        @NonNull
+        public Builder userid(@NonNull Boolean isLogged) {
+            this.isLogged = isLogged;
+            return this;
+        }
+
         public UserCredentialsModel build() {
 
             if (username == null) {
@@ -129,8 +146,11 @@ public class UserCredentialsModel {
             if ( userid == null) {
                 throw new IllegalStateException("UserID must not be empty");
             }
+            if ( isLogged == null) {
+                throw new IllegalStateException("Logged in status must be set");
+            }
 
-            return new UserCredentialsModel(0,username,pin,userid);
+            return new UserCredentialsModel(0,username,pin,userid, isLogged);
         }
     }
 }

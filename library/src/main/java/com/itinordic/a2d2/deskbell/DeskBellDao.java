@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 01/04/2018.
+ * Created by regnatpopulus on 18/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,43 +26,22 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.deskbell;
 
-import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
-import com.itinordic.a2d2.user.UserComponent;
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
 
-import javax.inject.Singleton;
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 
-import dagger.Module;
-import dagger.Provides;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.moshi.MoshiConverterFactory;
+@Dao
+public interface DeskBellDao {
 
-@Module (subcomponents = {OAuthClientComponent.class, UserComponent.class})
-public class a2d2Module {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(DeskBellModel deskBellModel);
 
-    private HttpUrl serverUrl;
-    private OkHttpClient okHttpClient;
-
-    public a2d2Module (HttpUrl serverUrl, OkHttpClient okHttpClient) {
-        this.serverUrl = serverUrl;
-        this.okHttpClient = okHttpClient;
-    }
-
-    @Provides @Singleton
-    Retrofit provideRetrofit(){
-
-        return  new Retrofit.Builder()
-                .baseUrl(serverUrl)
-                .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .validateEagerly(true)
-                .build();
-    }
-
-
+    @Query("SELECT * FROM DeskBellModel WHERE ring LIKE :ring LIMIT 1")
+    Flowable<DeskBellModel> findByRing(String ring);
 }

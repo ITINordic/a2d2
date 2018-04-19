@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 01/04/2018.
+ * Created by regnatpopulus on 18/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,43 +26,29 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2;
+package com.itinordic.a2d2.deskbell;
 
-import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
-import com.itinordic.a2d2.user.UserComponent;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
 
-import javax.inject.Singleton;
+@Entity
+public class DeskBellModel {
 
-import dagger.Module;
-import dagger.Provides;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.moshi.MoshiConverterFactory;
+    @NonNull
+    @PrimaryKey
+    String ring;
 
-@Module (subcomponents = {OAuthClientComponent.class, UserComponent.class})
-public class a2d2Module {
-
-    private HttpUrl serverUrl;
-    private OkHttpClient okHttpClient;
-
-    public a2d2Module (HttpUrl serverUrl, OkHttpClient okHttpClient) {
-        this.serverUrl = serverUrl;
-        this.okHttpClient = okHttpClient;
+    public DeskBellModel(@NonNull String ring) {
+        this.ring = ring;
     }
 
-    @Provides @Singleton
-    Retrofit provideRetrofit(){
-
-        return  new Retrofit.Builder()
-                .baseUrl(serverUrl)
-                .client(okHttpClient)
-                .addConverterFactory(MoshiConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .validateEagerly(true)
-                .build();
+    @NonNull
+    public String getRing() {
+        return ring;
     }
 
-
+    public void setRing(@NonNull String ring) {
+        this.ring = ring;
+    }
 }

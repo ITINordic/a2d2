@@ -34,6 +34,8 @@ import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
+import retrofit2.Response;
+
 import static okhttp3.Credentials.basic;
 
 public class UserTaskImpl implements UserTask {
@@ -48,7 +50,7 @@ public class UserTaskImpl implements UserTask {
 
     }
 
-    public Observable<User> authenticate(String username, String password) {
+    public Observable<Response<User>> authenticate(String username, String password) {
 
         if (username == null) {
             throw new IllegalStateException("The username must be set first");

@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 08/04/2018.
+ * Created by regnatpopulus on 18/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -28,75 +28,30 @@
 
 package com.itinordic.a2d2.network;
 
-import android.support.annotation.NonNull;
-
-import com.itinordic.a2d2.token.AccessTokenTask;
+import android.support.annotation.Nullable;
 
 import java.io.IOException;
 
 import okhttp3.Authenticator;
+import okhttp3.Credentials;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.Route;
 
-public class NetworkAuthenticator implements Authenticator {
+public class ApplicationAuthenticator implements Authenticator {
 
-    private Response newAccessToken;
-    private AccessTokenTask accessTokenTask;
 
-    private NetworkAuthenticator(AccessTokenTask accessTokenTask) {
-        this.accessTokenTask=accessTokenTask;
+    public ApplicationAuthenticator() {
     }
 
+    @Nullable
     @Override
     public Request authenticate(Route route, Response response) throws IOException {
-
-        //Check if the same call was made before and terminate if so
-
-        /*
         if (response.request().header("Authorization") != null) {
-            return null; // Give up, we've already attempted to authenticate.
+            return null; // Give up, we've already failed to authenticate.
         }
-        */
 
-        // Refresh your access_token using a synchronous api request
-        //newAccessToken = accessTokenTask.refreshAccessToken();
-
-
-
-        // Add new header to rejected request and retry it
-        return response.request().newBuilder()
-                .header("Authorization", "Bearer " + newAccessToken)
-                .build();
+        //In future refresh token here
+        return null;
     }
-
-    //builder that returns a new UserTask instance when it is passed a URL
-    public static class Builder {
-        private AccessTokenTask task;
-
-        public Builder() {
-            // empty constructor
-        }
-
-        @NonNull
-        public Builder accessTokenTask(@NonNull AccessTokenTask task) {
-            this.task = task;
-            return this;
-        }
-
-        public NetworkAuthenticator build() {
-
-            if (task == null) {
-                throw new IllegalStateException("Access Token task is null");
-            }
-
-            return new NetworkAuthenticator(task);
-        }
-
-
-    }
-
-
-
-
 }

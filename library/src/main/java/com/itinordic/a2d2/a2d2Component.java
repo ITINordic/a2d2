@@ -53,6 +53,4 @@ public interface a2d2Component {
     OrganisationUnitComponent.Builder organisationUnitComponent();
     UserRoleComponent.Builder userRoleComponent();
 
-    //Field injection
-    void inject(a2d2 target);
 }

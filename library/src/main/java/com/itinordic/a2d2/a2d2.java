@@ -51,28 +51,27 @@ import retrofit2.Retrofit;
 
 public final class a2d2 implements a2d2API {
 
-@Inject  Retrofit retrofit;
-@Inject  OkHttpClient okHttpClient;
+    private final OkHttpClient okHttpClient;
 
     private final HttpUrl baseUrl;
 
     private a2d2Component a2d2component;
 
     //a2d2 class constructor. It is instantiated by the builder method below
-    private a2d2(HttpUrl baseUrl) {
+    private a2d2(HttpUrl baseUrl, OkHttpClient okHttpClient) {
 
         this.baseUrl = baseUrl;
+        this.okHttpClient = okHttpClient;
         a2d2component = Daggera2d2Component.builder()
-                .a2d2Module(new a2d2Module(baseUrl))
+                .a2d2Module(new a2d2Module(baseUrl,okHttpClient ))
                 .build();
-        a2d2component.inject(this);
-
     }
 
     //builder that returns a new a2d2 instance when it is passed a URL
     public static class Builder
     {
         private HttpUrl httpUrl;
+        private OkHttpClient okHttpClient;
 
         public Builder() {
             // empty constructor
@@ -84,6 +83,12 @@ public final class a2d2 implements a2d2API {
             return this;
         }
 
+        @NonNull
+        public Builder okHttpClient(@NonNull OkHttpClient okHttpClient){
+            this.okHttpClient = okHttpClient;
+            return this;
+        }
+
 
         public a2d2 build(){
 
@@ -91,7 +96,11 @@ public final class a2d2 implements a2d2API {
                 throw new IllegalStateException("Server Url must be set first");
             }
 
-            return new a2d2(httpUrl);
+            if (okHttpClient == null) {
+                throw new IllegalStateException("Okhttp client must be set first");
+            }
+
+            return new a2d2(httpUrl, okHttpClient);
         }
 
     }

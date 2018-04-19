@@ -28,67 +28,48 @@
 
 package com.itinordic.a2d2.network;
 
-import android.support.annotation.NonNull;
-
 import java.io.IOException;
 
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class NetworkInterceptor implements Interceptor {
+public class ApplicationInterceptor implements Interceptor {
 
-    private String accessToken;
 
-    public NetworkInterceptor(String accessToken) {
-        this.accessToken = accessToken;
+    public ApplicationInterceptor() {
+        //probably a good idea to get the token from the db
     }
 
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
 
+        String accessToken = getAccessToken(); //save token of this request for future
+
         // Nothing to add to intercepted request if:
-        // a) Authorization value is empty because user is not logged in yet
+        // a) Token authorization value is empty because user is not logged in yet
         // b) There is already a header with updated Authorization value
 
-        if (originalRequest.header("Authorization") !=  null) {
+        if (accessToken == null || originalRequest.header("Authorization") !=  null) {
             return chain.proceed(originalRequest);
         }
 
+        
         // Add authorization header with updated authorization value to intercepted request
-        Request authorisedRequest = originalRequest.newBuilder()
+        Request tokenAuthorisedRequest = originalRequest.newBuilder()
                 .header("Authorization", "Bearer " + accessToken)
                 .build();
-        return chain.proceed(authorisedRequest);
+        return chain.proceed(tokenAuthorisedRequest);
     }
 
-    //builder that returns a new a2d2 instance when it is passed a URL
-    public static class Builder
-    {
-        private String token;
-
-        public Builder() {
-            // empty constructor
-        }
-
-        @NonNull
-        public Builder bearerToken(@NonNull String token){
-            this.token = token;
-            return this;
-        }
-
-
-        public NetworkInterceptor build(){
-
-            if (token == null) {
-                throw new IllegalStateException("Authorization token is null");
-            }
-
-            return new NetworkInterceptor(token);
-        }
-
+    private void setAuthHeader(Request.Builder builder, String token) {
+        if (token != null) //Add Auth token to each request if authorized
+            builder.header("Authorization", String.format("Bearer %s", token));
     }
 
+    private String getAccessToken(){
+        return null;
+    }
 
 }
