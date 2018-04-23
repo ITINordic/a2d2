@@ -1,5 +1,5 @@
 /**
- * Created by regnatpopulus on 02/04/2018.
+ * Created by regnatpopulus on 23/04/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
@@ -26,18 +26,31 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-package com.itinordic.a2d2.user;
+package com.itinordic.a2d2.security;
 
-import io.reactivex.Observable;
-import io.reactivex.Single;
-import retrofit2.Response;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.Headers;
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyPair;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.UnrecoverableEntryException;
+import java.security.cert.CertificateException;
 
-interface UserService {
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
-    @GET("api/me")
-    @Headers("X-Requested-With:XMLHttpRequest")
-    Observable<Response<User>> authenticate (@Header("Authorization") String credentials);
+public interface BasicRSASecurityProvider {
+
+    KeyPair initGenerator(String alias) throws InvalidAlgorithmParameterException;
+
+    public byte[] encryptData(String data, String alias) throws NoSuchProviderException,
+            NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException, KeyStoreException, IOException, CertificateException, UnrecoverableEntryException;
+
+    public byte[] decryptData(byte[] data, String alias) throws NoSuchProviderException,
+            NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException,
+            BadPaddingException, KeyStoreException, IOException, CertificateException, UnrecoverableEntryException;
 }
