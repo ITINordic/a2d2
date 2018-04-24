@@ -50,6 +50,8 @@ import com.itinordic.a2d2.organisationunit.OrganisationUnitDao;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
 import com.itinordic.a2d2.token.AccessTokenModel;
 import com.itinordic.a2d2.token.AccessTokenDao;
+import com.itinordic.a2d2.user.UserCredentialsDao;
+import com.itinordic.a2d2.user.UserCredentialsModel;
 import com.itinordic.a2d2.user.UserModel;
 import com.itinordic.a2d2.user.UserDao;
 import com.itinordic.a2d2.granttype.GrantTypeModel;
@@ -62,7 +64,7 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         OAuthClientModel.class, GrantTypeModel.class,
         OAuthGrantTypeJoinModel.class, OrganisationUnitModel.class, UserRoleModel.class,
         UserGroupModel.class, UserOrganisationUnitJoinModel.class, UserUserRoleJoinModel.class,
-        UserUserGroupJoinModel.class, DeskBellModel.class}, version = 2)
+        UserUserGroupJoinModel.class, DeskBellModel.class, UserCredentialsModel.class}, version = 3)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -70,6 +72,7 @@ public abstract class a2d2DB extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract UserRoleDao userRoleDao();
     public abstract UserGroupDao userGroupDao();
+    public abstract UserCredentialsDao userCredentialsDao();
 
     //AccessTokens
     public abstract AccessTokenDao accessTokenDao();

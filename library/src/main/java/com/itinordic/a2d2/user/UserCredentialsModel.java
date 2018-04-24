@@ -128,7 +128,7 @@ public class UserCredentialsModel {
         }
 
         @NonNull
-        public Builder userid(@NonNull Boolean isLogged) {
+        public Builder isLogged(@NonNull Boolean isLogged) {
             this.isLogged = isLogged;
             return this;
         }
