@@ -32,7 +32,12 @@ import android.support.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
 import javax.inject.Inject;
+
+import io.reactivex.Flowable;
 import io.reactivex.Single;
+import retrofit2.Response;
+
+import static okhttp3.Credentials.basic;
 
 
 public class AccessTokenTaskImpl implements AccessTokenTask {
@@ -44,16 +49,16 @@ public class AccessTokenTaskImpl implements AccessTokenTask {
     }
 
     @Override
-    public Single<AccessToken> getAccessToken(String accept, String authorization,
-                                              String grantType, String username,
-                                              String password) {
-        return accessTokenService.getAccessToken(accept, authorization, grantType, username, password);
+    public Flowable<Response<AccessToken>> getAccessToken(String cid ,
+                                                          String secret, String username,
+                                                          String password) {
+        return accessTokenService.getAccessToken("application/json", basic(cid, secret), "password", username, password);
     }
 
     @Override
-    public Single<AccessToken> refreshAccessToken(String accept, String authorization,
-                                                String grantType, String refreshToken) {
-        return accessTokenService.refreshAccessToken(accept,authorization,grantType, refreshToken);
+    public Flowable<Response<AccessToken>> refreshAccessToken( String cid,
+                                                String secret, String refreshToken) {
+        return accessTokenService.refreshAccessToken("application/json", basic(cid, secret), "refresh_token", refreshToken);
     }
 
     //builder that returns a new AccessTokenTask instance when it is passed a URL

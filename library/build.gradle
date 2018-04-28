@@ -21,6 +21,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
@@ -51,7 +56,6 @@ dependencies {
 
     //square libs
     implementation "com.squareup.retrofit2:retrofit:${libraries.retrofit}"
-    implementation "com.squareup.retrofit2:converter-gson:${libraries.retrofit}"
     implementation "com.squareup.okhttp3:okhttp:${libraries.retrofit}"
 
     //jackson

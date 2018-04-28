@@ -28,16 +28,34 @@
 
 package com.itinordic.a2d2.network;
 
+import com.itinordic.a2d2.a2d2DB;
+import com.itinordic.a2d2.token.AccessTokenModel;
+
 import java.io.IOException;
 
+import io.reactivex.Flowable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
+
 public class ApplicationInterceptor implements Interceptor {
+    a2d2DB db;
+    Flowable<String> accessToken;
+    String token;
+    Flowable<AccessTokenModel> accessTokenResult;
 
 
-    public ApplicationInterceptor() {
+    public ApplicationInterceptor(a2d2DB db) {
+        this.db=db;
+        this.accessToken = null;
+
+        accessToken = Flowable.defer(()-> db.accessTokenDao().findAccessToken()
+                .subscribeOn(Schedulers.io()))
+                .map(result -> setAccessToken(result.getAccess_token()))
+                .onErrorReturn(throwable -> setAccessToken(null));
+
         //probably a good idea to get the token from the db
     }
 
@@ -45,20 +63,17 @@ public class ApplicationInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
 
-        String accessToken = getAccessToken(); //save token of this request for future
-
         // Nothing to add to intercepted request if:
-        // a) Token authorization value is empty because user is not logged in yet
-        // b) There is already a header with updated Authorization value
+        // a) There is already a header with updated Authorization value
 
-        if (accessToken == null || originalRequest.header("Authorization") !=  null) {
+        if (originalRequest.header("Authorization") !=  null) {
             return chain.proceed(originalRequest);
         }
 
         
         // Add authorization header with updated authorization value to intercepted request
         Request tokenAuthorisedRequest = originalRequest.newBuilder()
-                .header("Authorization", "Bearer " + accessToken)
+                .header("Authorization", "Bearer " + token)
                 .build();
         return chain.proceed(tokenAuthorisedRequest);
     }
@@ -68,8 +83,9 @@ public class ApplicationInterceptor implements Interceptor {
             builder.header("Authorization", String.format("Bearer %s", token));
     }
 
-    private String getAccessToken(){
-        return null;
+    private String setAccessToken(String accessToken){
+        this.token = accessToken;
+        return token;
     }
 
 }

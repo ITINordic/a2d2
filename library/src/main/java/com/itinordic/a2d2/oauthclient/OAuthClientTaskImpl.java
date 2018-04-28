@@ -31,8 +31,13 @@ package com.itinordic.a2d2.oauthclient;
 import android.support.annotation.NonNull;
 import com.itinordic.a2d2.a2d2Component;
 import javax.inject.Inject;
+
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
+
+import static okhttp3.Credentials.basic;
 
 public class OAuthClientTaskImpl implements OAuthClientTask {
 
@@ -47,18 +52,18 @@ public class OAuthClientTaskImpl implements OAuthClientTask {
     }
 
     @Override
-    public Single<Response<OAuthClient>> saveOAuthClient(String credentials, OAuthClient oAuthClient ){
-        return oAuthClientService.addOAuthClient(credentials, oAuthClient);
+    public Flowable<Response<OAuthClient>> saveOAuthClient(String username, String password, OAuthClient oAuthClient ){
+        return oAuthClientService.addOAuthClient(basic(username, password), oAuthClient);
     }
 
     @Override
-    public Single<Response<OAuthClients>> getOAuthClientList(String credentials, String name) {
-        return oAuthClientService.getOAuthClientList(credentials, name);
+    public Flowable<Response<OAuthClients>> getOAuthClientList(String username, String password, String name) {
+        return oAuthClientService.getOAuthClientList(basic(username, password), name);
     }
 
     @Override
-    public Single<Response<OAuthClient>> getOAuthClient(String credentials, String oAuthClientUid) {
-        return oAuthClientService.getOAuthClient(credentials,oAuthClientUid);
+    public Flowable<Response<OAuthClient>> getOAuthClient(String username, String password, String oAuthClientUid) {
+        return oAuthClientService.getOAuthClient(basic(username, password),oAuthClientUid);
     }
 
     //builder that returns a new UserTask instance when it is passed a URL

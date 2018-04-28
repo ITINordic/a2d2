@@ -32,6 +32,7 @@ import android.support.annotation.NonNull;
 import com.itinordic.a2d2.a2d2Component;
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
@@ -50,7 +51,7 @@ public class UserTaskImpl implements UserTask {
 
     }
 
-    public Observable<Response<User>> authenticate(String username, String password) {
+    public Flowable<Response<User>> authenticate(String username, String password) {
 
         if (username == null) {
             throw new IllegalStateException("The username must be set first");

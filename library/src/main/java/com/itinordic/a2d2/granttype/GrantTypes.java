@@ -28,6 +28,6 @@
 
 package com.itinordic.a2d2.granttype;
 
-enum GrantTypes {
+public enum GrantTypes {
     password, refresh_token, authorization_code
 }

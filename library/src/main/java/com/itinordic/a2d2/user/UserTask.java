@@ -28,11 +28,12 @@
 
 package com.itinordic.a2d2.user;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.Response;
 
 public interface UserTask {
 
-    Observable<Response<User>> authenticate(String username, String password);
+    Flowable<Response<User>> authenticate(String username, String password);
 
 }

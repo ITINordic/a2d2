@@ -28,10 +28,12 @@
 
 package com.itinordic.a2d2.token;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -40,13 +42,12 @@ public interface AccessTokenService {
 
     @FormUrlEncoded
     @POST("uaa/oauth/token")
-    Single<AccessToken> getAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
-                                                 @Field("grant_type") String grantType, @Field("username") String username, @Field("password") String password);
+    Flowable<Response<AccessToken>> getAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
+                                         @Field("grant_type") String grantType, @Field("username") String username, @Field("password") String password);
 
     @FormUrlEncoded
-    @Headers("Cache-Control: no-cache")
     @POST("uaa/oauth/token")
-    Single<AccessToken> refreshAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
+    Flowable<Response<AccessToken>> refreshAccessToken(@Header("Accept") String accept, @Header("Authorization") String authorization,
                                          @Field("grant_type") String grantType, @Field("refresh_token") String refreshToken);
 
 

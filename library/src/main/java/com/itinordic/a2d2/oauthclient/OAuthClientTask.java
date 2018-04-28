@@ -28,15 +28,16 @@
 
 package com.itinordic.a2d2.oauthclient;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
 
 public interface OAuthClientTask {
 
-    Single<Response<OAuthClient>> saveOAuthClient(String credentials, OAuthClient oAuthClient );
+    Flowable<Response<OAuthClient>> saveOAuthClient(String username, String password, OAuthClient oAuthClient );
 
-    Single<Response<OAuthClients>> getOAuthClientList(String credentials, String name);
+    Flowable<Response<OAuthClients>> getOAuthClientList(String username, String password, String name);
 
-    Single<Response<OAuthClient>> getOAuthClient(String credentials, String oAuthClientUid);
-
+    Flowable<Response<OAuthClient>> getOAuthClient(String username, String password, String oAuthClientUid);
 }

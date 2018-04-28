@@ -107,6 +107,7 @@ public class OAuthClientModel {
 
     //Builder
     public static class Builder {
+
         private String id;
         private String name;
         private String cid;

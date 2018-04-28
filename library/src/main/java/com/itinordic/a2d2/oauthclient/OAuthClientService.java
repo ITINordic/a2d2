@@ -28,6 +28,8 @@
 
 package com.itinordic.a2d2.oauthclient;
 
+import io.reactivex.Flowable;
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -40,14 +42,14 @@ import retrofit2.http.Query;
 interface OAuthClientService {
 
     @POST("api/oAuth2Clients")
-    Single<Response<OAuthClient>> addOAuthClient(@Header("Authorization") String credentials,
+    Flowable<Response<OAuthClient>> addOAuthClient(@Header("Authorization") String credentials,
                           @Body OAuthClient oAuthClient);
 
     @GET("api/oAuth2Clients")
-    Single<Response<OAuthClients>> getOAuthClientList(@Header("Authorization") String authorization,
-                                                   @Query("query") String name);
+    Flowable<Response<OAuthClients>> getOAuthClientList(@Header("Authorization") String authorization,
+                                                        @Query("query") String name);
 
     @GET("api/oAuth2Clients/{id}")
-    Single<Response<OAuthClient>> getOAuthClient(@Header("Authorization") String authorization,
-                                                 @Path("id") String oAuthClientUid);
+    Flowable<Response<OAuthClient>> getOAuthClient(@Header("Authorization") String authorization,
+                                                     @Path("id") String oAuthClientUid);
 }

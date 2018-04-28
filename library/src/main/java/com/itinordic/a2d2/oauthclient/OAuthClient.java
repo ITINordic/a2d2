@@ -28,6 +28,8 @@
 
 package com.itinordic.a2d2.oauthclient;
 
+import android.support.annotation.NonNull;
+
 import java.util.List;
 
 public class OAuthClient {
@@ -48,5 +50,59 @@ public class OAuthClient {
         this.redirectUris = redirectUris;
     }
 
+    public static class Builder {
+
+        private  String name;
+        private  String cid;
+        private  List<String> grantTypes;
+        private  List<String> redirectUris;
+
+        public Builder() {
+        }
+
+        @NonNull
+        public Builder name(@NonNull String name) {
+            this.name = name;
+            return this;
+        }
+
+        @NonNull
+        public Builder cid(@NonNull String cid) {
+            this.cid = cid;
+            return this;
+        }
+
+        @NonNull
+        public Builder grantTypes(@NonNull List<String> grantTypes) {
+            this.grantTypes = grantTypes;
+            return this;
+        }
+
+
+        public Builder redirectUris(List<String> redirectUris) {
+            this.redirectUris = redirectUris;
+            return this;
+        }
+
+        public OAuthClient build() {
+
+            if ( name == null) {
+                throw new IllegalStateException("OAuth client name must be set");
+            }
+
+
+            if ( cid == null) {
+                throw new IllegalStateException("OAuth client cid must be set");
+            }
+
+            if ( grantTypes == null) {
+                throw new IllegalStateException("OAuth client grant types must be set");
+            }
+
+            return new OAuthClient(name, cid,null, grantTypes,redirectUris);
+        }
+
+
+    }
 }
 

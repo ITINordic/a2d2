@@ -37,4 +37,6 @@ public interface OAuthClientDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(OAuthClientModel oAuthClientModel);
+
+
 }

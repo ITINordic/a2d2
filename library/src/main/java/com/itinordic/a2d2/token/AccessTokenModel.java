@@ -54,11 +54,6 @@ public class AccessTokenModel {
         this.token_type = token_type;
     }
 
-    @Ignore
-    @SuppressWarnings("unused")
-    public AccessTokenModel() {
-    }
-
     public String getExpires_in() {
         return expires_in;
     }
@@ -97,5 +92,72 @@ public class AccessTokenModel {
 
     public void setToken_type(String token_type) {
         this.token_type = token_type;
+    }
+
+    public static class Builder {
+        private String expires_in;
+        private String scope;
+        private String access_token;
+        private String refresh_token;
+        private String token_type;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder expires_in(@NonNull String expires_in) {
+            this.expires_in = expires_in;
+            return this;
+        }
+
+        @NonNull
+        public Builder scope(@NonNull String scope) {
+            this.scope = scope;
+            return this;
+        }
+
+        @NonNull
+        public Builder access_token(@NonNull String access_token) {
+            this.access_token = access_token;
+            return this;
+        }
+
+        @NonNull
+        public Builder refresh_token(@NonNull String refresh_token) {
+            this.refresh_token = refresh_token;
+            return this;
+        }
+
+        @NonNull
+        public Builder token_type(@NonNull String token_type) {
+            this.token_type = token_type;
+            return this;
+        }
+
+        public AccessTokenModel build() {
+
+            if (expires_in == null) {
+                throw new IllegalStateException("Token expires in must be set");
+            }
+
+            if (scope == null) {
+                throw new IllegalStateException("Scope must be set");
+            }
+
+            if (access_token == null) {
+                throw new IllegalStateException("Access token name must be set");
+            }
+
+            if (refresh_token == null) {
+                throw new IllegalStateException("Refresh token can not be null");
+            }
+
+            if (token_type == null) {
+                throw new IllegalStateException("Token type can not be null");
+            }
+
+            return new AccessTokenModel(expires_in, scope, access_token, refresh_token, token_type );
+        }
     }
 }
