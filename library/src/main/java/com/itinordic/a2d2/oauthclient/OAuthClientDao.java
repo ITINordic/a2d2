@@ -3,6 +3,9 @@ package com.itinordic.a2d2.oauthclient;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
+
+import io.reactivex.Flowable;
 
 /**
  * Created by regnatpopulus on 09/04/2018.
@@ -38,5 +41,7 @@ public interface OAuthClientDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(OAuthClientModel oAuthClientModel);
 
+    @Query("SELECT * FROM OAuthClientModel WHERE cid LIKE :cid LIMIT 1")
+    Flowable<OAuthClientModel> findByCid(String cid);
 
 }
