@@ -33,6 +33,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
+import java.util.List;
+
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 
@@ -44,5 +46,8 @@ public interface UserDao {
 
     @Query("SELECT * FROM UserModel WHERE username LIKE :username LIMIT 1")
     Flowable<UserModel> findByUsername(String username);
+
+    @Query("SELECT * FROM UserModel WHERE username IN (:usernames)")
+    Flowable<List<UserModel>> findByUsernameList(String[] usernames);
 
 }

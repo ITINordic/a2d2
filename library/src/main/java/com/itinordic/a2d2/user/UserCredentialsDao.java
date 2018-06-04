@@ -31,12 +31,17 @@ package com.itinordic.a2d2.user;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
+
+import io.reactivex.Flowable;
 
 @Dao
 public interface UserCredentialsDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(UserCredentialsModel userCredentialsModel);
+    long insert(UserCredentialsModel userCredentialsModel);
 
+    @Query("SELECT * FROM UserCredentialsModel WHERE userid LIKE :userid LIMIT 1")
+    Flowable<UserCredentialsModel> findCredentialsByUid(String userid);
 
 }
