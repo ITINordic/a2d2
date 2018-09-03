@@ -33,6 +33,8 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
+import java.util.List;
+
 import io.reactivex.Flowable;
 
 @Dao
@@ -43,5 +45,8 @@ public interface UserCredentialsDao {
 
     @Query("SELECT * FROM UserCredentialsModel WHERE userid LIKE :userid LIMIT 1")
     Flowable<UserCredentialsModel> findCredentialsByUid(String userid);
+
+    @Query("SELECT * FROM UserCredentialsModel WHERE userid = :userid AND pin = :pin LIMIT 1")
+    Flowable<List<UserCredentialsModel>> findCredentials(String userid, String pin);
 
 }

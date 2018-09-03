@@ -33,12 +33,13 @@ import android.arch.persistence.room.PrimaryKey;
 import android.arch.persistence.room.TypeConverters;
 import android.support.annotation.NonNull;
 
+import com.itinordic.a2d2.common.Model;
 import com.itinordic.a2d2.common.Utils;
 
 import java.util.Date;
 
 @Entity
-public class UserModel {
+public class UserModel implements Model {
 
     @NonNull
     @PrimaryKey
@@ -54,7 +55,6 @@ public class UserModel {
     private String email;
     private String phoneNumber;
     private String username;
-
 
     public UserModel(String id, String name, String displayName, Date created, Date lastUpdated,
                      String surname, String firstName, String email,

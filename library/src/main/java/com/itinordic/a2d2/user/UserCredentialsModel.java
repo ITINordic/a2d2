@@ -30,6 +30,7 @@ package com.itinordic.a2d2.user;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -38,7 +39,7 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
 @Entity(foreignKeys = @ForeignKey(entity = UserModel.class,
         parentColumns = "id",
         childColumns = "userid",
-        onDelete = CASCADE))
+        onDelete = CASCADE), indices = {@Index("userid")})
 public class UserCredentialsModel {
 
     @PrimaryKey(autoGenerate = true)

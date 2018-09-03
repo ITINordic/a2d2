@@ -28,7 +28,9 @@
 
 package com.itinordic.a2d2.userrole;
 
-public class UserRole {
+import com.itinordic.a2d2.common.Model;
+
+public class UserRole implements Model {
 
     public final String id;
     public final String displayName;
@@ -38,4 +40,13 @@ public class UserRole {
         this.displayName = displayName;
     }
 
+    @Override
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String getDisplayName() {
+        return displayName;
+    }
 }

@@ -50,4 +50,7 @@ public interface UserDao {
     @Query("SELECT * FROM UserModel WHERE username IN (:usernames)")
     Flowable<List<UserModel>> findByUsernameList(String[] usernames);
 
+    @Query("DELETE FROM UserModel WHERE username = :username")
+    int deleteByUsername(String username);
+
 }
