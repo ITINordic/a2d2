@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file("plugins/maven_push.gradle")
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         minSdkVersion 18
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -30,11 +30,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
 
     // ReactiveX
@@ -42,24 +40,12 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:${libraries.rxjava}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${libraries.retrofitrxjava}"
 
-    //sqlBrite
-    implementation "com.squareup.sqlbrite3:sqlbrite:${libraries.sqlbrite}"
-
     // Jake Wharton libraries
     implementation "com.jakewharton.timber:timber:${libraries.timber}"
-    implementation "com.jakewharton:butterknife:${libraries.butterknife}"
-    annotationProcessor "com.jakewharton:butterknife-compiler:${libraries.butterknife}"
-
-    //Googles autovalue
-    compileOnly "com.google.auto.value:auto-value:${libraries.autovalue}"
-    annotationProcessor "com.google.auto.value:auto-value:${libraries.autovalue}"
 
     //square libs
     implementation "com.squareup.retrofit2:retrofit:${libraries.retrofit}"
     implementation "com.squareup.okhttp3:okhttp:${libraries.retrofit}"
-
-    //jackson
-    implementation "com.fasterxml.jackson.core:jackson-databind:${libraries.jackson}"
 
     //moshi
     implementation "com.squareup.moshi:moshi:${libraries.moshi}"
@@ -70,8 +56,8 @@ dependencies {
     annotationProcessor "com.google.dagger:dagger-compiler:${libraries.daggercompiler}"
 
     // Room
-    implementation "android.arch.persistence.room:runtime:${libraries.room}"
-    annotationProcessor "android.arch.persistence.room:compiler:${libraries.room}"
-    implementation "android.arch.persistence.room:rxjava2:${libraries.roomrxjava}"
+    implementation 'androidx.room:room-runtime:2.0.0-rc01'
+    annotationProcessor 'androidx.room:room-compiler:2.0.0-rc01'
+    implementation 'androidx.room:room-rxjava2:2.0.0-rc01'
 
 }

@@ -28,10 +28,10 @@
 
 package com.itinordic.a2d2.db.join;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.ForeignKey;
-import android.arch.persistence.room.Index;
-import android.support.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
+import androidx.room.Index;
+import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.user.UserModel;
 import com.itinordic.a2d2.userrole.UserRoleModel;

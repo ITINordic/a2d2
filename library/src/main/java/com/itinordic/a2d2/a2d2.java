@@ -28,7 +28,7 @@
 
 package com.itinordic.a2d2;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTaskImpl;
@@ -43,11 +43,8 @@ import com.itinordic.a2d2.usergroup.UserGroupTaskImpl;
 import com.itinordic.a2d2.userrole.UserRoleTask;
 import com.itinordic.a2d2.userrole.UserRoleTaskImpl;
 
-import javax.inject.Inject;
-
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
 
 public final class a2d2 implements a2d2API {
 

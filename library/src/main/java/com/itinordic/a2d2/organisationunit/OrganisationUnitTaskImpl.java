@@ -28,7 +28,7 @@
 
 package com.itinordic.a2d2.organisationunit;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
 import com.itinordic.a2d2.common.BaseIdentifiableObject;

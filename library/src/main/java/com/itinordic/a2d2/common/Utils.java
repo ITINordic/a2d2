@@ -28,7 +28,7 @@
 
 package com.itinordic.a2d2.common;
 
-import android.arch.persistence.room.TypeConverter;
+import androidx.room.TypeConverter;
 
 import java.text.ParseException;
 import java.util.Date;

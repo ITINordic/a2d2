@@ -28,15 +28,6 @@
 
 package com.itinordic.a2d2.common;
 
-import android.support.annotation.Nullable;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.itinordic.a2d2.common.IdentifiableObject;
-import com.itinordic.a2d2.common.SafeDateFormat;
-
-import java.text.ParseException;
-import java.util.Date;
-
 public class BaseIdentifiableObject {
 
     public final String id;

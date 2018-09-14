@@ -28,8 +28,8 @@
 
 package com.itinordic.a2d2.redirecturi;
 
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import androidx.room.PrimaryKey;
+import androidx.annotation.NonNull;
 
 public class RedirectUriModel {
 

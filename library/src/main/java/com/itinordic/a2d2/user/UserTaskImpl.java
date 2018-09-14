@@ -28,13 +28,11 @@
 
 package com.itinordic.a2d2.user;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import com.itinordic.a2d2.a2d2Component;
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
 import retrofit2.Response;
 
 import static okhttp3.Credentials.basic;
