@@ -32,6 +32,7 @@ import com.itinordic.a2d2.common.BaseIdentifiableObject;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -48,4 +49,7 @@ public interface OrganisationUnitService {
     @GET("api/organisationUnits")
     Observable<Response<List<BaseIdentifiableObject>>> getOrganisationUnits(@Header("Authorization") String authorization,
                                                                             @Query("id") List<String> organisationUnitUids);
+
+    @GET("api/users/{userId}/organisationUnits")
+    Flowable<Response<OrganisationUnitList>> getUserOrganisationUnitList(@Path("userId") String userId);
 }

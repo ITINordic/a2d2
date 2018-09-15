@@ -30,11 +30,11 @@ package com.itinordic.a2d2.organisationunit;
 
 import java.util.List;
 
-public class OrganisationUnits {
+public class OrganisationUnitList {
 
     public final List<OrganisationUnit> organisationUnits;
 
-    public OrganisationUnits(List<OrganisationUnit> organisationUnits) {
+    public OrganisationUnitList(List<OrganisationUnit> organisationUnits) {
         this.organisationUnits = organisationUnits;
     }
 }

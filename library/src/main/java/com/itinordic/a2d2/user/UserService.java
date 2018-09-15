@@ -41,4 +41,7 @@ interface UserService {
     @GET("api/me")
     @Headers("X-Requested-With:XMLHttpRequest")
     Flowable<Response<User>> authenticate (@Header("Authorization") String credentials);
+
+    @GET("api/me")
+    Flowable<Response<User>> getCurrentUser();
 }

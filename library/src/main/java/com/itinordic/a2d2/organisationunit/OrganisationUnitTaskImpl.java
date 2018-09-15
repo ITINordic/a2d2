@@ -37,6 +37,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.Response;
 
@@ -83,6 +84,11 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
         }
 
         return organisationUnitService.getOrganisationUnits(basic(username, password),organisationUnitUids);
+    }
+
+    @Override
+    public Flowable<Response<OrganisationUnitList>> getUserOrganisationUnitList(String userId) {
+        return organisationUnitService.getUserOrganisationUnitList(userId);
     }
 
     //builder that returns a new UserTask instance when it is passed a URL

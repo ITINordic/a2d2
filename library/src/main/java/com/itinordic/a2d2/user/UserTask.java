@@ -35,5 +35,7 @@ import retrofit2.Response;
 public interface UserTask {
 
     Flowable<Response<User>> authenticate(String username, String password);
+    Flowable<Response<User>> getCurrentUser();
+
 
 }

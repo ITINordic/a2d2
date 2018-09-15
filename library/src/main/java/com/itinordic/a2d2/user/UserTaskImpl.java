@@ -62,6 +62,11 @@ public class UserTaskImpl implements UserTask {
         return userService.authenticate(basic(username, password));
     }
 
+    @Override
+    public Flowable<Response<User>> getCurrentUser() {
+        return userService.getCurrentUser();
+    }
+
     //builder that returns a new UserTask instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;

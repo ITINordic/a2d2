@@ -70,4 +70,45 @@ public class UserOrganisationUnitJoinModel {
     public void setOrganisationUnitId(@NonNull String organisationUnitId) {
         this.organisationUnitId = organisationUnitId;
     }
+
+    public UserOrganisationUnitJoinModel(String userId, String organisationUnitId) {
+        this.userId = userId;
+        this.organisationUnitId = organisationUnitId;
+    }
+
+    //Builder
+    public static class Builder {
+        private String userId;
+        private String organisationUnitId;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder userId(@NonNull String userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        @NonNull
+        public Builder organisationUnitId(@NonNull String organisationUnitId) {
+            this.organisationUnitId = organisationUnitId;
+            return this;
+        }
+
+
+        public UserOrganisationUnitJoinModel build() {
+
+            if (userId == null) {
+                throw new IllegalStateException("User id must be set");
+            }
+
+            if ( organisationUnitId == null) {
+                throw new IllegalStateException("Organisation unit id must be set");
+            }
+
+            return new UserOrganisationUnitJoinModel(userId,organisationUnitId);
+        }
+    }
 }

@@ -31,6 +31,8 @@ package com.itinordic.a2d2.organisationunit;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
+import androidx.room.Query;
+import io.reactivex.Flowable;
 
 
 @Dao
@@ -38,5 +40,8 @@ public interface OrganisationUnitDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(OrganisationUnitModel organisationUnitModel);
+
+    @Query("SELECT * FROM OrganisationUnitModel")
+    Flowable<OrganisationUnitModel> getUserOrgUnits();
 
 }
