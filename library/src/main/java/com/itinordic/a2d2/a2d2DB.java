@@ -64,7 +64,7 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         OAuthClientModel.class, GrantTypeModel.class,
         OAuthGrantTypeJoinModel.class, OrganisationUnitModel.class, UserRoleModel.class,
         UserGroupModel.class, UserOrganisationUnitJoinModel.class, UserUserRoleJoinModel.class,
-        UserUserGroupJoinModel.class, DeskBellModel.class, UserCredentialsModel.class}, version = 4)
+        UserUserGroupJoinModel.class, DeskBellModel.class, UserCredentialsModel.class}, version = 7)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 

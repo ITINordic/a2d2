@@ -49,4 +49,13 @@ public interface UserCredentialsDao {
     @Query("SELECT * FROM UserCredentialsModel WHERE userid = :userid AND pin = :pin LIMIT 1")
     Flowable<List<UserCredentialsModel>> findCredentials(String userid, String pin);
 
+    @Query("SELECT * FROM UserCredentialsModel")
+    Flowable<List<UserCredentialsModel>> getAllCredentials();
+
+
+    @Query("SELECT UserModel.* FROM UserModel " +
+            "INNER JOIN UserCredentialsModel ON UserModel.id = UserCredentialsModel.userid " +
+            "WHERE UserCredentialsModel.username IN (:usernames)")
+    Flowable<List<UserModel>> getActiveUserAccounts (String[] usernames);
+
 }

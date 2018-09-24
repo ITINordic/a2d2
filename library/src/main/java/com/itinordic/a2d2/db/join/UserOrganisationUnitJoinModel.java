@@ -36,12 +36,15 @@ import androidx.annotation.NonNull;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
 import com.itinordic.a2d2.user.UserModel;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "user_organisationunit_model_join",
         primaryKeys = { "userId", "organisationUnitId" },
         foreignKeys = {
                 @ForeignKey(entity = UserModel.class,
                         parentColumns = "id",
-                        childColumns = "userId"),
+                        childColumns = "userId",
+                        onDelete = CASCADE),
                 @ForeignKey(entity = OrganisationUnitModel.class,
                         parentColumns = "id",
                         childColumns = "organisationUnitId")
