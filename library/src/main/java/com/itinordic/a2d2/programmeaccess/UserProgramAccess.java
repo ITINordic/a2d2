@@ -1,4 +1,6 @@
-package com.itinordic.a2d2.program;
+package com.itinordic.a2d2.programmeaccess;
+
+import com.itinordic.a2d2.programdataccess.ProgramDataAccess;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -6,7 +8,7 @@ package com.itinordic.a2d2.program;
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
  */
-public class ProgramAccess {
+public class UserProgramAccess {
 
     public final String read;
     public final String update;
@@ -16,7 +18,7 @@ public class ProgramAccess {
     public final String manage;
     public final ProgramDataAccess data;
 
-    public ProgramAccess(String read, String update, String externalize, String delete, String write, String manage, ProgramDataAccess data) {
+    public UserProgramAccess(String read, String update, String externalize, String delete, String write, String manage, ProgramDataAccess data) {
         this.read = read;
         this.update = update;
         this.externalize = externalize;

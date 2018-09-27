@@ -1,11 +1,12 @@
-package com.itinordic.a2d2.dataelement;
-
 /**
  * Created by regnatpopulus on 27/09/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
  */
+
+package com.itinordic.a2d2.dataelement;
+
 public class DataElement {
 
     public final String id;

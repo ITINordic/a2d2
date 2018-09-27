@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.TrackedEntity;
+package com.itinordic.a2d2.trackedentitytype;
 
 import com.itinordic.a2d2.common.Style;
 

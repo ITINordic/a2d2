@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.program;
+package com.itinordic.a2d2.programdataccess;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
