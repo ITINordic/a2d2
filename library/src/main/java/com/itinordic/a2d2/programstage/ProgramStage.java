@@ -1,7 +1,7 @@
 package com.itinordic.a2d2.programstage;
 
 import com.itinordic.a2d2.programstagedataelement.ProgramStageDataElement;
-import com.itinordic.a2d2.programmeaccess.UserProgramAccess;
+import com.itinordic.a2d2.programaccess.UserProgramAccess;
 
 import java.util.List;
 

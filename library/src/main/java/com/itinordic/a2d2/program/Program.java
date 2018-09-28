@@ -7,11 +7,10 @@
 
 package com.itinordic.a2d2.program;
 
-import com.itinordic.a2d2.programmeaccess.UserProgramAccess;
+import com.itinordic.a2d2.programaccess.UserProgramAccess;
 import com.itinordic.a2d2.programstage.ProgramStage;
 import com.itinordic.a2d2.programtrackedentityattribute.ProgramTrackedEntityAttribute;
 import com.itinordic.a2d2.programtrackedentitytype.ProgramTrackedEntityType;
-import com.itinordic.a2d2.trackedentitytype.TrackedEntityType;
 
 import java.util.List;
 
@@ -63,5 +62,6 @@ public class Program {
         this.programTrackedEntityType = programTrackedEntityType;
         this.programTrackedEntityAttributes = programTrackedEntityAttributes;
         this.programStages = programStages;
+
     }
 }

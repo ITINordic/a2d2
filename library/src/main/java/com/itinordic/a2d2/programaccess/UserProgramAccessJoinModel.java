@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.programmeaccess;
+package com.itinordic.a2d2.programaccess;
 
 import com.itinordic.a2d2.program.ProgramModel;
 import com.itinordic.a2d2.user.UserModel;

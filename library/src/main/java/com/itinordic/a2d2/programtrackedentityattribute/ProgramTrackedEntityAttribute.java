@@ -1,5 +1,6 @@
 package com.itinordic.a2d2.programtrackedentityattribute;
 
+import com.itinordic.a2d2.common.Access;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttribute;
 
 /**
@@ -14,13 +15,15 @@ public class ProgramTrackedEntityAttribute {
     public final String id;
     public final String created;
     public final String name;
+    public final Access access;
     public final TrackedEntityAttribute trackedEntityAttribute;
 
-    public ProgramTrackedEntityAttribute(String lastUpdated, String id, String created, String name, TrackedEntityAttribute trackedEntityAttribute) {
+    public ProgramTrackedEntityAttribute(String lastUpdated, String id, String created, String name, Access access, TrackedEntityAttribute trackedEntityAttribute) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
         this.name = name;
+        this.access = access;
         this.trackedEntityAttribute = trackedEntityAttribute;
     }
 }

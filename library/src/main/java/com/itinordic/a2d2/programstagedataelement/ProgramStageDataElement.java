@@ -1,6 +1,6 @@
 package com.itinordic.a2d2.programstagedataelement;
 
-import com.itinordic.a2d2.programmeaccess.UserProgramAccess;
+import com.itinordic.a2d2.programaccess.UserProgramAccess;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
