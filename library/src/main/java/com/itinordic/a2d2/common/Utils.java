@@ -71,4 +71,15 @@ public class Utils {
             return null;
         }
     }
+
+    @TypeConverter
+    public static boolean parseBoolean(String boolStr){
+        return Boolean.parseBoolean(boolStr);
+    }
+
+    @TypeConverter
+    public static int parseInt(String intStr){
+        return Integer.parseInt(intStr);
+    }
+
 }

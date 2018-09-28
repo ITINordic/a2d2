@@ -34,6 +34,8 @@ import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTaskImpl;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTaskImpl;
+import com.itinordic.a2d2.program.ProgramTask;
+import com.itinordic.a2d2.program.ProgramTaskImpl;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.token.AccessTokenTaskImpl;
 import com.itinordic.a2d2.user.UserTask;
@@ -126,6 +128,10 @@ public final class a2d2 implements a2d2API {
 
     public UserGroupTask userGroupTaskBuilder(){
         return new UserGroupTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    public ProgramTask programTaskBuilder(){
+        return new ProgramTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
 }

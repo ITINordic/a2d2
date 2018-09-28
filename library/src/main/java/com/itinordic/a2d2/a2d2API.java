@@ -30,6 +30,7 @@ package com.itinordic.a2d2;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
+import com.itinordic.a2d2.program.ProgramTask;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.user.UserTask;
 import com.itinordic.a2d2.usergroup.UserGroupTask;
@@ -50,5 +51,7 @@ public interface a2d2API {
     UserRoleTask userRoleTaskBuilder();
 
     UserGroupTask userGroupTaskBuilder();
+
+    ProgramTask programTaskBuilder();
 
 }

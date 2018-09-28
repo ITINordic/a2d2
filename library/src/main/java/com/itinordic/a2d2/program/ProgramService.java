@@ -1,5 +1,7 @@
 package com.itinordic.a2d2.program;
 
+import java.util.List;
+
 import io.reactivex.Flowable;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -15,6 +17,6 @@ import retrofit2.http.Query;
 public interface ProgramService {
 
     @GET("api/programs")
-    Flowable<Response<Program>> getUserPrograms(@Query("fields" ) String fields);
+    Flowable<Response<UserPrograms>> getUserPrograms(@Query("fields" ) String fields);
 
 }

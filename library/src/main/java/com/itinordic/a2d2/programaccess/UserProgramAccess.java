@@ -10,15 +10,15 @@ import com.itinordic.a2d2.programdataccess.ProgramDataAccess;
  */
 public class UserProgramAccess {
 
-    public final String read;
-    public final String update;
-    public final String externalize;
-    public final String delete;
-    public final String write;
-    public final String manage;
+    public final boolean read;
+    public final boolean update;
+    public final boolean externalize;
+    public final boolean delete;
+    public final boolean write;
+    public final boolean manage;
     public final ProgramDataAccess data;
 
-    public UserProgramAccess(String read, String update, String externalize, String delete, String write, String manage, ProgramDataAccess data) {
+    public UserProgramAccess(boolean read, boolean update, boolean externalize, boolean delete, boolean write, boolean manage, ProgramDataAccess data) {
         this.read = read;
         this.update = update;
         this.externalize = externalize;

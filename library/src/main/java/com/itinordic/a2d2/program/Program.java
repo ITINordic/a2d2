@@ -22,24 +22,24 @@ public class Program {
     public final String name;
     public final String shortName;
     public final String publicAccess;
-    public final String captureCoordinates;
+    public final boolean captureCoordinates;
     public final String enrollmentDateLabel;
     public final String version;
-    public final String selectIncidentDatesInFuture;
+    public final boolean selectIncidentDatesInFuture;
     public final String incidentDateLabel;
-    public final String selectEnrollmentDatesInFuture;
-    public final String registration;
+    public final boolean selectEnrollmentDatesInFuture;
+    public final boolean registration;
     public final String displayName;
     public final String completeEventsExpiryDays;
     public final String displayShortName;
-    public final String withoutRegistration;
+    public final boolean withoutRegistration;
     public final String programType;
     public final UserProgramAccess access;
     public final ProgramTrackedEntityType programTrackedEntityType;
     public final List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes;
     public final List<ProgramStage> programStages;
 
-    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, String captureCoordinates, String enrollmentDateLabel, String version, String selectIncidentDatesInFuture, String incidentDateLabel, String selectEnrollmentDatesInFuture, String registration, String displayName, String completeEventsExpiryDays, String displayShortName, String withoutRegistration, String programType, UserProgramAccess access, ProgramTrackedEntityType programTrackedEntityType, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<ProgramStage> programStages) {
+    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, String version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, String completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType, UserProgramAccess access, ProgramTrackedEntityType programTrackedEntityType, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<ProgramStage> programStages) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;

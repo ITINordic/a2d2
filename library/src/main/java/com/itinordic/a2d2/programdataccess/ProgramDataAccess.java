@@ -7,10 +7,10 @@ package com.itinordic.a2d2.programdataccess;
  * All rights reserved.
  */
 public class ProgramDataAccess {
-    public final String read;
-    public final String write;
+    public final boolean read;
+    public final boolean write;
 
-    public ProgramDataAccess(String read, String write) {
+    public ProgramDataAccess(boolean read, boolean write) {
         this.read = read;
         this.write = write;
     }

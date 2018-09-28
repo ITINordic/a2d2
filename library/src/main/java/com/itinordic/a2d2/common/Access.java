@@ -7,14 +7,14 @@ package com.itinordic.a2d2.common;
  * All rights reserved.
  */
 public class Access {
-    public final String read;
-    public final String update;
-    public final String externalize;
-    public final String delete;
-    public final String write;
-    public final String manage;
+    public final boolean read;
+    public final boolean update;
+    public final boolean externalize;
+    public final boolean delete;
+    public final boolean write;
+    public final boolean manage;
 
-    public Access(String read, String update, String externalize, String delete, String write, String manage) {
+    public Access(boolean read, boolean update, boolean externalize, boolean delete, boolean write, boolean manage) {
         this.read = read;
         this.update = update;
         this.externalize = externalize;

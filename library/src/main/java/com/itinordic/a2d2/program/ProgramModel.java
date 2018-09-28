@@ -1,6 +1,13 @@
 package com.itinordic.a2d2.program;
 
+import com.itinordic.a2d2.common.Utils;
+
+import java.util.Date;
+
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 /**
  * Created by regnatpopulus on 28/09/2018.
@@ -11,30 +18,65 @@ import androidx.room.Entity;
 @Entity
 public class ProgramModel {
 
-    private String lastUpdated;
+
+    @TypeConverters({Utils.class})
+    private Date lastUpdated;
+
+    @NonNull
+    @PrimaryKey
     private String id;
-    private String created;
+
+    @TypeConverters({Utils.class})
+    private Date created;
     private String name;
     private String shortName;
     private String publicAccess;
-    private String captureCoordinates;
+    @TypeConverters({Utils.class})
+    private boolean captureCoordinates;
     private String enrollmentDateLabel;
-    private String version;
-    private String selectIncidentDatesInFuture;
+    @TypeConverters({Utils.class})
+    private int version;
+    @TypeConverters({Utils.class})
+    private boolean selectIncidentDatesInFuture;
     private String incidentDateLabel;
-    private String selectEnrollmentDatesInFuture;
-    private String registration;
+    @TypeConverters({Utils.class})
+    private boolean selectEnrollmentDatesInFuture;
+    @TypeConverters({Utils.class})
+    private boolean registration;
     private String displayName;
-    private String completeEventsExpiryDays;
+    @TypeConverters({Utils.class})
+    private int completeEventsExpiryDays;
     private String displayShortName;
-    private String withoutRegistration;
+    @TypeConverters({Utils.class})
+    private boolean withoutRegistration;
     private String programType;
 
-    public String getLastUpdated() {
+    public ProgramModel(Date lastUpdated, String id, Date created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, int version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, int completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType) {
+        this.lastUpdated = lastUpdated;
+        this.id = id;
+        this.created = created;
+        this.name = name;
+        this.shortName = shortName;
+        this.publicAccess = publicAccess;
+        this.captureCoordinates = captureCoordinates;
+        this.enrollmentDateLabel = enrollmentDateLabel;
+        this.version = version;
+        this.selectIncidentDatesInFuture = selectIncidentDatesInFuture;
+        this.incidentDateLabel = incidentDateLabel;
+        this.selectEnrollmentDatesInFuture = selectEnrollmentDatesInFuture;
+        this.registration = registration;
+        this.displayName = displayName;
+        this.completeEventsExpiryDays = completeEventsExpiryDays;
+        this.displayShortName = displayShortName;
+        this.withoutRegistration = withoutRegistration;
+        this.programType = programType;
+    }
+
+    public Date getLastUpdated() {
         return lastUpdated;
     }
 
-    public void setLastUpdated(String lastUpdated) {
+    public void setLastUpdated(Date lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 
@@ -46,11 +88,11 @@ public class ProgramModel {
         this.id = id;
     }
 
-    public String getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
@@ -78,11 +120,11 @@ public class ProgramModel {
         this.publicAccess = publicAccess;
     }
 
-    public String getCaptureCoordinates() {
+    public boolean isCaptureCoordinates() {
         return captureCoordinates;
     }
 
-    public void setCaptureCoordinates(String captureCoordinates) {
+    public void setCaptureCoordinates(boolean captureCoordinates) {
         this.captureCoordinates = captureCoordinates;
     }
 
@@ -94,19 +136,19 @@ public class ProgramModel {
         this.enrollmentDateLabel = enrollmentDateLabel;
     }
 
-    public String getVersion() {
+    public int getVersion() {
         return version;
     }
 
-    public void setVersion(String version) {
+    public void setVersion(int version) {
         this.version = version;
     }
 
-    public String getSelectIncidentDatesInFuture() {
+    public boolean isSelectIncidentDatesInFuture() {
         return selectIncidentDatesInFuture;
     }
 
-    public void setSelectIncidentDatesInFuture(String selectIncidentDatesInFuture) {
+    public void setSelectIncidentDatesInFuture(boolean selectIncidentDatesInFuture) {
         this.selectIncidentDatesInFuture = selectIncidentDatesInFuture;
     }
 
@@ -118,19 +160,19 @@ public class ProgramModel {
         this.incidentDateLabel = incidentDateLabel;
     }
 
-    public String getSelectEnrollmentDatesInFuture() {
+    public boolean isSelectEnrollmentDatesInFuture() {
         return selectEnrollmentDatesInFuture;
     }
 
-    public void setSelectEnrollmentDatesInFuture(String selectEnrollmentDatesInFuture) {
+    public void setSelectEnrollmentDatesInFuture(boolean selectEnrollmentDatesInFuture) {
         this.selectEnrollmentDatesInFuture = selectEnrollmentDatesInFuture;
     }
 
-    public String getRegistration() {
+    public boolean isRegistration() {
         return registration;
     }
 
-    public void setRegistration(String registration) {
+    public void setRegistration(boolean registration) {
         this.registration = registration;
     }
 
@@ -142,11 +184,11 @@ public class ProgramModel {
         this.displayName = displayName;
     }
 
-    public String getCompleteEventsExpiryDays() {
+    public int getCompleteEventsExpiryDays() {
         return completeEventsExpiryDays;
     }
 
-    public void setCompleteEventsExpiryDays(String completeEventsExpiryDays) {
+    public void setCompleteEventsExpiryDays(int completeEventsExpiryDays) {
         this.completeEventsExpiryDays = completeEventsExpiryDays;
     }
 
@@ -158,11 +200,11 @@ public class ProgramModel {
         this.displayShortName = displayShortName;
     }
 
-    public String getWithoutRegistration() {
+    public boolean isWithoutRegistration() {
         return withoutRegistration;
     }
 
-    public void setWithoutRegistration(String withoutRegistration) {
+    public void setWithoutRegistration(boolean withoutRegistration) {
         this.withoutRegistration = withoutRegistration;
     }
 
@@ -174,25 +216,191 @@ public class ProgramModel {
         this.programType = programType;
     }
 
-    public ProgramModel(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, String captureCoordinates, String enrollmentDateLabel, String version, String selectIncidentDatesInFuture, String incidentDateLabel, String selectEnrollmentDatesInFuture, String registration, String displayName, String completeEventsExpiryDays, String displayShortName, String withoutRegistration, String programType) {
-        this.lastUpdated = lastUpdated;
-        this.id = id;
-        this.created = created;
-        this.name = name;
-        this.shortName = shortName;
-        this.publicAccess = publicAccess;
-        this.captureCoordinates = captureCoordinates;
-        this.enrollmentDateLabel = enrollmentDateLabel;
-        this.version = version;
-        this.selectIncidentDatesInFuture = selectIncidentDatesInFuture;
-        this.incidentDateLabel = incidentDateLabel;
-        this.selectEnrollmentDatesInFuture = selectEnrollmentDatesInFuture;
-        this.registration = registration;
-        this.displayName = displayName;
-        this.completeEventsExpiryDays = completeEventsExpiryDays;
-        this.displayShortName = displayShortName;
-        this.withoutRegistration = withoutRegistration;
-        this.programType = programType;
+    //Builder
+    public static class Builder {
+        private Date lastUpdated;
+        private String id;
+        private Date created;
+        private String name;
+        private String shortName;
+        private String publicAccess;
+        private boolean captureCoordinates;
+        private String enrollmentDateLabel;
+        private int version;
+        private boolean selectIncidentDatesInFuture;
+        private String incidentDateLabel;
+        private boolean selectEnrollmentDatesInFuture;
+        private boolean registration;
+        private String displayName;
+        private int completeEventsExpiryDays;
+        private String displayShortName;
+        private boolean withoutRegistration;
+        private String programType;
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder lastUpdated(@NonNull Date lastUpdated) {
+            this.lastUpdated = lastUpdated;
+            return this;
+        }
+
+        @NonNull
+        public Builder id(@NonNull String id) {
+            this.id = id;
+            return this;
+        }
+
+        @NonNull
+        public Builder created(@NonNull Date created) {
+            this.created = created;
+            return this;
+        }
+
+        @NonNull
+        public Builder name(@NonNull String name) {
+            this.name = name;
+            return this;
+        }
+
+        @NonNull
+        public Builder shortName(@NonNull String shortName) {
+            this.shortName = shortName;
+            return this;
+        }
+
+        @NonNull
+        public Builder captureCoordinates(@NonNull boolean captureCoordinates) {
+            this.captureCoordinates = captureCoordinates;
+            return this;
+        }
+
+
+        @NonNull
+        public Builder publicAccess(@NonNull String publicAccess) {
+            this.publicAccess = publicAccess;
+            return this;
+        }
+
+        @NonNull
+        public Builder enrollmentDateLabel(@NonNull String enrollmentDateLabel) {
+            this.enrollmentDateLabel = enrollmentDateLabel;
+            return this;
+        }
+
+        @NonNull
+        public Builder version(@NonNull int version) {
+            this.version = version;
+            return this;
+        }
+
+        @NonNull
+        public Builder selectIncidentDatesInFuture(@NonNull boolean selectIncidentDatesInFuture) {
+            this.selectIncidentDatesInFuture = selectIncidentDatesInFuture;
+            return this;
+        }
+
+        @NonNull
+        public Builder incidentDateLabel(@NonNull String incidentDateLabel) {
+            this.incidentDateLabel = incidentDateLabel;
+            return this;
+        }
+
+
+        @NonNull
+        public Builder selectEnrollmentDatesInFuture(@NonNull boolean selectEnrollmentDatesInFuture) {
+            this.selectEnrollmentDatesInFuture = selectEnrollmentDatesInFuture;
+            return this;
+        }
+
+
+        @NonNull
+        public Builder registration(@NonNull boolean registration) {
+            this.registration = registration;
+            return this;
+        }
+
+        @NonNull
+        public Builder displayName(@NonNull String displayName) {
+            this.displayName = displayName;
+            return this;
+        }
+
+        @NonNull
+        public Builder completeEventsExpiryDays(@NonNull int completeEventsExpiryDays) {
+            this.completeEventsExpiryDays = completeEventsExpiryDays;
+            return this;
+        }
+
+        @NonNull
+        public Builder displayShortName(@NonNull String displayShortName) {
+            this.displayShortName = displayShortName;
+            return this;
+        }
+
+        @NonNull
+        public Builder withoutRegistration(@NonNull boolean withoutRegistration) {
+            this.withoutRegistration = withoutRegistration;
+            return this;
+        }
+
+        @NonNull
+        public Builder programType(@NonNull String programType) {
+            this.programType = programType;
+            return this;
+        }
+
+        public ProgramModel build() {
+
+            if (id == null) {
+                throw new IllegalStateException("UID must be set");
+            }
+
+            if ( displayName == null) {
+                throw new IllegalStateException("Display name must be set");
+            }
+
+            if ( lastUpdated == null) {
+                throw new IllegalStateException("Last Updated must be set");
+            }
+
+            if ( created == null) {
+                throw new IllegalStateException("Created must be set");
+            }
+
+            if ( name == null) {
+                throw new IllegalStateException("Name must be set");
+            }
+
+            if ( shortName == null) {
+                throw new IllegalStateException("Short name must be set");
+            }
+
+            if ( publicAccess == null) {
+                throw new IllegalStateException("Public access must be set");
+            }
+
+            if ( enrollmentDateLabel == null) {
+                throw new IllegalStateException("Enrollment date label must be set");
+            }
+
+            if ( incidentDateLabel == null) {
+                throw new IllegalStateException("Incident date label must be set");
+            }
+
+            if ( displayShortName == null) {
+                throw new IllegalStateException("Display short name  must be set");
+            }
+
+            if ( programType == null) {
+                throw new IllegalStateException("Program type must be set");
+            }
+
+            return new ProgramModel( lastUpdated,  id,  created,  name, shortName,  publicAccess,
+                    captureCoordinates, enrollmentDateLabel,  version,  selectIncidentDatesInFuture,
+                    incidentDateLabel,  selectEnrollmentDatesInFuture,  registration, displayName,
+                    completeEventsExpiryDays,  displayShortName, withoutRegistration,  programType);
+        }
     }
-    
 }

@@ -30,6 +30,7 @@ package com.itinordic.a2d2;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
+import com.itinordic.a2d2.program.ProgramComponent;
 import com.itinordic.a2d2.token.AccessTokenComponent;
 import com.itinordic.a2d2.user.UserComponent;
 import com.itinordic.a2d2.usergroup.UserGroupComponent;
@@ -52,5 +53,6 @@ public interface a2d2Component {
     UserGroupComponent.Builder userGroupComponent();
     OrganisationUnitComponent.Builder organisationUnitComponent();
     UserRoleComponent.Builder userRoleComponent();
+    ProgramComponent.Builder programComponent();
 
 }

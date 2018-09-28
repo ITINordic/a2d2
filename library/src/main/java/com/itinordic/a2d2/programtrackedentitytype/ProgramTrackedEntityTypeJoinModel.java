@@ -3,6 +3,7 @@ package com.itinordic.a2d2.programtrackedentitytype;
 import com.itinordic.a2d2.program.ProgramModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
@@ -29,6 +30,24 @@ import static androidx.room.ForeignKey.CASCADE;
         }, indices = {@Index("programId")})
 public class ProgramTrackedEntityTypeJoinModel {
 
+    @NonNull
     private String trackedEntityTypeId;
+    @NonNull
     private String programId;
+
+    public String getTrackedEntityTypeId() {
+        return trackedEntityTypeId;
+    }
+
+    public void setTrackedEntityTypeId(String trackedEntityTypeId) {
+        this.trackedEntityTypeId = trackedEntityTypeId;
+    }
+
+    public String getProgramId() {
+        return programId;
+    }
+
+    public void setProgramId(String programId) {
+        this.programId = programId;
+    }
 }

@@ -33,6 +33,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.itinordic.a2d2.common.Utils;
+import com.itinordic.a2d2.dataelement.DataElementModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinDao;
 import com.itinordic.a2d2.db.join.UserOrganisationUnitJoinDao;
@@ -48,8 +49,19 @@ import com.itinordic.a2d2.oauthclient.OAuthClientModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientDao;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitDao;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
+import com.itinordic.a2d2.program.ProgramDao;
+import com.itinordic.a2d2.program.ProgramModel;
+import com.itinordic.a2d2.programaccess.UserProgramAccessJoinModel;
+import com.itinordic.a2d2.programstage.ProgramStageModel;
+import com.itinordic.a2d2.programstageaccess.UserProgramStageAccessJoinModel;
+import com.itinordic.a2d2.programstagedataelement.UserProgramStageDataElementAccessJoinModel;
+import com.itinordic.a2d2.programtrackedentityattribute.UserProgramTrackedEntityAttributeAccessJoinModel;
+import com.itinordic.a2d2.programtrackedentitytype.ProgramTrackedEntityTypeJoinModel;
 import com.itinordic.a2d2.token.AccessTokenModel;
 import com.itinordic.a2d2.token.AccessTokenDao;
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttribute;
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 import com.itinordic.a2d2.user.UserCredentialsDao;
 import com.itinordic.a2d2.user.UserCredentialsModel;
 import com.itinordic.a2d2.user.UserModel;
@@ -64,7 +76,11 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         OAuthClientModel.class, GrantTypeModel.class,
         OAuthGrantTypeJoinModel.class, OrganisationUnitModel.class, UserRoleModel.class,
         UserGroupModel.class, UserOrganisationUnitJoinModel.class, UserUserRoleJoinModel.class,
-        UserUserGroupJoinModel.class, DeskBellModel.class, UserCredentialsModel.class}, version = 7)
+        UserUserGroupJoinModel.class, DeskBellModel.class, UserCredentialsModel.class,
+        TrackedEntityTypeModel.class, TrackedEntityAttributeModel.class, ProgramTrackedEntityTypeJoinModel.class,
+        UserProgramTrackedEntityAttributeAccessJoinModel.class, UserProgramStageDataElementAccessJoinModel.class,
+        UserProgramStageAccessJoinModel.class, ProgramStageModel.class, UserProgramAccessJoinModel.class,
+        ProgramModel.class, DataElementModel.class}, version = 8)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -96,6 +112,9 @@ public abstract class a2d2DB extends RoomDatabase {
 
     //Desk Bell
     public abstract DeskBellDao deskBellDao();
+
+    //Programs
+    public abstract ProgramDao programDao();
 
 
 

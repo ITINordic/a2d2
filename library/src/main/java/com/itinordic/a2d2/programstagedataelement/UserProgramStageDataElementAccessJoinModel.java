@@ -4,6 +4,7 @@ import com.itinordic.a2d2.dataelement.DataElementModel;
 import com.itinordic.a2d2.programstage.ProgramStageModel;
 import com.itinordic.a2d2.user.UserModel;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
@@ -30,12 +31,15 @@ import static androidx.room.ForeignKey.CASCADE;
                 @ForeignKey(entity = DataElementModel.class,
                         parentColumns = "id",
                         childColumns = "dataElementId")
-        }, indices = {@Index("dataElementId")})
+        }, indices = {@Index("dataElementId"), @Index("programStageId")})
 
 public class UserProgramStageDataElementAccessJoinModel {
 
+    @NonNull
     private String userId;
+    @NonNull
     private String programStageId;
+    @NonNull
     private String dataElementId;
     private Boolean read;
     private Boolean update;
@@ -44,4 +48,75 @@ public class UserProgramStageDataElementAccessJoinModel {
     private Boolean write;
     private Boolean manage;
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getProgramStageId() {
+        return programStageId;
+    }
+
+    public void setProgramStageId(String programStageId) {
+        this.programStageId = programStageId;
+    }
+
+    public String getDataElementId() {
+        return dataElementId;
+    }
+
+    public void setDataElementId(String dataElementId) {
+        this.dataElementId = dataElementId;
+    }
+
+    public Boolean getRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
+    }
+
+    public Boolean getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Boolean update) {
+        this.update = update;
+    }
+
+    public Boolean getExternalize() {
+        return externalize;
+    }
+
+    public void setExternalize(Boolean externalize) {
+        this.externalize = externalize;
+    }
+
+    public Boolean getDelete() {
+        return delete;
+    }
+
+    public void setDelete(Boolean delete) {
+        this.delete = delete;
+    }
+
+    public Boolean getWrite() {
+        return write;
+    }
+
+    public void setWrite(Boolean write) {
+        this.write = write;
+    }
+
+    public Boolean getManage() {
+        return manage;
+    }
+
+    public void setManage(Boolean manage) {
+        this.manage = manage;
+    }
 }
