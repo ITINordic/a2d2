@@ -35,7 +35,7 @@ public class Program {
     public final boolean withoutRegistration;
     public final String programType;
     public final UserProgramAccess access;
-    public final ProgramTrackedEntityType programTrackedEntityType;
+    public final ProgramTrackedEntityType trackedEntityType;
     public final List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes;
     public final List<ProgramStage> programStages;
 
@@ -59,7 +59,7 @@ public class Program {
         this.withoutRegistration = withoutRegistration;
         this.programType = programType;
         this.access = access;
-        this.programTrackedEntityType = programTrackedEntityType;
+        this.trackedEntityType = programTrackedEntityType;
         this.programTrackedEntityAttributes = programTrackedEntityAttributes;
         this.programStages = programStages;
 

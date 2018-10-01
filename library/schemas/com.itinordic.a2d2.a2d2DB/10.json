@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 8,
-    "identityHash": "04d8e1d27c039721d412d712aaef3a77",
+    "version": 10,
+    "identityHash": "9fbf184ca934bad56a4ebcfda32ec90b",
     "entities": [
       {
         "tableName": "UserModel",
@@ -1687,11 +1687,205 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "user_tracked_entity_type_access_join_model",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`userId` TEXT NOT NULL, `trackedEntityTypeId` TEXT NOT NULL, `metadataAccessId` INTEGER NOT NULL, PRIMARY KEY(`userId`, `trackedEntityTypeId`, `metadataAccessId`), FOREIGN KEY(`userId`) REFERENCES `UserModel`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE , FOREIGN KEY(`trackedEntityTypeId`) REFERENCES `TrackedEntityTypeModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`metadataAccessId`) REFERENCES `MetadataAccessModel`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "userId",
+            "columnName": "userId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trackedEntityTypeId",
+            "columnName": "trackedEntityTypeId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "metadataAccessId",
+            "columnName": "metadataAccessId",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "userId",
+            "trackedEntityTypeId",
+            "metadataAccessId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_user_tracked_entity_type_access_join_model_trackedEntityTypeId",
+            "unique": false,
+            "columnNames": [
+              "trackedEntityTypeId"
+            ],
+            "createSql": "CREATE  INDEX `index_user_tracked_entity_type_access_join_model_trackedEntityTypeId` ON `${TABLE_NAME}` (`trackedEntityTypeId`)"
+          },
+          {
+            "name": "index_user_tracked_entity_type_access_join_model_metadataAccessId",
+            "unique": false,
+            "columnNames": [
+              "metadataAccessId"
+            ],
+            "createSql": "CREATE  INDEX `index_user_tracked_entity_type_access_join_model_metadataAccessId` ON `${TABLE_NAME}` (`metadataAccessId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "UserModel",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "userId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "TrackedEntityTypeModel",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "trackedEntityTypeId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "MetadataAccessModel",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "metadataAccessId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "DataAccessModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`metadataAccessId` INTEGER NOT NULL, `read` INTEGER NOT NULL, `write` INTEGER NOT NULL, PRIMARY KEY(`metadataAccessId`), FOREIGN KEY(`metadataAccessId`) REFERENCES `MetadataAccessModel`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "metadataAccessId",
+            "columnName": "metadataAccessId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "read",
+            "columnName": "read",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "write",
+            "columnName": "write",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "metadataAccessId"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [
+          {
+            "name": "index_DataAccessModel_metadataAccessId",
+            "unique": false,
+            "columnNames": [
+              "metadataAccessId"
+            ],
+            "createSql": "CREATE  INDEX `index_DataAccessModel_metadataAccessId` ON `${TABLE_NAME}` (`metadataAccessId`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "MetadataAccessModel",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "metadataAccessId"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "MetadataAccessModel",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `read` INTEGER NOT NULL, `update` INTEGER NOT NULL, `externalize` INTEGER NOT NULL, `delete` INTEGER NOT NULL, `write` INTEGER NOT NULL, `manage` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "read",
+            "columnName": "read",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "update",
+            "columnName": "update",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "externalize",
+            "columnName": "externalize",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "delete",
+            "columnName": "delete",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "write",
+            "columnName": "write",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "manage",
+            "columnName": "manage",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"04d8e1d27c039721d412d712aaef3a77\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9fbf184ca934bad56a4ebcfda32ec90b\")"
     ]
   }
 }

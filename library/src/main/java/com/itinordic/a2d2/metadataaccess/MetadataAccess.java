@@ -1,24 +1,21 @@
-package com.itinordic.a2d2.programaccess;
-
-import com.itinordic.a2d2.programdataccess.UserProgramDataAccess;
+package com.itinordic.a2d2.metadataaccess;
 
 /**
- * Created by regnatpopulus on 27/09/2018.
+ * Created by regnatpopulus on 01/10/2018.
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
  */
-public class UserProgramAccess {
-
+public class MetadataAccess {
     public final boolean read;
     public final boolean update;
     public final boolean externalize;
     public final boolean delete;
     public final boolean write;
     public final boolean manage;
-    public final UserProgramDataAccess data;
+    public final DataAccess data;
 
-    public UserProgramAccess(boolean read, boolean update, boolean externalize, boolean delete, boolean write, boolean manage, UserProgramDataAccess data) {
+    public MetadataAccess(boolean read, boolean update, boolean externalize, boolean delete, boolean write, boolean manage, DataAccess data) {
         this.read = read;
         this.update = update;
         this.externalize = externalize;

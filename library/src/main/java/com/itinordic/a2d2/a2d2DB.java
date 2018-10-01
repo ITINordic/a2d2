@@ -45,23 +45,33 @@ import com.itinordic.a2d2.db.join.UserUserRoleJoinModel;
 import com.itinordic.a2d2.deskbell.DeskBellDao;
 import com.itinordic.a2d2.deskbell.DeskBellModel;
 import com.itinordic.a2d2.granttype.*;
+import com.itinordic.a2d2.metadataaccess.DataAccessDao;
+import com.itinordic.a2d2.metadataaccess.DataAccessModel;
+import com.itinordic.a2d2.metadataaccess.MetadataAccessDao;
+import com.itinordic.a2d2.metadataaccess.MetadataAccessModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientDao;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitDao;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
 import com.itinordic.a2d2.program.ProgramDao;
 import com.itinordic.a2d2.program.ProgramModel;
+import com.itinordic.a2d2.programaccess.UserProgramAccessDao;
 import com.itinordic.a2d2.programaccess.UserProgramAccessJoinModel;
+import com.itinordic.a2d2.programdataccess.UserProgramDataAccessDao;
+import com.itinordic.a2d2.programdataccess.UserProgramDataAccessJoinModel;
 import com.itinordic.a2d2.programstage.ProgramStageModel;
 import com.itinordic.a2d2.programstageaccess.UserProgramStageAccessJoinModel;
 import com.itinordic.a2d2.programstagedataelement.UserProgramStageDataElementAccessJoinModel;
 import com.itinordic.a2d2.programtrackedentityattribute.UserProgramTrackedEntityAttributeAccessJoinModel;
+import com.itinordic.a2d2.programtrackedentitytype.ProgramTrackedEntityTypeDao;
 import com.itinordic.a2d2.programtrackedentitytype.ProgramTrackedEntityTypeJoinModel;
 import com.itinordic.a2d2.token.AccessTokenModel;
 import com.itinordic.a2d2.token.AccessTokenDao;
-import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttribute;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeDao;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
+import com.itinordic.a2d2.trackedentitytypeaccess.UserTrackedEntityTypeAccessJoinDao;
+import com.itinordic.a2d2.trackedentitytypeaccess.UserTrackedEntityTypeAccessJoinModel;
 import com.itinordic.a2d2.user.UserCredentialsDao;
 import com.itinordic.a2d2.user.UserCredentialsModel;
 import com.itinordic.a2d2.user.UserModel;
@@ -80,7 +90,8 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         TrackedEntityTypeModel.class, TrackedEntityAttributeModel.class, ProgramTrackedEntityTypeJoinModel.class,
         UserProgramTrackedEntityAttributeAccessJoinModel.class, UserProgramStageDataElementAccessJoinModel.class,
         UserProgramStageAccessJoinModel.class, ProgramStageModel.class, UserProgramAccessJoinModel.class,
-        ProgramModel.class, DataElementModel.class}, version = 8)
+        ProgramModel.class, DataElementModel.class, UserProgramDataAccessJoinModel.class,
+        UserTrackedEntityTypeAccessJoinModel.class, DataAccessModel.class, MetadataAccessModel.class}, version = 10)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -116,6 +127,26 @@ public abstract class a2d2DB extends RoomDatabase {
     //Programs
     public abstract ProgramDao programDao();
 
+    //ProgramTrackedEntityTypes
+    public abstract ProgramTrackedEntityTypeDao programTrackedEntityTypeDao();
 
+    //programs for which user has metadata access
+    public abstract UserProgramAccessDao userProgramAccessDao();
+
+    //programs user has data access
+    public abstract UserProgramDataAccessDao userProgramDataAccessDao();
+
+    //TrackedEntityTypes
+    public abstract TrackedEntityTypeDao trackedEntityTypeDao();
+
+    //Tracked Entity Data Access
+    //Insert Metadata Access
+    public abstract MetadataAccessDao metadataAccessDao();
+
+    //Insert data Access
+    public abstract DataAccessDao dataAccessDao();
+
+    //insert tracked entity data access join
+    public abstract UserTrackedEntityTypeAccessJoinDao userTrackedEntityTypeAccessJoinDao();
 
 }

@@ -1,8 +1,13 @@
 package com.itinordic.a2d2.trackedentitytype;
 
+import com.itinordic.a2d2.common.Utils;
+
+import java.util.Date;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
 
 /**
  * Created by regnatpopulus on 28/09/2018.
@@ -17,7 +22,10 @@ public class TrackedEntityTypeModel {
     @NonNull
     @PrimaryKey
     private String id;
-    private String created;
+    @TypeConverters({Utils.class})
+    private Date lastUpdated;
+    @TypeConverters({Utils.class})
+    private Date created;
     private String name;
     private String displayName;
     private String description;
@@ -31,11 +39,19 @@ public class TrackedEntityTypeModel {
         this.id = id;
     }
 
-    public String getCreated() {
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(String created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
@@ -69,5 +85,106 @@ public class TrackedEntityTypeModel {
 
     public void setDisplayDescription(String displayDescription) {
         this.displayDescription = displayDescription;
+    }
+
+    public TrackedEntityTypeModel(String id, Date lastUpdated, Date created, String name, String displayName, String description, String displayDescription) {
+        this.id = id;
+        this.lastUpdated = lastUpdated;
+        this.created = created;
+        this.name = name;
+        this.displayName = displayName;
+        this.description = description;
+        this.displayDescription = displayDescription;
+    }
+
+    //Builder
+    public static class Builder {
+        private Date lastUpdated;
+        private String id;
+        private Date created;
+        private String name;
+        private String displayName;
+        private String description;
+        private String displayDescription;
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder lastUpdated(@NonNull Date lastUpdated) {
+            this.lastUpdated = lastUpdated;
+            return this;
+        }
+
+        @NonNull
+        public Builder id(@NonNull String id) {
+            this.id = id;
+            return this;
+        }
+
+        @NonNull
+        public Builder created(@NonNull Date created) {
+            this.created = created;
+            return this;
+        }
+
+        @NonNull
+        public Builder name(@NonNull String name) {
+            this.name = name;
+            return this;
+        }
+
+        @NonNull
+        public Builder displayName(@NonNull String displayName) {
+            this.displayName = displayName;
+            return this;
+        }
+
+
+        @NonNull
+        public Builder description(@NonNull String description) {
+            this.description = description;
+            return this;
+        }
+
+
+        @NonNull
+        public Builder displayDescription(@NonNull String displayDescription) {
+            this.displayDescription = displayDescription;
+            return this;
+        }
+
+        public TrackedEntityTypeModel build() {
+
+            if (id == null) {
+                throw new IllegalStateException("UID must be set");
+            }
+
+            if ( displayName == null) {
+                throw new IllegalStateException("Display name must be set");
+            }
+
+            if ( lastUpdated == null) {
+                throw new IllegalStateException("Last Updated must be set");
+            }
+
+            if ( created == null) {
+                throw new IllegalStateException("Created must be set");
+            }
+
+            if ( name == null) {
+                throw new IllegalStateException("Name must be set");
+            }
+
+            if ( description == null) {
+                throw new IllegalStateException("Display short name  must be set");
+            }
+
+            if ( displayDescription == null) {
+                throw new IllegalStateException("Display description type must be set");
+            }
+
+            return new TrackedEntityTypeModel( id, lastUpdated, created, name, displayName, description, displayDescription);
+        }
     }
 }

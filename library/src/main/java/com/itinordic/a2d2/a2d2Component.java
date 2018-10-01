@@ -32,6 +32,7 @@ import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
 import com.itinordic.a2d2.program.ProgramComponent;
 import com.itinordic.a2d2.token.AccessTokenComponent;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeComponent;
 import com.itinordic.a2d2.user.UserComponent;
 import com.itinordic.a2d2.usergroup.UserGroupComponent;
 import com.itinordic.a2d2.userrole.UserRoleComponent;
@@ -54,5 +55,6 @@ public interface a2d2Component {
     OrganisationUnitComponent.Builder organisationUnitComponent();
     UserRoleComponent.Builder userRoleComponent();
     ProgramComponent.Builder programComponent();
+    TrackedEntityTypeComponent.Builder trackedEntityTypeComponent();
 
 }

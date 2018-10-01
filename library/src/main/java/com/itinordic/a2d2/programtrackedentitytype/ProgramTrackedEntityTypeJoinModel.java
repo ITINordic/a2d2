@@ -50,4 +50,54 @@ public class ProgramTrackedEntityTypeJoinModel {
     public void setProgramId(String programId) {
         this.programId = programId;
     }
+
+    public ProgramTrackedEntityTypeJoinModel(String trackedEntityTypeId, String programId) {
+        this.trackedEntityTypeId = trackedEntityTypeId;
+        this.programId = programId;
+    }
+
+    //Builder
+    public static class Builder {
+
+        private String trackedEntityTypeId;
+        private String programId;
+
+        public Builder() {
+            // empty constructor
+        }
+
+
+
+        @NonNull
+        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
+            this.trackedEntityTypeId = trackedEntityTypeId;
+            return this;
+        }
+
+        @NonNull
+        public Builder programId(@NonNull String programId) {
+            this.programId = programId;
+            return this;
+        }
+
+
+
+        public ProgramTrackedEntityTypeJoinModel build() {
+
+
+            if ( programId == null) {
+                throw new IllegalStateException("Display trackedEntityTypeId must be set");
+            }
+
+
+
+            if ( trackedEntityTypeId == null) {
+                throw new IllegalStateException("Name must be set");
+            }
+
+
+
+            return new ProgramTrackedEntityTypeJoinModel(trackedEntityTypeId, programId);
+        }
+    }
 }

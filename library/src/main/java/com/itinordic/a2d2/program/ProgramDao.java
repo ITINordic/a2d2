@@ -23,4 +23,7 @@ public interface ProgramDao {
 
     @Query("SELECT * FROM ProgramModel")
     Flowable<List<ProgramModel>> getPrograms();
+
+    @Query("SELECT * FROM ProgramModel WHERE id IN (:programIds)")
+    Flowable<List<ProgramModel>> getPrograms(String[] programIds);
 }

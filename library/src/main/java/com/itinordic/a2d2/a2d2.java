@@ -38,6 +38,8 @@ import com.itinordic.a2d2.program.ProgramTask;
 import com.itinordic.a2d2.program.ProgramTaskImpl;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.token.AccessTokenTaskImpl;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTask;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTaskImpl;
 import com.itinordic.a2d2.user.UserTask;
 import com.itinordic.a2d2.user.UserTaskImpl;
 import com.itinordic.a2d2.usergroup.UserGroupTask;
@@ -132,6 +134,10 @@ public final class a2d2 implements a2d2API {
 
     public ProgramTask programTaskBuilder(){
         return new ProgramTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    public TrackedEntityTypeTask trackedEntityTypeTaskBuilder(){
+        return new TrackedEntityTypeTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
 }

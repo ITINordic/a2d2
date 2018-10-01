@@ -32,6 +32,7 @@ import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.program.ProgramTask;
 import com.itinordic.a2d2.token.AccessTokenTask;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTask;
 import com.itinordic.a2d2.user.UserTask;
 import com.itinordic.a2d2.usergroup.UserGroupTask;
 import com.itinordic.a2d2.userrole.UserRoleTask;
@@ -53,5 +54,7 @@ public interface a2d2API {
     UserGroupTask userGroupTaskBuilder();
 
     ProgramTask programTaskBuilder();
+
+    TrackedEntityTypeTask trackedEntityTypeTaskBuilder();
 
 }
