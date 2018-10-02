@@ -28,6 +28,7 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.dataelement.DataElementComponent;
 import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
 import com.itinordic.a2d2.program.ProgramComponent;
@@ -56,5 +57,6 @@ public interface a2d2Component {
     UserRoleComponent.Builder userRoleComponent();
     ProgramComponent.Builder programComponent();
     TrackedEntityTypeComponent.Builder trackedEntityTypeComponent();
+    DataElementComponent.Builder dataElementComponent();
 
 }

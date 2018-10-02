@@ -33,6 +33,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.itinordic.a2d2.common.Utils;
+import com.itinordic.a2d2.dataelement.DataElementDao;
 import com.itinordic.a2d2.dataelement.DataElementModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinDao;
@@ -148,5 +149,8 @@ public abstract class a2d2DB extends RoomDatabase {
 
     //insert tracked entity data access join
     public abstract UserTrackedEntityTypeAccessJoinDao userTrackedEntityTypeAccessJoinDao();
+
+    //Data Element  Access
+    public abstract DataElementDao dataElementDao();
 
 }

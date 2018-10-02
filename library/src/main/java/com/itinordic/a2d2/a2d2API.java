@@ -28,6 +28,7 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.dataelement.DataElementTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.program.ProgramTask;
@@ -56,5 +57,7 @@ public interface a2d2API {
     ProgramTask programTaskBuilder();
 
     TrackedEntityTypeTask trackedEntityTypeTaskBuilder();
+
+    DataElementTask dataElementTaskBuilder();
 
 }

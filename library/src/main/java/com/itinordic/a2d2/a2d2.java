@@ -30,6 +30,8 @@ package com.itinordic.a2d2;
 
 import androidx.annotation.NonNull;
 
+import com.itinordic.a2d2.dataelement.DataElementTask;
+import com.itinordic.a2d2.dataelement.DataElementTaskImpl;
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTaskImpl;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
@@ -138,6 +140,10 @@ public final class a2d2 implements a2d2API {
 
     public TrackedEntityTypeTask trackedEntityTypeTaskBuilder(){
         return new TrackedEntityTypeTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    public DataElementTask dataElementTaskBuilder(){
+        return new DataElementTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
 }

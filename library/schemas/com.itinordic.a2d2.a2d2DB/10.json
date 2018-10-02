@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 10,
-    "identityHash": "9fbf184ca934bad56a4ebcfda32ec90b",
+    "identityHash": "49d677cfb34b0174bb909882268751fa",
     "entities": [
       {
         "tableName": "UserModel",
@@ -1527,13 +1527,25 @@
       },
       {
         "tableName": "DataElementModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT, `shortName` TEXT, `domainType` TEXT, `displayName` TEXT, `publicAccess` TEXT, `displayShortName` TEXT, `valueType` TEXT, `dimensionItem` TEXT, `displayFormName` TEXT, `zeroIsSignificant` TEXT, `dimensionItemType` TEXT, `categoryCombo` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `lastUpdated` TEXT, `created` TEXT, `name` TEXT, `shortName` TEXT, `domainType` TEXT, `displayName` TEXT, `publicAccess` TEXT, `displayShortName` TEXT, `valueType` TEXT, `dimensionItem` TEXT, `displayFormName` TEXT, `zeroIsSignificant` TEXT, `dimensionItemType` TEXT, `categoryCombo` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "lastUpdated",
+            "columnName": "lastUpdated",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "created",
+            "columnName": "created",
+            "affinity": "TEXT",
+            "notNull": false
           },
           {
             "fieldPath": "name",
@@ -1885,7 +1897,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"9fbf184ca934bad56a4ebcfda32ec90b\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"49d677cfb34b0174bb909882268751fa\")"
     ]
   }
 }
