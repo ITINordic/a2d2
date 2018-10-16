@@ -30,6 +30,7 @@ public class TrackedEntityTypeModel {
     private String displayName;
     private String description;
     private String displayDescription;
+    private String icon;
 
     public String getId() {
         return id;
@@ -87,7 +88,7 @@ public class TrackedEntityTypeModel {
         this.displayDescription = displayDescription;
     }
 
-    public TrackedEntityTypeModel(String id, Date lastUpdated, Date created, String name, String displayName, String description, String displayDescription) {
+    public TrackedEntityTypeModel(String id, Date lastUpdated, Date created, String name, String displayName, String description, String displayDescription, String icon) {
         this.id = id;
         this.lastUpdated = lastUpdated;
         this.created = created;
@@ -95,6 +96,15 @@ public class TrackedEntityTypeModel {
         this.displayName = displayName;
         this.description = description;
         this.displayDescription = displayDescription;
+        this.icon = icon;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     //Builder
@@ -106,6 +116,7 @@ public class TrackedEntityTypeModel {
         private String displayName;
         private String description;
         private String displayDescription;
+        private String icon;
         public Builder() {
             // empty constructor
         }
@@ -154,6 +165,12 @@ public class TrackedEntityTypeModel {
             return this;
         }
 
+        @NonNull
+        public Builder icon(@NonNull String icon) {
+            this.icon = icon;
+            return this;
+        }
+
         public TrackedEntityTypeModel build() {
 
             if (id == null) {
@@ -184,7 +201,7 @@ public class TrackedEntityTypeModel {
                 throw new IllegalStateException("Display description type must be set");
             }
 
-            return new TrackedEntityTypeModel( id, lastUpdated, created, name, displayName, description, displayDescription);
+            return new TrackedEntityTypeModel( id, lastUpdated, created, name, displayName, description, displayDescription, icon);
         }
     }
 }

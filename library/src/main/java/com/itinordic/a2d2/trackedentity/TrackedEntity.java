@@ -7,4 +7,5 @@ package com.itinordic.a2d2.trackedentity;
  * All rights reserved.
  */
 public class TrackedEntity {
+    private String id;
 }
