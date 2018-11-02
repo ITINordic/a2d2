@@ -28,10 +28,13 @@
 
 package com.itinordic.a2d2.organisationunit;
 
+import java.util.List;
+
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 import io.reactivex.Flowable;
 
 
@@ -43,5 +46,11 @@ public interface OrganisationUnitDao {
 
     @Query("SELECT * FROM OrganisationUnitModel")
     Flowable<OrganisationUnitModel> getUserOrgUnits();
+
+    @Query("SELECT * FROM OrganisationUnitModel WHERE id LIKE :id")
+    Flowable<List<OrganisationUnitModel>> getOrgUnit(String id);
+
+    @Update
+    public void updateOrganisationUnitModel(OrganisationUnitModel organisationUnitModel);
 
 }

@@ -41,6 +41,6 @@ ext {
             retrofitrxjava   : "2.4.0",
             dagger           : "2.15",
             daggercompiler   : "2.15",
-            room             : "2.0.0-rc01",
+            room             : "2.0.0",
     ]
 }

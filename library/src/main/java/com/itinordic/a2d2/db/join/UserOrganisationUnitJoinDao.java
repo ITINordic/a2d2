@@ -30,7 +30,9 @@ package com.itinordic.a2d2.db.join;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 import io.reactivex.Flowable;
 
 import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
@@ -40,12 +42,18 @@ import java.util.List;
 @Dao
 public interface UserOrganisationUnitJoinDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.ABORT)
     void insert(UserOrganisationUnitJoinModel userOrganisationUnitJoinModel);
 
     @Query("SELECT OrganisationUnitModel.id,OrganisationUnitModel.displayName FROM OrganisationUnitModel " +
             "INNER JOIN user_organisationunit_model_join ON OrganisationUnitModel.id = user_organisationunit_model_join.organisationUnitId " +
             "WHERE user_organisationunit_model_join.userId=:userId")
     Flowable<List<OrganisationUnitModel>> getUserOrganisationUnits (String userId);
+
+    @Query("SELECT * FROM user_organisationunit_model_join WHERE userId LIKE :userId AND organisationUnitId LIKE :organisationUnitId")
+    Flowable<List<UserOrganisationUnitJoinModel>> getUserOrgUnit(String userId, String organisationUnitId);
+
+    @Update
+    public void updateUserOrganisationUnit(UserOrganisationUnitJoinModel userOrganisationUnitJoinModel);
 
 }
