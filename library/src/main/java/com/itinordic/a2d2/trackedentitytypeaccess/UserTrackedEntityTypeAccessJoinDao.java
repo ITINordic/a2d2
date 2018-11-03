@@ -32,29 +32,31 @@ public abstract class UserTrackedEntityTypeAccessJoinDao {
             "WHERE userId = :userId AND DataAccessModel.read = 1 AND DataAccessModel.write = 1 ")
     public abstract Flowable<List<TrackedEntityTypeModel>> getUserTrackedEntityModels(String userId);
 
-    @Query("SELECT * FROM user_tracked_entity_type_access_join_model WHERE userId LIKE :userId AND trackedEntityTypeId LIKE :trackedEntityTypeId AND metadataAccessId != :metadataAccessId")
-    public abstract Flowable<List<UserTrackedEntityTypeAccessJoinModel>> getPreviousUserTrackedEntityTypeAccessJoinModel(String userId, String trackedEntityTypeId, int metadataAccessId);
+    @Query("SELECT * FROM user_tracked_entity_type_access_join_model WHERE userId LIKE :userId")
+    public abstract Flowable<List<UserTrackedEntityTypeAccessJoinModel>> getCurrentUserTrackedEntityTypeAccessJoinModel(String userId);
 
     @Delete
-    public abstract void delete(UserTrackedEntityTypeAccessJoinModel userTrackedEntityTypeAccessJoinModel);
+    public abstract void delete(List<UserTrackedEntityTypeAccessJoinModel> userTrackedEntityTypeAccessJoinModels);
 
-    @Query("DELETE FROM DataAccessModel WHERE metadataAccessId LIKE(:metadataAccessId)")
-    public abstract void deleteDataAccess(int metadataAccessId);
+    @Query("DELETE FROM DataAccessModel WHERE metadataAccessId IN(:metadataAccessIds)")
+    public abstract void deleteDataAccess(int[] metadataAccessIds );
 
-    @Query("DELETE FROM MetadataAccessModel WHERE id LIKE(:id)")
-    public abstract void deleteMetaDataAccess(int id);
+    @Query("DELETE FROM MetadataAccessModel WHERE id IN(:ids)")
+    public abstract void deleteMetaDataAccess(int[] ids);
 
     @Transaction
-    public void insertAndDeleteInTransaction(UserTrackedEntityTypeAccessJoinModel newUserTrackedEntityTypeAccessJoinModel, UserTrackedEntityTypeAccessJoinModel oldUserTrackedEntityTypeAccessJoinModel){
+    public void deleteCurrentTrackedEntityTypeAccessInTransaction(List<UserTrackedEntityTypeAccessJoinModel> currentUserTrackedEntityTypeAccessJoinModel){
 
-        if(newUserTrackedEntityTypeAccessJoinModel.getMetadataAccessId()!= oldUserTrackedEntityTypeAccessJoinModel.getMetadataAccessId())
-        {
-            delete(oldUserTrackedEntityTypeAccessJoinModel);
-            deleteDataAccess(oldUserTrackedEntityTypeAccessJoinModel.getMetadataAccessId());
-            deleteMetaDataAccess(oldUserTrackedEntityTypeAccessJoinModel.getMetadataAccessId());
+        int[] metadataAccessIds;
+        metadataAccessIds = new int[currentUserTrackedEntityTypeAccessJoinModel.size()];
+
+        for (int index = 0; index < currentUserTrackedEntityTypeAccessJoinModel.size(); index++){
+            metadataAccessIds[index] = currentUserTrackedEntityTypeAccessJoinModel.get(index).getMetadataAccessId();
         }
 
-        insert(newUserTrackedEntityTypeAccessJoinModel);
+        delete(currentUserTrackedEntityTypeAccessJoinModel);
+        deleteDataAccess(metadataAccessIds);
+        deleteMetaDataAccess(metadataAccessIds);
     }
 
 }

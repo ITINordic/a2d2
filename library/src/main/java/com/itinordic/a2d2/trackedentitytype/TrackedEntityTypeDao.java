@@ -6,6 +6,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 import io.reactivex.Flowable;
 
 /**
@@ -23,5 +24,9 @@ public interface TrackedEntityTypeDao {
 
     @Query("SELECT * FROM TrackedEntityTypeModel where id = :trackedEntityTypeId LIMIT 1")
     Flowable<List<TrackedEntityTypeModel>> getTrackedEntityTypeById(String trackedEntityTypeId);
+
+    @Update
+    void update(TrackedEntityTypeModel trackedEntityTypeModel);
+
 
 }
