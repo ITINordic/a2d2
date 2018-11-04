@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 11,
-    "identityHash": "53f761b3f7dec33947f2f2ac1068d454",
+    "identityHash": "4ea3cda9830877f93c397f382d28e0f3",
     "entities": [
       {
         "tableName": "UserModel",
@@ -676,7 +676,7 @@
       },
       {
         "tableName": "TrackedEntityAttributeModel",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lastUpdated` TEXT, `id` TEXT NOT NULL, `created` TEXT, `name` TEXT, `shortName` TEXT, `aggregationType` TEXT, `programScope` TEXT, `displayName` TEXT, `displayShortName` TEXT, `valueType` TEXT, `confidential` TEXT, `dimensionItem` TEXT, `unique` TEXT, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`lastUpdated` TEXT, `id` TEXT NOT NULL, `created` TEXT, `name` TEXT, `shortName` TEXT, `aggregationType` TEXT, `programScope` INTEGER NOT NULL, `displayName` TEXT, `displayShortName` TEXT, `valueType` TEXT, `confidential` INTEGER NOT NULL, `dimensionItem` TEXT, `unique` INTEGER NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "lastUpdated",
@@ -717,8 +717,8 @@
           {
             "fieldPath": "programScope",
             "columnName": "programScope",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "displayName",
@@ -741,8 +741,8 @@
           {
             "fieldPath": "confidential",
             "columnName": "confidential",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "INTEGER",
+            "notNull": true
           },
           {
             "fieldPath": "dimensionItem",
@@ -753,8 +753,8 @@
           {
             "fieldPath": "unique",
             "columnName": "unique",
-            "affinity": "TEXT",
-            "notNull": false
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -1891,7 +1891,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"53f761b3f7dec33947f2f2ac1068d454\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"4ea3cda9830877f93c397f382d28e0f3\")"
     ]
   }
 }

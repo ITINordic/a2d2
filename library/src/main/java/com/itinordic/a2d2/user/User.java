@@ -45,7 +45,6 @@ public class User {
     public final List<UserOrganisationUnit> organisationUnits;
     public final List<UserUserGroup> userGroups;
 
-
     public User(String id, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, UserCredentials userCredentials, List<UserOrganisationUnit> organisationUnits, List<UserUserGroup> userGroups) {
         this.id = id;
         this.name = name;

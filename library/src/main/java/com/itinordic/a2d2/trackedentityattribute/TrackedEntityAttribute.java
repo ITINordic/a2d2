@@ -1,6 +1,7 @@
 package com.itinordic.a2d2.trackedentityattribute;
 
 import com.itinordic.a2d2.common.Access;
+import com.itinordic.a2d2.optionset.OptionSet;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -16,16 +17,20 @@ public class TrackedEntityAttribute {
     public final String name;
     public final String shortName;
     public final String aggregationType;
-    public final String programScope;
+    public final boolean programScope;
+    public final boolean displayInListNoProgram;
     public final String displayName;
     public final String displayShortName;
     public final String valueType;
-    public final String confidential;
+    public final boolean confidential;
     public final String dimensionItem;
-    public final String unique;
+    public final boolean unique;
     public final Access access;
+    public final String dimensionItemType;
+    public final boolean optionSetValue;
+    public final OptionSet optionSet;
 
-    public TrackedEntityAttribute(String lastUpdated, String id, String created, String name, String shortName, String aggregationType, String programScope, String displayName, String displayShortName, String valueType, String confidential, String dimensionItem, String unique, Access access) {
+    public TrackedEntityAttribute(String lastUpdated, String id, String created, String name, String shortName, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique, Access access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -33,6 +38,7 @@ public class TrackedEntityAttribute {
         this.shortName = shortName;
         this.aggregationType = aggregationType;
         this.programScope = programScope;
+        this.displayInListNoProgram = displayInListNoProgram;
         this.displayName = displayName;
         this.displayShortName = displayShortName;
         this.valueType = valueType;
@@ -40,5 +46,8 @@ public class TrackedEntityAttribute {
         this.dimensionItem = dimensionItem;
         this.unique = unique;
         this.access = access;
+        this.dimensionItemType = dimensionItemType;
+        this.optionSetValue = optionSetValue;
+        this.optionSet = optionSet;
     }
 }

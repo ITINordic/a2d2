@@ -46,6 +46,7 @@ import com.itinordic.a2d2.oauthclient.OAuthClientModel;
                         parentColumns = "id",
                         childColumns = "grantTypeId")
         }, indices = {@Index("grantTypeId")})
+
 public class OAuthGrantTypeJoinModel {
 
     @NonNull
