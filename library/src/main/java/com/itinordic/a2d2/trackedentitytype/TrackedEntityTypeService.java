@@ -1,7 +1,5 @@
 package com.itinordic.a2d2.trackedentitytype;
 
-import java.util.List;
-
 import io.reactivex.Flowable;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -21,5 +19,5 @@ public interface TrackedEntityTypeService {
 
 
     @GET("api/trackedEntityTypes")
-    Flowable<Response<UserTrackedEntityTypes>> getUserTrackedEntityTypes(@Query("fields" ) String fields);
+    Flowable<Response<TrackedEntityTypeList>> getUserTrackedEntityTypes(@Query("fields" ) String fields);
 }

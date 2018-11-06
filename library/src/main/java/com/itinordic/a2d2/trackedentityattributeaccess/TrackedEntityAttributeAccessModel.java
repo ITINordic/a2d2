@@ -111,6 +111,10 @@ public class TrackedEntityAttributeAccessModel {
                 throw new IllegalStateException("User id must be set");
             }
 
+            if ( metadataAccessId == 0) {
+                throw new IllegalStateException("Metadata Access id must be set");
+            }
+
             return new TrackedEntityAttributeAccessModel(userId, trackedEntityAttributeId, metadataAccessId);
         }
     }

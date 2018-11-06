@@ -26,19 +26,17 @@ public interface TrackedEntityAttributeAccessDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(TrackedEntityAttributeAccessModel trackedEntityAttributeAccessModel);
 
-    @Query("SELECT * FROM TrackedEntityAttributeModel INNER JOIN tracked_entity_type_attribute_model " +
-            "ON TrackedEntityAttributeModel.id = tracked_entity_type_attribute_model.trackedEntityAttributeId " +
-            "INNER JOIN TrackedEntityTypeModel ON tracked_entity_type_attribute_model.trackedEntityTypeId = " +
-            "TrackedEntityTypeModel.id INNER JOIN tracked_entity_attribute_access_model ON TrackedEntityAttributeModel.id = tracked_entity_attribute_access_model.trackedEntityAttributeId" +
+    @Query("SELECT * FROM TrackedEntityAttributeModel INNER JOIN tracked_entity_attribute_access_model " +
+            "ON TrackedEntityAttributeModel.id = tracked_entity_attribute_access_model.trackedEntityAttributeId " +
             " INNER JOIN MetadataAccessModel ON  tracked_entity_attribute_access_model.metadataAccessId = MetadataAccessModel.id " +
             "WHERE tracked_entity_attribute_access_model.userId = :userId" +
             " AND MetadataAccessModel.read = 1 and  MetadataAccessModel.write = 1")
     public Flowable<List<TrackedEntityAttributeModel>> getTrackedEntityAttributes(String userId);
 
-    @Query("SELECT * FROM tracked_entity_attribute_access_model WHERE userId = :userId and trackedEntityAttributeId = :trackedEntityAttributeId")
+    @Query("SELECT * FROM tracked_entity_attribute_access_model WHERE userId = :userId AND trackedEntityAttributeId = :trackedEntityAttributeId")
     public Flowable<List<TrackedEntityAttributeAccessModel>> getUserTrackedEntityAttributeAccess (String userId, String trackedEntityAttributeId);
 
-    @Query("SELECT * FROM tracked_entity_attribute_access_model WHERE userId = :userId and trackedEntityAttributeId = :trackedEntityAttributeId")
+    @Query("SELECT * FROM tracked_entity_attribute_access_model WHERE userId = :userId AND trackedEntityAttributeId = :trackedEntityAttributeId")
     public List<TrackedEntityAttributeAccessModel> syncGetUserTrackedEntityAttributeAccess (String userId, String trackedEntityAttributeId);
 
     @Delete
@@ -46,5 +44,8 @@ public interface TrackedEntityAttributeAccessDao {
 
     @Update
     void update(TrackedEntityAttributeAccessModel trackedEntityAttributeAccessModel);
+
+    @Query("SELECT * FROM tracked_entity_attribute_access_model")
+    public List<TrackedEntityAttributeAccessModel> syncGetAllTrackedEntityAttributeAccess();
 
 }

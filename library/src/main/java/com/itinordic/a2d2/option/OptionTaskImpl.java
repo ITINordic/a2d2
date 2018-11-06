@@ -30,8 +30,8 @@ public class OptionTaskImpl implements OptionTask{
     }
 
     @Override
-    public Flowable<Response<OptionList>> getOptions(String fields) {
-        return optionService.getOptions(fields);
+    public Flowable<Response<OptionList>> getOptions(String fields, boolean paging) {
+        return optionService.getOptions(fields,paging);
     }
 
     //builder that returns a new Task instance when it is passed a URL

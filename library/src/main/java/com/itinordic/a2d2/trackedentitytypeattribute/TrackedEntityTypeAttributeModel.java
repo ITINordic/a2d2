@@ -7,6 +7,7 @@
 
 package com.itinordic.a2d2.trackedentitytypeattribute;
 
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import java.util.Date;
@@ -22,7 +23,7 @@ import androidx.room.Index;
                 @ForeignKey(entity = TrackedEntityTypeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityTypeId"),
-                @ForeignKey(entity = TrackedEntityTypeAttributeModel.class,
+                @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId")
         }, indices = {@Index("trackedEntityAttributeId"),@Index("trackedEntityTypeId") })

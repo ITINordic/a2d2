@@ -8,11 +8,11 @@ import java.util.List;
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
  */
-public class UserTrackedEntityTypes {
+public class TrackedEntityTypeList {
 
     public final List<TrackedEntityType> trackedEntityTypes;
 
-    public UserTrackedEntityTypes(List<TrackedEntityType> trackedEntityTypes) {
+    public TrackedEntityTypeList(List<TrackedEntityType> trackedEntityTypes) {
         this.trackedEntityTypes = trackedEntityTypes;
     }
 

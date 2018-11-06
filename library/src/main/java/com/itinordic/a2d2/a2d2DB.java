@@ -108,7 +108,7 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         ProgramModel.class, DataElementModel.class, UserProgramDataAccessJoinModel.class,
         UserTrackedEntityTypeAccessJoinModel.class, DataAccessModel.class, MetadataAccessModel.class,
         TrackedEntityTypeAttributeModel.class, TrackedEntityAttributeAccessModel.class, OptionSetAccessModel.class,
-        OptionSetModel.class, OptionAccessModel.class, OptionModel.class, TrackedEntityAttributeOptionSetJoinModel.class}, version = 14)
+        OptionSetModel.class, OptionAccessModel.class, OptionModel.class, TrackedEntityAttributeOptionSetJoinModel.class}, version = 15)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 

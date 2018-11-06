@@ -13,6 +13,6 @@ public interface OptionTask {
 
     Flowable<Response<Option>> getOptionById(String optionSetId);
 
-    Flowable<Response<OptionList>> getOptions(String fields);
+    Flowable<Response<OptionList>> getOptions(String fields, boolean paging);
 
 }

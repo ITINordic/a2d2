@@ -30,8 +30,8 @@ public class OptionSetTaskImpl implements OptionSetTask {
     }
 
     @Override
-    public Flowable<Response<OptionSetList>> getOptionSets(String fields) {
-        return optionSetService.getOptionSets(fields);
+    public Flowable<Response<OptionSetList>> getOptionSets(String fields, boolean paging) {
+        return optionSetService.getOptionSets(fields,paging);
     }
 
     //builder that returns a new Task instance when it is passed a URL

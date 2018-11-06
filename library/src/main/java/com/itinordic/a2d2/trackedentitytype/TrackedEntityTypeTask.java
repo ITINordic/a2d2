@@ -13,6 +13,6 @@ public interface TrackedEntityTypeTask {
 
     Flowable<Response<TrackedEntityType>> getTrackedEntityType(String trackedEntityTypeId);
 
-    Flowable<Response<UserTrackedEntityTypes>> getUserTrackedEntityTypes(String fields);
+    Flowable<Response<TrackedEntityTypeList>> getUserTrackedEntityTypes(String fields);
 
 }

@@ -16,6 +16,6 @@ public interface OptionSetTask {
 
     Flowable<Response<OptionSet>> getOptionSetById(String optionSetId);
 
-    Flowable<Response<OptionSetList>> getOptionSets(String fields);
+    Flowable<Response<OptionSetList>> getOptionSets(String fields, boolean paging);
 
 }

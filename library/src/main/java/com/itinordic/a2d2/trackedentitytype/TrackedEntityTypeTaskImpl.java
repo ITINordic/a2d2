@@ -31,7 +31,7 @@ public class TrackedEntityTypeTaskImpl implements TrackedEntityTypeTask {
     }
 
     @Override
-    public Flowable<Response<UserTrackedEntityTypes>> getUserTrackedEntityTypes(String fields) {
+    public Flowable<Response<TrackedEntityTypeList>> getUserTrackedEntityTypes(String fields) {
         return trackedEntityTypeService.getUserTrackedEntityTypes(fields);
     }
 

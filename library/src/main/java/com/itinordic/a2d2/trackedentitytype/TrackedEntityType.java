@@ -2,7 +2,9 @@ package com.itinordic.a2d2.trackedentitytype;
 
 import com.itinordic.a2d2.common.Style;
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
-import com.itinordic.a2d2.trackedentitytypeattribute.TrackedEntityTypeAttributeList;
+import com.itinordic.a2d2.trackedentitytypeattribute.TrackedEntityTypeAttribute;
+
+import java.util.List;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -21,9 +23,9 @@ public class TrackedEntityType {
     public final String displayDescription;
     public final Style style;
     public final MetadataAccess access;
-    public final TrackedEntityTypeAttributeList trackedEntityTypeAttributes;
+    public final List<TrackedEntityTypeAttribute> trackedEntityTypeAttributes;
 
-    public TrackedEntityType(String id, String created, String lastUpdated, String name, String displayName, String description, String displayDescription, Style style, MetadataAccess access, TrackedEntityTypeAttributeList trackedEntityTypeAttributes) {
+    public TrackedEntityType(String id, String created, String lastUpdated, String name, String displayName, String description, String displayDescription, Style style, MetadataAccess access, List<TrackedEntityTypeAttribute> trackedEntityTypeAttributes) {
         this.id = id;
         this.created = created;
         this.lastUpdated = lastUpdated;

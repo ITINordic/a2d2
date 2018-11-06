@@ -18,6 +18,6 @@ public interface OptionSetService {
     Flowable<Response<OptionSet>> getOptionSetById(@Path("id") String optionSetUid);
 
     @GET("api/optionSets")
-    Flowable<Response<OptionSetList>> getOptionSets(@Query("fields") String fields);
+    Flowable<Response<OptionSetList>> getOptionSets(@Query("fields") String fields, @Query("paging" ) boolean paging);
 
 }
