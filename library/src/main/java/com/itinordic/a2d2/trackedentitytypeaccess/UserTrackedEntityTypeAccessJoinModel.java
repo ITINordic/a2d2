@@ -31,7 +31,7 @@ import static androidx.room.ForeignKey.CASCADE;
                 @ForeignKey(entity = MetadataAccessModel.class,
                         parentColumns = "id",
                         childColumns = "metadataAccessId")
-        }, indices = {@Index("trackedEntityTypeId"), @Index("metadataAccessId")})
+        }, indices = {@Index("userId"), @Index("trackedEntityTypeId"), @Index("metadataAccessId")})
 public class UserTrackedEntityTypeAccessJoinModel {
     @NonNull
     private String userId;

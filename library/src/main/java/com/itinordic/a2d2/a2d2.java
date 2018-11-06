@@ -7,7 +7,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
- * * Redistributions of source code must retain the above copyright notice, this
+ * * Redistributions of source name must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation
@@ -32,12 +32,18 @@ import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTaskImpl;
+import com.itinordic.a2d2.option.OptionTask;
+import com.itinordic.a2d2.option.OptionTaskImpl;
+import com.itinordic.a2d2.optionset.OptionSetTask;
+import com.itinordic.a2d2.optionset.OptionSetTaskImpl;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTaskImpl;
 import com.itinordic.a2d2.program.ProgramTask;
 import com.itinordic.a2d2.program.ProgramTaskImpl;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.token.AccessTokenTaskImpl;
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTask;
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTaskImpl;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTask;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTaskImpl;
 import com.itinordic.a2d2.user.UserTask;
@@ -139,5 +145,21 @@ public final class a2d2 implements a2d2API {
     public TrackedEntityTypeTask trackedEntityTypeTaskBuilder(){
         return new TrackedEntityTypeTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
+
+    @Override
+    public TrackedEntityAttributeTask trackedEntityAttributeTaskBuilder() {
+        return new TrackedEntityAttributeTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    @Override
+    public OptionSetTask optionSetTaskBuilder() {
+        return new OptionSetTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    @Override
+    public OptionTask optionTaskBuilder() {
+        return new OptionTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
 
 }

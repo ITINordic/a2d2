@@ -32,8 +32,11 @@ public abstract class UserTrackedEntityTypeAccessJoinDao {
             "WHERE userId = :userId AND DataAccessModel.read = 1 AND DataAccessModel.write = 1 ")
     public abstract Flowable<List<TrackedEntityTypeModel>> getUserTrackedEntityModels(String userId);
 
-    @Query("SELECT * FROM user_tracked_entity_type_access_join_model WHERE userId LIKE :userId")
-    public abstract Flowable<List<UserTrackedEntityTypeAccessJoinModel>> getCurrentUserTrackedEntityTypeAccessJoinModel(String userId);
+    @Query("SELECT * FROM user_tracked_entity_type_access_join_model WHERE userId = :userId and trackedEntityTypeId = :trackedEntityTypeId")
+    public abstract Flowable<List<UserTrackedEntityTypeAccessJoinModel>> getCurrentUserTrackedEntityTypeAccessJoinModel(String userId, String trackedEntityTypeId);
+
+    @Query("SELECT * FROM user_tracked_entity_type_access_join_model WHERE userId = :userId and trackedEntityTypeId = :trackedEntityTypeId")
+    public abstract List<UserTrackedEntityTypeAccessJoinModel> syncGetCurrentUserTrackedEntityTypeAccessJoinModel(String userId, String trackedEntityTypeId);
 
     @Delete
     public abstract void delete(List<UserTrackedEntityTypeAccessJoinModel> userTrackedEntityTypeAccessJoinModels);

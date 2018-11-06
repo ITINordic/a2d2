@@ -7,7 +7,6 @@
 
 package com.itinordic.a2d2.trackedentitytypeattribute;
 
-import com.itinordic.a2d2.trackedentitytype.TrackedEntityType;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import java.util.Date;
@@ -16,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
-import androidx.room.PrimaryKey;
 
 @Entity(tableName = "tracked_entity_type_attribute_model",
         primaryKeys = { "id" },
@@ -27,27 +25,81 @@ import androidx.room.PrimaryKey;
                 @ForeignKey(entity = TrackedEntityTypeAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId")
-        }, indices = {@Index("trackedEntityAttributeId")})
+        }, indices = {@Index("trackedEntityAttributeId"),@Index("trackedEntityTypeId") })
 public class TrackedEntityTypeAttributeModel {
     private Date lastUpdated;
     @NonNull
     private String id;
     private Date created;
-    private String code;
     private String trackedEntityTypeId;
     private String trackedEntityAttributeId;
     private boolean displayInList;
     private boolean mandatory;
 
 
-    public TrackedEntityTypeAttributeModel(Date lastUpdated, String id, Date created, String code, String trackedEntityTypeId, String trackedEntityAttributeId, boolean displayInList, boolean mandatory) {
+    public TrackedEntityTypeAttributeModel(Date lastUpdated, String id, Date created, String trackedEntityTypeId, String trackedEntityAttributeId, boolean displayInList, boolean mandatory) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
-        this.code = code;
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.displayInList = displayInList;
+        this.mandatory = mandatory;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getTrackedEntityTypeId() {
+        return trackedEntityTypeId;
+    }
+
+    public void setTrackedEntityTypeId(String trackedEntityTypeId) {
+        this.trackedEntityTypeId = trackedEntityTypeId;
+    }
+
+    public String getTrackedEntityAttributeId() {
+        return trackedEntityAttributeId;
+    }
+
+    public void setTrackedEntityAttributeId(String trackedEntityAttributeId) {
+        this.trackedEntityAttributeId = trackedEntityAttributeId;
+    }
+
+    public boolean isDisplayInList() {
+        return displayInList;
+    }
+
+    public void setDisplayInList(boolean displayInList) {
+        this.displayInList = displayInList;
+    }
+
+    public boolean isMandatory() {
+        return mandatory;
+    }
+
+    public void setMandatory(boolean mandatory) {
         this.mandatory = mandatory;
     }
 
@@ -55,7 +107,6 @@ public class TrackedEntityTypeAttributeModel {
         private Date lastUpdated;
         private String id;
         private Date created;
-        private String code;
         private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private boolean displayInList;
@@ -80,11 +131,6 @@ public class TrackedEntityTypeAttributeModel {
         @NonNull
         public TrackedEntityTypeAttributeModel.Builder created(@NonNull Date created) {
             this.created = created;
-            return this;
-        }
-
-        public TrackedEntityTypeAttributeModel.Builder code(String code) {
-            this.code = code;
             return this;
         }
 
@@ -134,7 +180,7 @@ public class TrackedEntityTypeAttributeModel {
                 throw new IllegalStateException("Tracked Entity Attribute Id must be set");
             }
 
-            return new TrackedEntityTypeAttributeModel( lastUpdated,  id,  created,  code,
+            return new TrackedEntityTypeAttributeModel( lastUpdated,  id,  created,
                     trackedEntityTypeId,  trackedEntityAttributeId,  displayInList,  mandatory);
 
         }

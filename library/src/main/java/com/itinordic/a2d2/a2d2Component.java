@@ -7,7 +7,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
- * * Redistributions of source code must retain the above copyright notice, this
+ * * Redistributions of source name must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation
@@ -29,9 +29,12 @@
 package com.itinordic.a2d2;
 
 import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
+import com.itinordic.a2d2.option.OptionComponent;
+import com.itinordic.a2d2.optionset.OptionSetComponent;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
 import com.itinordic.a2d2.program.ProgramComponent;
 import com.itinordic.a2d2.token.AccessTokenComponent;
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeComponent;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeComponent;
 import com.itinordic.a2d2.user.UserComponent;
 import com.itinordic.a2d2.usergroup.UserGroupComponent;
@@ -56,5 +59,8 @@ public interface a2d2Component {
     UserRoleComponent.Builder userRoleComponent();
     ProgramComponent.Builder programComponent();
     TrackedEntityTypeComponent.Builder trackedEntityTypeComponent();
+    TrackedEntityAttributeComponent.Builder trackedEntityAttributeComponent();
+    OptionSetComponent.Builder optionSetComponent();
+    OptionComponent.Builder optionComponent();
 
 }

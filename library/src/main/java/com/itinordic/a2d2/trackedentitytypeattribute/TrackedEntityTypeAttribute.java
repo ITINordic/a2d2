@@ -16,18 +16,18 @@ public class TrackedEntityTypeAttribute {
     public final String lastUpdated;
     public final String id;
     public final String created;
-    public final String code;
+    public final String name;
     public final MetadataAccess access;
     public final TrackedEntityType trackedEntityType;
     public final TrackedEntityAttribute trackedEntityAttribute;
     public final boolean displayInList;
     public final boolean mandatory;
 
-    public TrackedEntityTypeAttribute(String lastUpdated, String id, String created, String code, MetadataAccess access, TrackedEntityType trackedEntityType, TrackedEntityAttribute trackedEntityAttribute, boolean displayInList, boolean mandatory) {
+    public TrackedEntityTypeAttribute(String lastUpdated, String id, String created, String name, MetadataAccess access, TrackedEntityType trackedEntityType, TrackedEntityAttribute trackedEntityAttribute, boolean displayInList, boolean mandatory) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
-        this.code = code;
+        this.name = name;
         this.access = access;
         this.trackedEntityType = trackedEntityType;
         this.trackedEntityAttribute = trackedEntityAttribute;

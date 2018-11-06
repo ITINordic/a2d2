@@ -24,7 +24,8 @@ public class MetadataAccessModel {
     private boolean manage;
 
 
-    public MetadataAccessModel(boolean read, boolean update, boolean externalize, boolean delete, boolean write, boolean manage) {
+    public MetadataAccessModel(int id, boolean read, boolean update, boolean externalize, boolean delete, boolean write, boolean manage) {
+        this.id = id;
         this.read = read;
         this.update = update;
         this.externalize = externalize;
@@ -92,6 +93,7 @@ public class MetadataAccessModel {
     //Builder
     public static class Builder {
 
+        private int id;
         private boolean read;
         private boolean update;
         private boolean externalize;
@@ -104,6 +106,12 @@ public class MetadataAccessModel {
             // empty constructor
         }
 
+
+        @NonNull
+        public Builder id(@NonNull int id) {
+            this.id = id;
+            return this;
+        }
 
         @NonNull
         public Builder read(@NonNull boolean read) {
@@ -143,7 +151,7 @@ public class MetadataAccessModel {
 
         public MetadataAccessModel build() {
 
-            return new MetadataAccessModel(read, update, externalize, delete, write, manage);
+            return new MetadataAccessModel(id, read, update, externalize, delete, write, manage);
         }
     }
 

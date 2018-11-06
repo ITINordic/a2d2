@@ -23,18 +23,23 @@ import io.reactivex.Flowable;
 public interface TrackedEntityTypeAttributeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(TrackedEntityTypeAttribute trackedEntityTypeAttribute);
+    void insert(TrackedEntityTypeAttributeModel trackedEntityTypeAttributeModel);
 
-    @Query("SELECT * FROM TrackedEntityAttributeModel INNER JOIN tracked_entity_type_attribute_model " +
-            "ON TrackedEntityAttributeModel.id = tracked_entity_type_attribute_model.trackedEntityAttributeId " +
-            "INNER JOIN TrackedEntityTypeModel ON tracked_entity_type_attribute_model.trackedEntityTypeId = " +
-            "TrackedEntityTypeModel.id WHERE TrackedEntityTypeModel.id = :TrackedEntityTypeId")
-    public abstract Flowable<List<TrackedEntityTypeModel>> getTrackedEntityTypeAttributes(String TrackedEntityTypeId);
+    @Query("SELECT * FROM tracked_entity_type_attribute_model WHERE id LIKE :id LIMIT 1")
+    Flowable<TrackedEntityTypeAttributeModel> findById(String id);
+
+    @Query("SELECT * FROM tracked_entity_type_attribute_model WHERE trackedEntityTypeId = :trackedEntityTypeId " +
+            "AND trackedEntityAttributeId = :trackedEntityAttributeId LIMIT 1")
+    Flowable<List<TrackedEntityTypeAttributeModel>> getTrackedEntityTypeAttribute(String trackedEntityTypeId, String trackedEntityAttributeId);
+
+    @Query("SELECT * FROM tracked_entity_type_attribute_model WHERE trackedEntityTypeId = :trackedEntityTypeId " +
+            "AND trackedEntityAttributeId = :trackedEntityAttributeId LIMIT 1")
+    List<TrackedEntityTypeAttributeModel> syncGetTrackedEntityTypeAttribute(String trackedEntityTypeId, String trackedEntityAttributeId);
 
     @Delete
-    public abstract void delete(TrackedEntityTypeAttribute trackedEntityTypeAttribute);
+    public void delete(TrackedEntityTypeAttributeModel trackedEntityTypeAttributeModel);
 
     @Update
-    void update(TrackedEntityTypeAttribute TrackedEntityTypeAttribute);
+    void update(TrackedEntityTypeAttributeModel trackedEntityTypeAttributeModel);
 
 }

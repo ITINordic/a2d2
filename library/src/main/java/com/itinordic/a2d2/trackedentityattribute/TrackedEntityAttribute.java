@@ -1,6 +1,6 @@
 package com.itinordic.a2d2.trackedentityattribute;
 
-import com.itinordic.a2d2.common.Access;
+import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 import com.itinordic.a2d2.optionset.OptionSet;
 
 /**
@@ -25,12 +25,12 @@ public class TrackedEntityAttribute {
     public final boolean confidential;
     public final String dimensionItem;
     public final boolean unique;
-    public final Access access;
+    public final MetadataAccess access;
     public final String dimensionItemType;
     public final boolean optionSetValue;
     public final OptionSet optionSet;
 
-    public TrackedEntityAttribute(String lastUpdated, String id, String created, String name, String shortName, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique, Access access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
+    public TrackedEntityAttribute(String lastUpdated, String id, String created, String name, String shortName, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique, MetadataAccess access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;

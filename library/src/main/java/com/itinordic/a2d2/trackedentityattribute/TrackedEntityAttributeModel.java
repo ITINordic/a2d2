@@ -32,9 +32,11 @@ public class TrackedEntityAttributeModel {
     private boolean confidential;
     private String dimensionItem;
     private boolean unique;
+    private boolean optionSetValue;
 
 
-    public TrackedEntityAttributeModel(Date lastUpdated, String id, Date created, String name, String shortName, String aggregationType, boolean programScope, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique) {
+
+    public TrackedEntityAttributeModel(Date lastUpdated, String id, Date created, String name, String shortName, String aggregationType, boolean programScope, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique, boolean optionSetValue) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -48,6 +50,7 @@ public class TrackedEntityAttributeModel {
         this.confidential = confidential;
         this.dimensionItem = dimensionItem;
         this.unique = unique;
+        this.optionSetValue = optionSetValue;
     }
 
     public Date getLastUpdated() {
@@ -154,6 +157,14 @@ public class TrackedEntityAttributeModel {
         this.unique = unique;
     }
 
+    public boolean isOptionSetValue() {
+        return optionSetValue;
+    }
+
+    public void setOptionSetValue(boolean optionSetValue) {
+        this.optionSetValue = optionSetValue;
+    }
+
     public static class Builder {
 
         private Date lastUpdated;
@@ -169,6 +180,8 @@ public class TrackedEntityAttributeModel {
         private boolean confidential;
         private String dimensionItem;
         private boolean unique;
+        private boolean optionSetValue;
+
 
         public Builder() {
             // empty constructor
@@ -252,6 +265,12 @@ public class TrackedEntityAttributeModel {
             return this;
         }
 
+        @NonNull
+        public TrackedEntityAttributeModel.Builder optionSetValue(@NonNull boolean optionSetValue) {
+            this.optionSetValue = optionSetValue;
+            return this;
+        }
+
         public TrackedEntityAttributeModel build() {
 
             if (id == null) {
@@ -296,7 +315,7 @@ public class TrackedEntityAttributeModel {
 
             return new TrackedEntityAttributeModel( lastUpdated,  id,  created,  name,  shortName,
                     aggregationType,  programScope,  displayName,  displayShortName,  valueType,
-                    confidential,  dimensionItem,  unique);
+                    confidential,  dimensionItem,  unique, optionSetValue);
 
         }
 

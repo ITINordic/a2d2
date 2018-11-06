@@ -25,8 +25,14 @@ public interface TrackedEntityTypeDao {
     @Query("SELECT * FROM TrackedEntityTypeModel where id = :trackedEntityTypeId LIMIT 1")
     Flowable<List<TrackedEntityTypeModel>> getTrackedEntityTypeById(String trackedEntityTypeId);
 
+    @Query("SELECT * FROM TrackedEntityTypeModel where id = :trackedEntityTypeId LIMIT 1")
+    List<TrackedEntityTypeModel> syncGetTrackedEntityTypeById(String trackedEntityTypeId);
+
     @Update
     void update(TrackedEntityTypeModel trackedEntityTypeModel);
+
+    @Query("SELECT * FROM TrackedEntityTypeModel WHERE id LIKE :id LIMIT 1")
+    Flowable<TrackedEntityTypeModel> findById(String id);
 
 
 }

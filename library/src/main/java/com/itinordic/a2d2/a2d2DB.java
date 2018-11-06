@@ -7,7 +7,7 @@
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
- * * Redistributions of source code must retain the above copyright notice, this
+ * * Redistributions of source name must retain the above copyright notice, this
  * list of conditions and the following disclaimer.
  * * Redistributions in binary form must reproduce the above copyright notice,
  * this list of conditions and the following disclaimer in the documentation
@@ -36,6 +36,8 @@ import com.itinordic.a2d2.common.Utils;
 import com.itinordic.a2d2.dataelement.DataElementModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinDao;
+import com.itinordic.a2d2.db.join.TrackedEntityAttributeOptionSetJoinDao;
+import com.itinordic.a2d2.db.join.TrackedEntityAttributeOptionSetJoinModel;
 import com.itinordic.a2d2.db.join.UserOrganisationUnitJoinDao;
 import com.itinordic.a2d2.db.join.UserOrganisationUnitJoinModel;
 import com.itinordic.a2d2.db.join.UserUserGroupJoinDao;
@@ -51,6 +53,14 @@ import com.itinordic.a2d2.metadataaccess.MetadataAccessDao;
 import com.itinordic.a2d2.metadataaccess.MetadataAccessModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientModel;
 import com.itinordic.a2d2.oauthclient.OAuthClientDao;
+import com.itinordic.a2d2.option.OptionDao;
+import com.itinordic.a2d2.option.OptionModel;
+import com.itinordic.a2d2.optionaccess.OptionAccessDao;
+import com.itinordic.a2d2.optionaccess.OptionAccessModel;
+import com.itinordic.a2d2.optionset.OptionSetDao;
+import com.itinordic.a2d2.optionset.OptionSetModel;
+import com.itinordic.a2d2.optionsetaccess.OptionSetAccessDao;
+import com.itinordic.a2d2.optionsetaccess.OptionSetAccessModel;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitDao;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
 import com.itinordic.a2d2.program.ProgramDao;
@@ -67,11 +77,16 @@ import com.itinordic.a2d2.programtrackedentitytype.ProgramTrackedEntityTypeDao;
 import com.itinordic.a2d2.programtrackedentitytype.ProgramTrackedEntityTypeJoinModel;
 import com.itinordic.a2d2.token.AccessTokenModel;
 import com.itinordic.a2d2.token.AccessTokenDao;
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeDao;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
+import com.itinordic.a2d2.trackedentityattributeaccess.TrackedEntityAttributeAccessDao;
+import com.itinordic.a2d2.trackedentityattributeaccess.TrackedEntityAttributeAccessModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeDao;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 import com.itinordic.a2d2.trackedentitytypeaccess.UserTrackedEntityTypeAccessJoinDao;
 import com.itinordic.a2d2.trackedentitytypeaccess.UserTrackedEntityTypeAccessJoinModel;
+import com.itinordic.a2d2.trackedentitytypeattribute.TrackedEntityTypeAttributeDao;
+import com.itinordic.a2d2.trackedentitytypeattribute.TrackedEntityTypeAttributeModel;
 import com.itinordic.a2d2.user.UserCredentialsDao;
 import com.itinordic.a2d2.user.UserCredentialsModel;
 import com.itinordic.a2d2.user.UserModel;
@@ -91,7 +106,9 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         UserProgramTrackedEntityAttributeAccessJoinModel.class, UserProgramStageDataElementAccessJoinModel.class,
         UserProgramStageAccessJoinModel.class, ProgramStageModel.class, UserProgramAccessJoinModel.class,
         ProgramModel.class, DataElementModel.class, UserProgramDataAccessJoinModel.class,
-        UserTrackedEntityTypeAccessJoinModel.class, DataAccessModel.class, MetadataAccessModel.class}, version = 11)
+        UserTrackedEntityTypeAccessJoinModel.class, DataAccessModel.class, MetadataAccessModel.class,
+        TrackedEntityTypeAttributeModel.class, TrackedEntityAttributeAccessModel.class, OptionSetAccessModel.class,
+        OptionSetModel.class, OptionAccessModel.class, OptionModel.class, TrackedEntityAttributeOptionSetJoinModel.class}, version = 14)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -148,5 +165,17 @@ public abstract class a2d2DB extends RoomDatabase {
 
     //insert tracked entity data access join
     public abstract UserTrackedEntityTypeAccessJoinDao userTrackedEntityTypeAccessJoinDao();
+
+    //trackedentitytypeattribute
+    public abstract TrackedEntityTypeAttributeDao trackedEntityTypeAttributeDao();
+    public abstract TrackedEntityAttributeAccessDao trackedEntityAttributeAccessDao();
+    public abstract TrackedEntityAttributeOptionSetJoinDao trackedEntityAttributeOptionSetJoinDao();
+    public abstract TrackedEntityAttributeDao trackedEntityAttributeDao();
+
+    //optionsets
+    public abstract OptionSetAccessDao optionSetAccessDao();
+    public abstract OptionSetDao optionSetDao();
+    public abstract OptionAccessDao optionAccessDao();
+    public abstract OptionDao optionDao();
 
 }

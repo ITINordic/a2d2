@@ -3,9 +3,11 @@ package com.itinordic.a2d2.metadataaccess;
 import java.util.List;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 import io.reactivex.Flowable;
 
 /**
@@ -16,10 +18,17 @@ import io.reactivex.Flowable;
  */
 @Dao
 public interface MetadataAccessDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     long insert(MetadataAccessModel metadataAccessModel);
 
     @Query("SELECT * FROM MetadataAccessModel where id = :rowId")
     Flowable<List<MetadataAccessModel>> getUserProgramAccessJoinModel(long rowId);
+
+    @Delete
+    public void delete(MetadataAccessModel metadataAccessModel);
+
+    @Update
+    void update(MetadataAccessModel metadataAccessModel);
 
 }

@@ -35,7 +35,7 @@ public class TrackedEntityTypeTaskImpl implements TrackedEntityTypeTask {
         return trackedEntityTypeService.getUserTrackedEntityTypes(fields);
     }
 
-    //builder that returns a new ProgramTask instance when it is passed a URL
+    //builder that returns a new Task instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;
 
