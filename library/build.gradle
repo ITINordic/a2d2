@@ -59,5 +59,6 @@ dependencies {
     implementation "androidx.room:room-runtime:${libraries.room}"
     annotationProcessor "androidx.room:room-compiler:${libraries.room}"
     implementation "androidx.room:room-rxjava2:${libraries.room}"
+    
 
 }

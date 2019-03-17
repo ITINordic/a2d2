@@ -8,8 +8,10 @@ package com.itinordic.a2d2.common;
  */
 public class Style {
     public final String icon;
+    public final String color;
 
-    public Style(String icon) {
+    public Style(String icon, String color) {
         this.icon = icon;
+        this.color = color;
     }
 }

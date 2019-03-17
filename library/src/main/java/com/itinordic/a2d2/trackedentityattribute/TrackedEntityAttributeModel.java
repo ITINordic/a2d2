@@ -211,8 +211,7 @@ public class TrackedEntityAttributeModel {
             return this;
         }
 
-        @NonNull
-        public TrackedEntityAttributeModel.Builder shortName(@NonNull String shortName) {
+        public TrackedEntityAttributeModel.Builder shortName( String shortName) {
             this.shortName = shortName;
             return this;
         }
@@ -235,8 +234,7 @@ public class TrackedEntityAttributeModel {
             return this;
         }
 
-        @NonNull
-        public TrackedEntityAttributeModel.Builder displayShortName(@NonNull String displayShortName) {
+        public TrackedEntityAttributeModel.Builder displayShortName( String displayShortName) {
             this.displayShortName = displayShortName;
             return this;
         }
@@ -289,9 +287,6 @@ public class TrackedEntityAttributeModel {
                 throw new IllegalStateException("Name must be set");
             }
 
-            if ( shortName == null) {
-                throw new IllegalStateException("Short name must be set");
-            }
 
             if ( aggregationType == null) {
                 throw new IllegalStateException("Aggregation type must be set");
@@ -299,10 +294,6 @@ public class TrackedEntityAttributeModel {
 
             if ( displayName == null) {
                 throw new IllegalStateException("Display name must be set");
-            }
-
-            if ( displayShortName == null) {
-                throw new IllegalStateException("Display short name must be set");
             }
 
             if ( valueType == null) {

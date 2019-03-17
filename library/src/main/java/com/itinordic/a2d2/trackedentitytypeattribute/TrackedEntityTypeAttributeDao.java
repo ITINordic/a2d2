@@ -1,5 +1,6 @@
 package com.itinordic.a2d2.trackedentitytypeattribute;
 
+import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import java.util.List;
@@ -41,5 +42,14 @@ public interface TrackedEntityTypeAttributeDao {
 
     @Update
     void update(TrackedEntityTypeAttributeModel trackedEntityTypeAttributeModel);
+
+    @Query("SELECT * FROM TrackedEntityAttributeModel INNER JOIN tracked_entity_attribute_access_model " +
+            "ON TrackedEntityAttributeModel.id = tracked_entity_attribute_access_model.trackedEntityAttributeId " +
+            " INNER JOIN MetadataAccessModel ON  tracked_entity_attribute_access_model.metadataAccessId = MetadataAccessModel.id " +
+            " INNER JOIN tracked_entity_type_attribute_model ON  TrackedEntityAttributeModel.id = tracked_entity_type_attribute_model.trackedEntityAttributeId" +
+            " WHERE tracked_entity_attribute_access_model.userId = :userId" +
+            " AND MetadataAccessModel.read = 1 AND   MetadataAccessModel.write = 1 AND tracked_entity_type_attribute_model.trackedEntityTypeId = :trackedEntityTypeId")
+    public Flowable<List<TrackedEntityAttributeModel>> getTrackedEntityAttributesForType(String userId, String trackedEntityTypeId);
+
 
 }

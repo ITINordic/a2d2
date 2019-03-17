@@ -31,6 +31,7 @@ public class TrackedEntityTypeModel {
     private String description;
     private String displayDescription;
     private String icon;
+    private String color;
 
     public String getId() {
         return id;
@@ -88,7 +89,23 @@ public class TrackedEntityTypeModel {
         this.displayDescription = displayDescription;
     }
 
-    public TrackedEntityTypeModel(String id, Date lastUpdated, Date created, String name, String displayName, String description, String displayDescription, String icon) {
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public TrackedEntityTypeModel(String id, Date lastUpdated, Date created, String name, String displayName, String description, String displayDescription, String icon, String color) {
         this.id = id;
         this.lastUpdated = lastUpdated;
         this.created = created;
@@ -97,14 +114,7 @@ public class TrackedEntityTypeModel {
         this.description = description;
         this.displayDescription = displayDescription;
         this.icon = icon;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
+        this.color = color;
     }
 
     //Builder
@@ -117,6 +127,8 @@ public class TrackedEntityTypeModel {
         private String description;
         private String displayDescription;
         private String icon;
+        private String color;
+
         public Builder() {
             // empty constructor
         }
@@ -171,6 +183,12 @@ public class TrackedEntityTypeModel {
             return this;
         }
 
+        @NonNull
+        public Builder color(@NonNull String color) {
+            this.color = color;
+            return this;
+        }
+
         public TrackedEntityTypeModel build() {
 
             if (id == null) {
@@ -201,7 +219,7 @@ public class TrackedEntityTypeModel {
                 throw new IllegalStateException("Display description type must be set");
             }
 
-            return new TrackedEntityTypeModel( id, lastUpdated, created, name, displayName, description, displayDescription, icon);
+            return new TrackedEntityTypeModel( id, lastUpdated, created, name, displayName, description, displayDescription, icon, color);
         }
     }
 }
