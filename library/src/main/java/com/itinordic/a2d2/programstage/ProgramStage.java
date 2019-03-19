@@ -1,7 +1,7 @@
 package com.itinordic.a2d2.programstage;
 
+import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 import com.itinordic.a2d2.programstagedataelement.ProgramStageDataElement;
-import com.itinordic.a2d2.programaccess.UserProgramAccess;
 
 import java.util.List;
 
@@ -33,10 +33,10 @@ public class ProgramStage {
     public final String blockEntryForm;
     public final String minDaysFromStart;
     public final String dueDateLabel;
-    public final UserProgramAccess access;
+    public final MetadataAccess access;
     public final List<ProgramStageDataElement> programStageDataElements;
 
-    public ProgramStage(String lastUpdated, String id, String created, String name, String executionDateLabel, String allowGenerateNextVisit, String validCompleteOnly, String preGenerateUID, String displayName, String publicAccess, String externalAccess, String openAfterEnrollment, String repeatable, String formType, String remindCompleted, String displayGenerateEventBox, String generatedByEnrollmentDate, String hideDueDate, String blockEntryForm, String minDaysFromStart, String dueDateLabel, UserProgramAccess access, List<ProgramStageDataElement> programStageDataElements) {
+    public ProgramStage(String lastUpdated, String id, String created, String name, String executionDateLabel, String allowGenerateNextVisit, String validCompleteOnly, String preGenerateUID, String displayName, String publicAccess, String externalAccess, String openAfterEnrollment, String repeatable, String formType, String remindCompleted, String displayGenerateEventBox, String generatedByEnrollmentDate, String hideDueDate, String blockEntryForm, String minDaysFromStart, String dueDateLabel, MetadataAccess access, List<ProgramStageDataElement> programStageDataElements) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;

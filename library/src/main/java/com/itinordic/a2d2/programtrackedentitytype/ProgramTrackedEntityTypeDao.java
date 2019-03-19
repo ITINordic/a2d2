@@ -18,7 +18,7 @@ import io.reactivex.Flowable;
 @Dao
 public interface ProgramTrackedEntityTypeDao {
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(ProgramTrackedEntityTypeJoinModel programTrackedEntityTypeJoinModel);
 
     @Query("SELECT * FROM tracked_entity_type_program_join_model")
@@ -26,4 +26,11 @@ public interface ProgramTrackedEntityTypeDao {
 
     @Query("SELECT * FROM tracked_entity_type_program_join_model where programId IN (:programIds)")
     Flowable<List<ProgramTrackedEntityTypeJoinModel>> getProgramTrackedEntityTypeJoinModelForPrograms(String [] programIds);
+
+    @Query("SELECT * FROM tracked_entity_type_program_join_model where programId = :programId AND trackedEntityTypeId = :trackedEntityTypeId LIMIT 1")
+    Flowable<List<ProgramTrackedEntityTypeJoinModel>> getProgramTrackedEntityTypeJoinModelByIds(String programId, String trackedEntityTypeId);
+
+    @Query("SELECT * FROM tracked_entity_type_program_join_model where programId = :programId AND trackedEntityTypeId = :trackedEntityTypeId LIMIT 1")
+    List<ProgramTrackedEntityTypeJoinModel> syncGetProgramTrackedEntityTypeJoinModelByIds(String programId, String trackedEntityTypeId);
+
 }

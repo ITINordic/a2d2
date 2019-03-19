@@ -283,8 +283,7 @@ public class ProgramModel {
             return this;
         }
 
-        @NonNull
-        public Builder enrollmentDateLabel(@NonNull String enrollmentDateLabel) {
+        public Builder enrollmentDateLabel(String enrollmentDateLabel) {
             this.enrollmentDateLabel = enrollmentDateLabel;
             return this;
         }
@@ -301,8 +300,7 @@ public class ProgramModel {
             return this;
         }
 
-        @NonNull
-        public Builder incidentDateLabel(@NonNull String incidentDateLabel) {
+        public Builder incidentDateLabel( String incidentDateLabel) {
             this.incidentDateLabel = incidentDateLabel;
             return this;
         }
@@ -379,14 +377,6 @@ public class ProgramModel {
 
             if ( publicAccess == null) {
                 throw new IllegalStateException("Public access must be set");
-            }
-
-            if ( enrollmentDateLabel == null) {
-                throw new IllegalStateException("Enrollment date label must be set");
-            }
-
-            if ( incidentDateLabel == null) {
-                throw new IllegalStateException("Incident date label must be set");
             }
 
             if ( displayShortName == null) {

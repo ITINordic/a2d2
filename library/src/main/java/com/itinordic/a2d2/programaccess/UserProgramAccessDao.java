@@ -23,4 +23,11 @@ public interface UserProgramAccessDao {
 
     @Query("SELECT * FROM user_program_access_join_model where userId = :userId")
     Flowable<List<UserProgramAccessJoinModel>> getUserProgramAccessJoinModel(String userId);
+
+    @Query("SELECT * FROM user_program_access_join_model where userId = :userId AND programId = :programId")
+    Flowable<List<UserProgramAccessJoinModel>> getUserProgramAccess(String userId, String programId);
+
+    @Query("SELECT * FROM user_program_access_join_model where userId = :userId AND programId = :programId")
+    List<UserProgramAccessJoinModel> syncGetUserProgramAccess(String userId, String programId);
+
 }

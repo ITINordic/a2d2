@@ -1,6 +1,6 @@
 package com.itinordic.a2d2.programstagedataelement;
 
-import com.itinordic.a2d2.programaccess.UserProgramAccess;
+import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -15,9 +15,9 @@ public class ProgramStageDataElement {
     public final String displayInReports;
     public final String renderOptionsAsRadio;
     public final String compulsory;
-    public final UserProgramAccess access;
+    public final MetadataAccess access;
 
-    public ProgramStageDataElement(String lastUpdated, String id, String created, String displayInReports, String renderOptionsAsRadio, String compulsory, UserProgramAccess access) {
+    public ProgramStageDataElement(String lastUpdated, String id, String created, String displayInReports, String renderOptionsAsRadio, String compulsory, MetadataAccess access) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;

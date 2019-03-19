@@ -1,6 +1,8 @@
 package com.itinordic.a2d2.programaccess;
 
+import com.itinordic.a2d2.metadataaccess.MetadataAccessModel;
 import com.itinordic.a2d2.program.ProgramModel;
+import com.itinordic.a2d2.trackedentitytypeaccess.UserTrackedEntityTypeAccessJoinModel;
 import com.itinordic.a2d2.user.UserModel;
 
 import androidx.annotation.NonNull;
@@ -18,7 +20,7 @@ import static androidx.room.ForeignKey.CASCADE;
  */
 
 @Entity(tableName = "user_program_access_join_model",
-        primaryKeys = { "userId", "programId" },
+        primaryKeys = { "userId", "programId","metadataAccessId" },
         foreignKeys = {
                 @ForeignKey(entity = UserModel.class,
                         parentColumns = "id",
@@ -26,20 +28,19 @@ import static androidx.room.ForeignKey.CASCADE;
                         onDelete = CASCADE),
                 @ForeignKey(entity = ProgramModel.class,
                         parentColumns = "id",
-                        childColumns = "programId")
-        }, indices = {@Index("programId")})
+                        childColumns = "programId"),
+                @ForeignKey(entity = MetadataAccessModel.class,
+                        parentColumns = "id",
+                        childColumns = "metadataAccessId")
+        }, indices = {@Index("userId"), @Index("programId"),@Index("metadataAccessId")})
 public class UserProgramAccessJoinModel {
 
     @NonNull
     private String userId;
     @NonNull
     private String programId;
-    private boolean read;
-    private boolean update;
-    private boolean externalize;
-    private boolean delete;
-    private boolean write;
-    private boolean manage;
+    @NonNull
+    private int metadataAccessId;
 
     public String getUserId() {
         return userId;
@@ -57,63 +58,19 @@ public class UserProgramAccessJoinModel {
         this.programId = programId;
     }
 
-    public boolean getRead() {
-        return read;
+    public int getMetadataAccessId() {
+        return metadataAccessId;
     }
 
-    public void setRead(boolean read) {
-        this.read = read;
+    public void setMetadataAccessId(int metadataAccessId) {
+        this.metadataAccessId = metadataAccessId;
     }
 
-    public boolean getUpdate() {
-        return update;
-    }
-
-    public void setUpdate(boolean update) {
-        this.update = update;
-    }
-
-    public boolean getExternalize() {
-        return externalize;
-    }
-
-    public void setExternalize(boolean externalize) {
-        this.externalize = externalize;
-    }
-
-    public boolean getDelete() {
-        return delete;
-    }
-
-    public void setDelete(boolean delete) {
-        this.delete = delete;
-    }
-
-    public boolean getWrite() {
-        return write;
-    }
-
-    public void setWrite(boolean write) {
-        this.write = write;
-    }
-
-    public boolean getManage() {
-        return manage;
-    }
-
-    public void setManage(boolean manage) {
-        this.manage = manage;
-    }
-
-    public UserProgramAccessJoinModel(String userId, String programId, boolean read, boolean update, boolean externalize, boolean delete, boolean write, boolean manage) {
+    public UserProgramAccessJoinModel(String userId, String programId, int metadataAccessId) {
         this.userId = userId;
         this.programId = programId;
-        this.read = read;
-        this.update = update;
-        this.externalize = externalize;
-        this.delete = delete;
-        this.write = write;
-        this.manage = manage;
+        this.metadataAccessId = metadataAccessId;
+
     }
 
     //Builder
@@ -121,12 +78,7 @@ public class UserProgramAccessJoinModel {
 
         private String userId;
         private String programId;
-        private boolean read;
-        private boolean update;
-        private boolean externalize;
-        private boolean delete;
-        private boolean write;
-        private boolean manage;
+        private int metadataAccessId;
 
 
         public Builder() {
@@ -146,40 +98,11 @@ public class UserProgramAccessJoinModel {
         }
 
         @NonNull
-        public Builder read(@NonNull boolean read) {
-            this.read = read;
+        public Builder metadataAccessId(@NonNull int metadataAccessId) {
+            this.metadataAccessId = metadataAccessId;
             return this;
         }
 
-        @NonNull
-        public Builder update(@NonNull boolean update) {
-            this.update = update;
-            return this;
-        }
-
-        @NonNull
-        public Builder externalize(@NonNull boolean externalize) {
-            this.externalize = externalize;
-            return this;
-        }
-
-        @NonNull
-        public Builder delete(@NonNull boolean delete) {
-            this.delete = delete;
-            return this;
-        }
-
-        @NonNull
-        public Builder write(@NonNull boolean write) {
-            this.write = write;
-            return this;
-        }
-
-        @NonNull
-        public Builder manage(@NonNull boolean manage) {
-            this.manage = manage;
-            return this;
-        }
 
         public UserProgramAccessJoinModel build() {
 
@@ -191,7 +114,7 @@ public class UserProgramAccessJoinModel {
                 throw new IllegalStateException("User id must be set");
             }
 
-            return new UserProgramAccessJoinModel(userId, programId, read, update, externalize, delete, write, manage);
+            return new UserProgramAccessJoinModel(userId, programId,metadataAccessId);
         }
     }
 }

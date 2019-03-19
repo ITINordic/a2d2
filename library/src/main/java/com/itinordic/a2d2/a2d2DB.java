@@ -3,27 +3,6 @@
  * dev@itinordic.com
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * * Redistributions of source name must retain the above copyright notice, this
- * list of conditions and the following disclaimer.
- * * Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation
- * and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
  */
 
 package com.itinordic.a2d2;
@@ -67,8 +46,6 @@ import com.itinordic.a2d2.program.ProgramDao;
 import com.itinordic.a2d2.program.ProgramModel;
 import com.itinordic.a2d2.programaccess.UserProgramAccessDao;
 import com.itinordic.a2d2.programaccess.UserProgramAccessJoinModel;
-import com.itinordic.a2d2.programdataccess.UserProgramDataAccessDao;
-import com.itinordic.a2d2.programdataccess.UserProgramDataAccessJoinModel;
 import com.itinordic.a2d2.programstage.ProgramStageModel;
 import com.itinordic.a2d2.programstageaccess.UserProgramStageAccessJoinModel;
 import com.itinordic.a2d2.programstagedataelement.UserProgramStageDataElementAccessJoinModel;
@@ -105,10 +82,10 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         TrackedEntityTypeModel.class, TrackedEntityAttributeModel.class, ProgramTrackedEntityTypeJoinModel.class,
         UserProgramTrackedEntityAttributeAccessJoinModel.class, UserProgramStageDataElementAccessJoinModel.class,
         UserProgramStageAccessJoinModel.class, ProgramStageModel.class, UserProgramAccessJoinModel.class,
-        ProgramModel.class, DataElementModel.class, UserProgramDataAccessJoinModel.class,
-        UserTrackedEntityTypeAccessJoinModel.class, DataAccessModel.class, MetadataAccessModel.class,
+        ProgramModel.class, DataElementModel.class, UserTrackedEntityTypeAccessJoinModel.class,
+        DataAccessModel.class, MetadataAccessModel.class,
         TrackedEntityTypeAttributeModel.class, TrackedEntityAttributeAccessModel.class, OptionSetAccessModel.class,
-        OptionSetModel.class, OptionAccessModel.class, OptionModel.class, TrackedEntityAttributeOptionSetJoinModel.class}, version = 16)
+        OptionSetModel.class, OptionAccessModel.class, OptionModel.class, TrackedEntityAttributeOptionSetJoinModel.class}, version = 18)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -149,9 +126,6 @@ public abstract class a2d2DB extends RoomDatabase {
 
     //programs for which user has metadata access
     public abstract UserProgramAccessDao userProgramAccessDao();
-
-    //programs user has data access
-    public abstract UserProgramDataAccessDao userProgramDataAccessDao();
 
     //TrackedEntityTypes
     public abstract TrackedEntityTypeDao trackedEntityTypeDao();

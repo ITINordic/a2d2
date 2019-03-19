@@ -7,10 +7,10 @@
 
 package com.itinordic.a2d2.program;
 
-import com.itinordic.a2d2.programaccess.UserProgramAccess;
+import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 import com.itinordic.a2d2.programstage.ProgramStage;
 import com.itinordic.a2d2.programtrackedentityattribute.ProgramTrackedEntityAttribute;
-import com.itinordic.a2d2.programtrackedentitytype.ProgramTrackedEntityType;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityType;
 
 import java.util.List;
 
@@ -34,12 +34,12 @@ public class Program {
     public final String displayShortName;
     public final boolean withoutRegistration;
     public final String programType;
-    public final UserProgramAccess access;
-    public final ProgramTrackedEntityType trackedEntityType;
+    public final MetadataAccess access;
+    public final TrackedEntityType trackedEntityType;
     public final List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes;
     public final List<ProgramStage> programStages;
 
-    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, String version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, String completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType, UserProgramAccess access, ProgramTrackedEntityType programTrackedEntityType, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<ProgramStage> programStages) {
+    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, String version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, String completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType, MetadataAccess access, TrackedEntityType trackedEntityType, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<ProgramStage> programStages) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -59,7 +59,7 @@ public class Program {
         this.withoutRegistration = withoutRegistration;
         this.programType = programType;
         this.access = access;
-        this.trackedEntityType = programTrackedEntityType;
+        this.trackedEntityType = trackedEntityType;
         this.programTrackedEntityAttributes = programTrackedEntityAttributes;
         this.programStages = programStages;
 

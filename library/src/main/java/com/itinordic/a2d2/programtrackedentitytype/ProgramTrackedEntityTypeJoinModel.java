@@ -86,13 +86,13 @@ public class ProgramTrackedEntityTypeJoinModel {
 
 
             if ( programId == null) {
-                throw new IllegalStateException("Display trackedEntityTypeId must be set");
+                throw new IllegalStateException("programId must be set");
             }
 
 
 
             if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("Name must be set");
+                throw new IllegalStateException("trackedEntityTypeId must be set");
             }
 
 
