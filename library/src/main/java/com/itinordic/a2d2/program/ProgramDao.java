@@ -30,7 +30,7 @@ public interface ProgramDao {
 
     @Query("SELECT * FROM ProgramModel INNER JOIN user_program_access_join_model ON ProgramModel.id = user_program_access_join_model.programId " +
             "INNER JOIN DataAccessModel ON user_program_access_join_model.metadataAccessId = DataAccessModel.metadataAccessId " +
-            "WHERE userId = :userId AND DataAccessModel.read = 1 AND DataAccessModel.write = 1 ")
+            "WHERE userId = :userId AND DataAccessModel.read = 1 AND DataAccessModel.write = 1")
     Flowable<List<ProgramModel>> getUserProgramModels(String userId);
 
 
