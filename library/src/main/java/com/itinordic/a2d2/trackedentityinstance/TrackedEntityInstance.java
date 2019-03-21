@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.trackedentity;
+package com.itinordic.a2d2.trackedentityinstance;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -6,6 +6,6 @@ package com.itinordic.a2d2.trackedentity;
  * Copyright (c) 2018, ITINordic
  * All rights reserved.
  */
-public class TrackedEntity {
+public class TrackedEntityInstance {
     private String id;
 }

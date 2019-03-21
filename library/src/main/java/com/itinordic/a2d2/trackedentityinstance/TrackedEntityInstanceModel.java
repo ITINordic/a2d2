@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.trackedentity;
+package com.itinordic.a2d2.trackedentityinstance;
 
 import androidx.room.Entity;
 
@@ -10,5 +10,5 @@ import androidx.room.Entity;
  */
 
 @Entity
-public class TrackedEntityModel {
+public class TrackedEntityInstanceModel {
 }
