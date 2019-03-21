@@ -28,10 +28,15 @@
 
 package com.itinordic.a2d2.user;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverters;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 import androidx.annotation.NonNull;
+import io.reactivex.annotations.NonNull;
 
 import com.itinordic.a2d2.common.Model;
 import com.itinordic.a2d2.common.Utils;
