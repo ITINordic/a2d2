@@ -11,7 +11,9 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
-@Entity(foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
+@Entity(
+        primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
         parentColumns = "id",
         childColumns = "trackedEntityTypeId"
         ),
