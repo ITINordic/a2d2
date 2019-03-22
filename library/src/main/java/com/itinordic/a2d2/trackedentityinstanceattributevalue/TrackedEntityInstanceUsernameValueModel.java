@@ -1,16 +1,15 @@
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
-
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import androidx.annotation.NonNull;
+import androidx.room.Dao;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-
 
 @Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
         foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
@@ -25,7 +24,7 @@ import androidx.room.PrimaryKey;
                 parentColumns = "id",
                 childColumns = "trackedEntityInstanceId"
         )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
-public class TrackedEntityInstanceLongTextValueModel {
+public class TrackedEntityInstanceUsernameValueModel {
 
     @NonNull
     private  String trackedEntityTypeId;
@@ -38,17 +37,6 @@ public class TrackedEntityInstanceLongTextValueModel {
 
     @NonNull
     private String value;
-
-    public TrackedEntityInstanceLongTextValueModel(@NonNull String trackedEntityTypeId,
-                                               @NonNull String trackedEntityAttributeId,
-                                               @NonNull String trackedEntityInstanceId,
-                                               @NonNull String value){
-        this.trackedEntityTypeId = trackedEntityTypeId;
-        this.trackedEntityAttributeId = trackedEntityAttributeId;
-        this.trackedEntityInstanceId = trackedEntityInstanceId;
-        this.value = value;
-    }
-
 
     @NonNull
     public String getTrackedEntityTypeId() {
@@ -86,11 +74,21 @@ public class TrackedEntityInstanceLongTextValueModel {
         this.value = value;
     }
 
-    public static class Builder{
+    public TrackedEntityInstanceUsernameValueModel(@NonNull String trackedEntityTypeId,
+                                                   @NonNull String trackedEntityAttributeId,
+                                                   @NonNull String trackedEntityInstanceId,
+                                                   @NonNull String value) {
+        this.trackedEntityTypeId = trackedEntityTypeId;
+        this.trackedEntityAttributeId = trackedEntityAttributeId;
+        this.trackedEntityInstanceId = trackedEntityInstanceId;
+        this.value = value;
+    }
 
-        private  String trackedEntityTypeId;
+    public class Builder{
+
+        private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
-        private  String trackedEntityInstanceId;
+        private String trackedEntityInstanceId;
         private String value;
 
 
@@ -99,7 +97,7 @@ public class TrackedEntityInstanceLongTextValueModel {
         }
 
         @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
+        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId){
 
             this.trackedEntityTypeId = trackedEntityTypeId;
             return this;
@@ -107,12 +105,16 @@ public class TrackedEntityInstanceLongTextValueModel {
         }
 
         @NonNull
-        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
+        public Builder trackedEntityAttrbiuteId(@NonNull String trackedEntityAttributeId){
+
             this.trackedEntityAttributeId = trackedEntityAttributeId;
-            return  this;
+            return this;
+
         }
+
         @NonNull
         public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
+
             this.trackedEntityInstanceId = trackedEntityInstanceId;
             return this;
 
@@ -120,12 +122,13 @@ public class TrackedEntityInstanceLongTextValueModel {
 
         @NonNull
         public Builder value(@NonNull String value){
+
             this.value = value;
             return this;
-
         }
 
-        public TrackedEntityInstanceLongTextValueModel build(){
+        public TrackedEntityInstanceUsernameValueModel build(){
+
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
             }
@@ -138,18 +141,16 @@ public class TrackedEntityInstanceLongTextValueModel {
 
             }
             if ( value == null) {
-                throw new IllegalStateException("Value  must be set");
+                throw new IllegalStateException("Username must be set");
             }
 
-            return new TrackedEntityInstanceLongTextValueModel(
+            return new TrackedEntityInstanceUsernameValueModel(
                     trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
-                    value
-            );
+                    value);
         }
+
     }
-
-
 
 }
