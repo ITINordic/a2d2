@@ -19,7 +19,7 @@ public interface TrackedEntityInstanceDateTimeDao {
     void update(TrackedEntityInstanceDatetimeValueModel trackedEntityInstanceDatetimeValueModel);
 
     @Query("SELECT * FROM TrackedEntityInstanceDatetimeValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceEmailValueModel>> getTrackedEntityInstanceLongTextValue(String trackedEntityTypeId,
+    Flowable<List<TrackedEntityInstanceEmailValueModel>> getTrackedEntityInstanceDateTimeValue(String trackedEntityTypeId,
                                                                                                String trackedEntityAttributeId,
                                                                                                String trackedEntityInstanceId);
 
