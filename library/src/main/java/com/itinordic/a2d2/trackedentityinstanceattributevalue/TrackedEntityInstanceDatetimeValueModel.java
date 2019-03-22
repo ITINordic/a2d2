@@ -42,7 +42,9 @@ public class TrackedEntityInstanceDatetimeValueModel {
     @NonNull
     private Date value;
 
-    public TrackedEntityInstanceDatetimeValueModel(@NonNull String trackedEntityTypeId, @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull Date value) {
+    public TrackedEntityInstanceDatetimeValueModel(@NonNull String trackedEntityTypeId,
+                                                   @NonNull String trackedEntityAttributeId,
+                                                   @NonNull String trackedEntityInstanceId, @NonNull Date value) {
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
@@ -122,7 +124,7 @@ public class TrackedEntityInstanceDatetimeValueModel {
 
         }
 
-        public TrackedEntityInstanceEmailValueModel build(){
+        public TrackedEntityInstanceDatetimeValueModel build(){
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
             }
@@ -138,7 +140,7 @@ public class TrackedEntityInstanceDatetimeValueModel {
                 throw new IllegalStateException("Value  must be set");
             }
 
-            return new TrackedEntityInstanceEmailValueModel(
+            return new TrackedEntityInstanceDatetimeValueModel(
                     trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,

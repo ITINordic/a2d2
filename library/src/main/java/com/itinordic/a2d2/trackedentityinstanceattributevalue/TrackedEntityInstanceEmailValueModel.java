@@ -41,7 +41,10 @@ public class TrackedEntityInstanceEmailValueModel {
     @NonNull
     private String value;
 
-    public TrackedEntityInstanceEmailValueModel(@NonNull String trackedEntityTypeId, @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull Date value) {
+    public TrackedEntityInstanceEmailValueModel(@NonNull String trackedEntityTypeId,
+                                                @NonNull String trackedEntityAttributeId,
+                                                @NonNull String trackedEntityInstanceId,
+                                                @NonNull String value) {
 
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
