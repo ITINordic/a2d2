@@ -8,13 +8,13 @@ import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.Index;
 import androidx.room.PrimaryKey;
+
 
 @Entity(foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
         parentColumns = "id",
         childColumns = "trackedEntityTypeId"
-        ),
+),
         @ForeignKey(entity = TrackedEntityAttributeModel.class,
                 parentColumns = "id",
                 childColumns = "trackedEntityAttributeId"
@@ -22,9 +22,13 @@ import androidx.room.PrimaryKey;
         @ForeignKey(entity = TrackedEntityInstanceModel.class,
                 parentColumns = "id",
                 childColumns = "trackedEntityInstanceId"
-        )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
-public class TrackedEntityInstanceAgeValueModel {
-    
+        )})
+public class TrackedEntityInstanceLongTextValueModel {
+
+    @NonNull
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @NonNull
     private  String trackedEntityTypeId;
 
@@ -35,9 +39,28 @@ public class TrackedEntityInstanceAgeValueModel {
     private  String trackedEntityInstanceId;
 
     @NonNull
-    private int value;
+    private String value;
+
+    public TrackedEntityInstanceLongTextValueModel(int id, @NonNull String trackedEntityTypeId,
+                                               @NonNull String trackedEntityAttributeId,
+                                               @NonNull String trackedEntityInstanceId,
+                                               @NonNull String value){
+        this.id = id;
+        this.trackedEntityTypeId = trackedEntityTypeId;
+        this.trackedEntityAttributeId = trackedEntityAttributeId;
+        this.trackedEntityInstanceId = trackedEntityInstanceId;
+        this.value = value;
+    }
 
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     @NonNull
     public String getTrackedEntityTypeId() {
@@ -66,80 +89,65 @@ public class TrackedEntityInstanceAgeValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public int getValue() {
+    @NonNull
+    public String getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(@NonNull String value) {
         this.value = value;
     }
 
-    public TrackedEntityInstanceAgeValueModel(
-                                              @NonNull String trackedEntityTypeId,
-                                              @NonNull String trackedEntityAttributeId,
-                                              @NonNull String trackedEntityInstanceId,
-                                              int value) {
-
-        this.trackedEntityTypeId = trackedEntityTypeId;
-        this.trackedEntityAttributeId = trackedEntityAttributeId;
-        this.trackedEntityInstanceId = trackedEntityInstanceId;
-        this.value = value;
-    }
-
-    public class Builder{
+    public static class Builder{
 
         private int id;
-        private String trackedEntityTypeId;
+        private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
-        private String trackedEntityInstanceId;
-        private int value;
+        private  String trackedEntityInstanceId;
+        private String value;
 
-        public Builder(){
+
+        public Builder() {
             //empty constructor
         }
 
         @NonNull
-        public Builder id(@NonNull int id){
+        public TrackedEntityInstanceLongTextValueModel.Builder id(@NonNull int id) {
 
-            this.id=id;
-
+            this.id = id;
             return this;
+
         }
 
         @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId){
+        public TrackedEntityInstanceLongTextValueModel.Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
 
             this.trackedEntityTypeId = trackedEntityTypeId;
 
             return this;
+
         }
 
         @NonNull
-        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
-
+        public TrackedEntityInstanceLongTextValueModel.Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
             this.trackedEntityAttributeId = trackedEntityAttributeId;
-
-            return this;
+            return  this;
         }
-
         @NonNull
-        public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
-
+        public TrackedEntityInstanceLongTextValueModel.Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
             this.trackedEntityInstanceId = trackedEntityInstanceId;
-
             return this;
+
         }
 
         @NonNull
-        public Builder value(@NonNull int value){
-
+        public TrackedEntityInstanceLongTextValueModel.Builder value(@NonNull String value){
             this.value = value;
-
             return this;
+
         }
 
-        public TrackedEntityInstanceAgeValueModel build(){
-
+        public TrackedEntityInstanceLongTextValueModel build(){
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
             }
@@ -151,11 +159,11 @@ public class TrackedEntityInstanceAgeValueModel {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             }
-            if ( value == 0) {
+            if ( value == null) {
                 throw new IllegalStateException("Value  must be set");
             }
 
-            return new TrackedEntityInstanceAgeValueModel(
+            return new TrackedEntityInstanceLongTextValueModel(id,
                     trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
@@ -163,4 +171,7 @@ public class TrackedEntityInstanceAgeValueModel {
             );
         }
     }
+
+
+
 }
