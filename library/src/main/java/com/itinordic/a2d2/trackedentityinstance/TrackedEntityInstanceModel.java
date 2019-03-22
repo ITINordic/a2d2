@@ -17,6 +17,5 @@ public class TrackedEntityInstanceModel {
     @NonNull
 
     @PrimaryKey
-
     private String id;
 }

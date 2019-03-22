@@ -96,75 +96,76 @@ public class TrackedEntityInstanceTextValueModel {
 
     public static class Builder{
 
-        private int id;
-        private  String trackedEntityTypeId;
-        private String trackedEntityAttributeId;
-        private  String trackedEntityInstanceId;
-        private String value;
+            private int id;
+            private  String trackedEntityTypeId;
+            private String trackedEntityAttributeId;
+            private  String trackedEntityInstanceId;
+            private String value;
 
 
-        public Builder() {
-            //empty constructor
-        }
-
-        @NonNull
-        public Builder id(@NonNull int id) {
-
-            this.id = id;
-
-            return this;
-
-        }
-
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-
-            this.trackedEntityTypeId = trackedEntityTypeId;
-
-            return this;
-
-        }
-
-        @NonNull
-        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
-            this.trackedEntityAttributeId = trackedEntityAttributeId;
-            return  this;
-        }
-        @NonNull
-        public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
-            this.trackedEntityInstanceId = trackedEntityInstanceId;
-            return this;
-
-        }
-
-        @NonNull
-        public Builder value(@NonNull String value){
-            this.value = value;
-            return this;
-
-        }
-
-        public TrackedEntityInstanceTextValueModel build(){
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
-            if ( trackedEntityAttributeId == null) {
-                throw new IllegalStateException("trackedEntityAttributeId must be set");
-
-            }
-            if ( trackedEntityInstanceId == null) {
-                throw new IllegalStateException("trackedEntityInstanceId must be set");
-
-            }
-            if ( value == null) {
-                throw new IllegalStateException("Value  must be set");
+            public Builder() {
+                //empty constructor
             }
 
-            return new TrackedEntityInstanceTextValueModel(id,
-                    trackedEntityTypeId,
-                    trackedEntityAttributeId,
-                    trackedEntityInstanceId,
-                    value
-            );
+            @NonNull
+            public Builder id(@NonNull int id) {
+
+                this.id = id;
+
+                return this;
+
+            }
+
+            @NonNull
+            public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
+
+                this.trackedEntityTypeId = trackedEntityTypeId;
+
+                return this;
+
+            }
+
+            @NonNull
+            public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
+                this.trackedEntityAttributeId = trackedEntityAttributeId;
+                return  this;
+            }
+            @NonNull
+            public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
+                this.trackedEntityInstanceId = trackedEntityInstanceId;
+                return this;
+
+            }
+
+            @NonNull
+            public Builder value(@NonNull String value){
+                this.value = value;
+                return this;
+
+            }
+
+            public TrackedEntityInstanceTextValueModel build(){
+                if ( trackedEntityTypeId == null) {
+                    throw new IllegalStateException("trackedEntityTypeId must be set");
+                }
+                if ( trackedEntityAttributeId == null) {
+                    throw new IllegalStateException("trackedEntityAttributeId must be set");
+
+                }
+                if ( trackedEntityInstanceId == null) {
+                    throw new IllegalStateException("trackedEntityInstanceId must be set");
+
+                }
+                if ( value == null) {
+                    throw new IllegalStateException("Value  must be set");
+                }
+
+                return new TrackedEntityInstanceTextValueModel(id,
+                        trackedEntityTypeId,
+                        trackedEntityAttributeId,
+                        trackedEntityInstanceId,
+                        value
+                );
+        }
     }
-}}
+}
