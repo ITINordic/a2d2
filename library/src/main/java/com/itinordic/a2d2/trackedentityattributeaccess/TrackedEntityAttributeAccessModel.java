@@ -101,7 +101,7 @@ public class TrackedEntityAttributeAccessModel {
             return this;
         }
 
-        public TrackedEntityAttributeAccessModel build() {
+        public TrackedEntityAttributeAccessModel build(){
 
             if (trackedEntityAttributeId == null) {
                 throw new IllegalStateException("Program id must be set");

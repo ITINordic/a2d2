@@ -24,4 +24,9 @@ public interface TrackedEntityInstanceAgeValueDao {
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
 
+    @Query("SELECT * FROM TrackedEntityInstanceAgeValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceAgeValueModel> syncGetTrackedEntityInstanceAgeValue(String trackedEntityTypeId,
+                                                                                  String trackedEntityAttributeId,
+                                                                                  String trackedEntityInstanceId);
+
 }
