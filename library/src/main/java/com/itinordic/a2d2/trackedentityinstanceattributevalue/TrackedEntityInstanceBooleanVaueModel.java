@@ -22,7 +22,7 @@ import androidx.room.PrimaryKey;
                 parentColumns = "id",
                 childColumns = "trackedEntityInstanceId"
         )})
-public class TrackedEntityInstanceAgeValueModel {
+public class TrackedEntityInstanceBooleanVaueModel {
 
     @NonNull
     @PrimaryKey(autoGenerate = true)
@@ -38,7 +38,7 @@ public class TrackedEntityInstanceAgeValueModel {
     private  String trackedEntityInstanceId;
 
     @NonNull
-    private int value;
+    private boolean value;
 
     public int getId() {
         return id;
@@ -75,19 +75,19 @@ public class TrackedEntityInstanceAgeValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public int getValue() {
+    public boolean isValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(boolean value) {
         this.value = value;
     }
 
-    public TrackedEntityInstanceAgeValueModel(int id,
-                                              @NonNull String trackedEntityTypeId,
-                                              @NonNull String trackedEntityAttributeId,
-                                              @NonNull String trackedEntityInstanceId,
-                                              int value) {
+    public TrackedEntityInstanceBooleanVaueModel(int id,
+                                                 @NonNull String trackedEntityTypeId,
+                                                 @NonNull String trackedEntityAttributeId,
+                                                 @NonNull String trackedEntityInstanceId,
+                                                 boolean value){
         this.id = id;
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
@@ -101,7 +101,8 @@ public class TrackedEntityInstanceAgeValueModel {
         private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
-        private int value;
+        private boolean value;
+
 
         public Builder(){
             //empty constructor
@@ -119,7 +120,6 @@ public class TrackedEntityInstanceAgeValueModel {
         public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId){
 
             this.trackedEntityTypeId = trackedEntityTypeId;
-
             return this;
         }
 
@@ -127,7 +127,6 @@ public class TrackedEntityInstanceAgeValueModel {
         public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
 
             this.trackedEntityAttributeId = trackedEntityAttributeId;
-
             return this;
         }
 
@@ -135,19 +134,10 @@ public class TrackedEntityInstanceAgeValueModel {
         public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
 
             this.trackedEntityInstanceId = trackedEntityInstanceId;
-
             return this;
         }
 
-        @NonNull
-        public Builder value(@NonNull int value){
-
-            this.value = value;
-
-            return this;
-        }
-
-        public TrackedEntityInstanceAgeValueModel build(){
+        public TrackedEntityInstanceBooleanVaueModel build(){
 
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
@@ -160,16 +150,19 @@ public class TrackedEntityInstanceAgeValueModel {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             }
-            if ( value < 0 | value > 120) {
-                throw new IllegalStateException("Please enter a valid age value between 0 and 120 years");
+            if ( !value) {
+                throw new IllegalStateException("Value  must be set");
             }
 
-            return new TrackedEntityInstanceAgeValueModel(id,
+            return new TrackedEntityInstanceBooleanVaueModel(id,
                     trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value
             );
+
         }
+
     }
+
 }
