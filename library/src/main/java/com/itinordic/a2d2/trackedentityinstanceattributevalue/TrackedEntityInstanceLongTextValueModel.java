@@ -11,7 +11,9 @@ import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 
-@Entity(foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
+@Entity(
+        primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
         parentColumns = "id",
         childColumns = "trackedEntityTypeId"
 ),
@@ -25,9 +27,7 @@ import androidx.room.PrimaryKey;
         )})
 public class TrackedEntityInstanceLongTextValueModel {
 
-    @NonNull
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+
 
     @NonNull
     private  String trackedEntityTypeId;
@@ -41,11 +41,11 @@ public class TrackedEntityInstanceLongTextValueModel {
     @NonNull
     private String value;
 
-    public TrackedEntityInstanceLongTextValueModel(int id, @NonNull String trackedEntityTypeId,
+    public TrackedEntityInstanceLongTextValueModel(@NonNull String trackedEntityTypeId,
                                                @NonNull String trackedEntityAttributeId,
                                                @NonNull String trackedEntityInstanceId,
                                                @NonNull String value){
-        this.id = id;
+
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
@@ -53,14 +53,6 @@ public class TrackedEntityInstanceLongTextValueModel {
     }
 
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     @NonNull
     public String getTrackedEntityTypeId() {
@@ -100,7 +92,6 @@ public class TrackedEntityInstanceLongTextValueModel {
 
     public static class Builder{
 
-        private int id;
         private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private  String trackedEntityInstanceId;
@@ -111,16 +102,9 @@ public class TrackedEntityInstanceLongTextValueModel {
             //empty constructor
         }
 
-        @NonNull
-        public TrackedEntityInstanceLongTextValueModel.Builder id(@NonNull int id) {
-
-            this.id = id;
-            return this;
-
-        }
 
         @NonNull
-        public TrackedEntityInstanceLongTextValueModel.Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
+        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
 
             this.trackedEntityTypeId = trackedEntityTypeId;
 
@@ -129,19 +113,19 @@ public class TrackedEntityInstanceLongTextValueModel {
         }
 
         @NonNull
-        public TrackedEntityInstanceLongTextValueModel.Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
+        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
             this.trackedEntityAttributeId = trackedEntityAttributeId;
             return  this;
         }
         @NonNull
-        public TrackedEntityInstanceLongTextValueModel.Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
+        public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
             this.trackedEntityInstanceId = trackedEntityInstanceId;
             return this;
 
         }
 
         @NonNull
-        public TrackedEntityInstanceLongTextValueModel.Builder value(@NonNull String value){
+        public Builder value(@NonNull String value){
             this.value = value;
             return this;
 
@@ -163,7 +147,7 @@ public class TrackedEntityInstanceLongTextValueModel {
                 throw new IllegalStateException("Value  must be set");
             }
 
-            return new TrackedEntityInstanceLongTextValueModel(id,
+            return new TrackedEntityInstanceLongTextValueModel(
                     trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,

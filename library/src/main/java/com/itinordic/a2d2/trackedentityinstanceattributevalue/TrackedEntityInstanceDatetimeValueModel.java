@@ -1,5 +1,6 @@
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
+
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
@@ -26,7 +27,7 @@ import androidx.room.PrimaryKey;
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
                 )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
-public class TrackedEntityInstanceEmailValueModel {
+public class TrackedEntityInstanceDatetimeValueModel {
 
     @NonNull
     @PrimaryKey
@@ -39,16 +40,14 @@ public class TrackedEntityInstanceEmailValueModel {
     private  String trackedEntityInstanceId;
 
     @NonNull
-    private String value;
+    private Date value;
 
-    public TrackedEntityInstanceEmailValueModel(@NonNull String trackedEntityTypeId, @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull Date value) {
-
+    public TrackedEntityInstanceDatetimeValueModel(@NonNull String trackedEntityTypeId, @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull Date value) {
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
     }
-
     @NonNull
     public String getTrackedEntityTypeId() {
         return trackedEntityTypeId;
@@ -77,35 +76,22 @@ public class TrackedEntityInstanceEmailValueModel {
     }
 
     @NonNull
-    public String getValue() {
+    public Date getValue() {
         return value;
     }
 
-    public void setValue(@NonNull String value) {
+    public void setValue(@NonNull Date value) {
         this.value = value;
     }
-
-
     public static class Builder{
 
-        private int id;
         private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private  String trackedEntityInstanceId;
-        private String value;
-
+        private Date value;
 
         public Builder() {
             //empty constructor
-        }
-
-        @NonNull
-        public Builder id(@NonNull int id) {
-
-            this.id = id;
-
-            return this;
-
         }
 
         @NonNull
@@ -130,7 +116,7 @@ public class TrackedEntityInstanceEmailValueModel {
         }
 
         @NonNull
-        public Builder value(@NonNull String value){
+        public Builder value(@NonNull Date value){
             this.value = value;
             return this;
 
@@ -163,3 +149,4 @@ public class TrackedEntityInstanceEmailValueModel {
 
 
 }
+

@@ -24,7 +24,7 @@ public interface TrackedEntityInstanceLongTextDao {
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
 
-    List<TrackedEntityInstanceAgeValueModel> syncGetTrackedEntityInstanceAgeValue(String trackedEntityTypeId,
+    List<TrackedEntityInstanceAgeValueModel> syncGetTrackedEntityInstanceLongTextValue(String trackedEntityTypeId,
                                                                                   String trackedEntityAttributeId,
                                                                                   String trackedEntityInstanceId);
 }
