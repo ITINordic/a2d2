@@ -5,46 +5,54 @@ import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import androidx.annotation.NonNull;
-import androidx.room.Dao;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
-import androidx.room.PrimaryKey;
 
 @Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
         foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-        parentColumns = "id",
-        childColumns = "trackedEntityTypeId"
-),
-        @ForeignKey(entity = TrackedEntityAttributeModel.class,
                 parentColumns = "id",
-                childColumns = "trackedEntityAttributeId"
+                childColumns = "trackedEntityTypeId"
         ),
-        @ForeignKey(entity = TrackedEntityInstanceModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityInstanceId"
-        )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
-public class TrackedEntityInstanceUsernameValueModel {
+                @ForeignKey(entity = TrackedEntityAttributeModel.class,
+                        parentColumns = "id",
+                        childColumns = "trackedEntityAttributeId"
+                ),
+                @ForeignKey(entity = TrackedEntityInstanceModel.class,
+                        parentColumns = "id",
+                        childColumns = "trackedEntityInstanceId"
+                )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
+)
+public class TrackedEntityInstanceOrgUnitValueModel {
 
     @NonNull
-    private  String trackedEntityTypeId;
+    public String trackedEntityTypeId;
 
     @NonNull
-    private String trackedEntityAttributeId;
+    public String trackedEntityAttributeId;
 
     @NonNull
-    private  String trackedEntityInstanceId;
+    public String trackedEntityInstanceId;
 
     @NonNull
-    private String value;
+    public String value;
 
-    public TrackedEntityInstanceUsernameValueModel(@NonNull String trackedEntityTypeId,
-                                                   @NonNull String trackedEntityAttributeId,
-                                                   @NonNull String trackedEntityInstanceId,
-                                                   @NonNull String value) {
+    public TrackedEntityInstanceOrgUnitValueModel(@NonNull String trackedEntityTypeId,
+                                                  @NonNull String trackedEntityAttributeId,
+                                                  @NonNull String trackedEntityInstanceId,
+                                                  @NonNull String value) {
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
+        this.value = value;
+    }
+
+    @NonNull
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(@NonNull String value) {
         this.value = value;
     }
 
@@ -75,23 +83,12 @@ public class TrackedEntityInstanceUsernameValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    @NonNull
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(@NonNull String value) {
-        this.value = value;
-    }
-
-
     public class Builder{
 
-        private String trackedEntityTypeId;
+        private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
-        private String trackedEntityInstanceId;
+        private  String trackedEntityInstanceId;
         private String value;
-
 
         public Builder() {
             //empty constructor
@@ -99,15 +96,13 @@ public class TrackedEntityInstanceUsernameValueModel {
 
         @NonNull
         public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId){
-
             this.trackedEntityTypeId = trackedEntityTypeId;
             return this;
 
         }
 
         @NonNull
-        public Builder trackedEntityAttrbiuteId(@NonNull String trackedEntityAttributeId){
-
+        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
             this.trackedEntityAttributeId = trackedEntityAttributeId;
             return this;
 
@@ -115,7 +110,6 @@ public class TrackedEntityInstanceUsernameValueModel {
 
         @NonNull
         public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
-
             this.trackedEntityInstanceId = trackedEntityInstanceId;
             return this;
 
@@ -123,12 +117,11 @@ public class TrackedEntityInstanceUsernameValueModel {
 
         @NonNull
         public Builder value(@NonNull String value){
-
             this.value = value;
             return this;
         }
 
-        public TrackedEntityInstanceUsernameValueModel build(){
+        public TrackedEntityInstanceOrgUnitValueModel build(){
 
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
@@ -142,16 +135,20 @@ public class TrackedEntityInstanceUsernameValueModel {
 
             }
             if ( value == null) {
-                throw new IllegalStateException("Username must be set");
+                throw new IllegalStateException("Organisation Unit  must be set");
             }
 
-            return new TrackedEntityInstanceUsernameValueModel(
-                    trackedEntityTypeId,
+            return new TrackedEntityInstanceOrgUnitValueModel(trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
-                    value);
+                    value
+            );
+
         }
 
     }
 
+
 }
+
+
