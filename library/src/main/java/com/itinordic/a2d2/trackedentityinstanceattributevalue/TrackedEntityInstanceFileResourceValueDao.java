@@ -23,7 +23,7 @@ public interface TrackedEntityInstanceFileResourceValueDao {
                                                                                             String trackedEntityAttributeId,
                                                                                             String trackedEntityInstanceId);
 
-    List<TrackedEntityInstanceEmailValueModel> syncGetTrackedEntityInstanceFileResourceValueModel(String trackedEntityTypeId,
+    List<TrackedEntityInstanceFileResourceValueModel> syncGetTrackedEntityInstanceFileResourceValueModel(String trackedEntityTypeId,
                                                                                       String trackedEntityAttributeId,
                                                                                       String trackedEntityInstanceId);
 }
