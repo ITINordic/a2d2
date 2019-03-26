@@ -134,9 +134,6 @@ public class TrackedEntityInstanceIntegerValueModel {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             }
-            if ( value == 0) {
-                throw new IllegalStateException("Value  must be set");
-            }
 
             return new TrackedEntityInstanceIntegerValueModel(trackedEntityTypeId,
                     trackedEntityAttributeId,
