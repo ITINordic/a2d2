@@ -1,9 +1,10 @@
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
-
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
+
+import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -24,24 +25,27 @@ import androidx.room.Index;
                         childColumns = "trackedEntityInstanceId"
                 )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
 )
-public class TrackedEntityInstanceIntegerValueModel {
+public class TrackedEntityInstanceLetterValueModel {
+
+    public static final Pattern VALID_LETTER_REGEX =
+            Pattern.compile("/[a-z]+/g", Pattern.CASE_INSENSITIVE);
 
     @NonNull
-    public String trackedEntityTypeId;
+    private  String trackedEntityTypeId;
 
     @NonNull
-    public String trackedEntityAttributeId;
+    private String trackedEntityAttributeId;
 
     @NonNull
-    public String trackedEntityInstanceId;
+    private  String trackedEntityInstanceId;
 
     @NonNull
-    public int value;
+    private char value;
 
-    public TrackedEntityInstanceIntegerValueModel(@NonNull String trackedEntityTypeId,
-                                                  @NonNull String trackedEntityAttributeId,
-                                                  @NonNull String trackedEntityInstanceId,
-                                                  int value) {
+    public TrackedEntityInstanceLetterValueModel(@NonNull String trackedEntityTypeId,
+                                                 @NonNull String trackedEntityAttributeId,
+                                                 @NonNull String trackedEntityInstanceId,
+                                                 @NonNull char value){
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
@@ -75,27 +79,30 @@ public class TrackedEntityInstanceIntegerValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public int getValue() {
+    @NonNull
+    public char getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(@NonNull char value) {
         this.value = value;
     }
 
-    public class Builder{
+    public static class Builder{
 
-        private String trackedEntityTypeId;
+        private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
-        private String trackedEntityInstanceId;
-        private int value;
+        private  String trackedEntityInstanceId;
+        private char value;
+
 
         public Builder() {
             //empty constructor
         }
 
         @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId){
+        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
+
             this.trackedEntityTypeId = trackedEntityTypeId;
             return this;
 
@@ -104,10 +111,8 @@ public class TrackedEntityInstanceIntegerValueModel {
         @NonNull
         public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
             this.trackedEntityAttributeId = trackedEntityAttributeId;
-            return this;
-
+            return  this;
         }
-
         @NonNull
         public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
             this.trackedEntityInstanceId = trackedEntityInstanceId;
@@ -116,13 +121,13 @@ public class TrackedEntityInstanceIntegerValueModel {
         }
 
         @NonNull
-        public Builder value(@NonNull int value){
+        public Builder value(@NonNull char value){
             this.value = value;
             return this;
 
         }
 
-        public TrackedEntityInstanceIntegerValueModel build(){
+        public TrackedEntityInstanceLetterValueModel build(){
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
             }
@@ -134,16 +139,17 @@ public class TrackedEntityInstanceIntegerValueModel {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             }
+            if (!Character.toString(value).matches(VALID_LETTER_REGEX.pattern())) {
+                throw new IllegalStateException("Letter is invalid. Please try again");
+            }
 
-            return new TrackedEntityInstanceIntegerValueModel(trackedEntityTypeId,
+            return new TrackedEntityInstanceLetterValueModel(
+                    trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value
             );
         }
-
     }
-
-
 
 }

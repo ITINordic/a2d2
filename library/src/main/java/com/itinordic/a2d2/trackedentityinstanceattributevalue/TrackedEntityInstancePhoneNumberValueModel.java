@@ -1,9 +1,10 @@
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
-
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
+
+import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -24,24 +25,27 @@ import androidx.room.Index;
                         childColumns = "trackedEntityInstanceId"
                 )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
 )
-public class TrackedEntityInstanceIntegerValueModel {
+public class TrackedEntityInstancePhoneNumberValueModel {
+
+    public static final Pattern VALID_PHONE_NUMBER_REGEX =
+            Pattern.compile("/^(\\+(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$/");
 
     @NonNull
-    public String trackedEntityTypeId;
+    private  String trackedEntityTypeId;
 
     @NonNull
-    public String trackedEntityAttributeId;
+    private String trackedEntityAttributeId;
 
     @NonNull
-    public String trackedEntityInstanceId;
+    private  String trackedEntityInstanceId;
 
     @NonNull
-    public int value;
+    private int value;
 
-    public TrackedEntityInstanceIntegerValueModel(@NonNull String trackedEntityTypeId,
-                                                  @NonNull String trackedEntityAttributeId,
-                                                  @NonNull String trackedEntityInstanceId,
-                                                  int value) {
+    public TrackedEntityInstancePhoneNumberValueModel(@NonNull String trackedEntityTypeId,
+                                                      @NonNull String trackedEntityAttributeId,
+                                                      @NonNull String trackedEntityInstanceId,
+                                                      int value) {
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
@@ -95,7 +99,7 @@ public class TrackedEntityInstanceIntegerValueModel {
         }
 
         @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId){
+        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
             this.trackedEntityTypeId = trackedEntityTypeId;
             return this;
 
@@ -104,7 +108,7 @@ public class TrackedEntityInstanceIntegerValueModel {
         @NonNull
         public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
             this.trackedEntityAttributeId = trackedEntityAttributeId;
-            return this;
+            return  this;
 
         }
 
@@ -122,7 +126,7 @@ public class TrackedEntityInstanceIntegerValueModel {
 
         }
 
-        public TrackedEntityInstanceIntegerValueModel build(){
+        public TrackedEntityInstancePhoneNumberValueModel build(){
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
             }
@@ -133,17 +137,17 @@ public class TrackedEntityInstanceIntegerValueModel {
             if ( trackedEntityInstanceId == null) {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
-            }
-
-            return new TrackedEntityInstanceIntegerValueModel(trackedEntityTypeId,
-                    trackedEntityAttributeId,
-                    trackedEntityInstanceId,
-                    value
-            );
+            } //to be reviewed
+            if (!String.valueOf(value).matches(VALID_PHONE_NUMBER_REGEX.pattern())){
+                throw new IllegalStateException("Phone number invalid");
         }
 
+        return new TrackedEntityInstancePhoneNumberValueModel(trackedEntityTypeId,
+                trackedEntityAttributeId,
+                trackedEntityInstanceId,
+                value);
     }
 
-
+}
 
 }
