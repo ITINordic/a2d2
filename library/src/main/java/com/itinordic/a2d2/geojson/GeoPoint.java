@@ -3,9 +3,7 @@ package com.itinordic.a2d2.geojson;
 import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceCoordinateValueModel;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
 
-@Entity
 public class GeoPoint {
 
     double latitude;
@@ -60,7 +58,7 @@ public class GeoPoint {
             }
 
             if (longitude >= -180 && longitude <= 180){
-                throw new IllegalStateException("Latitude value must range from -180 to 180");
+                throw new IllegalStateException("Longitude value must range from -180 to 180");
             }
 
            return new GeoPoint(latitude,longitude);

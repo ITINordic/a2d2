@@ -58,7 +58,7 @@ public class GeoMultiPoint {
             }
 
             if (longitude >= -180 && longitude <= 180) {
-                throw new IllegalStateException("Latitude value must range from -180 to 180");
+                throw new IllegalStateException("Longitude value must range from -180 to 180");
             }
             return new GeoMultiPoint(latitude, longitude);
         }

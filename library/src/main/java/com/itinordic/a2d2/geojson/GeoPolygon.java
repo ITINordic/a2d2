@@ -57,7 +57,7 @@ public class GeoPolygon {
             }
 
             if (longitude >= -180 && longitude <= 180){
-                throw new IllegalStateException("Latitude value must range from -90 to 90");
+                throw new IllegalStateException("Longitude value must range from -90 to 90");
 
             }
 
