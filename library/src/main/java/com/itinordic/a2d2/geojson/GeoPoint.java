@@ -61,26 +61,20 @@ public class GeoPoint {
                 throw new IllegalStateException("Longitude value must range from -180 to 180");
             }
 
-
-
            return new GeoPoint(latitude,longitude);
         }
 
-        public boolean equals(Object obj){
-            if (this == obj) {
+    }
+
+    public boolean equals(Object obj){
+
+        if (obj instanceof GeoPoint) {
+            GeoPoint point = (GeoPoint) obj;
+            if (point.getLatitude() == point.getLongitude()) {
                 return true;
-            } else if (obj == null) {
-                return false;
-            } else if (obj instanceof GeoPoint) {
-                GeoPoint point = (GeoPoint) obj;
-                if (point.getLatitude() == point.getLongitude()) {
-                    return true;
-                }
             }
-            return false;
         }
-
-
+        return false;
     }
 
 }
