@@ -39,6 +39,7 @@ public class GeoPolygon {
 
                 throw new IllegalStateException("values must be set");
             }
+
             return new GeoPolygon(geoPoints);
        }
     }
