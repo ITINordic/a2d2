@@ -1,68 +1,50 @@
 package com.itinordic.a2d2.geojson;
 
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
 @Entity
 public class GeoPolygon {
 
-    double latitude;
-    double longitude;
+    List<GeoPoint> geoPoints;
 
-    public GeoPolygon(double latitude, double longitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public GeoPolygon(List<GeoPoint> geoPoints) {
+        this.geoPoints = geoPoints;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public List<GeoPoint> getGeoPoints() {
+        return geoPoints;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setGeoPoints(List<GeoPoint> geoPoints) {
+        this.geoPoints = geoPoints;
     }
+    public class Builder{
 
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    public class Builder {
-
-
-        double latitude;
-        double longitude;
-
+        List<GeoPoint> geoPoints;
         public Builder(){
             //empty constructor
         }
 
-        @NonNull
-        public Builder latitude(@NonNull double latitude){
-            this.latitude = latitude;
+       public Builder geoPoints(@NonNull List<GeoPoint> geoPoints){
+            this.geoPoints = geoPoints;
             return this;
-        }
+       }
 
-        public Builder longitude(@NonNull double longitude){
-            this.longitude = longitude;
-            return this;
-        }
+       public GeoPolygon build(){
 
-        public GeoPolygon build(){
-            if (latitude>= -90 && latitude <= 90){
-                throw new  IllegalStateException("Latitude value must range from -90 to 90");
+            if (geoPoints.isEmpty()){
+
+                throw new IllegalStateException("values must be set");
             }
-
-            if (longitude >= -180 && longitude <= 180){
-                throw new IllegalStateException("Longitude value must range from -90 to 90");
-
-            }
-
-            return new GeoPolygon(latitude,longitude);
-        }
-
+            return new GeoPolygon(geoPoints);
+       }
     }
+
+
+
+
+
 }

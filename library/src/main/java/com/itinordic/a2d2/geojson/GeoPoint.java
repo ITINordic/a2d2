@@ -65,12 +65,6 @@ public class GeoPoint {
         }
 
 
-
-
-
-
-
-
     }
 
 }
