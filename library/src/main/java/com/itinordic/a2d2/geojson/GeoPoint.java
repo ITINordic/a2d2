@@ -70,7 +70,7 @@ public class GeoPoint {
 
         if (obj instanceof GeoPoint) {
             GeoPoint point = (GeoPoint) obj;
-            if (point.getLatitude() == point.getLongitude()) {
+            if (point.getLatitude() == this.latitude && point.getLongitude() == this.longitude) {
                 return true;
             }
         }
