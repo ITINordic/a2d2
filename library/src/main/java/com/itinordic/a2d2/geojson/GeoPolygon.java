@@ -42,7 +42,7 @@ public class GeoPolygon {
             }
 
            if (!(geoPoints.get(0).equals(geoPoints.get(geoPoints.size()-1)))){
-               
+
                throw new IllegalStateException("First and Last geoPoints do not match");
            }
 
