@@ -1,12 +1,12 @@
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
+import com.itinordic.a2d2.geojson.GeoPolygon;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
-import java.util.regex.Pattern;
-
 import androidx.annotation.NonNull;
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
@@ -25,10 +25,7 @@ import androidx.room.Index;
                         childColumns = "trackedEntityInstanceId"
                 )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
 )
-public class TrackedEntityInstancePhoneNumberValueModel {
-
-    public static final Pattern VALID_PHONE_NUMBER_REGEX =
-            Pattern.compile("/^(\\+(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$/");
+public class TrackedEntityInstancePolygonValueModel {
 
     @NonNull
     private  String trackedEntityTypeId;
@@ -39,18 +36,8 @@ public class TrackedEntityInstancePhoneNumberValueModel {
     @NonNull
     private  String trackedEntityInstanceId;
 
-    @NonNull
-    private int value;
-
-    public TrackedEntityInstancePhoneNumberValueModel(@NonNull String trackedEntityTypeId,
-                                                      @NonNull String trackedEntityAttributeId,
-                                                      @NonNull String trackedEntityInstanceId,
-                                                      int value) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
-        this.trackedEntityAttributeId = trackedEntityAttributeId;
-        this.trackedEntityInstanceId = trackedEntityInstanceId;
-        this.value = value;
-    }
+    @Embedded
+    GeoPolygon geoPolygon;
 
     @NonNull
     public String getTrackedEntityTypeId() {
@@ -79,20 +66,31 @@ public class TrackedEntityInstancePhoneNumberValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public int getValue() {
-        return value;
+    public GeoPolygon getGeoPolygon() {
+        return geoPolygon;
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public void setGeoPolygon(GeoPolygon geoPolygon) {
+        this.geoPolygon = geoPolygon;
     }
 
-    public static class Builder{
+    public TrackedEntityInstancePolygonValueModel(@NonNull String trackedEntityTypeId,
+                                                  @NonNull String trackedEntityAttributeId,
+                                                  @NonNull String trackedEntityInstanceId,
+                                                  GeoPolygon geoPolygon) {
+        this.trackedEntityTypeId = trackedEntityTypeId;
+        this.trackedEntityAttributeId = trackedEntityAttributeId;
+        this.trackedEntityInstanceId = trackedEntityInstanceId;
+        this.geoPolygon = geoPolygon;
+    }
+
+    public static class Builder {
 
         private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
-        private int value;
+        GeoPolygon value;
+
 
         public Builder() {
             //empty constructor
@@ -100,33 +98,34 @@ public class TrackedEntityInstancePhoneNumberValueModel {
 
         @NonNull
         public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
+
             this.trackedEntityTypeId = trackedEntityTypeId;
+
             return this;
 
         }
 
         @NonNull
-        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
+        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId) {
             this.trackedEntityAttributeId = trackedEntityAttributeId;
-            return  this;
-
+            return this;
         }
 
         @NonNull
-        public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
+        public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId) {
             this.trackedEntityInstanceId = trackedEntityInstanceId;
             return this;
 
         }
 
         @NonNull
-        public Builder value(@NonNull int value){
+        public Builder value(@NonNull GeoPolygon value){
             this.value = value;
             return this;
-
         }
 
-        public TrackedEntityInstancePhoneNumberValueModel build(){
+        public TrackedEntityInstancePolygonValueModel build(){
+
             if ( trackedEntityTypeId == null) {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
             }
@@ -137,17 +136,18 @@ public class TrackedEntityInstancePhoneNumberValueModel {
             if ( trackedEntityInstanceId == null) {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
-            } //to be reviewed
-            if (!String.valueOf(value).matches(VALID_PHONE_NUMBER_REGEX.pattern())){
-                throw new IllegalStateException("Phone number invalid");
+            }
+            if ( value == null) {
+                throw new IllegalStateException("Value  must be set");
+            }
+
+            return new TrackedEntityInstancePolygonValueModel(
+                    trackedEntityTypeId,
+                    trackedEntityAttributeId,
+                    trackedEntityInstanceId,
+                    value
+            );
+
         }
-
-        return new TrackedEntityInstancePhoneNumberValueModel(trackedEntityTypeId,
-                trackedEntityAttributeId,
-                trackedEntityInstanceId,
-                value);
     }
-
-}
-
 }

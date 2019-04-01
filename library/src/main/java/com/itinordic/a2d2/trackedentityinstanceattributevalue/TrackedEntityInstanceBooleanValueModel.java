@@ -81,7 +81,7 @@ public class TrackedEntityInstanceBooleanValueModel {
         this.value = value;
     }
 
-    public class Builder{
+    public static class Builder{
 
         private String trackedEntityTypeId;
         private String trackedEntityAttributeId;

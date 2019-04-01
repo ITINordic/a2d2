@@ -83,7 +83,7 @@ public class TrackedEntityInstanceOrgUnitValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public class Builder{
+    public static class Builder{
 
         private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;

@@ -78,6 +78,7 @@ public class TrackedEntityInstanceCoordinateValueModel {
     public void setValue(GeoPoint value) {
         this.value = value;
     }
+
     public static class Builder{
 
         private String trackedEntityTypeId;

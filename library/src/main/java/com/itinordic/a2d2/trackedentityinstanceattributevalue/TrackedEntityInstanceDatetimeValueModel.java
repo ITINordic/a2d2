@@ -85,6 +85,7 @@ public class TrackedEntityInstanceDatetimeValueModel {
     public void setValue(@NonNull Date value) {
         this.value = value;
     }
+
     public static class Builder{
 
         private  String trackedEntityTypeId;
