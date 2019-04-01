@@ -24,6 +24,7 @@ public class GeoPolygon {
     public class Builder{
 
         List<GeoPoint> geoPoints;
+
         public Builder(){
             //empty constructor
         }
@@ -40,9 +41,16 @@ public class GeoPolygon {
                 throw new IllegalStateException("values must be set");
             }
 
+           if (!(geoPoints.get(0).equals(geoPoints.get(geoPoints.size()-1)))){
+               
+               throw new IllegalStateException("First and Last geoPoints do not match");
+           }
+
             return new GeoPolygon(geoPoints);
        }
     }
+
+
 
 
 
