@@ -5,7 +5,6 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 
-@Entity
 public class GeoMultiPolygon {
 
     List<GeoPolygon> geoPolygons;

@@ -1,6 +1,6 @@
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
-import com.itinordic.a2d2.geojson.GeoPolygon;
+import com.itinordic.a2d2.geojson.GeoPoint;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
@@ -11,7 +11,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 
-@Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
+@Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId", "polygonPointPosition" },
         foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
                 parentColumns = "id",
                 childColumns = "trackedEntityTypeId"
@@ -27,6 +27,11 @@ import androidx.room.Index;
 )
 public class TrackedEntityInstancePolygonValueModel {
 
+
+
+    @NonNull
+    private int polygonPointPosition;
+
     @NonNull
     private  String trackedEntityTypeId;
 
@@ -37,7 +42,7 @@ public class TrackedEntityInstancePolygonValueModel {
     private  String trackedEntityInstanceId;
 
     @Embedded
-    GeoPolygon geoPolygon;
+    GeoPoint value;
 
     @NonNull
     public String getTrackedEntityTypeId() {
@@ -66,22 +71,30 @@ public class TrackedEntityInstancePolygonValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public GeoPolygon getGeoPolygon() {
-        return geoPolygon;
+    public GeoPoint getValue() {
+        return value;
+    }
+    public int getPolygonPointPosition() {
+        return polygonPointPosition;
     }
 
-    public void setGeoPolygon(GeoPolygon geoPolygon) {
-        this.geoPolygon = geoPolygon;
+    public void setPolygonPointPosition(int polygonPointPosition) {
+        this.polygonPointPosition = polygonPointPosition;
+    }
+
+    public void setValue(GeoPoint value) {
+        this.value = value;
     }
 
     public TrackedEntityInstancePolygonValueModel(@NonNull String trackedEntityTypeId,
                                                   @NonNull String trackedEntityAttributeId,
                                                   @NonNull String trackedEntityInstanceId,
-                                                  GeoPolygon geoPolygon) {
+                                                  GeoPoint value,
+                                                  int polygonPointPosition) {
         this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
-        this.geoPolygon = geoPolygon;
+        this.value = value;
     }
 
     public static class Builder {
@@ -89,7 +102,8 @@ public class TrackedEntityInstancePolygonValueModel {
         private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
-        GeoPolygon value;
+        private int polygonPointPosition;
+        GeoPoint value;
 
 
         public Builder() {
@@ -119,7 +133,13 @@ public class TrackedEntityInstancePolygonValueModel {
         }
 
         @NonNull
-        public Builder value(@NonNull GeoPolygon value){
+         public Builder polygonPointPosition(@NonNull int polygonPointPosition){
+            this.polygonPointPosition = polygonPointPosition;
+            return this;
+        }
+
+        @NonNull
+        public Builder value(@NonNull GeoPoint value){
             this.value = value;
             return this;
         }
@@ -145,7 +165,8 @@ public class TrackedEntityInstancePolygonValueModel {
                     trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
-                    value
+                    value,
+                    polygonPointPosition
             );
 
         }

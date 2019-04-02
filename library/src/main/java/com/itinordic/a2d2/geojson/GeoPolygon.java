@@ -3,12 +3,12 @@ package com.itinordic.a2d2.geojson;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.room.Entity;
+import androidx.room.Relation;
 
-@Entity
 public class GeoPolygon {
 
-    List<GeoPoint> geoPoints;
+    private List<GeoPoint> geoPoints;
+
 
     public GeoPolygon(List<GeoPoint> geoPoints) {
         this.geoPoints = geoPoints;
@@ -21,6 +21,7 @@ public class GeoPolygon {
     public void setGeoPoints(List<GeoPoint> geoPoints) {
         this.geoPoints = geoPoints;
     }
+
     public class Builder{
 
         List<GeoPoint> geoPoints;
