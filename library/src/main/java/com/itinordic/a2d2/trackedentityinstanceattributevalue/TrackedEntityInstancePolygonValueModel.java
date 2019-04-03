@@ -95,6 +95,7 @@ public class TrackedEntityInstancePolygonValueModel {
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
+        this.polygonPointPosition = polygonPointPosition;
     }
 
     public static class Builder {
@@ -159,6 +160,9 @@ public class TrackedEntityInstancePolygonValueModel {
             }
             if ( value == null) {
                 throw new IllegalStateException("Value  must be set");
+            }
+            if ( polygonPointPosition < 0) {
+                throw new IllegalStateException("Position  must be at least 0");
             }
 
             return new TrackedEntityInstancePolygonValueModel(

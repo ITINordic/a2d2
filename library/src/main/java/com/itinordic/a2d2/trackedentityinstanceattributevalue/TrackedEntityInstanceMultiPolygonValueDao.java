@@ -20,14 +20,17 @@ public interface TrackedEntityInstanceMultiPolygonValueDao {
     @Update
     void update(TrackedEntityInstanceMultiPolygonValueModel trackedEntityInstanceMultiPolygonValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceMultiPolygonValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    @Query("SELECT * FROM TrackedEntityInstanceMultiPolygonValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId " +
+            "AND trackedEntityInstanceId = :trackedEntityInstanceId AND multiPolygonPolygonPosition = :multiPolygonPolygonPosition AND polygonPointPosition = :polygonPointPosition LIMIT 1")
     Flowable<List<TrackedEntityInstanceMultiPolygonValueModel>> getTrackedEntityInstanceMultiPolygonValue(String trackedEntityTypeId,
                                                                                                 String trackedEntityAttributeId,
-                                                                                                String trackedEntityInstanceId);
+                                                                                                String trackedEntityInstanceId,
+                                                                                                          int multiPolygonPolygonPosition, int polygonPointPosition);
 
-    @Query("SELECT * FROM TrackedEntityInstanceMultiPolygonValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    @Query("SELECT * FROM TrackedEntityInstanceMultiPolygonValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId " +
+            "AND trackedEntityInstanceId = :trackedEntityInstanceId AND multiPolygonPolygonPosition = :multiPolygonPolygonPosition AND polygonPointPosition = :polygonPointPosition LIMIT 1")
     List<TrackedEntityInstanceMultiPolygonValueModel> syncGetTrackedEntityInstanceMultiPolygonValue(String trackedEntityTypeId,
                                                                                           String trackedEntityAttributeId,
-                                                                                          String trackedEntityInstanceId);
+                                                                                          String trackedEntityInstanceId, int multiPolygonPolygonPosition, int polygonPointPosition);
 
 }
