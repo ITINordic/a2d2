@@ -35,6 +35,8 @@ import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
 import com.itinordic.a2d2.program.ProgramComponent;
 import com.itinordic.a2d2.token.AccessTokenComponent;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeComponent;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstance;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceComponent;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeComponent;
 import com.itinordic.a2d2.user.UserComponent;
 import com.itinordic.a2d2.usergroup.UserGroupComponent;
@@ -62,5 +64,6 @@ public interface a2d2Component {
     TrackedEntityAttributeComponent.Builder trackedEntityAttributeComponent();
     OptionSetComponent.Builder optionSetComponent();
     OptionComponent.Builder optionComponent();
+    TrackedEntityInstanceComponent.Builder trackedEntityInstanceComponent();
 
 }

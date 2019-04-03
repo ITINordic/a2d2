@@ -44,6 +44,8 @@ import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.token.AccessTokenTaskImpl;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTask;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTaskImpl;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceTask;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceTaskImpl;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTask;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTaskImpl;
 import com.itinordic.a2d2.user.UserTask;
@@ -159,6 +161,11 @@ public final class a2d2 implements a2d2API {
     @Override
     public OptionTask optionTaskBuilder() {
         return new OptionTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    @Override
+    public TrackedEntityInstanceTask trackedEntityInstanceTaskBuilder() {
+        return new TrackedEntityInstanceTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
 

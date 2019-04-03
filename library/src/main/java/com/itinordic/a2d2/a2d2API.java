@@ -35,6 +35,7 @@ import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.program.ProgramTask;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTask;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceTask;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeTask;
 import com.itinordic.a2d2.user.UserTask;
 import com.itinordic.a2d2.usergroup.UserGroupTask;
@@ -65,5 +66,7 @@ public interface a2d2API {
     OptionSetTask optionSetTaskBuilder();
 
     OptionTask optionTaskBuilder();
+
+    TrackedEntityInstanceTask trackedEntityInstanceTaskBuilder();
 
 }
