@@ -9,11 +9,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 
-@Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityTypeId"
-        ),
+@Entity(primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId"
@@ -21,12 +18,9 @@ import androidx.room.Index;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
+                )},indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
 )
 public class TrackedEntityInstanceNumberValueModel {
-
-    @NonNull
-    private  String trackedEntityTypeId;
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -38,23 +32,13 @@ public class TrackedEntityInstanceNumberValueModel {
     private int value;
 
 
-    public TrackedEntityInstanceNumberValueModel(@NonNull String trackedEntityTypeId,
+    public TrackedEntityInstanceNumberValueModel(
                                                  @NonNull String trackedEntityAttributeId,
                                                  @NonNull String trackedEntityInstanceId,
                                                  @NonNull int value) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
-    }
-
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
     }
 
     @NonNull
@@ -86,7 +70,6 @@ public class TrackedEntityInstanceNumberValueModel {
 
         public static class Builder{
 
-            private  String trackedEntityTypeId;
             private String trackedEntityAttributeId;
             private  String trackedEntityInstanceId;
             private int value;
@@ -97,12 +80,6 @@ public class TrackedEntityInstanceNumberValueModel {
                 //empty constructor
             }
 
-            @NonNull
-            public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-                this.trackedEntityTypeId = trackedEntityTypeId;
-                return this;
-
-            }
 
             @NonNull
             public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
@@ -125,9 +102,6 @@ public class TrackedEntityInstanceNumberValueModel {
             }
 
             public TrackedEntityInstanceNumberValueModel build(){
-                if ( trackedEntityTypeId == null) {
-                    throw new IllegalStateException("trackedEntityTypeId must be set");
-                }
                 if ( trackedEntityAttributeId == null) {
                     throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -140,7 +114,7 @@ public class TrackedEntityInstanceNumberValueModel {
                     throw new IllegalStateException("Number must not be less than 0");
                 }
 
-                return new TrackedEntityInstanceNumberValueModel(trackedEntityTypeId,
+                return new TrackedEntityInstanceNumberValueModel(
                         trackedEntityAttributeId,
                         trackedEntityInstanceId,
                         value);

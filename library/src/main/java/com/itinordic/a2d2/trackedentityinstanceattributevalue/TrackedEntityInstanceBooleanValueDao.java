@@ -19,13 +19,13 @@ public interface TrackedEntityInstanceBooleanValueDao {
     @Update
     void update(TrackedEntityInstanceBooleanValueModel trackedEntityInstanceBooleanValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceBooleanValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceBooleanValueModel>> getTrackedEntityInstanceBooleanValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceBooleanValueModel where  trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceBooleanValueModel>> getTrackedEntityInstanceBooleanValue(
                                                                                                 String trackedEntityAttributeId,
                                                                                                 String trackedEntityInstanceId);
 
-    @Query("SELECT * FROM TrackedEntityInstanceBooleanValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    List<TrackedEntityInstanceBooleanValueModel> syncGetTrackedEntityInstanceBooleanValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceBooleanValueModel where  trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceBooleanValueModel> syncGetTrackedEntityInstanceBooleanValue(
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
 

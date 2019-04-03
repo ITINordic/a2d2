@@ -18,17 +18,16 @@ public interface TrackedEntityInstancePolygonValueDao {
     @Update
     void update(TrackedEntityInstancePolygonValueModel trackedEntityInstancePolygonValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstancePolygonValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId " +
+    @Query("SELECT * FROM TrackedEntityInstancePolygonValueModel where trackedEntityAttributeId = :trackedEntityAttributeId " +
             "AND trackedEntityInstanceId = :trackedEntityInstanceId AND polygonPointPosition = :polygonPointPosition LIMIT 1")
-    Flowable<List<TrackedEntityInstancePolygonValueDao>> getTrackedEntityInstancePolygonValue(String trackedEntityTypeId,
+    Flowable<List<TrackedEntityInstancePolygonValueModel>> getTrackedEntityInstancePolygonValue(
                                                                                                     String trackedEntityAttributeId,
                                                                                                     String trackedEntityInstanceId, int polygonPointPosition);
 
-    @Query("SELECT * FROM TrackedEntityInstancePolygonValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId " +
+    @Query("SELECT * FROM TrackedEntityInstancePolygonValueModel where trackedEntityAttributeId = :trackedEntityAttributeId " +
             "AND trackedEntityInstanceId = :trackedEntityInstanceId AND polygonPointPosition = :polygonPointPosition LIMIT 1")
-    List<TrackedEntityInstancePolygonValueDao> syncGetTrackedEntityInstancePolygonValue(String trackedEntityTypeId,
+    List<TrackedEntityInstancePolygonValueModel> syncGetTrackedEntityInstancePolygonValue(
                                                                                               String trackedEntityAttributeId,
-                                                                                              String trackedEntityInstanceId,
-                                                                                        int polygonPointPosition);
+                                                                                              String trackedEntityInstanceId, int polygonPointPosition);
 
 }

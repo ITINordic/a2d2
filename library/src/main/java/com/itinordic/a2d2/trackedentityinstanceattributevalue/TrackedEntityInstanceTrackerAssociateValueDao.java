@@ -19,13 +19,13 @@ public interface TrackedEntityInstanceTrackerAssociateValueDao {
     @Update
     void update(TrackedEntityInstanceTrackerAssociateValueModel trackedEntityInstanceTrackerAssociateValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceTrackerAssociateValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceTrackerAssociateValueModel>> getTrackedEntityInstanceTrackerAssociateValueModel(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceTrackerAssociateValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceTrackerAssociateValueModel>> getTrackedEntityInstanceTrackerAssociateValueModel(
                                                                                         String trackedEntityAttributeId,
                                                                                         String trackedEntityInstanceId);
 
-    @Query("SELECT * FROM TrackedEntityInstanceTrackerAssociateValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    List<TrackedEntityInstanceTrackerAssociateValueModel> syncGetTrackedEntityInstanceTrackerAssociateValueModel(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceTrackerAssociateValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceTrackerAssociateValueModel> syncGetTrackedEntityInstanceTrackerAssociateValueModel(
                                                                                   String trackedEntityAttributeId,
                                                                                   String trackedEntityInstanceId);
 

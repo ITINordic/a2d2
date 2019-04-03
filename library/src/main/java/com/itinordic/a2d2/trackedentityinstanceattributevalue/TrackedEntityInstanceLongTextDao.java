@@ -19,12 +19,13 @@ public interface TrackedEntityInstanceLongTextDao {
     @Update
     void update(TrackedEntityInstanceLongTextValueModel trackedEntityInstanceLongTextValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceLongTextValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceLongTextValueModel>> getTrackedEntityInstanceLongTextValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceLongTextValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceLongTextValueModel>> getTrackedEntityInstanceLongTextValue(
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
 
-    List<TrackedEntityInstanceAgeValueModel> syncGetTrackedEntityInstanceLongTextValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceLongTextValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceAgeValueModel> syncGetTrackedEntityInstanceLongTextValue(
                                                                                   String trackedEntityAttributeId,
                                                                                   String trackedEntityInstanceId);
 }

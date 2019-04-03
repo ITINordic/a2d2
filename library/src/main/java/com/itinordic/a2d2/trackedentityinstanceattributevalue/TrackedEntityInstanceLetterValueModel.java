@@ -11,11 +11,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 
-@Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityTypeId"
-        ),
+@Entity(primaryKeys = {  "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId"
@@ -23,15 +20,12 @@ import androidx.room.Index;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
+                )},indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
 )
 public class TrackedEntityInstanceLetterValueModel {
 
     public static final Pattern VALID_LETTER_REGEX =
             Pattern.compile("/[a-z]+/g", Pattern.CASE_INSENSITIVE);
-
-    @NonNull
-    private  String trackedEntityTypeId;
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -42,24 +36,16 @@ public class TrackedEntityInstanceLetterValueModel {
     @NonNull
     private char value;
 
-    public TrackedEntityInstanceLetterValueModel(@NonNull String trackedEntityTypeId,
+    public TrackedEntityInstanceLetterValueModel(
                                                  @NonNull String trackedEntityAttributeId,
                                                  @NonNull String trackedEntityInstanceId,
                                                  @NonNull char value){
-        this.trackedEntityTypeId = trackedEntityTypeId;
+
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
     }
 
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
-    }
 
     @NonNull
     public String getTrackedEntityAttributeId() {
@@ -90,7 +76,6 @@ public class TrackedEntityInstanceLetterValueModel {
 
     public static class Builder{
 
-        private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private  String trackedEntityInstanceId;
         private char value;
@@ -100,13 +85,6 @@ public class TrackedEntityInstanceLetterValueModel {
             //empty constructor
         }
 
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-
-            this.trackedEntityTypeId = trackedEntityTypeId;
-            return this;
-
-        }
 
         @NonNull
         public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
@@ -128,9 +106,7 @@ public class TrackedEntityInstanceLetterValueModel {
         }
 
         public TrackedEntityInstanceLetterValueModel build(){
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
+
             if ( trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -144,7 +120,6 @@ public class TrackedEntityInstanceLetterValueModel {
             }
 
             return new TrackedEntityInstanceLetterValueModel(
-                    trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value

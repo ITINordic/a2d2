@@ -11,11 +11,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 
-@Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId", "polygonPointPosition" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityTypeId"
-        ),
+@Entity(primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId", "polygonPointPosition" },
+        foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId"
@@ -23,7 +20,7 @@ import androidx.room.Index;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
+                )},indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
 )
 public class TrackedEntityInstancePolygonValueModel {
 
@@ -33,9 +30,6 @@ public class TrackedEntityInstancePolygonValueModel {
     private int polygonPointPosition;
 
     @NonNull
-    private  String trackedEntityTypeId;
-
-    @NonNull
     private String trackedEntityAttributeId;
 
     @NonNull
@@ -43,15 +37,6 @@ public class TrackedEntityInstancePolygonValueModel {
 
     @Embedded
     GeoPoint value;
-
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
-    }
 
     @NonNull
     public String getTrackedEntityAttributeId() {
@@ -86,12 +71,11 @@ public class TrackedEntityInstancePolygonValueModel {
         this.value = value;
     }
 
-    public TrackedEntityInstancePolygonValueModel(@NonNull String trackedEntityTypeId,
+    public TrackedEntityInstancePolygonValueModel(
                                                   @NonNull String trackedEntityAttributeId,
                                                   @NonNull String trackedEntityInstanceId,
                                                   GeoPoint value,
                                                   int polygonPointPosition) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
@@ -100,7 +84,6 @@ public class TrackedEntityInstancePolygonValueModel {
 
     public static class Builder {
 
-        private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
         private int polygonPointPosition;
@@ -109,15 +92,6 @@ public class TrackedEntityInstancePolygonValueModel {
 
         public Builder() {
             //empty constructor
-        }
-
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-
-            this.trackedEntityTypeId = trackedEntityTypeId;
-
-            return this;
-
         }
 
         @NonNull
@@ -147,9 +121,6 @@ public class TrackedEntityInstancePolygonValueModel {
 
         public TrackedEntityInstancePolygonValueModel build(){
 
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
             if ( trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -166,7 +137,6 @@ public class TrackedEntityInstancePolygonValueModel {
             }
 
             return new TrackedEntityInstancePolygonValueModel(
-                    trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value,

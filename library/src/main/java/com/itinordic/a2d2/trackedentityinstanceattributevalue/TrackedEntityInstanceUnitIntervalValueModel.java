@@ -10,11 +10,8 @@ import androidx.room.ForeignKey;
 import androidx.room.Index;
 
 @Entity(
-        primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityTypeId"
-        ),
+        primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId"
@@ -22,12 +19,9 @@ import androidx.room.Index;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
+                )},indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
 public class TrackedEntityInstanceUnitIntervalValueModel {
 
-
-    @NonNull
-    private  String trackedEntityTypeId;
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -39,21 +33,10 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
     private float value;
 
 
-    public TrackedEntityInstanceUnitIntervalValueModel(@NonNull String trackedEntityTypeId, @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull float value) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
+    public TrackedEntityInstanceUnitIntervalValueModel( @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull float value) {
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
-    }
-
-
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
     }
 
     @NonNull
@@ -85,7 +68,6 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
     public static class Builder{
 
 
-        private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private  String trackedEntityInstanceId;
         private float value;
@@ -93,16 +75,6 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
 
         public Builder() {
             //empty constructor
-        }
-
-
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-
-            this.trackedEntityTypeId = trackedEntityTypeId;
-
-            return this;
-
         }
 
         @NonNull
@@ -124,9 +96,7 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
 
         }
         public TrackedEntityInstanceUnitIntervalValueModel build(){
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
+
             if ( trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -140,7 +110,6 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
             }
 
             return new TrackedEntityInstanceUnitIntervalValueModel(
-                    trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value

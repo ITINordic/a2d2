@@ -17,12 +17,13 @@ public interface TrackedEntityInstanceEmailValueDao {
     @Update
     void update(TrackedEntityInstanceEmailValueModel trackedEntityInstanceEmailValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceEmailValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceEmailValueModel>> getTrackedEntityInstanceEmailValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceEmailValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceEmailValueModel>> getTrackedEntityInstanceEmailValue(
                                                                                                   String trackedEntityAttributeId,
                                                                                                   String trackedEntityInstanceId);
 
-    List<TrackedEntityInstanceEmailValueModel> syncGetTrackedEntityInstanceEmailValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceEmailValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceEmailValueModel> syncGetTrackedEntityInstanceEmailValue(
                                                                                   String trackedEntityAttributeId,
                                                                                   String trackedEntityInstanceId);
 }

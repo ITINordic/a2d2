@@ -19,9 +19,14 @@ public interface TrackedEntityInstanceUsernameValueDao {
     @Update
     void update(TrackedEntityInstanceUsernameValueModel trackedEntityInstanceUsernameValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceUsernameValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceUsernameValueModel>> getTrackedEntityInstanceTextValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceUsernameValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceUsernameValueModel>> getTrackedEntityInstanceTextValue(
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
+
+    @Query("SELECT * FROM TrackedEntityInstanceUsernameValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceUsernameValueModel> syncGetTrackedEntityInstanceTextValue(
+            String trackedEntityAttributeId,
+            String trackedEntityInstanceId);
 
 }

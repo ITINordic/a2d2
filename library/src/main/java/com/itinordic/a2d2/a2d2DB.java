@@ -58,6 +58,45 @@ import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeDao;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityattributeaccess.TrackedEntityAttributeAccessDao;
 import com.itinordic.a2d2.trackedentityattributeaccess.TrackedEntityAttributeAccessModel;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAgeValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAgeValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceBooleanValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceBooleanValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceCoordinateValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceCoordinateValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceDateTimeValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceDateTimeValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceEmailValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceEmailValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceIntegerValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceIntegerValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceLetterValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceLetterValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceLongTextDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceLongTextValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceMultiPolygonValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceMultiPolygonValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceNumberValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceNumberValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceOrgUnitValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceOrgUnitValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstancePhoneNumberValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstancePhoneNumberValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstancePolygonValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstancePolygonValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceTextValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceTextValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceTimeValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceTimeValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceTrackerAssociateValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceTrackerAssociateValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceURLValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceURLValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceUnitIntervalValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceUnitIntervalValueModel;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceUsernameValueDao;
+import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceUsernameValueModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeDao;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 import com.itinordic.a2d2.trackedentitytypeaccess.UserTrackedEntityTypeAccessJoinDao;
@@ -85,7 +124,18 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         ProgramModel.class, DataElementModel.class, UserTrackedEntityTypeAccessJoinModel.class,
         DataAccessModel.class, MetadataAccessModel.class,
         TrackedEntityTypeAttributeModel.class, TrackedEntityAttributeAccessModel.class, OptionSetAccessModel.class,
-        OptionSetModel.class, OptionAccessModel.class, OptionModel.class, TrackedEntityAttributeOptionSetJoinModel.class}, version = 18)
+        OptionSetModel.class, OptionAccessModel.class, OptionModel.class, TrackedEntityAttributeOptionSetJoinModel.class,
+        TrackedEntityInstanceAgeValueModel.class, TrackedEntityInstanceBooleanValueModel.class,
+        TrackedEntityInstanceCoordinateValueModel.class, TrackedEntityInstanceDateTimeValueModel.class,
+        TrackedEntityInstanceEmailValueModel.class,
+        TrackedEntityInstanceIntegerValueModel.class, TrackedEntityInstanceLetterValueModel.class,
+        TrackedEntityInstanceLongTextValueModel.class, TrackedEntityInstanceMultiPolygonValueModel.class,
+        TrackedEntityInstanceNumberValueModel.class, TrackedEntityInstanceOrgUnitValueModel.class,
+        TrackedEntityInstancePhoneNumberValueModel.class, TrackedEntityInstancePolygonValueModel.class,
+        TrackedEntityInstanceTextValueModel.class, TrackedEntityInstanceTimeValueModel.class,
+        TrackedEntityInstanceTrackerAssociateValueModel.class, TrackedEntityInstanceUnitIntervalValueModel.class,
+        TrackedEntityInstanceURLValueModel.class, TrackedEntityInstanceUsernameValueModel.class,
+        TrackedEntityInstanceModel.class}, version = 19)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -151,5 +201,26 @@ public abstract class a2d2DB extends RoomDatabase {
     public abstract OptionSetDao optionSetDao();
     public abstract OptionAccessDao optionAccessDao();
     public abstract OptionDao optionDao();
+
+    //tracked entity instances
+    public abstract TrackedEntityInstanceAgeValueDao trackedEntityInstanceAgeValueDao();
+    public abstract TrackedEntityInstanceBooleanValueDao trackedEntityInstanceBooleanValueDao();
+    public abstract TrackedEntityInstanceCoordinateValueDao trackedEntityInstanceCoordinateValueDao();
+    public abstract TrackedEntityInstanceDateTimeValueDao trackedEntityInstanceDateTimeValueDao();
+    public abstract TrackedEntityInstanceEmailValueDao trackedEntityInstanceEmailValueDao();
+    public abstract TrackedEntityInstanceIntegerValueDao trackedEntityInstanceIntegerValueDao();
+    public abstract TrackedEntityInstanceLetterValueDao trackedEntityInstanceLetterValueDao();
+    public abstract TrackedEntityInstanceLongTextDao trackedEntityInstanceLongTextDao();
+    public abstract TrackedEntityInstanceMultiPolygonValueDao trackedEntityInstanceMultiPolygonValueDao();
+    public abstract TrackedEntityInstanceNumberValueDao trackedEntityInstanceNumberValueDao();
+    public abstract TrackedEntityInstanceOrgUnitValueDao trackedEntityInstanceOrgUnitValueDao();
+    public abstract TrackedEntityInstancePhoneNumberValueDao trackedEntityInstancePhoneNumberValueDao();
+    public abstract TrackedEntityInstancePolygonValueDao trackedEntityInstancePolygonValueDao();
+    public abstract TrackedEntityInstanceTextValueDao trackedEntityInstanceTextValueDao();
+    public abstract TrackedEntityInstanceTimeValueDao trackedEntityInstanceTimeValueDao();
+    public abstract TrackedEntityInstanceTrackerAssociateValueDao trackedEntityInstanceTrackerAssociateValueDao();
+    public abstract TrackedEntityInstanceUnitIntervalValueDao trackedEntityInstanceUnitIntervalValueDao();
+    public abstract TrackedEntityInstanceURLValueDao trackedEntityInstanceURLValueDao();
+    public abstract TrackedEntityInstanceUsernameValueDao trackedEntityInstanceUsernameValueDao();
 
 }

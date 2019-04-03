@@ -14,11 +14,8 @@ import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
 @Entity(
-        primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityTypeId"
-        ),
+        primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId"
@@ -26,16 +23,11 @@ import androidx.room.PrimaryKey;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
+                )},indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
 public class TrackedEntityInstanceEmailValueModel {
 
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-
-    @NonNull
-    @PrimaryKey
-    private  String trackedEntityTypeId;
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -46,21 +38,11 @@ public class TrackedEntityInstanceEmailValueModel {
     @NonNull
     private String value;
 
-    public TrackedEntityInstanceEmailValueModel(@NonNull String trackedEntityTypeId, @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull String value) {
+    public TrackedEntityInstanceEmailValueModel( @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull String value) {
 
-        this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
-    }
-
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
     }
 
     @NonNull
@@ -93,7 +75,6 @@ public class TrackedEntityInstanceEmailValueModel {
     public static class Builder{
 
 
-        private  String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private  String trackedEntityInstanceId;
         private String value;
@@ -101,17 +82,6 @@ public class TrackedEntityInstanceEmailValueModel {
 
         public Builder() {
             //empty constructor
-        }
-
-
-
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-
-            this.trackedEntityTypeId = trackedEntityTypeId;
-
-            return this;
-
         }
 
         @NonNull
@@ -134,9 +104,7 @@ public class TrackedEntityInstanceEmailValueModel {
         }
 
         public TrackedEntityInstanceEmailValueModel build(){
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
+
             if ( trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -153,7 +121,6 @@ public class TrackedEntityInstanceEmailValueModel {
             }
 
             return new TrackedEntityInstanceEmailValueModel(
-                    trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value

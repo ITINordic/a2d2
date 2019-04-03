@@ -21,13 +21,13 @@ public interface TrackedEntityInstanceURLValueDao {
     @Update
     void update(TrackedEntityInstanceURLValueModel trackedEntityInstanceURLValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceURLValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceURLValueModel>> getTrackedEntityInstanceURLValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceURLValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceURLValueModel>> getTrackedEntityInstanceURLValue(
                                                                                         String trackedEntityAttributeId,
                                                                                         String trackedEntityInstanceId);
 
-    @Query("SELECT * FROM TrackedEntityInstanceURLValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    List<TrackedEntityInstanceURLValueModel> syncGetTrackedEntityInstanceURLValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceURLValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceURLValueModel> syncGetTrackedEntityInstanceURLValue(
                                                                                   String trackedEntityAttributeId,
                                                                                   String trackedEntityInstanceId);
 }

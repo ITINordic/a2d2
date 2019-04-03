@@ -9,13 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
 @Entity(
-        primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId", "multiPolygonPolygonPosition", "polygonPointPosition" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityTypeId"
-        ),
+        primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId", "multiPolygonPolygonPosition", "polygonPointPosition" },
+        foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId"
@@ -23,11 +21,8 @@ import androidx.room.ForeignKey;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )})
+                )}, indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
 public class TrackedEntityInstanceMultiPolygonValueModel {
-
-    @NonNull
-    private  String trackedEntityTypeId;
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -44,23 +39,13 @@ public class TrackedEntityInstanceMultiPolygonValueModel {
     @NonNull
     private int polygonPointPosition;
 
-    public TrackedEntityInstanceMultiPolygonValueModel(@NonNull String trackedEntityTypeId, @NonNull String trackedEntityAttributeId,
+    public TrackedEntityInstanceMultiPolygonValueModel( @NonNull String trackedEntityAttributeId,
                                                        @NonNull String trackedEntityInstanceId, int multiPolygonPolygonPosition, int polygonPointPosition, GeoPoint value) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.multiPolygonPolygonPosition = multiPolygonPolygonPosition;
         this.polygonPointPosition = polygonPointPosition;
         this.value = value;
-    }
-
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
     }
 
     @NonNull
@@ -107,7 +92,6 @@ public class TrackedEntityInstanceMultiPolygonValueModel {
 
     public static class  Builder{
 
-        private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
         private int multiPolygonPolygonPosition;
@@ -115,15 +99,6 @@ public class TrackedEntityInstanceMultiPolygonValueModel {
         private GeoPoint value;
         public Builder(){
             //empty constructor
-        }
-
-
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-
-            this.trackedEntityTypeId = trackedEntityTypeId;
-            return this;
-
         }
 
         @NonNull
@@ -157,9 +132,7 @@ public class TrackedEntityInstanceMultiPolygonValueModel {
         }
 
         public TrackedEntityInstanceMultiPolygonValueModel build(){
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
+
             if ( trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -179,7 +152,6 @@ public class TrackedEntityInstanceMultiPolygonValueModel {
             }
 
             return new TrackedEntityInstanceMultiPolygonValueModel(
-                    trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     multiPolygonPolygonPosition,

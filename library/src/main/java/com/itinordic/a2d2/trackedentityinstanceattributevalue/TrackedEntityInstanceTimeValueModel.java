@@ -12,11 +12,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
 
-@Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-                parentColumns = "id",
-                childColumns = "trackedEntityTypeId"
-        ),
+@Entity(primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityAttributeId"
@@ -24,15 +21,12 @@ import androidx.room.Index;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )},indices = {@Index("trackedEntityTypeId"), @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
+                )},indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")}
 )
 public class TrackedEntityInstanceTimeValueModel {
 
     public static final Pattern VALID_TIME_REGEX =
             Pattern.compile("/^$|^(([01][0-9])|(2[0-3])):[0-5][0-9]$/");
-
-    @NonNull
-    private  String trackedEntityTypeId;
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -44,23 +38,13 @@ public class TrackedEntityInstanceTimeValueModel {
     private String value;
 
 
-    public TrackedEntityInstanceTimeValueModel(@NonNull String trackedEntityTypeId,
+    public TrackedEntityInstanceTimeValueModel(
                                                @NonNull String trackedEntityAttributeId,
                                                @NonNull String trackedEntityInstanceId,
                                                String value) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
-    }
-
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
     }
 
     @NonNull
@@ -91,7 +75,6 @@ public class TrackedEntityInstanceTimeValueModel {
 
     public static class Builder{
 
-        private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
         private String value;
@@ -99,13 +82,6 @@ public class TrackedEntityInstanceTimeValueModel {
 
         public Builder() {
             //empty constructor
-        }
-
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-            this.trackedEntityTypeId = trackedEntityTypeId;
-            return this;
-
         }
 
         @NonNull
@@ -129,9 +105,6 @@ public class TrackedEntityInstanceTimeValueModel {
         }
 
         public TrackedEntityInstanceTimeValueModel build(){
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
             if ( trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -144,7 +117,7 @@ public class TrackedEntityInstanceTimeValueModel {
                 throw new IllegalStateException("Please enter a valid time");
             }
 
-            return new TrackedEntityInstanceTimeValueModel(trackedEntityTypeId,
+            return new TrackedEntityInstanceTimeValueModel(
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value);

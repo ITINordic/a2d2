@@ -20,13 +20,13 @@ public interface TrackedEntityInstanceIntegerValueDao {
     @Update
     void update(TrackedEntityInstanceIntegerValueModel trackedEntityInstanceIntegerValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceIntegerValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceIntegerValueModel>> getTrackedEntityInstanceIntegerValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceIntegerValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceIntegerValueModel>> getTrackedEntityInstanceIntegerValue(
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
 
-    @Query("SELECT * FROM TrackedEntityInstanceIntegerValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    List<TrackedEntityInstanceIntegerValueModel> syncGetTrackedEntityInstanceIntegerValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceIntegerValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceIntegerValueModel> syncGetTrackedEntityInstanceIntegerValue(
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
 

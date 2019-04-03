@@ -8,12 +8,10 @@ import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.Index;
 
-@Entity(primaryKeys = { "trackedEntityTypeId", "trackedEntityAttributeId", "trackedEntityInstanceId" },
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-        parentColumns = "id",
-        childColumns = "trackedEntityTypeId"
-        ),
+@Entity(primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
+        foreignKeys = {
         @ForeignKey(entity = TrackedEntityAttributeModel.class,
                 parentColumns = "id",
                 childColumns = "trackedEntityAttributeId"
@@ -21,11 +19,8 @@ import androidx.room.ForeignKey;
         @ForeignKey(entity = TrackedEntityInstanceModel.class,
                 parentColumns = "id",
                 childColumns = "trackedEntityInstanceId"
-        )})
+        )}, indices = {@Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
 public class TrackedEntityInstanceBooleanValueModel {
-
-    @NonNull
-    private  String trackedEntityTypeId;
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -35,15 +30,6 @@ public class TrackedEntityInstanceBooleanValueModel {
 
     @NonNull
     private boolean value;
-
-    @NonNull
-    public String getTrackedEntityTypeId() {
-        return trackedEntityTypeId;
-    }
-
-    public void setTrackedEntityTypeId(@NonNull String trackedEntityTypeId) {
-        this.trackedEntityTypeId = trackedEntityTypeId;
-    }
 
     @NonNull
     public String getTrackedEntityAttributeId() {
@@ -71,11 +57,10 @@ public class TrackedEntityInstanceBooleanValueModel {
         this.value = value;
     }
 
-    public TrackedEntityInstanceBooleanValueModel(@NonNull String trackedEntityTypeId,
+    public TrackedEntityInstanceBooleanValueModel(
                                                   @NonNull String trackedEntityAttributeId,
                                                   @NonNull String trackedEntityInstanceId,
                                                   boolean value){
-        this.trackedEntityTypeId = trackedEntityTypeId;
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
@@ -83,7 +68,6 @@ public class TrackedEntityInstanceBooleanValueModel {
 
     public static class Builder{
 
-        private String trackedEntityTypeId;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
         private boolean value;
@@ -93,13 +77,6 @@ public class TrackedEntityInstanceBooleanValueModel {
             //empty constructor
         }
 
-
-        @NonNull
-        public Builder trackedEntityTypeId(@NonNull String trackedEntityTypeId){
-
-            this.trackedEntityTypeId = trackedEntityTypeId;
-            return this;
-        }
 
         @NonNull
         public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
@@ -117,9 +94,6 @@ public class TrackedEntityInstanceBooleanValueModel {
 
         public TrackedEntityInstanceBooleanValueModel build(){
 
-            if ( trackedEntityTypeId == null) {
-                throw new IllegalStateException("trackedEntityTypeId must be set");
-            }
             if ( trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
@@ -133,7 +107,6 @@ public class TrackedEntityInstanceBooleanValueModel {
             }
 
             return new TrackedEntityInstanceBooleanValueModel(
-                    trackedEntityTypeId,
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value

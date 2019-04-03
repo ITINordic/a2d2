@@ -19,13 +19,13 @@ public interface TrackedEntityInstanceAgeValueDao {
     @Update
     void update(TrackedEntityInstanceAgeValueModel trackedEntityInstanceAgeValueModel);
 
-    @Query("SELECT * FROM TrackedEntityInstanceAgeValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    Flowable<List<TrackedEntityInstanceAgeValueModel>> getTrackedEntityInstanceAgeValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceAgeValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    Flowable<List<TrackedEntityInstanceAgeValueModel>> getTrackedEntityInstanceAgeValue(
                                                                                           String trackedEntityAttributeId,
                                                                                           String trackedEntityInstanceId);
 
-    @Query("SELECT * FROM TrackedEntityInstanceAgeValueModel where trackedEntityTypeId = :trackedEntityTypeId AND trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
-    List<TrackedEntityInstanceAgeValueModel> syncGetTrackedEntityInstanceAgeValue(String trackedEntityTypeId,
+    @Query("SELECT * FROM TrackedEntityInstanceAgeValueModel where trackedEntityAttributeId = :trackedEntityAttributeId AND trackedEntityInstanceId = :trackedEntityInstanceId LIMIT 1")
+    List<TrackedEntityInstanceAgeValueModel> syncGetTrackedEntityInstanceAgeValue(
                                                                                   String trackedEntityAttributeId,
                                                                                   String trackedEntityInstanceId);
 
