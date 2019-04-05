@@ -30,5 +30,4 @@ public interface TrackedEntityInstanceDao {
     @Query("SELECT * FROM TrackedEntityInstanceModel WHERE id = :id LIMIT 1")
     Flowable<List<TrackedEntityInstanceModel>> getTrackedEntityInstancesById(String id);
 
-
 }

@@ -9,4 +9,8 @@ public class TrackedEntityInstanceList {
     public TrackedEntityInstanceList(List<TrackedEntityInstance> trackedEntityInstances) {
         this.trackedEntityInstances = trackedEntityInstances;
     }
+
+    public List<TrackedEntityInstance> getTrackedEntityInstances() {
+        return trackedEntityInstances;
+    }
 }
