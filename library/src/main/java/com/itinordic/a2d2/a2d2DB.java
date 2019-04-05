@@ -58,6 +58,8 @@ import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeDao;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityattributeaccess.TrackedEntityAttributeAccessDao;
 import com.itinordic.a2d2.trackedentityattributeaccess.TrackedEntityAttributeAccessModel;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstance;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceDao;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
 import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAgeValueDao;
 import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAgeValueModel;
@@ -203,6 +205,7 @@ public abstract class a2d2DB extends RoomDatabase {
     public abstract OptionDao optionDao();
 
     //tracked entity instances
+    public abstract TrackedEntityInstanceDao trackedEntityInstanceDao();
     public abstract TrackedEntityInstanceAgeValueDao trackedEntityInstanceAgeValueDao();
     public abstract TrackedEntityInstanceBooleanValueDao trackedEntityInstanceBooleanValueDao();
     public abstract TrackedEntityInstanceCoordinateValueDao trackedEntityInstanceCoordinateValueDao();
