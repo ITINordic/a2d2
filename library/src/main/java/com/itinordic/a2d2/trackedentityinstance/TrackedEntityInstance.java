@@ -2,7 +2,6 @@ package com.itinordic.a2d2.trackedentityinstance;
 
 import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAttributeValue;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,6 +13,7 @@ import java.util.List;
 public class TrackedEntityInstance {
 
     public final String orgUnit;
+    public final String created;
     public final String createdAtClient;
     public final String trackedEntityInstance;
     public final String lastUpdated;
@@ -25,7 +25,7 @@ public class TrackedEntityInstance {
     public final List<TrackedEntityInstanceAttributeValue> attributes;
 
     public TrackedEntityInstance(String orgUnit,
-                                 String createdAtClient,
+                                 String created, String createdAtClient,
                                  String trackedEntityInstance,
                                  String lastUpdated,
                                  String trackedEntityType,
@@ -35,6 +35,7 @@ public class TrackedEntityInstance {
                                  String featureType,
                                  List<TrackedEntityInstanceAttributeValue> attributes) {
         this.orgUnit = orgUnit;
+        this.created = created;
         this.createdAtClient = createdAtClient;
         this.trackedEntityInstance = trackedEntityInstance;
         this.lastUpdated = lastUpdated;

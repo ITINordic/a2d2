@@ -3,13 +3,13 @@ package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
-import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
+
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
-import androidx.room.PrimaryKey;
 
 @Entity(
         primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
@@ -31,7 +31,7 @@ public class TrackedEntityInstanceAgeValueModel {
     private  String trackedEntityInstanceId;
 
     @NonNull
-    private int value;
+    private Date value;
 
 
     @NonNull
@@ -52,41 +52,32 @@ public class TrackedEntityInstanceAgeValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public int getValue() {
+    public Date getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(Date value) {
         this.value = value;
     }
 
     public TrackedEntityInstanceAgeValueModel(
-                                              @NonNull String trackedEntityAttributeId,
-                                              @NonNull String trackedEntityInstanceId,
-                                              int value) {
+            @NonNull String trackedEntityAttributeId,
+            @NonNull String trackedEntityInstanceId,
+            Date value) {
 
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
     }
 
-    public class Builder{
+    public static class Builder{
 
-        private int id;
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
-        private int value;
+        private Date value;
 
         public Builder(){
             //empty constructor
-        }
-
-        @NonNull
-        public Builder id(@NonNull int id){
-
-            this.id=id;
-
-            return this;
         }
 
 
@@ -107,7 +98,7 @@ public class TrackedEntityInstanceAgeValueModel {
         }
 
         @NonNull
-        public Builder value(@NonNull int value){
+        public Builder value(@NonNull Date value){
 
             this.value = value;
 
@@ -124,9 +115,10 @@ public class TrackedEntityInstanceAgeValueModel {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             }
-            if ( value < 0 | value > 120) {
+
+            /*if ( value < 0 | value > 120) {
                 throw new IllegalStateException("Please enter a valid age value between 0 and 120 years");
-            }
+            }*/
 
             return new TrackedEntityInstanceAgeValueModel(
                     trackedEntityAttributeId,
