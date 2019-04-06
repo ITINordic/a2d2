@@ -2,7 +2,6 @@ package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
-import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
@@ -30,10 +29,10 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
     private  String trackedEntityInstanceId;
 
     @NonNull
-    private float value;
+    private double value;
 
 
-    public TrackedEntityInstanceUnitIntervalValueModel( @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull float value) {
+    public TrackedEntityInstanceUnitIntervalValueModel( @NonNull String trackedEntityAttributeId, @NonNull String trackedEntityInstanceId, @NonNull double value) {
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
         this.value = value;
@@ -57,11 +56,11 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public float getValue() {
+    public double getValue() {
         return value;
     }
 
-    public void setValue(float value) {
+    public void setValue(double value) {
         this.value = value;
     }
 
@@ -70,7 +69,7 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
 
         private String trackedEntityAttributeId;
         private  String trackedEntityInstanceId;
-        private float value;
+        private double value;
 
 
         public Builder() {
@@ -90,7 +89,7 @@ public class TrackedEntityInstanceUnitIntervalValueModel {
         }
 
         @NonNull
-        public Builder value(@NonNull float value){
+        public Builder value(@NonNull double value){
             this.value = value;
             return this;
 

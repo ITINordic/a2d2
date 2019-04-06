@@ -92,6 +92,12 @@ public class TrackedEntityInstanceBooleanValueModel {
             return this;
         }
 
+        @NonNull
+        public Builder value(@NonNull boolean value) {
+            this.value = value;
+            return this;
+        }
+
         public TrackedEntityInstanceBooleanValueModel build(){
 
             if ( trackedEntityAttributeId == null) {
@@ -102,10 +108,6 @@ public class TrackedEntityInstanceBooleanValueModel {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             }
-            if ( !value) {
-                throw new IllegalStateException("Value  must be set");
-            }
-
             return new TrackedEntityInstanceBooleanValueModel(
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,

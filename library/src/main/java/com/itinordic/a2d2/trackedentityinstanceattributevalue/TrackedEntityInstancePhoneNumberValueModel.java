@@ -2,7 +2,6 @@ package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
-import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import java.util.regex.Pattern;
 
@@ -24,8 +23,8 @@ import androidx.room.Index;
 )
 public class TrackedEntityInstancePhoneNumberValueModel {
 
-    public static final Pattern VALID_PHONE_NUMBER_REGEX =
-            Pattern.compile("/^(\\+(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$/");
+    public static final Pattern VALID_PHONE_NUMBER_REGEX = Pattern.compile( "^\\+(?:[0-9].?){4,14}[0-9]$" );
+            //Pattern.compile("/^(\\+(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$/");
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -34,12 +33,12 @@ public class TrackedEntityInstancePhoneNumberValueModel {
     private  String trackedEntityInstanceId;
 
     @NonNull
-    private int value;
+    private String value;
 
     public TrackedEntityInstancePhoneNumberValueModel(
-                                                      @NonNull String trackedEntityAttributeId,
-                                                      @NonNull String trackedEntityInstanceId,
-                                                      int value) {
+            @NonNull String trackedEntityAttributeId,
+            @NonNull String trackedEntityInstanceId,
+            String value) {
 
         this.trackedEntityAttributeId = trackedEntityAttributeId;
         this.trackedEntityInstanceId = trackedEntityInstanceId;
@@ -64,11 +63,11 @@ public class TrackedEntityInstancePhoneNumberValueModel {
         this.trackedEntityInstanceId = trackedEntityInstanceId;
     }
 
-    public int getValue() {
+    public String getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(String value) {
         this.value = value;
     }
 
@@ -76,7 +75,7 @@ public class TrackedEntityInstancePhoneNumberValueModel {
 
         private String trackedEntityAttributeId;
         private String trackedEntityInstanceId;
-        private int value;
+        private String value;
 
         public Builder() {
             //empty constructor
@@ -98,7 +97,7 @@ public class TrackedEntityInstancePhoneNumberValueModel {
         }
 
         @NonNull
-        public Builder value(@NonNull int value){
+        public Builder value(@NonNull String value){
             this.value = value;
             return this;
 
@@ -114,6 +113,12 @@ public class TrackedEntityInstancePhoneNumberValueModel {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             } //to be reviewed
+
+            if ( value == null) {
+                throw new IllegalStateException("value must be set");
+
+            }
+
             if (!String.valueOf(value).matches(VALID_PHONE_NUMBER_REGEX.pattern())){
                 throw new IllegalStateException("Phone number invalid");
         }

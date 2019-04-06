@@ -76,7 +76,7 @@ public class TrackedEntityInstanceTrackerAssociateValueModel {
         }
 
         @NonNull
-        public Builder trackedEntityAttrbiuteId(@NonNull String trackedEntityAttributeId){
+        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
 
             this.trackedEntityAttributeId = trackedEntityAttributeId;
             return this;

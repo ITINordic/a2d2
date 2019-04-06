@@ -211,14 +211,6 @@ public class TrackedEntityTypeModel {
                 throw new IllegalStateException("Name must be set");
             }
 
-            if ( description == null) {
-                throw new IllegalStateException("Display short name  must be set");
-            }
-
-            if ( displayDescription == null) {
-                throw new IllegalStateException("Display description type must be set");
-            }
-
             return new TrackedEntityTypeModel( id, lastUpdated, created, name, displayName, description, displayDescription, icon, color);
         }
     }
