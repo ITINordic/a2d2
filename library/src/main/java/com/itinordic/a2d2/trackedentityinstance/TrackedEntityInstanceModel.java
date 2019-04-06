@@ -1,6 +1,7 @@
 package com.itinordic.a2d2.trackedentityinstance;
 
 import com.itinordic.a2d2.common.Utils;
+import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import java.util.Date;
@@ -20,10 +21,15 @@ import androidx.room.TypeConverters;
  */
 
 @Entity(
-        foreignKeys = {@ForeignKey(entity = TrackedEntityTypeModel.class,
-        parentColumns = "id",
-        childColumns = "trackedEntityTypeId"
-        )}, indices = {@Index("trackedEntityTypeId")}
+        foreignKeys = {
+                @ForeignKey(entity = TrackedEntityTypeModel.class,
+                        parentColumns = "id",
+                        childColumns = "trackedEntityTypeId"
+        ),
+                @ForeignKey(entity = OrganisationUnitModel.class,
+                        parentColumns = "id",
+                        childColumns = "organisationUnitId"
+                )}, indices = {@Index("trackedEntityTypeId"),@Index("organisationUnitId")}
 )
 public class TrackedEntityInstanceModel {
 
@@ -39,14 +45,17 @@ public class TrackedEntityInstanceModel {
     private String featureType;
     @NonNull
     private  String trackedEntityTypeId;
+    @NonNull
+    private  String organisationUnitId;
 
-    public TrackedEntityInstanceModel(@NonNull String id, Date created, Date createdAtClient, Date lastUpdated, String featureType, @NonNull String trackedEntityTypeId) {
+    public TrackedEntityInstanceModel(@NonNull String id, Date created, Date createdAtClient, Date lastUpdated, String featureType, @NonNull String trackedEntityTypeId, @NonNull String organisationUnitId) {
         this.id = id;
         this.created = created;
         this.createdAtClient = createdAtClient;
         this.lastUpdated = lastUpdated;
         this.featureType = featureType;
         this.trackedEntityTypeId = trackedEntityTypeId;
+        this.organisationUnitId = organisationUnitId;
     }
 
     @NonNull
@@ -91,6 +100,15 @@ public class TrackedEntityInstanceModel {
     }
 
     @NonNull
+    public String getOrganisationUnitId() {
+        return organisationUnitId;
+    }
+
+    public void setOrganisationUnitId(@NonNull String organisationUnitId) {
+        this.organisationUnitId = organisationUnitId;
+    }
+
+    @NonNull
     public String getTrackedEntityTypeId() {
         return trackedEntityTypeId;
     }
@@ -107,6 +125,8 @@ public class TrackedEntityInstanceModel {
         private Date lastUpdated;
         private String featureType;
         private  String trackedEntityTypeId;
+        private  String organisationUnitId;
+
 
         public Builder() {
 
@@ -149,6 +169,12 @@ public class TrackedEntityInstanceModel {
             return this;
         }
 
+        @NonNull
+        public Builder organisationUnitId(@NonNull String organisationUnitId) {
+            this.organisationUnitId = organisationUnitId;
+            return this;
+        }
+
         public TrackedEntityInstanceModel build() {
 
             if (id == null) {
@@ -175,7 +201,11 @@ public class TrackedEntityInstanceModel {
                 throw new IllegalStateException("trackedEntityTypeId must be set");
             }
 
-            return new TrackedEntityInstanceModel( id, created, createdAtClient, lastUpdated, featureType, trackedEntityTypeId);
+            if (trackedEntityTypeId == null) {
+                throw new IllegalStateException("organisationUnitId must be set");
+            }
+
+            return new TrackedEntityInstanceModel( id, created, createdAtClient, lastUpdated, featureType, trackedEntityTypeId, organisationUnitId);
         }
     }
 

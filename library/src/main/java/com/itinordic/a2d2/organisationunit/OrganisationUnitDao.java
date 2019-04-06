@@ -50,6 +50,9 @@ public interface OrganisationUnitDao {
     @Query("SELECT * FROM OrganisationUnitModel WHERE id LIKE :id")
     Flowable<List<OrganisationUnitModel>> getOrgUnit(String id);
 
+    @Query("SELECT * FROM OrganisationUnitModel WHERE id LIKE :id")
+    List<OrganisationUnitModel> syncGetOrgUnit(String id);
+
     @Update
     public void updateOrganisationUnitModel(OrganisationUnitModel organisationUnitModel);
 

@@ -12,6 +12,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.itinordic.a2d2.common.Utils;
+import com.itinordic.a2d2.configuration.MetadataErrorDao;
+import com.itinordic.a2d2.configuration.MetadataErrorModel;
 import com.itinordic.a2d2.dataelement.DataElementModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinModel;
 import com.itinordic.a2d2.db.join.OAuthGrantTypeJoinDao;
@@ -42,6 +44,8 @@ import com.itinordic.a2d2.optionsetaccess.OptionSetAccessDao;
 import com.itinordic.a2d2.optionsetaccess.OptionSetAccessModel;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitDao;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitModel;
+import com.itinordic.a2d2.organisationunitaccess.OrganisationUnitAccessDao;
+import com.itinordic.a2d2.organisationunitaccess.OrganisationUnitAccessModel;
 import com.itinordic.a2d2.program.ProgramDao;
 import com.itinordic.a2d2.program.ProgramModel;
 import com.itinordic.a2d2.programaccess.UserProgramAccessDao;
@@ -137,7 +141,7 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         TrackedEntityInstanceTextValueModel.class, TrackedEntityInstanceTimeValueModel.class,
         TrackedEntityInstanceTrackerAssociateValueModel.class, TrackedEntityInstanceUnitIntervalValueModel.class,
         TrackedEntityInstanceURLValueModel.class, TrackedEntityInstanceUsernameValueModel.class,
-        TrackedEntityInstanceModel.class}, version = 22)
+        TrackedEntityInstanceModel.class, OrganisationUnitAccessModel.class, MetadataErrorModel.class}, version = 25)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 
@@ -157,6 +161,7 @@ public abstract class a2d2DB extends RoomDatabase {
 
     //org units
     public abstract OrganisationUnitDao organisationUnitDao();
+    public abstract OrganisationUnitAccessDao organisationUnitAccessDao();
 
     //user org unit
     public abstract UserOrganisationUnitJoinDao userOrganisationUnitJoinDao();
@@ -225,5 +230,8 @@ public abstract class a2d2DB extends RoomDatabase {
     public abstract TrackedEntityInstanceUnitIntervalValueDao trackedEntityInstanceUnitIntervalValueDao();
     public abstract TrackedEntityInstanceURLValueDao trackedEntityInstanceURLValueDao();
     public abstract TrackedEntityInstanceUsernameValueDao trackedEntityInstanceUsernameValueDao();
+
+    //Configuration Issues reporting
+    public abstract MetadataErrorDao metadataErrorDao();
 
 }
