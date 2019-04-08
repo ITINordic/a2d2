@@ -74,6 +74,8 @@ public final class a2d2 implements a2d2API {
         a2d2component = Daggera2d2Component.builder()
                 .a2d2Module(new a2d2Module(baseUrl,okHttpClient ))
                 .build();
+
+
     }
 
     //builder that returns a new a2d2 instance when it is passed a URL
