@@ -141,7 +141,7 @@ import com.itinordic.a2d2.userrole.UserRoleModel;
         TrackedEntityInstanceTextValueModel.class, TrackedEntityInstanceTimeValueModel.class,
         TrackedEntityInstanceTrackerAssociateValueModel.class, TrackedEntityInstanceUnitIntervalValueModel.class,
         TrackedEntityInstanceURLValueModel.class, TrackedEntityInstanceUsernameValueModel.class,
-        TrackedEntityInstanceModel.class, OrganisationUnitAccessModel.class, MetadataErrorModel.class}, version = 25)
+        TrackedEntityInstanceModel.class, OrganisationUnitAccessModel.class, MetadataErrorModel.class}, version = 26)
 @TypeConverters({Utils.class})
 public abstract class a2d2DB extends RoomDatabase {
 

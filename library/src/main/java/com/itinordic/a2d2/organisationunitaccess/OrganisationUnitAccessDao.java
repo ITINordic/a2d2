@@ -31,22 +31,22 @@ public interface OrganisationUnitAccessDao {
     @Update
     void update(OrganisationUnitAccessModel organisationUnitAccessModel);
 
-    @Query("SELECT * FROM OrganisationUnitAccessModel WHERE userId = :userId")
+    @Query("SELECT OrganisationUnitAccessModel.organisationUnitId, OrganisationUnitAccessModel.metadataAccessId, OrganisationUnitAccessModel.userId FROM OrganisationUnitAccessModel WHERE userId = :userId")
     Flowable<List<OrganisationUnitAccessModel>> findById(String userId);
 
-    @Query("SELECT * FROM OrganisationUnitAccessModel WHERE userId = :userId AND organisationUnitId = :organisationUnitId  LIMIT 1")
+    @Query("SELECT OrganisationUnitAccessModel.organisationUnitId, OrganisationUnitAccessModel.metadataAccessId, OrganisationUnitAccessModel.userId FROM OrganisationUnitAccessModel WHERE userId = :userId AND organisationUnitId = :organisationUnitId  LIMIT 1")
     Flowable<List<OrganisationUnitAccessModel>> getOrganisationUnitAccess(String userId, String organisationUnitId);
 
-    @Query("SELECT * FROM OrganisationUnitAccessModel WHERE userId = :userId AND organisationUnitId = :organisationUnitId  LIMIT 1")
+    @Query("SELECT OrganisationUnitAccessModel.organisationUnitId, OrganisationUnitAccessModel.metadataAccessId, OrganisationUnitAccessModel.userId FROM OrganisationUnitAccessModel WHERE userId = :userId AND organisationUnitId = :organisationUnitId  LIMIT 1")
     List<OrganisationUnitAccessModel> syncGetOrganisationUnitAccess(String userId, String organisationUnitId);
 
-    @Query("SELECT * FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId " +
+    @Query("SELECT OrganisationUnitModel.id,OrganisationUnitModel.displayName FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId " +
             "INNER JOIN MetadataAccessModel ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE " +
             "OrganisationUnitAccessModel.userId = :userId AND MetadataAccessModel.read = 1" )
     Flowable<List<OrganisationUnitModel>> getOrganisationUnit(String userId);
 
 
-    @Query("SELECT * FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId " +
+    @Query("SELECT OrganisationUnitModel.id,OrganisationUnitModel.displayName FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId " +
             "INNER JOIN MetadataAccessModel ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE " +
             "OrganisationUnitAccessModel.userId = :userId AND MetadataAccessModel.read = 1" )
     List<OrganisationUnitModel> syncGetOrganisationUnit(String userId);

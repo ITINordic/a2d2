@@ -54,6 +54,6 @@ public interface OrganisationUnitDao {
     List<OrganisationUnitModel> syncGetOrgUnit(String id);
 
     @Update
-    public void updateOrganisationUnitModel(OrganisationUnitModel organisationUnitModel);
+    void updateOrganisationUnitModel(OrganisationUnitModel organisationUnitModel);
 
 }
