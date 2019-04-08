@@ -8,6 +8,6 @@ import retrofit2.http.Query;
 public interface TrackedEntityInstanceService {
 
     @GET("api/trackedEntityInstances")
-    Flowable<Response<TrackedEntityInstanceList>> getUserTrackedEntityInstances(@Query("fields" ) String fields, @Query("ouMode" ) String ouMode);
+    Flowable<Response<TrackedEntityInstanceList>> getUserTrackedEntityInstances(@Query("fields" ) String fields, @Query("ou" ) String ou);
 
 }

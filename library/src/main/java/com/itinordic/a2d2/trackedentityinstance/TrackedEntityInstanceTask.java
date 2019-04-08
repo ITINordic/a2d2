@@ -5,6 +5,6 @@ import retrofit2.Response;
 
 public interface TrackedEntityInstanceTask {
 
-    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstances(String fields, String ouMode);
+    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstances(String fields, String ou);
 
 }

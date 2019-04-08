@@ -42,12 +42,12 @@ public interface OrganisationUnitAccessDao {
 
     @Query("SELECT * FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId " +
             "INNER JOIN MetadataAccessModel ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE " +
-            "OrganisationUnitAccessModel.userId = :userId AND MetadataAccessModel.read = 1 AND MetadataAccessModel.write = 1" )
-    public Flowable<List<OrganisationUnitModel>> getOrganisationUnit(String userId);
+            "OrganisationUnitAccessModel.userId = :userId AND MetadataAccessModel.read = 1" )
+    Flowable<List<OrganisationUnitModel>> getOrganisationUnit(String userId);
 
 
     @Query("SELECT * FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId " +
             "INNER JOIN MetadataAccessModel ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE " +
-            "OrganisationUnitAccessModel.userId = :userId AND MetadataAccessModel.read = 1 AND MetadataAccessModel.write = 1 " )
-    public List<OrganisationUnitModel> syncGetOrganisationUnit(String userId);
+            "OrganisationUnitAccessModel.userId = :userId AND MetadataAccessModel.read = 1" )
+    List<OrganisationUnitModel> syncGetOrganisationUnit(String userId);
 }
