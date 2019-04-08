@@ -23,8 +23,7 @@ import androidx.room.Index;
 )
 public class TrackedEntityInstancePhoneNumberValueModel {
 
-    public static final Pattern VALID_PHONE_NUMBER_REGEX = Pattern.compile( "^\\+(?:[0-9].?){4,14}[0-9]$" );
-            //Pattern.compile("/^(\\+(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$/");
+    public static final Pattern VALID_PHONE_NUMBER_REGEX = Pattern.compile("/^(\\+(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$/");
 
     @NonNull
     private String trackedEntityAttributeId;
