@@ -15,7 +15,8 @@ public class TrackedEntityInstanceAttributeValue {
                                                String displayName,
                                                String created,
                                                String valueType,
-                                               String attribute, String value) {
+                                               String attribute,
+                                               String value) {
         this.lastUpdated = lastUpdated;
         this.storedBy = storedBy;
         this.displayName = displayName;

@@ -81,7 +81,7 @@ public class TrackedEntityInstanceUsernameValueModel {
         }
 
         @NonNull
-        public Builder trackedEntityAttrbiuteId(@NonNull String trackedEntityAttributeId){
+        public Builder trackedEntityAttrbiuteId(@NonNull String trackedEntityAttributeId){ //fix spelling mistake
 
             this.trackedEntityAttributeId = trackedEntityAttributeId;
             return this;

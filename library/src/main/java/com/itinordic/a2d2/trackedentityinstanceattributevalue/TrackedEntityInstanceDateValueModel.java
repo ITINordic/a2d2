@@ -1,20 +1,18 @@
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
-
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeModel;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstance;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceModel;
-import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeModel;
 
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Index;
-import androidx.room.PrimaryKey;
 
-@Entity(
-        primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
+@Entity(primaryKeys = { "trackedEntityAttributeId", "trackedEntityInstanceId" },
         foreignKeys = {
                 @ForeignKey(entity = TrackedEntityAttributeModel.class,
                         parentColumns = "id",
@@ -23,9 +21,10 @@ import androidx.room.PrimaryKey;
                 @ForeignKey(entity = TrackedEntityInstanceModel.class,
                         parentColumns = "id",
                         childColumns = "trackedEntityInstanceId"
-                )},indices = { @Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
-public class TrackedEntityInstanceDateTimeValueModel {
+                )}, indices = {@Index("trackedEntityAttributeId"), @Index("trackedEntityInstanceId")})
+public class TrackedEntityInstanceDateValueModel {
 
+    public static final Pattern VALID_DATE_REGEX = Pattern.compile("((?:19|20)\\\\d\\\\d)/(0?[1-9]|1[012])/([12][0-9]|3[01]|0?[1-9])");
 
     @NonNull
     private String trackedEntityAttributeId;
@@ -35,16 +34,6 @@ public class TrackedEntityInstanceDateTimeValueModel {
 
     @NonNull
     private String value;
-
-    public TrackedEntityInstanceDateTimeValueModel(
-                                                   @NonNull String trackedEntityAttributeId,
-                                                   @NonNull String trackedEntityInstanceId,
-                                                   @NonNull String value) {
-        this.trackedEntityAttributeId = trackedEntityAttributeId;
-        this.trackedEntityInstanceId = trackedEntityInstanceId;
-        this.value = value;
-    }
-
 
     @NonNull
     public String getTrackedEntityAttributeId() {
@@ -73,58 +62,67 @@ public class TrackedEntityInstanceDateTimeValueModel {
         this.value = value;
     }
 
-    public static class Builder{
+
+    public TrackedEntityInstanceDateValueModel(@NonNull String trackedEntityAttributeId,
+                                               @NonNull String trackedEntityInstanceId,
+                                               @NonNull String value) {
+        this.trackedEntityAttributeId = trackedEntityAttributeId;
+        this.trackedEntityInstanceId = trackedEntityInstanceId;
+        this.value = value;
+    }
+
+
+    public static class Builder {
 
         private String trackedEntityAttributeId;
-        private  String trackedEntityInstanceId;
+        private String trackedEntityInstanceId;
         private String value;
 
+
         public Builder() {
-            //empty constructor
+            //Empty constructor
         }
 
-
         @NonNull
-        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId){
+        public Builder trackedEntityAttributeId(@NonNull String trackedEntityAttributeId) {
             this.trackedEntityAttributeId = trackedEntityAttributeId;
-            return  this;
+            return this;
         }
+
         @NonNull
-        public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId){
+        public Builder trackedEntityInstanceId(@NonNull String trackedEntityInstanceId) {
             this.trackedEntityInstanceId = trackedEntityInstanceId;
             return this;
-
         }
 
         @NonNull
-        public Builder value(@NonNull String value){
+        public Builder value(String value) {
             this.value = value;
             return this;
-
         }
 
-        public TrackedEntityInstanceDateTimeValueModel build(){
+        public TrackedEntityInstanceDateValueModel build() {
 
-            if ( trackedEntityAttributeId == null) {
+            if (trackedEntityAttributeId == null) {
                 throw new IllegalStateException("trackedEntityAttributeId must be set");
 
             }
-            if ( trackedEntityInstanceId == null) {
+            if (trackedEntityInstanceId == null) {
                 throw new IllegalStateException("trackedEntityInstanceId must be set");
 
             }
-            if ( value == null) {
-                throw new IllegalStateException("Value  must be set");
-            }
 
-            return new TrackedEntityInstanceDateTimeValueModel(
+            if (!value.matches(VALID_DATE_REGEX.pattern()))
+                throw new IllegalStateException("Date format incorrect.");
+
+            return new TrackedEntityInstanceDateValueModel(
                     trackedEntityAttributeId,
                     trackedEntityInstanceId,
                     value
             );
         }
+
+    }
     }
 
-
-}
 
