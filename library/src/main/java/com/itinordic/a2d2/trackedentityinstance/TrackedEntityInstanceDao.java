@@ -27,18 +27,22 @@ public interface TrackedEntityInstanceDao {
     @Query("SELECT * FROM TrackedEntityInstanceModel")
     Flowable<List<TrackedEntityInstanceModel>> getTrackedEntityInstances();
 
+    @Query("SELECT * FROM TrackedEntityInstanceModel WHERE organisationUnitId IN " +
+            "(SELECT OrganisationUnitModel.id FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel " +
+            "ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId INNER JOIN MetadataAccessModel " +
+            "ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE OrganisationUnitAccessModel.userId = :userId " +
+            "AND MetadataAccessModel.read = 1 OR MetadataAccessModel.write = 1)" +
+            " AND trackedEntityTypeId = :trackedEntityTypeId")
+    Flowable<List<TrackedEntityInstanceModel>> getTrackedEntityInstancesByTypeIdForUserId(String userId, String trackedEntityTypeId);
 
     @Query("SELECT * FROM TrackedEntityInstanceModel WHERE organisationUnitId IN " +
             "(SELECT OrganisationUnitModel.id FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel " +
             "ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId INNER JOIN MetadataAccessModel " +
             "ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE OrganisationUnitAccessModel.userId = :userId " +
-            "AND MetadataAccessModel.read = 1 AND MetadataAccessModel.write = 1)" +
-            "AND trackedEntityTypeId IN (SELECT TrackedEntityTypeModel.id FROM TrackedEntityTypeModel " +
-            "INNER JOIN user_tracked_entity_type_access_join_model " +
-            "ON TrackedEntityTypeModel.id = user_tracked_entity_type_access_join_model.trackedEntityTypeId " +
-            "INNER JOIN DataAccessModel ON user_tracked_entity_type_access_join_model.metadataAccessId = DataAccessModel.metadataAccessId " +
-            "WHERE userId = :userId AND DataAccessModel.read = 1 AND DataAccessModel.write = 1 AND trackedEntityTypeId = :trackedEntityTypeId)")
-    Flowable<List<TrackedEntityInstanceModel>> getTrackedEntityInstancesByTypeIdForUserId(String trackedEntityTypeId, String userId);
+            "AND MetadataAccessModel.read = 1 OR MetadataAccessModel.write = 1)" +
+            " AND trackedEntityTypeId = :trackedEntityTypeId")
+    List<TrackedEntityInstanceModel> syncGetTrackedEntityInstancesByTypeIdForUserId(String userId, String trackedEntityTypeId);
+
 
     @Query("SELECT * FROM TrackedEntityInstanceModel WHERE id = :id LIMIT 1")
     Flowable<List<TrackedEntityInstanceModel>> getTrackedEntityInstancesById(String id);
@@ -50,7 +54,7 @@ public interface TrackedEntityInstanceDao {
             "(SELECT OrganisationUnitModel.id FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel " +
             "ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId INNER JOIN MetadataAccessModel " +
             "ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE OrganisationUnitAccessModel.userId = :userId " +
-            "AND MetadataAccessModel.read = 1 AND MetadataAccessModel.write = 1)" +
+            "AND MetadataAccessModel.read = 1 OR MetadataAccessModel.write = 1)" +
             "AND trackedEntityTypeId IN (SELECT TrackedEntityTypeModel.id FROM TrackedEntityTypeModel " +
             "INNER JOIN user_tracked_entity_type_access_join_model " +
             "ON TrackedEntityTypeModel.id = user_tracked_entity_type_access_join_model.trackedEntityTypeId " +
@@ -62,7 +66,7 @@ public interface TrackedEntityInstanceDao {
             "(SELECT OrganisationUnitModel.id FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel " +
             "ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId INNER JOIN MetadataAccessModel " +
             "ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE OrganisationUnitAccessModel.userId = :userId " +
-            "AND MetadataAccessModel.read = 1 AND MetadataAccessModel.write = 1)" +
+            "AND MetadataAccessModel.read = 1 OR MetadataAccessModel.write = 1)" +
             "AND trackedEntityTypeId IN (SELECT TrackedEntityTypeModel.id FROM TrackedEntityTypeModel " +
             "INNER JOIN user_tracked_entity_type_access_join_model " +
             "ON TrackedEntityTypeModel.id = user_tracked_entity_type_access_join_model.trackedEntityTypeId " +
