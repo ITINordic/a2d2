@@ -9,11 +9,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
     }
     buildTypes {
         release {
@@ -51,10 +46,8 @@ dependencies {
     implementation "com.google.dagger:dagger:${libraries.dagger}"
     annotationProcessor "com.google.dagger:dagger-compiler:${libraries.daggercompiler}"
 
-    // Room
-    implementation "androidx.room:room-runtime:${libraries.room}"
-    annotationProcessor "androidx.room:room-compiler:${libraries.room}"
-    implementation "androidx.room:room-rxjava2:${libraries.room}"
-    
+    implementation "androidx.annotation:annotation:${libraries.annotations}"
+
+
 
 }
