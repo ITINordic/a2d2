@@ -24,6 +24,9 @@ public interface TrackedEntityInstanceDao {
     @Update
     void update(TrackedEntityInstanceModel trackedEntityInstanceModel);
 
+    @Query("SELECT * FROM TrackedEntityInstanceModel")
+    Flowable<List<TrackedEntityInstanceModel>> getTrackedEntityInstances();
+
 
     @Query("SELECT * FROM TrackedEntityInstanceModel WHERE organisationUnitId IN " +
             "(SELECT OrganisationUnitModel.id FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel " +
@@ -54,5 +57,20 @@ public interface TrackedEntityInstanceDao {
             "INNER JOIN DataAccessModel ON user_tracked_entity_type_access_join_model.metadataAccessId = DataAccessModel.metadataAccessId " +
             "WHERE userId = :userId AND DataAccessModel.read = 1 AND DataAccessModel.write = 1)")
     Flowable<List<TrackedEntityInstanceModel>> getUserTrackedEntityInstances(String userId);
+
+    @Query("SELECT * FROM TrackedEntityInstanceModel WHERE organisationUnitId IN " +
+            "(SELECT OrganisationUnitModel.id FROM OrganisationUnitModel INNER JOIN OrganisationUnitAccessModel " +
+            "ON OrganisationUnitModel.id = OrganisationUnitAccessModel.organisationUnitId INNER JOIN MetadataAccessModel " +
+            "ON MetadataAccessModel.id = OrganisationUnitAccessModel.metadataAccessId WHERE OrganisationUnitAccessModel.userId = :userId " +
+            "AND MetadataAccessModel.read = 1 AND MetadataAccessModel.write = 1)" +
+            "AND trackedEntityTypeId IN (SELECT TrackedEntityTypeModel.id FROM TrackedEntityTypeModel " +
+            "INNER JOIN user_tracked_entity_type_access_join_model " +
+            "ON TrackedEntityTypeModel.id = user_tracked_entity_type_access_join_model.trackedEntityTypeId " +
+            "INNER JOIN DataAccessModel ON user_tracked_entity_type_access_join_model.metadataAccessId = DataAccessModel.metadataAccessId " +
+            "WHERE userId = :userId AND DataAccessModel.read = 1 AND DataAccessModel.write = 1)")
+    List<TrackedEntityInstanceModel> syncGetUserTrackedEntityInstances(String userId);
+
+    @Query("SELECT * FROM TrackedEntityInstanceModel")
+    List<TrackedEntityInstanceModel> syncGetTrackedEntityInstances();
 
 }
