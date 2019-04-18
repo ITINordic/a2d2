@@ -13,9 +13,11 @@ public class TrackedEntityAttribute {
 
     public final String lastUpdated;
     public final String id;
+    public final String code;
     public final String created;
     public final String name;
     public final String shortName;
+    public final String description;
     public final String aggregationType;
     public final boolean programScope;
     public final boolean displayInListNoProgram;
@@ -30,12 +32,14 @@ public class TrackedEntityAttribute {
     public final boolean optionSetValue;
     public final OptionSet optionSet;
 
-    public TrackedEntityAttribute(String lastUpdated, String id, String created, String name, String shortName, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique, MetadataAccess access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
+    public TrackedEntityAttribute(String lastUpdated, String id, String code, String created, String name, String shortName, String description, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique, MetadataAccess access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
         this.lastUpdated = lastUpdated;
         this.id = id;
+        this.code = code;
         this.created = created;
         this.name = name;
         this.shortName = shortName;
+        this.description = description;
         this.aggregationType = aggregationType;
         this.programScope = programScope;
         this.displayInListNoProgram = displayInListNoProgram;
