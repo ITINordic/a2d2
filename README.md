@@ -6,7 +6,7 @@ To use it one would need to have some knowledge of asynchronous coding using RXJ
 
 # How to set up your project to use the library
 
-You can simply create an instance of the library in your project by passing an your instance of an okhttpclient and url of your instance to the a2d2  Builder class. E.g
+You can simply create an instance of the library in your project by passing in your instance of okhttpclient and url of your instance to the a2d2  Builder class. E.g
 
 a2d2API api = new a2d2.Builder()
                 .serverUrl(HttpUrl.parse(resourceProvider.getString(R.string.primary_url)))
@@ -19,11 +19,11 @@ api.userTaskBuilder().authenticate(username, password);
 
 You will get the User object from the api which you can store in a local database. We do not recommend storage of the password and rather we encourage password based authentication only at initial login in, from which point we have created other 'Task' objects to initialise and retrieve access tokens. We are in beta state with limited documentation. Currently there is an OAuth2 client that can be created at login, and should be used for subsequent calls. We understand DHIS2 supports the sharing of a single client across devices and this should be improved shortly.
 
-Using this API, it is possible to retrieve metadata on programs and events and also to retrieve tracked entity instances. It is easily extensible and is open source. We have not versioned the api calls and it is currently working with 2.30, and 2.31. We have also not seen an incompatibility issues with 2.29. Either way, the simple architecture makes it possibe for others to use.
+Using this API, it is possible to retrieve metadata on programs and events and also to retrieve tracked entity instances. It is easily extensible and is open source. We have not versioned the api calls and it is currently working with 2.30, and 2.31. We have also not seen an incompatibility issues with 2.29. Either way, the simple architecture makes it possibe for others to use and adapt.
 
 This is the first in a series of libraries which we hope will be useful to the community. We currently continue to actively develop the library. On how we implement it in our projects, we encourage a dependency injection framework such as dagger.
 
-To use the library in a project you can add the following dependency:
+To use the compiled library in a project you can add the following dependency:
 repository - currently in snapshot with beta coming soon.
 
         maven {
@@ -32,7 +32,7 @@ repository - currently in snapshot with beta coming soon.
 
 Gradle:
 
-    implementation "com.itinordic:a2d2:version"
+    implementation "com.itinordic:a2d2:${version}"
     
 
 
