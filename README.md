@@ -23,4 +23,17 @@ Using this API, it is possible to retrieve metadata on programs and events and a
 
 This is the first in a series of libraries which we hope will be useful to the community. We currently continue to actively develop the library. On how we implement it in our projects, we encourage a dependency injection framework such as dagger.
 
+To use the library in a project you can add the following dependency:
+repository - currently in snapshot with beta coming soon.
+
+        maven {
+            url("https://oss.sonatype.org/content/repositories/snapshots")
+        }
+
+Gradle:
+
+    implementation "com.itinordic:a2d2:version"
+    
+
+
 Happy coding!
