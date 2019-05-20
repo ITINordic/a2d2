@@ -26,16 +26,29 @@ package com.itinordic.a2d2.organisationunit;
 
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 
+import java.util.List;
+
 public class OrganisationUnit {
 
     public final String id;
+    public final String name;
     public final String displayName;
     public final MetadataAccess access;
+    public final String level;
+    public final OrganisationUnit parent;
+    public final List<OrganisationUnit> children;
+    public final String code;
+    public final boolean leaf;
 
-
-    public OrganisationUnit(String id, String displayName, MetadataAccess access) {
+    public OrganisationUnit(String id, String name, String displayName, MetadataAccess access, String level, OrganisationUnit parent, List<OrganisationUnit> children, String code, boolean leaf) {
         this.id = id;
+        this.name = name;
         this.displayName = displayName;
         this.access = access;
+        this.level = level;
+        this.parent = parent;
+        this.children = children;
+        this.code = code;
+        this.leaf = leaf;
     }
 }
