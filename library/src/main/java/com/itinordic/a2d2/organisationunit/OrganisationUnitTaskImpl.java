@@ -91,6 +91,11 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
         return organisationUnitService.getUserOrganisationUnitList(userId);
     }
 
+    @Override
+    public Flowable<Response<OrganisationUnit>> getOrganisationUnit(String organisationUnitUid) {
+        return organisationUnitService.getOrganisationUnit(organisationUnitUid);
+    }
+
     //builder that returns a new UserTask instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;

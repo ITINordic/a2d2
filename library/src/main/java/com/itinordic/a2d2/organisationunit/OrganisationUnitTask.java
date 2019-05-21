@@ -43,4 +43,9 @@ public interface OrganisationUnitTask {
     Observable<Response<List<BaseIdentifiableObject>>> getOrganisationUnits(String username, String password, List<String> organisationUnitUids);
 
     Flowable<Response<OrganisationUnitList>> getUserOrganisationUnitList(String userId);
+
+    Flowable<Response<OrganisationUnit>> getOrganisationUnit(String organisationUnitUid);
+
+
+
 }

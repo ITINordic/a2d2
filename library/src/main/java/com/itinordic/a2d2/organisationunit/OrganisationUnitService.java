@@ -52,4 +52,7 @@ public interface OrganisationUnitService {
 
     @GET("api/users/{userId}/organisationUnits")
     Flowable<Response<OrganisationUnitList>> getUserOrganisationUnitList(@Path("userId") String userId);
+
+    @GET("api/organisationUnits/{id}")
+    Flowable<Response<OrganisationUnit>> getOrganisationUnit(@Path("id") String organisationUnitUid);
 }
