@@ -1,3 +1,7 @@
+package com.itinordic.a2d2.programstage;
+
+import androidx.annotation.NonNull;
+
 /*
  *BSD 2-Clause License
  *
@@ -21,35 +25,59 @@
  *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
  *THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.itinordic.a2d2.programstagedataelement;
 
-import com.itinordic.a2d2.common.BaseIdentifiableObject;
-import com.itinordic.a2d2.metadataaccess.MetadataAccess;
+import com.itinordic.a2d2.a2d2Component;
+
+import javax.inject.Inject;
+
+import io.reactivex.Flowable;
+import retrofit2.Response;
 
 /**
- * Created by regnatpopulus on 27/09/2018.
+ * Created by regnatpopulus on 2019-05-27.
  * dev@itinordic.com
  */
-public class ProgramStageDataElement {
-    public final String lastUpdated;
-    public final String id;
-    public final String created;
-    public final String displayInReports;
-    public final String renderOptionsAsRadio;
-    public final String compulsory;
-    public final MetadataAccess access;
-    public final BaseIdentifiableObject programStage;
-    public final BaseIdentifiableObject dataElement;
+public class ProgramStageTaskImpl implements ProgramStageTask {
 
-    public ProgramStageDataElement(String lastUpdated, String id, String created, String displayInReports, String renderOptionsAsRadio, String compulsory, MetadataAccess access, BaseIdentifiableObject programStage, BaseIdentifiableObject dataElement) {
-        this.lastUpdated = lastUpdated;
-        this.id = id;
-        this.created = created;
-        this.displayInReports = displayInReports;
-        this.renderOptionsAsRadio = renderOptionsAsRadio;
-        this.compulsory = compulsory;
-        this.access = access;
-        this.programStage = programStage;
-        this.dataElement = dataElement;
+    @Inject
+    ProgramStageService programStageService;
+
+    private a2d2Component a2d2component;
+
+
+    public ProgramStageTaskImpl(a2d2Component component) {
+        a2d2component.programStageComponent().build().inject(this);
     }
+
+    @Override
+    public Flowable<Response<ProgramStage>> getProgramStage(String programStageUid) {
+        return programStageService.getProgramStage(programStageUid);
+    }
+
+
+    //builder that returns a new ProgramStageTask instance when it is passed a URL
+    public static class Builder {
+        private a2d2Component component;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder a2d2Component(@NonNull a2d2Component component) {
+            this.component = component;
+            return this;
+        }
+
+        public ProgramStageTaskImpl build() {
+
+            if (component == null) {
+                throw new IllegalStateException("a2d2 component is null");
+            }
+
+            return new ProgramStageTaskImpl(component);
+        }
+
+    }
+
 }

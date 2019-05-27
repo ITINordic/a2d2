@@ -28,11 +28,16 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.dataelement.DataElementComponent;
 import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
 import com.itinordic.a2d2.option.OptionComponent;
 import com.itinordic.a2d2.optionset.OptionSetComponent;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
 import com.itinordic.a2d2.program.ProgramComponent;
+import com.itinordic.a2d2.programrule.ProgramRuleComponent;
+import com.itinordic.a2d2.programruleaction.ProgramRuleActionComponent;
+import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableComponent;
+import com.itinordic.a2d2.programstage.ProgramStageComponent;
 import com.itinordic.a2d2.token.AccessTokenComponent;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeComponent;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstance;
@@ -65,5 +70,10 @@ public interface a2d2Component {
     OptionSetComponent.Builder optionSetComponent();
     OptionComponent.Builder optionComponent();
     TrackedEntityInstanceComponent.Builder trackedEntityInstanceComponent();
+    ProgramStageComponent.Builder programStageComponent();
+    DataElementComponent.Builder dataElementComponent();
+    ProgramRuleComponent.Builder programRuleComponent();
+    ProgramRuleActionComponent.Builder programRuleActionComponent();
+    ProgramRuleVariableComponent.Builder programRuleVariableComponent();
 
 }

@@ -31,6 +31,8 @@ package com.itinordic.a2d2;
 
 import androidx.annotation.NonNull;
 
+import com.itinordic.a2d2.dataelement.DataElementTask;
+import com.itinordic.a2d2.dataelement.DataElementTaskImpl;
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTaskImpl;
 import com.itinordic.a2d2.option.OptionTask;
@@ -41,6 +43,14 @@ import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTaskImpl;
 import com.itinordic.a2d2.program.ProgramTask;
 import com.itinordic.a2d2.program.ProgramTaskImpl;
+import com.itinordic.a2d2.programrule.ProgramRuleTask;
+import com.itinordic.a2d2.programrule.ProgramRuleTaskImpl;
+import com.itinordic.a2d2.programruleaction.ProgramRuleActionTask;
+import com.itinordic.a2d2.programruleaction.ProgramRuleActionTaskImpl;
+import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableTask;
+import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableTaskImpl;
+import com.itinordic.a2d2.programstage.ProgramStageTask;
+import com.itinordic.a2d2.programstage.ProgramStageTaskImpl;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.token.AccessTokenTaskImpl;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTask;
@@ -170,5 +180,28 @@ public final class a2d2 implements a2d2API {
         return new TrackedEntityInstanceTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
+    @Override
+    public ProgramStageTask programStageTaskBuilder() {
+        return new ProgramStageTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
 
+    @Override
+    public DataElementTask dataElementTaskBuilder() {
+        return new DataElementTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    @Override
+    public ProgramRuleTask programRuleTaskBuilder() {
+        return new ProgramRuleTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    @Override
+    public ProgramRuleActionTask programRuleActionTaskBuilder() {
+        return new ProgramRuleActionTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    @Override
+    public ProgramRuleVariableTask programRuleVariableTaskBuilder() {
+        return new ProgramRuleVariableTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
 }

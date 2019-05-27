@@ -24,6 +24,7 @@
 
 package com.itinordic.a2d2.programstage;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 import com.itinordic.a2d2.programstagedataelement.ProgramStageDataElement;
 
@@ -56,9 +57,10 @@ public class ProgramStage {
     public final String minDaysFromStart;
     public final String dueDateLabel;
     public final MetadataAccess access;
+    public final BaseIdentifiableObject program;
     public final List<ProgramStageDataElement> programStageDataElements;
 
-    public ProgramStage(String lastUpdated, String id, String created, String name, String executionDateLabel, String allowGenerateNextVisit, String validCompleteOnly, String preGenerateUID, String displayName, String publicAccess, String externalAccess, String openAfterEnrollment, String repeatable, String formType, String remindCompleted, String displayGenerateEventBox, String generatedByEnrollmentDate, String hideDueDate, String blockEntryForm, String minDaysFromStart, String dueDateLabel, MetadataAccess access, List<ProgramStageDataElement> programStageDataElements) {
+    public ProgramStage(String lastUpdated, String id, String created, String name, String executionDateLabel, String allowGenerateNextVisit, String validCompleteOnly, String preGenerateUID, String displayName, String publicAccess, String externalAccess, String openAfterEnrollment, String repeatable, String formType, String remindCompleted, String displayGenerateEventBox, String generatedByEnrollmentDate, String hideDueDate, String blockEntryForm, String minDaysFromStart, String dueDateLabel, MetadataAccess access, BaseIdentifiableObject program, List<ProgramStageDataElement> programStageDataElements) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -81,6 +83,7 @@ public class ProgramStage {
         this.minDaysFromStart = minDaysFromStart;
         this.dueDateLabel = dueDateLabel;
         this.access = access;
+        this.program = program;
         this.programStageDataElements = programStageDataElements;
     }
 }

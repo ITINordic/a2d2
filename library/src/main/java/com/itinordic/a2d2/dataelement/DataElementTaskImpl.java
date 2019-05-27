@@ -22,45 +22,47 @@
  *THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package com.itinordic.a2d2.program;
+package com.itinordic.a2d2.dataelement;
+
+import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import androidx.annotation.NonNull;
 import io.reactivex.Flowable;
 import retrofit2.Response;
 
 /**
- * Created by regnatpopulus on 28/09/2018.
+ * Created by regnatpopulus on 2019-05-27.
  * dev@itinordic.com
  */
-public class ProgramTaskImpl implements ProgramTask {
+public class DataElementTaskImpl implements DataElementTask {
+
 
     @Inject
-    ProgramService programService;
+    DataElementService dataElementService;
 
     private a2d2Component a2d2component;
 
-    public ProgramTaskImpl(a2d2Component a2d2component) {
-        a2d2component.programComponent().build().inject(this);
+
+    public DataElementTaskImpl(a2d2Component component) {
+        a2d2component.dataElementComponent().build().inject(this);
+
     }
 
     @Override
-    public Flowable<Response<UserPrograms>> getUserPrograms(String fields, boolean paging) {
-        return programService.getUserPrograms(fields,paging);
+    public Flowable<Response<DataElement>> getDataEelements(String fields, boolean paging) {
+        return dataElementService.getDataEelements(fields,paging);
     }
 
     @Override
-    public Flowable<Response<Program>> getProgram(String programUid) {
-        return programService.getProgram(programUid);
+    public Flowable<Response<DataElement>> getDataElement(String dataElementUid) {
+        return dataElementService.getDataElement(dataElementUid);
     }
 
 
-    //builder that returns a new ProgramTask instance when it is passed a URL
+    //builder that returns a new DataElementTask instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;
 
@@ -74,14 +76,15 @@ public class ProgramTaskImpl implements ProgramTask {
             return this;
         }
 
-        public ProgramTaskImpl build() {
+        public DataElementTask build() {
 
             if (component == null) {
                 throw new IllegalStateException("a2d2 component is null");
             }
 
-            return new ProgramTaskImpl(component);
+            return new DataElementTaskImpl(component);
         }
-
     }
+
+
 }

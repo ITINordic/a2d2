@@ -28,6 +28,7 @@
 
 package com.itinordic.a2d2.program;
 
+import com.itinordic.a2d2.common.BaseIdentifiableObject;
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 import com.itinordic.a2d2.programstage.ProgramStage;
 import com.itinordic.a2d2.programtrackedentityattribute.ProgramTrackedEntityAttribute;
@@ -55,12 +56,18 @@ public class Program {
     public final String displayShortName;
     public final boolean withoutRegistration;
     public final String programType;
+    public final boolean displayIncidentDate;
+    public final String expiryDays;
+    public final BaseIdentifiableObject categoryCombo;
+    public final BaseIdentifiableObject lastUpdatedBy;
     public final MetadataAccess access;
     public final TrackedEntityType trackedEntityType;
+    public final List<BaseIdentifiableObject> programRuleVariables;
     public final List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes;
+    public final List<BaseIdentifiableObject> organisationUnits;
     public final List<ProgramStage> programStages;
 
-    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, String version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, String completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType, MetadataAccess access, TrackedEntityType trackedEntityType, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<ProgramStage> programStages) {
+    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, String version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, String completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType, boolean displayIncidentDate, String expiryDays, BaseIdentifiableObject categoryCombo, BaseIdentifiableObject lastUpdatedBy, MetadataAccess access, TrackedEntityType trackedEntityType, List<BaseIdentifiableObject> programRuleVariables, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<BaseIdentifiableObject> organisationUnits, List<ProgramStage> programStages) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -79,9 +86,15 @@ public class Program {
         this.displayShortName = displayShortName;
         this.withoutRegistration = withoutRegistration;
         this.programType = programType;
+        this.displayIncidentDate = displayIncidentDate;
+        this.expiryDays = expiryDays;
+        this.categoryCombo = categoryCombo;
+        this.lastUpdatedBy = lastUpdatedBy;
         this.access = access;
         this.trackedEntityType = trackedEntityType;
+        this.programRuleVariables = programRuleVariables;
         this.programTrackedEntityAttributes = programTrackedEntityAttributes;
+        this.organisationUnits = organisationUnits;
         this.programStages = programStages;
 
     }

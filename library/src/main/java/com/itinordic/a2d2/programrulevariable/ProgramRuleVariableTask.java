@@ -21,35 +21,20 @@
  *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
  *THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.itinordic.a2d2.programstagedataelement;
 
-import com.itinordic.a2d2.common.BaseIdentifiableObject;
-import com.itinordic.a2d2.metadataaccess.MetadataAccess;
+package com.itinordic.a2d2.programrulevariable;
+
+import io.reactivex.Flowable;
+import retrofit2.Response;
 
 /**
- * Created by regnatpopulus on 27/09/2018.
+ * Created by regnatpopulus on 2019-05-27.
  * dev@itinordic.com
  */
-public class ProgramStageDataElement {
-    public final String lastUpdated;
-    public final String id;
-    public final String created;
-    public final String displayInReports;
-    public final String renderOptionsAsRadio;
-    public final String compulsory;
-    public final MetadataAccess access;
-    public final BaseIdentifiableObject programStage;
-    public final BaseIdentifiableObject dataElement;
+public interface ProgramRuleVariableTask {
 
-    public ProgramStageDataElement(String lastUpdated, String id, String created, String displayInReports, String renderOptionsAsRadio, String compulsory, MetadataAccess access, BaseIdentifiableObject programStage, BaseIdentifiableObject dataElement) {
-        this.lastUpdated = lastUpdated;
-        this.id = id;
-        this.created = created;
-        this.displayInReports = displayInReports;
-        this.renderOptionsAsRadio = renderOptionsAsRadio;
-        this.compulsory = compulsory;
-        this.access = access;
-        this.programStage = programStage;
-        this.dataElement = dataElement;
-    }
+    Flowable<Response<ProgramRuleVariable>> getProgramRuleVariables(String fields, boolean paging);
+
+    Flowable<Response<ProgramRuleVariable>> getProgramRuleVariable(String programRuleVariableUid);
+
 }

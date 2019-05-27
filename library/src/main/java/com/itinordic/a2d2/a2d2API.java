@@ -28,11 +28,16 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.dataelement.DataElementTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.option.OptionTask;
 import com.itinordic.a2d2.optionset.OptionSetTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.program.ProgramTask;
+import com.itinordic.a2d2.programrule.ProgramRuleTask;
+import com.itinordic.a2d2.programruleaction.ProgramRuleActionTask;
+import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableTask;
+import com.itinordic.a2d2.programstage.ProgramStageTask;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTask;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceTask;
@@ -68,5 +73,15 @@ public interface a2d2API {
     OptionTask optionTaskBuilder();
 
     TrackedEntityInstanceTask trackedEntityInstanceTaskBuilder();
+
+    ProgramStageTask programStageTaskBuilder();
+
+    DataElementTask dataElementTaskBuilder();
+
+    ProgramRuleTask programRuleTaskBuilder();
+
+    ProgramRuleActionTask programRuleActionTaskBuilder();
+
+    ProgramRuleVariableTask programRuleVariableTaskBuilder();
 
 }

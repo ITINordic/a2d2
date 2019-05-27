@@ -22,25 +22,64 @@
  *THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package com.itinordic.a2d2.program;
+package com.itinordic.a2d2.programrule;
+
+import androidx.annotation.NonNull;
+
+import com.itinordic.a2d2.a2d2Component;
+
+import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 import retrofit2.Response;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 /**
- * Created by regnatpopulus on 27/09/2018.
+ * Created by regnatpopulus on 2019-05-27.
  * dev@itinordic.com
  */
+public class ProgramRuleTaskImpl implements ProgramRuleTask {
 
-public interface ProgramService {
+    @Inject
+    ProgramRuleService programRuleService;
 
-    @GET("api/programs")
-    Flowable<Response<UserPrograms>> getUserPrograms(@Query("fields" ) String fields,  @Query("paging" ) boolean paging);
+    private a2d2Component a2d2component;
 
-    @GET("api/programs/{id}")
-    Flowable<Response<Program>> getProgram(@Path("id") String programUid);
+    public ProgramRuleTaskImpl(a2d2Component component) {
+        a2d2component.programRuleComponent().build().inject(this);
+    }
 
+    @Override
+    public Flowable<Response<ProgramRule>> getProgramRules(String fields, boolean paging) {
+        return programRuleService.getProgramRules(fields,paging);
+    }
+
+    @Override
+    public Flowable<Response<ProgramRule>> getProgramRule(String programUid) {
+        return programRuleService.getProgramRule(programUid);
+    }
+
+    //builder that returns a new ProgramRuleTask instance when it is passed a URL
+    public static class Builder {
+        private a2d2Component component;
+
+        public Builder() {
+            // empty constructor
+        }
+
+        @NonNull
+        public Builder a2d2Component(@NonNull a2d2Component component) {
+            this.component = component;
+            return this;
+        }
+
+        public ProgramRuleTask build() {
+
+            if (component == null) {
+                throw new IllegalStateException("a2d2 component is null");
+            }
+
+            return new ProgramRuleTaskImpl(component);
+        }
+
+    }
 }

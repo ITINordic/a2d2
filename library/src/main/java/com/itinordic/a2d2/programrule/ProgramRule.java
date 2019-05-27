@@ -21,35 +21,39 @@
  *IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
  *THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
-package com.itinordic.a2d2.programstagedataelement;
+
+package com.itinordic.a2d2.programrule;
 
 import com.itinordic.a2d2.common.BaseIdentifiableObject;
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 
+import java.util.List;
+
 /**
- * Created by regnatpopulus on 27/09/2018.
+ * Created by regnatpopulus on 2019-05-27.
  * dev@itinordic.com
  */
-public class ProgramStageDataElement {
+public class ProgramRule {
+
     public final String lastUpdated;
     public final String id;
     public final String created;
-    public final String displayInReports;
-    public final String renderOptionsAsRadio;
-    public final String compulsory;
+    public final String name;
+    public final String displayName;
+    public final String condition;
     public final MetadataAccess access;
-    public final BaseIdentifiableObject programStage;
-    public final BaseIdentifiableObject dataElement;
+    public final BaseIdentifiableObject program;
+    public final List<BaseIdentifiableObject> programRuleActions;
 
-    public ProgramStageDataElement(String lastUpdated, String id, String created, String displayInReports, String renderOptionsAsRadio, String compulsory, MetadataAccess access, BaseIdentifiableObject programStage, BaseIdentifiableObject dataElement) {
+    public ProgramRule(String lastUpdated, String id, String created, String name, String displayName, String condition, MetadataAccess access, BaseIdentifiableObject program, List<BaseIdentifiableObject> programRuleActions) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
-        this.displayInReports = displayInReports;
-        this.renderOptionsAsRadio = renderOptionsAsRadio;
-        this.compulsory = compulsory;
+        this.name = name;
+        this.displayName = displayName;
+        this.condition = condition;
         this.access = access;
-        this.programStage = programStage;
-        this.dataElement = dataElement;
+        this.program = program;
+        this.programRuleActions = programRuleActions;
     }
 }

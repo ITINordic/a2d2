@@ -22,45 +22,43 @@
  *THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  **/
 
-package com.itinordic.a2d2.program;
+package com.itinordic.a2d2.programruleaction;
+
+import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
-import androidx.annotation.NonNull;
 import io.reactivex.Flowable;
 import retrofit2.Response;
 
 /**
- * Created by regnatpopulus on 28/09/2018.
+ * Created by regnatpopulus on 2019-05-27.
  * dev@itinordic.com
  */
-public class ProgramTaskImpl implements ProgramTask {
+public class ProgramRuleActionTaskImpl implements ProgramRuleActionTask {
 
     @Inject
-    ProgramService programService;
+    ProgramRuleActionService programRuleActionService;
 
     private a2d2Component a2d2component;
 
-    public ProgramTaskImpl(a2d2Component a2d2component) {
-        a2d2component.programComponent().build().inject(this);
+    public ProgramRuleActionTaskImpl(a2d2Component component) {
+        a2d2component.programRuleActionComponent().build().inject(this);
     }
 
     @Override
-    public Flowable<Response<UserPrograms>> getUserPrograms(String fields, boolean paging) {
-        return programService.getUserPrograms(fields,paging);
+    public Flowable<Response<ProgramRuleAction>> getProgramRuleActions(String fields, boolean paging) {
+        return programRuleActionService.getProgramRuleActions(fields,paging);
     }
 
     @Override
-    public Flowable<Response<Program>> getProgram(String programUid) {
-        return programService.getProgram(programUid);
+    public Flowable<Response<ProgramRuleAction>> getProgramRuleAction(String programRuleActionUid) {
+        return programRuleActionService.getProgramRuleAction(programRuleActionUid);
     }
 
-
-    //builder that returns a new ProgramTask instance when it is passed a URL
+    //builder that returns a new ProgramRuleActionTask instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;
 
@@ -74,13 +72,13 @@ public class ProgramTaskImpl implements ProgramTask {
             return this;
         }
 
-        public ProgramTaskImpl build() {
+        public ProgramRuleActionTask build() {
 
             if (component == null) {
                 throw new IllegalStateException("a2d2 component is null");
             }
 
-            return new ProgramTaskImpl(component);
+            return new ProgramRuleActionTaskImpl(component);
         }
 
     }
