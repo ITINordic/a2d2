@@ -42,10 +42,7 @@ public class ProgramStageTaskImpl implements ProgramStageTask {
     @Inject
     ProgramStageService programStageService;
 
-    private a2d2Component a2d2component;
-
-
-    public ProgramStageTaskImpl(a2d2Component component) {
+    public ProgramStageTaskImpl(a2d2Component a2d2component) {
         a2d2component.programStageComponent().build().inject(this);
     }
 

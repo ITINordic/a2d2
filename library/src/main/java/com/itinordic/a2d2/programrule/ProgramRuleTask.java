@@ -33,7 +33,7 @@ import retrofit2.Response;
  */
 public interface ProgramRuleTask {
 
-    Flowable<Response<ProgramRule>> getProgramRules(String fields, boolean paging);
+    Flowable<Response<ProgramRules>> getProgramRules(String fields, boolean paging);
 
     Flowable<Response<ProgramRule>> getProgramRule(String programRuleUid);
 

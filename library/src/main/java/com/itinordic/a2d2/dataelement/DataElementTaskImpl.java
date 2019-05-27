@@ -43,17 +43,15 @@ public class DataElementTaskImpl implements DataElementTask {
     @Inject
     DataElementService dataElementService;
 
-    private a2d2Component a2d2component;
 
-
-    public DataElementTaskImpl(a2d2Component component) {
+    public DataElementTaskImpl(a2d2Component a2d2component) {
         a2d2component.dataElementComponent().build().inject(this);
 
     }
 
     @Override
-    public Flowable<Response<DataElement>> getDataEelements(String fields, boolean paging) {
-        return dataElementService.getDataEelements(fields,paging);
+    public Flowable<Response<DataElements>> getDataElements(String fields, boolean paging) {
+        return dataElementService.getDataElements(fields,paging);
     }
 
     @Override

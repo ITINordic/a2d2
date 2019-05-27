@@ -37,7 +37,7 @@ import retrofit2.http.Query;
 public interface ProgramRuleActionService {
 
     @GET("api/programRuleActions")
-    Flowable<Response<ProgramRuleAction>> getProgramRuleActions(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+    Flowable<Response<ProgramRuleActions>> getProgramRuleActions(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 
     @GET("api/programRuleActions/{id}")
     Flowable<Response<ProgramRuleAction>> getProgramRuleAction(@Path("id") String programUid);

@@ -42,14 +42,12 @@ public class ProgramRuleTaskImpl implements ProgramRuleTask {
     @Inject
     ProgramRuleService programRuleService;
 
-    private a2d2Component a2d2component;
-
-    public ProgramRuleTaskImpl(a2d2Component component) {
+    public ProgramRuleTaskImpl(a2d2Component a2d2component) {
         a2d2component.programRuleComponent().build().inject(this);
     }
 
     @Override
-    public Flowable<Response<ProgramRule>> getProgramRules(String fields, boolean paging) {
+    public Flowable<Response<ProgramRules>> getProgramRules(String fields, boolean paging) {
         return programRuleService.getProgramRules(fields,paging);
     }
 

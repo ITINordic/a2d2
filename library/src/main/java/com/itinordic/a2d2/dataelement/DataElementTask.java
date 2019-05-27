@@ -33,7 +33,7 @@ import retrofit2.Response;
  */
 public interface DataElementTask {
 
-    Flowable<Response<DataElement>> getDataEelements(String fields, boolean paging);
+    Flowable<Response<DataElements>> getDataElements(String fields, boolean paging);
 
     Flowable<Response<DataElement>> getDataElement(String dataElementUid);
 

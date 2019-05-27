@@ -43,7 +43,6 @@ public class ProgramTaskImpl implements ProgramTask {
     @Inject
     ProgramService programService;
 
-    private a2d2Component a2d2component;
 
     public ProgramTaskImpl(a2d2Component a2d2component) {
         a2d2component.programComponent().build().inject(this);

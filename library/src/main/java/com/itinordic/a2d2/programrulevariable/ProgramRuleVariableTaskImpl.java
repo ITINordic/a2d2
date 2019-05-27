@@ -41,15 +41,15 @@ public class ProgramRuleVariableTaskImpl implements ProgramRuleVariableTask {
 
     @Inject ProgramRuleVariableService programRuleVariableService;
 
-    private a2d2Component a2d2component;
+    public ProgramRuleVariableTaskImpl(a2d2Component a2d2component) {
+        a2d2component.programRuleVariableComponent().build().inject(this);
 
-    public ProgramRuleVariableTaskImpl(a2d2Component component) {
 
     }
 
 
     @Override
-    public Flowable<Response<ProgramRuleVariable>> getProgramRuleVariables(String fields, boolean paging) {
+    public Flowable<Response<ProgramRuleVariables>> getProgramRuleVariables(String fields, boolean paging) {
         return programRuleVariableService.getProgramRuleVariables(fields,paging);
     }
 

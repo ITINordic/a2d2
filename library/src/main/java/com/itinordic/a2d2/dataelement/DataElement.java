@@ -45,14 +45,16 @@ public class DataElement {
     public final String valueType;
     public final String dimensionItem;
     public final String displayFormName;
-    public final String zeroIsSignificant;
+    public final boolean zeroIsSignificant;
+    public final boolean optionSetValue;
     public final String dimensionItemType;
     public final MetadataAccess access;
+    public final BaseIdentifiableObject optionSet;
     public final BaseIdentifiableObject categoryCombo;
     public final BaseIdentifiableObject lastUpdatedBy;
 
 
-    public DataElement(String id, String name, String shortName, String lastUpdated, String domainType, String displayName, String publicAccess, String displayShortName, String valueType, String dimensionItem, String displayFormName, String zeroIsSignificant, String dimensionItemType, BaseIdentifiableObject categoryCombo, MetadataAccess access, BaseIdentifiableObject lastUpdatedBy) {
+    public DataElement(String id, String name, String shortName, String lastUpdated, String domainType, String displayName, String publicAccess, String displayShortName, String valueType, String dimensionItem, String displayFormName, boolean zeroIsSignificant, boolean optionSetValue, String dimensionItemType, BaseIdentifiableObject categoryCombo, MetadataAccess access, BaseIdentifiableObject optionSet, BaseIdentifiableObject lastUpdatedBy) {
         this.id = id;
         this.name = name;
         this.shortName = shortName;
@@ -65,9 +67,11 @@ public class DataElement {
         this.dimensionItem = dimensionItem;
         this.displayFormName = displayFormName;
         this.zeroIsSignificant = zeroIsSignificant;
+        this.optionSetValue = optionSetValue;
         this.dimensionItemType = dimensionItemType;
         this.categoryCombo = categoryCombo;
         this.access = access;
+        this.optionSet = optionSet;
         this.lastUpdatedBy = lastUpdatedBy;
     }
 }

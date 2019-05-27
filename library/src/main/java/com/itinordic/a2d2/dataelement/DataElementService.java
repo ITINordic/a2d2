@@ -37,7 +37,7 @@ import retrofit2.http.Query;
 public interface DataElementService {
 
     @GET("api/dataElements")
-    Flowable<Response<DataElement>> getDataEelements(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+    Flowable<Response<DataElements>> getDataElements(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 
     @GET("api/dataElements/{id}")
     Flowable<Response<DataElement>> getDataElement(@Path("id") String dataElementUid);
