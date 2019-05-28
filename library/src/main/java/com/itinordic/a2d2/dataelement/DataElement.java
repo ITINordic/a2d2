@@ -37,6 +37,7 @@ public class DataElement {
     public final String id;
     public final String name;
     public final String shortName;
+    public final String code;
     public final String lastUpdated;
     public final String domainType;
     public final String displayName;
@@ -54,10 +55,11 @@ public class DataElement {
     public final BaseIdentifiableObject lastUpdatedBy;
 
 
-    public DataElement(String id, String name, String shortName, String lastUpdated, String domainType, String displayName, String publicAccess, String displayShortName, String valueType, String dimensionItem, String displayFormName, boolean zeroIsSignificant, boolean optionSetValue, String dimensionItemType, BaseIdentifiableObject categoryCombo, MetadataAccess access, BaseIdentifiableObject optionSet, BaseIdentifiableObject lastUpdatedBy) {
+    public DataElement(String id, String name, String shortName, String code, String lastUpdated, String domainType, String displayName, String publicAccess, String displayShortName, String valueType, String dimensionItem, String displayFormName, boolean zeroIsSignificant, boolean optionSetValue, String dimensionItemType, BaseIdentifiableObject categoryCombo, MetadataAccess access, BaseIdentifiableObject optionSet, BaseIdentifiableObject lastUpdatedBy) {
         this.id = id;
         this.name = name;
         this.shortName = shortName;
+        this.code = code;
         this.lastUpdated = lastUpdated;
         this.domainType = domainType;
         this.displayName = displayName;
