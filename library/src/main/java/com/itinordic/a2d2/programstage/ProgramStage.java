@@ -39,9 +39,7 @@ public class ProgramStage {
     public final String id;
     public final String created;
     public final String name;
-    public final String executionDateLabel;
     public final boolean allowGenerateNextVisit;
-    public final String validCompleteOnly;
     public final boolean preGenerateUID;
     public final String displayName;
     public final String publicAccess;
@@ -56,19 +54,16 @@ public class ProgramStage {
     public final boolean blockEntryForm;
     public final String minDaysFromStart;
     public final boolean autoGenerateEvent;
-    public final String dueDateLabel;
     public final MetadataAccess access;
     public final BaseIdentifiableObject program;
     public final List<ProgramStageDataElement> programStageDataElements;
 
-    public ProgramStage(String lastUpdated, String id, String created, String name, String executionDateLabel, boolean allowGenerateNextVisit, String validCompleteOnly, boolean preGenerateUID, String displayName, String publicAccess, boolean externalAccess, boolean openAfterEnrollment, boolean repeatable, String formType, boolean remindCompleted, boolean displayGenerateEventBox, boolean generatedByEnrollmentDate, boolean hideDueDate, boolean blockEntryForm, String minDaysFromStart, boolean autoGenerateEvent, String dueDateLabel, MetadataAccess access, BaseIdentifiableObject program, List<ProgramStageDataElement> programStageDataElements) {
+    public ProgramStage(String lastUpdated, String id, String created, String name, boolean allowGenerateNextVisit, boolean preGenerateUID, String displayName, String publicAccess, boolean externalAccess, boolean openAfterEnrollment, boolean repeatable, String formType, boolean remindCompleted, boolean displayGenerateEventBox, boolean generatedByEnrollmentDate, boolean hideDueDate, boolean blockEntryForm, String minDaysFromStart, boolean autoGenerateEvent, MetadataAccess access, BaseIdentifiableObject program, List<ProgramStageDataElement> programStageDataElements) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
         this.name = name;
-        this.executionDateLabel = executionDateLabel;
         this.allowGenerateNextVisit = allowGenerateNextVisit;
-        this.validCompleteOnly = validCompleteOnly;
         this.preGenerateUID = preGenerateUID;
         this.displayName = displayName;
         this.publicAccess = publicAccess;
@@ -83,7 +78,6 @@ public class ProgramStage {
         this.blockEntryForm = blockEntryForm;
         this.minDaysFromStart = minDaysFromStart;
         this.autoGenerateEvent = autoGenerateEvent;
-        this.dueDateLabel = dueDateLabel;
         this.access = access;
         this.program = program;
         this.programStageDataElements = programStageDataElements;
