@@ -37,17 +37,19 @@ public class ProgramStageDataElement {
     public final boolean displayInReports;
     public final boolean renderOptionsAsRadio;
     public final boolean compulsory;
+    public final String sortOrder;
     public final MetadataAccess access;
     public final BaseIdentifiableObject programStage;
     public final BaseIdentifiableObject dataElement;
 
-    public ProgramStageDataElement(String lastUpdated, String id, String created, boolean displayInReports, boolean renderOptionsAsRadio, boolean compulsory, MetadataAccess access, BaseIdentifiableObject programStage, BaseIdentifiableObject dataElement) {
+    public ProgramStageDataElement(String lastUpdated, String id, String created, boolean displayInReports, boolean renderOptionsAsRadio, boolean compulsory, String sortOrder, MetadataAccess access, BaseIdentifiableObject programStage, BaseIdentifiableObject dataElement) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
         this.displayInReports = displayInReports;
         this.renderOptionsAsRadio = renderOptionsAsRadio;
         this.compulsory = compulsory;
+        this.sortOrder = sortOrder;
         this.access = access;
         this.programStage = programStage;
         this.dataElement = dataElement;

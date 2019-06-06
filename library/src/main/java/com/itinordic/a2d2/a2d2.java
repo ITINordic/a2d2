@@ -51,6 +51,8 @@ import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableTask;
 import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableTaskImpl;
 import com.itinordic.a2d2.programstage.ProgramStageTask;
 import com.itinordic.a2d2.programstage.ProgramStageTaskImpl;
+import com.itinordic.a2d2.programstagesection.ProgramStageSectionTask;
+import com.itinordic.a2d2.programstagesection.ProgramStageSectionTaskImpl;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.token.AccessTokenTaskImpl;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTask;
@@ -203,5 +205,10 @@ public final class a2d2 implements a2d2API {
     @Override
     public ProgramRuleVariableTask programRuleVariableTaskBuilder() {
         return new ProgramRuleVariableTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+    @Override
+    public ProgramStageSectionTask programStageSectionTaskBuilder() {
+        return new ProgramStageSectionTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 }

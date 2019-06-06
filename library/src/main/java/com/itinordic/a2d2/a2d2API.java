@@ -38,6 +38,7 @@ import com.itinordic.a2d2.programrule.ProgramRuleTask;
 import com.itinordic.a2d2.programruleaction.ProgramRuleActionTask;
 import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableTask;
 import com.itinordic.a2d2.programstage.ProgramStageTask;
+import com.itinordic.a2d2.programstagesection.ProgramStageSectionTask;
 import com.itinordic.a2d2.token.AccessTokenTask;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeTask;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceTask;
@@ -83,5 +84,7 @@ public interface a2d2API {
     ProgramRuleActionTask programRuleActionTaskBuilder();
 
     ProgramRuleVariableTask programRuleVariableTaskBuilder();
+
+    ProgramStageSectionTask programStageSectionTaskBuilder();
 
 }

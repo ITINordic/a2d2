@@ -38,6 +38,7 @@ import com.itinordic.a2d2.programrule.ProgramRuleComponent;
 import com.itinordic.a2d2.programruleaction.ProgramRuleActionComponent;
 import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableComponent;
 import com.itinordic.a2d2.programstage.ProgramStageComponent;
+import com.itinordic.a2d2.programstagesection.ProgramStageSectionComponent;
 import com.itinordic.a2d2.token.AccessTokenComponent;
 import com.itinordic.a2d2.trackedentityattribute.TrackedEntityAttributeComponent;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstance;
@@ -75,5 +76,6 @@ public interface a2d2Component {
     ProgramRuleComponent.Builder programRuleComponent();
     ProgramRuleActionComponent.Builder programRuleActionComponent();
     ProgramRuleVariableComponent.Builder programRuleVariableComponent();
+    ProgramStageSectionComponent.Builder programStageSectionComponent();
 
 }

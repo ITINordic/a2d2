@@ -48,6 +48,7 @@ public class ApplicationAuthenticator implements Authenticator {
     @Override
     public Request authenticate(Route route, Response response) throws IOException {
         if (response.request().header("Authorization") != null) {
+
             return null; // Give up, we've already failed to authenticate.
         }
 
