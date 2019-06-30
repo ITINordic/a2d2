@@ -44,8 +44,10 @@ public class ProgramRuleVariable {
     public final MetadataAccess access;
     public final BaseIdentifiableObject program;
     public final BaseIdentifiableObject dataElement;
+    public final BaseIdentifiableObject trackedEntityAttribute;
 
-    public ProgramRuleVariable(String lastUpdated, String id, String created, String name, String displayName, String programRuleVariableSourceType, boolean useCodeForOptionSet, MetadataAccess access, BaseIdentifiableObject program, BaseIdentifiableObject dataElement) {
+
+    public ProgramRuleVariable(String lastUpdated, String id, String created, String name, String displayName, String programRuleVariableSourceType, boolean useCodeForOptionSet, MetadataAccess access, BaseIdentifiableObject program, BaseIdentifiableObject dataElement, BaseIdentifiableObject trackedEntityAttribute) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -56,5 +58,6 @@ public class ProgramRuleVariable {
         this.access = access;
         this.program = program;
         this.dataElement = dataElement;
+        this.trackedEntityAttribute = trackedEntityAttribute;
     }
 }
