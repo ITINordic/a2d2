@@ -41,8 +41,9 @@ public class ProgramRuleAction {
     public final MetadataAccess access;
     public final BaseIdentifiableObject programRule;
     public final BaseIdentifiableObject dataElement;
+    public final BaseIdentifiableObject programStageSection;
 
-    public ProgramRuleAction(String lastUpdated, String id, String created, String name, String programRuleActionType, MetadataAccess access, BaseIdentifiableObject programRule, BaseIdentifiableObject dataElement) {
+    public ProgramRuleAction(String lastUpdated, String id, String created, String name, String programRuleActionType, MetadataAccess access, BaseIdentifiableObject programRule, BaseIdentifiableObject dataElement, BaseIdentifiableObject programStageSection) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -51,5 +52,6 @@ public class ProgramRuleAction {
         this.access = access;
         this.programRule = programRule;
         this.dataElement = dataElement;
+        this.programStageSection = programStageSection;
     }
 }
