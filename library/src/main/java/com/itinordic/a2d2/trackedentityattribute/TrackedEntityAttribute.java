@@ -47,6 +47,7 @@ public class TrackedEntityAttribute {
     public final String displayShortName;
     public final String valueType;
     public final boolean confidential;
+    public final String fieldMask;
     public final String dimensionItem;
     public final boolean unique;
     public final MetadataAccess access;
@@ -54,7 +55,7 @@ public class TrackedEntityAttribute {
     public final boolean optionSetValue;
     public final OptionSet optionSet;
 
-    public TrackedEntityAttribute(String lastUpdated, String id, String code, String created, String name, String shortName, String description, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String dimensionItem, boolean unique, MetadataAccess access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
+    public TrackedEntityAttribute(String lastUpdated, String id, String code, String created, String name, String shortName, String description, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String fieldMask, String dimensionItem, boolean unique, MetadataAccess access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.code = code;
@@ -69,6 +70,7 @@ public class TrackedEntityAttribute {
         this.displayShortName = displayShortName;
         this.valueType = valueType;
         this.confidential = confidential;
+        this.fieldMask = fieldMask;
         this.dimensionItem = dimensionItem;
         this.unique = unique;
         this.access = access;
