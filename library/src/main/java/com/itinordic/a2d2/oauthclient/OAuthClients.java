@@ -34,9 +34,9 @@ import java.util.List;
 
 public class OAuthClients {
 
-    public final List<BaseIdentifiableObject> oAuth2Clients;
+    public final List<OAuthClient> oAuth2Clients;
 
-    public OAuthClients(List<BaseIdentifiableObject> oAuth2Clients) {
+    public OAuthClients(List<OAuthClient> oAuth2Clients) {
         this.oAuth2Clients = oAuth2Clients;
     }
 

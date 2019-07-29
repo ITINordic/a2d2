@@ -48,9 +48,10 @@ interface OAuthClientService {
 
     @GET("api/oAuth2Clients")
     Flowable<Response<OAuthClients>> getOAuthClientList(@Header("Authorization") String authorization,
-                                                        @Query("query") String name);
+                                                        @Query("query") String name, @Query("fields" ) String fields);
 
     @GET("api/oAuth2Clients/{id}")
     Flowable<Response<OAuthClient>> getOAuthClient(@Header("Authorization") String authorization,
                                                      @Path("id") String oAuthClientUid);
+
 }

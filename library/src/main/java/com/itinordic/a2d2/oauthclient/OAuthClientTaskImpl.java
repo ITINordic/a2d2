@@ -55,8 +55,8 @@ public class OAuthClientTaskImpl implements OAuthClientTask {
     }
 
     @Override
-    public Flowable<Response<OAuthClients>> getOAuthClientList(String username, String password, String name) {
-        return oAuthClientService.getOAuthClientList(basic(username, password), name);
+    public Flowable<Response<OAuthClients>> getOAuthClientList(String username, String password, String name, String fields) {
+        return oAuthClientService.getOAuthClientList(basic(username, password), name, fields);
     }
 
     @Override

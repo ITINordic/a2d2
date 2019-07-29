@@ -37,7 +37,7 @@ public interface OAuthClientTask {
 
     Flowable<Response<OAuthClient>> saveOAuthClient(String username, String password, OAuthClient oAuthClient );
 
-    Flowable<Response<OAuthClients>> getOAuthClientList(String username, String password, String name);
+    Flowable<Response<OAuthClients>> getOAuthClientList(String username, String password, String name, String fields);
 
     Flowable<Response<OAuthClient>> getOAuthClient(String username, String password, String oAuthClientUid);
 }

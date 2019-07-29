@@ -29,7 +29,14 @@
 
 package com.itinordic.a2d2.network;
 
+import android.accounts.Account;
+import android.accounts.AccountManager;
+import android.app.Application;
+
 import androidx.annotation.Nullable;
+
+import com.itinordic.a2d2.token.AccessToken;
+import com.itinordic.a2d2.token.AccessTokenTask;
 
 import java.io.IOException;
 
@@ -40,18 +47,14 @@ import okhttp3.Route;
 
 public class ApplicationAuthenticator implements Authenticator {
 
-
-    public ApplicationAuthenticator() {
-    }
-
     @Nullable
     @Override
     public Request authenticate(Route route, Response response) throws IOException {
         if (response.request().header("Authorization") != null) {
 
             return null; // Give up, we've already failed to authenticate.
-        }
 
+        }
         //In future refresh token here
         return null;
     }
