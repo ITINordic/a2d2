@@ -44,7 +44,7 @@ public class AttributeTaskImpl implements  AttributeTask {
         }
 
         @NonNull
-        public Builder a2d2Component(@NonNull a2d2Component a2d2component) {
+        public Builder a2d2Component(@NonNull a2d2Component component) {
             this.component = component;
             return this;
         }
