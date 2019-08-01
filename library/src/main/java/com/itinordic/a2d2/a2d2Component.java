@@ -28,6 +28,7 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.attribute.AttributeComponent;
 import com.itinordic.a2d2.dataelement.DataElementComponent;
 import com.itinordic.a2d2.oauthclient.OAuthClientComponent;
 import com.itinordic.a2d2.option.OptionComponent;
@@ -77,5 +78,6 @@ public interface a2d2Component {
     ProgramRuleActionComponent.Builder programRuleActionComponent();
     ProgramRuleVariableComponent.Builder programRuleVariableComponent();
     ProgramStageSectionComponent.Builder programStageSectionComponent();
+    AttributeComponent.Builder attributeComponent();
 
 }

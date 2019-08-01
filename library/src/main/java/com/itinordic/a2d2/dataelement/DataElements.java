@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class DataElements {
 
-    public final List<DataElement> programRuleActions;
+    public final List<DataElement> dataElements;
 
-    public DataElements(List<DataElement> programRuleActions) {
-        this.programRuleActions = programRuleActions;
+    public DataElements(List<DataElement> dataElements) {
+        this.dataElements = dataElements;
     }
 }

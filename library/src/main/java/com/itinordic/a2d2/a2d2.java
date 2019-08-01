@@ -31,6 +31,8 @@ package com.itinordic.a2d2;
 
 import androidx.annotation.NonNull;
 
+import com.itinordic.a2d2.attribute.AttributeTask;
+import com.itinordic.a2d2.attribute.AttributeTaskImpl;
 import com.itinordic.a2d2.dataelement.DataElementTask;
 import com.itinordic.a2d2.dataelement.DataElementTaskImpl;
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
@@ -211,4 +213,11 @@ public final class a2d2 implements a2d2API {
     public ProgramStageSectionTask programStageSectionTaskBuilder() {
         return new ProgramStageSectionTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
+
+    @Override
+    public AttributeTask attributeTaskBuilder() {
+        return new AttributeTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
+
+
 }

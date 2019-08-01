@@ -28,6 +28,7 @@
 
 package com.itinordic.a2d2;
 
+import com.itinordic.a2d2.attribute.AttributeTask;
 import com.itinordic.a2d2.dataelement.DataElementTask;
 import com.itinordic.a2d2.oauthclient.OAuthClientTask;
 import com.itinordic.a2d2.option.OptionTask;
@@ -86,5 +87,7 @@ public interface a2d2API {
     ProgramRuleVariableTask programRuleVariableTaskBuilder();
 
     ProgramStageSectionTask programStageSectionTaskBuilder();
+
+    AttributeTask attributeTaskBuilder();
 
 }

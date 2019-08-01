@@ -29,8 +29,12 @@
 
 package com.itinordic.a2d2.dataelement;
 
+import com.itinordic.a2d2.attribute.AttributeValue;
+import com.itinordic.a2d2.attribute.AttributeValueList;
 import com.itinordic.a2d2.common.BaseIdentifiableObject;
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
+
+import java.util.List;
 
 public class DataElement {
 
@@ -53,9 +57,10 @@ public class DataElement {
     public final BaseIdentifiableObject optionSet;
     public final BaseIdentifiableObject categoryCombo;
     public final BaseIdentifiableObject lastUpdatedBy;
+    public final List<AttributeValue> attributeValues;
 
 
-    public DataElement(String id, String name, String shortName, String code, String lastUpdated, String domainType, String displayName, String publicAccess, String displayShortName, String valueType, String dimensionItem, String displayFormName, boolean zeroIsSignificant, boolean optionSetValue, String dimensionItemType, BaseIdentifiableObject categoryCombo, MetadataAccess access, BaseIdentifiableObject optionSet, BaseIdentifiableObject lastUpdatedBy) {
+    public DataElement(String id, String name, String shortName, String code, String lastUpdated, String domainType, String displayName, String publicAccess, String displayShortName, String valueType, String dimensionItem, String displayFormName, boolean zeroIsSignificant, boolean optionSetValue, String dimensionItemType, BaseIdentifiableObject categoryCombo, MetadataAccess access, BaseIdentifiableObject optionSet, BaseIdentifiableObject lastUpdatedBy, List<AttributeValue> attributeValues) {
         this.id = id;
         this.name = name;
         this.shortName = shortName;
@@ -75,5 +80,6 @@ public class DataElement {
         this.access = access;
         this.optionSet = optionSet;
         this.lastUpdatedBy = lastUpdatedBy;
+        this.attributeValues = attributeValues;
     }
 }
