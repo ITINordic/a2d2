@@ -28,6 +28,7 @@
 
 package com.itinordic.a2d2.usergroup;
 
+import com.itinordic.a2d2.user.User;
 import com.itinordic.a2d2.user.Users;
 
 import java.util.List;
@@ -35,12 +36,18 @@ import java.util.List;
 public class UserGroup {
 
     public final String id;
+    public final String name;
+    public final String created;
+    public final String lastUpdated;
     public final String displayName;
-    public final List<Users> users;
+    public final List<User> users;
 
 
-    public UserGroup(String id, String displayName, List<Users> users) {
+    public UserGroup(String id, String name, String created, String lastUpdated, String displayName, List<User> users) {
         this.id = id;
+        this.name = name;
+        this.created = created;
+        this.lastUpdated = lastUpdated;
         this.displayName = displayName;
         this.users = users;
     }
