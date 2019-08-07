@@ -36,6 +36,6 @@ public interface UserTask {
 
     Flowable<Response<User>> authenticate(String username, String password);
     Flowable<Response<User>> getCurrentUser();
-
-
+    Flowable<Response<Users>> getUsers(String fields, boolean paging);
+    Flowable<Response<User>> getUser(String userUid);
 }

@@ -32,6 +32,7 @@ import com.itinordic.a2d2.common.BaseIdentifiableObject;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -47,5 +48,11 @@ public interface UserGroupService {
 
     @GET("api/userGroups")
     Observable<Response<List<BaseIdentifiableObject>>> getUserGroups(@Header("Authorization") String authorization,
-                                                                            @Query("id") List<String> userGroupUids);
+                                                                     @Query("id") List<String> userGroupUids);
+
+    @GET("api/userGroups/{id}")
+    Flowable<Response<UserGroup>> getUserGroupByUid(@Path("id") String userGroupUid);
+
+    @GET("api/userGroups")
+    Flowable<Response<List<UserGroup>>> getAllUserGroups(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 }

@@ -67,6 +67,16 @@ public class UserTaskImpl implements UserTask {
         return userService.getCurrentUser();
     }
 
+    @Override
+    public Flowable<Response<Users>> getUsers(String fields, boolean paging) {
+        return userService.getUsers(fields,paging);
+    }
+
+    @Override
+    public Flowable<Response<User>> getUser(String userUid) {
+        return userService.getUser(userUid);
+    }
+
     //builder that returns a new UserTask instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;

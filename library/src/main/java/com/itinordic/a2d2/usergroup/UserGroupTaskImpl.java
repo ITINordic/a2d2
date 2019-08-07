@@ -37,6 +37,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.Response;
 
@@ -82,6 +83,16 @@ public class UserGroupTaskImpl implements UserGroupTask {
         }
 
         return userGroupService.getUserGroups(basic(username, password),userGroupUids);
+    }
+
+    @Override
+    public Flowable<Response<UserGroup>> getUserGroupByUid(String userGroupUid) {
+        return userGroupService.getUserGroupByUid(userGroupUid);
+    }
+
+    @Override
+    public Flowable<Response<List<UserGroup>>> getAllUserGroups(String fields, boolean paging) {
+        return userGroupService.getAllUserGroups(fields, paging);
     }
 
     //builder that returns a new UserTask instance when it is passed a URL

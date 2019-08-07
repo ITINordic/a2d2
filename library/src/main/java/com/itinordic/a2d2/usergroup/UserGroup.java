@@ -28,13 +28,20 @@
 
 package com.itinordic.a2d2.usergroup;
 
+import com.itinordic.a2d2.user.Users;
+
+import java.util.List;
+
 public class UserGroup {
 
     public final String id;
     public final String displayName;
+    public final List<Users> users;
 
-    public UserGroup(String id, String displayName) {
+
+    public UserGroup(String id, String displayName, List<Users> users) {
         this.id = id;
         this.displayName = displayName;
+        this.users = users;
     }
 }

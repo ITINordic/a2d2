@@ -35,6 +35,8 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 interface UserService {
 
@@ -44,4 +46,11 @@ interface UserService {
 
     @GET("api/me")
     Flowable<Response<User>> getCurrentUser();
+
+    @GET("api/users")
+    Flowable<Response<Users>> getUsers(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+
+    @GET("api/users/{id}")
+    Flowable<Response<User>> getUser(@Path("id") String userUid);
+
 }
