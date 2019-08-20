@@ -44,8 +44,9 @@ public class ProgramRuleAction {
     public final BaseIdentifiableObject programRule;
     public final BaseIdentifiableObject dataElement;
     public final BaseIdentifiableObject programStageSection;
+    public final BaseIdentifiableObject programStage;
 
-    public ProgramRuleAction(String lastUpdated, String id, String created, String name, String data, String content, String programRuleActionType, MetadataAccess access, BaseIdentifiableObject programRule, BaseIdentifiableObject dataElement, BaseIdentifiableObject programStageSection) {
+    public ProgramRuleAction(String lastUpdated, String id, String created, String name, String data, String content, String programRuleActionType, MetadataAccess access, BaseIdentifiableObject programRule, BaseIdentifiableObject dataElement, BaseIdentifiableObject programStageSection, BaseIdentifiableObject programStage) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -57,5 +58,6 @@ public class ProgramRuleAction {
         this.programRule = programRule;
         this.dataElement = dataElement;
         this.programStageSection = programStageSection;
+        this.programStage = programStage;
     }
 }
