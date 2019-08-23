@@ -41,7 +41,7 @@ dependencies {
 
     //square libs
     implementation "com.squareup.retrofit2:retrofit:${libraries.retrofit}"
-    implementation "com.squareup.okhttp3:okhttp:${libraries.retrofit}"
+    implementation "com.squareup.okhttp3:okhttp:${libraries.okhttp}"
 
     //moshi
     implementation "com.squareup.moshi:moshi:${libraries.moshi}"

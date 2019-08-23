@@ -30,13 +30,13 @@ ext {
 
     libraries = [
 
-            rxjava           : "2.2.8",
+            rxjava           : "2.2.11",
             rxandroid        : "2.1.1",
             timber           : "4.7.0",
-            retrofit         : "2.4.0",
-            okhttp           : "3.11.0",
-            moshi            : "1.6.0",
-            moshiconverter   : "2.4.0",
+            retrofit         : "2.6.1",
+            okhttp           : "3.14.1",
+            moshi            : "1.8.0",
+            moshiconverter   : "2.6.1",
             retrofitrxjava   : "2.4.0",
             dagger           : "2.22.1",
             daggercompiler   : "2.22.1",
