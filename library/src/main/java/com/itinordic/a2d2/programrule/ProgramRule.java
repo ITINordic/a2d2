@@ -40,17 +40,20 @@ public class ProgramRule {
     public final String created;
     public final String name;
     public final String displayName;
+    public final String priority;
+
     public final String condition;
     public final MetadataAccess access;
     public final BaseIdentifiableObject program;
     public final List<BaseIdentifiableObject> programRuleActions;
 
-    public ProgramRule(String lastUpdated, String id, String created, String name, String displayName, String condition, MetadataAccess access, BaseIdentifiableObject program, List<BaseIdentifiableObject> programRuleActions) {
+    public ProgramRule(String lastUpdated, String id, String created, String name, String displayName, String priority, String condition, MetadataAccess access, BaseIdentifiableObject program, List<BaseIdentifiableObject> programRuleActions) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
         this.name = name;
         this.displayName = displayName;
+        this.priority = priority;
         this.condition = condition;
         this.access = access;
         this.program = program;
