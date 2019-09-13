@@ -1,4 +1,4 @@
-# a2d2 is a lightweight Android Library to asynchronously access DHIS2 through OAuth2 and retrieve  DHIS2 Tracker metadata using 
+# a2d2 is a lightweight Android Library to asynchronously access DHIS2 through OAuth2 and retrieve  DHIS2 Tracker metadata. 
 
 This API contains an object model for core DHIS2 web based tasks through its REST API and other extras to make it cool and fun. It also implements an OAuth2 process to ensure security. This is still in beta release.
 
