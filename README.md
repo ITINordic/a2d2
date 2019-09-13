@@ -1,6 +1,6 @@
 # a2d2 is a lightweight Android Library to asynchronously access DHIS2 through OAuth2 and retrieve  DHIS2 Tracker metadata. 
 
-This API contains an object model for core DHIS2 web based tasks through its REST API and other extras to make it cool and fun. It also implements an OAuth2 process to ensure security. This is still in beta release.
+This is our own implementation, and we thought we could share it. For the official implementation please refer to the DHIS2 Android SDK project. However, we replicate the a2d2 object model from the objects retrieved through the DHIS2 API. It is also lightweight, meaning we do not intend to use this library for data retrieval, it is primarily for metadata synchronisation. 
 
 To use it one would need to have some knowledge of asynchronous coding using RXJava, dependency injection using Dagger, JSON 'standard', Retrofit and DHIS2. While some components are not fully abstracted, we aim for a good architecture which works and can be continuously improved, and best, which can be understandable and is small. Consequently, we will concentrate on having only generic features to be within this API so it can be reused across as many projects.
 
