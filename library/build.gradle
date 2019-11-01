@@ -1,5 +1,6 @@
+ext.aar_name = "library-debug"
 apply plugin: 'com.android.library'
-apply from: rootProject.file("plugins/maven_push.gradle")
+apply from: rootProject.file("../gradle_plugins/maven_publish.gradle")
 
 android {
     compileSdkVersion 28
