@@ -56,6 +56,7 @@ public class Program {
     public final String displayShortName;
     public final boolean withoutRegistration;
     public final String programType;
+    public final String accessLevel;
     public final boolean displayIncidentDate;
     public final String expiryDays;
     public final BaseIdentifiableObject categoryCombo;
@@ -67,7 +68,7 @@ public class Program {
     public final List<BaseIdentifiableObject> organisationUnits;
     public final List<ProgramStage> programStages;
 
-    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, String version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, String completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType, boolean displayIncidentDate, String expiryDays, BaseIdentifiableObject categoryCombo, BaseIdentifiableObject lastUpdatedBy, MetadataAccess access, TrackedEntityType trackedEntityType, List<BaseIdentifiableObject> programRuleVariables, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<BaseIdentifiableObject> organisationUnits, List<ProgramStage> programStages) {
+    public Program(String lastUpdated, String id, String created, String name, String shortName, String publicAccess, boolean captureCoordinates, String enrollmentDateLabel, String version, boolean selectIncidentDatesInFuture, String incidentDateLabel, boolean selectEnrollmentDatesInFuture, boolean registration, String displayName, String completeEventsExpiryDays, String displayShortName, boolean withoutRegistration, String programType, String accessLevel, boolean displayIncidentDate, String expiryDays, BaseIdentifiableObject categoryCombo, BaseIdentifiableObject lastUpdatedBy, MetadataAccess access, TrackedEntityType trackedEntityType, List<BaseIdentifiableObject> programRuleVariables, List<ProgramTrackedEntityAttribute> programTrackedEntityAttributes, List<BaseIdentifiableObject> organisationUnits, List<ProgramStage> programStages) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -86,6 +87,7 @@ public class Program {
         this.displayShortName = displayShortName;
         this.withoutRegistration = withoutRegistration;
         this.programType = programType;
+        this.accessLevel = accessLevel;
         this.displayIncidentDate = displayIncidentDate;
         this.expiryDays = expiryDays;
         this.categoryCombo = categoryCombo;
