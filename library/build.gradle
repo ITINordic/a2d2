@@ -14,9 +14,23 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            versionNameSuffix "-debug"
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions "version"
+    productFlavors {
+        identifiable {
+            dimension "version"
+            versionNameSuffix "-identifiable"
+        }
+        nonIdentifiable {
+            dimension "version"
+            versionNameSuffix "-nonIdentifiable"
         }
     }
 
@@ -33,6 +47,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
 
+    implementation "androidx.appcompat:appcompat:${libraries.appcompat}"
 
     // ReactiveX
     implementation "io.reactivex.rxjava2:rxandroid:${libraries.rxandroid}"
