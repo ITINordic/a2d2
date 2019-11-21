@@ -6,7 +6,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.5.2'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -40,6 +40,7 @@ ext {
             retrofitrxjava   : "2.4.0",
             dagger           : "2.22.1",
             daggercompiler   : "2.22.1",
+            appcompat        : "1.1.0-rc01",
             annotations      : "1.1.0-beta01"
     ]
 }
