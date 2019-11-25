@@ -92,6 +92,11 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
     }
 
     @Override
+    public Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(String fields, boolean paging) {
+        return organisationUnitService.getSearchOrganisationUnitList(fields,paging);
+    }
+
+    @Override
     public Flowable<Response<OrganisationUnit>> getOrganisationUnit(String organisationUnitUid) {
         return organisationUnitService.getOrganisationUnit(organisationUnitUid);
     }

@@ -44,6 +44,8 @@ public interface OrganisationUnitTask {
 
     Flowable<Response<OrganisationUnitList>> getUserOrganisationUnitList(String userId);
 
+    Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(String fields, boolean paging);
+
     Flowable<Response<OrganisationUnit>> getOrganisationUnit(String organisationUnitUid);
 
 
