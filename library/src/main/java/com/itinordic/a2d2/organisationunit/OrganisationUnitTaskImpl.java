@@ -32,14 +32,19 @@ import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
 import com.itinordic.a2d2.common.BaseIdentifiableObject;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Completable;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.subscribers.DefaultSubscriber;
 import retrofit2.Response;
+import retrofit2.http.Url;
 
 import static okhttp3.Credentials.basic;
 
@@ -93,7 +98,8 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
 
     @Override
     public Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(String fields, boolean paging) {
-        return organisationUnitService.getSearchOrganisationUnitList(fields,paging);
+        Flowable<Response<OrganisationUnitList>> response = organisationUnitService.getSearchOrganisationUnitList(fields, paging);
+        return PagingBase.concatResponseAndGetNext(response, organisationUnitService::getNextPage);
     }
 
     @Override

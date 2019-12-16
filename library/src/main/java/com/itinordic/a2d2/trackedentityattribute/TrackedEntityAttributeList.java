@@ -24,18 +24,22 @@
 
 package com.itinordic.a2d2.trackedentityattribute;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
 /**
  * Created by regnatpopulus on 04/11/2018.
  * dev@itinordic.com
  */
-public class TrackedEntityAttributeList {
+public class TrackedEntityAttributeList extends PagingBase {
 
     public final List<TrackedEntityAttribute> trackedEntityAttributes;
 
 
-    public TrackedEntityAttributeList(List<TrackedEntityAttribute> trackedEntityAttributes) {
+    public TrackedEntityAttributeList(Pager pager, List<TrackedEntityAttribute> trackedEntityAttributes) {
+        super(pager);
         this.trackedEntityAttributes = trackedEntityAttributes;
     }
 

@@ -29,9 +29,12 @@
 
 package com.itinordic.a2d2.user;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
-public class User {
+public class User extends PagingBase {
 
     public final String id;
     public final String name;
@@ -46,7 +49,8 @@ public class User {
     public final List<UserOrganisationUnit> organisationUnits;
     public final List<UserUserGroup> userGroups;
 
-    public User(String id, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, UserCredentials userCredentials, List<UserOrganisationUnit> organisationUnits, List<UserUserGroup> userGroups) {
+    public User(Pager pager, String id, String name, String displayName, String created, String lastUpdated, String surname, String firstName, String email, String phoneNumber, UserCredentials userCredentials, List<UserOrganisationUnit> organisationUnits, List<UserUserGroup> userGroups) {
+        super(pager);
         this.id = id;
         this.name = name;
         this.displayName = displayName;

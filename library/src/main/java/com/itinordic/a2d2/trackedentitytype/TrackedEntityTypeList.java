@@ -24,17 +24,21 @@
 
 package com.itinordic.a2d2.trackedentitytype;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
 /**
  * Created by regnatpopulus on 01/10/2018.
  * dev@itinordic.com
  */
-public class TrackedEntityTypeList {
+public class TrackedEntityTypeList extends PagingBase {
 
     public final List<TrackedEntityType> trackedEntityTypes;
 
-    public TrackedEntityTypeList(List<TrackedEntityType> trackedEntityTypes) {
+    public TrackedEntityTypeList(Pager pager, List<TrackedEntityType> trackedEntityTypes) {
+        super(pager);
         this.trackedEntityTypes = trackedEntityTypes;
     }
 

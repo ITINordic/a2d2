@@ -39,6 +39,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface OrganisationUnitService {
 
@@ -54,7 +55,10 @@ public interface OrganisationUnitService {
     Flowable<Response<OrganisationUnitList>> getUserOrganisationUnitList(@Path("userId") String userId);
 
     @GET("api/organisationUnits")
-    Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("fields" ) String fields,  @Query("paging" ) boolean paging);
+    Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+
+    @GET
+    Flowable<Response<OrganisationUnitList>> getNextPage(@Url String url);
 
     @GET("api/organisationUnits/{id}")
     Flowable<Response<OrganisationUnit>> getOrganisationUnit(@Path("id") String organisationUnitUid);

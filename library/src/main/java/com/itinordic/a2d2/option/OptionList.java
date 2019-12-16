@@ -23,16 +23,20 @@
  **/
 package com.itinordic.a2d2.option;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
 /**
  * Created by regnatpopulus on 04/11/2018.
  * dev@itinordic.com
  */
-public class OptionList {
+public class OptionList extends PagingBase {
     public final List<Option> options;
 
-    public OptionList(List<Option> options) {
+    public OptionList(Pager pager, List<Option> options) {
+        super(pager);
         this.options = options;
     }
 

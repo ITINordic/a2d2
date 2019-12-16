@@ -29,14 +29,17 @@
 package com.itinordic.a2d2.oauthclient;
 
 import com.itinordic.a2d2.common.BaseIdentifiableObject;
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import java.util.List;
 
-public class OAuthClients {
+public class OAuthClients extends PagingBase {
 
     public final List<OAuthClient> oAuth2Clients;
 
-    public OAuthClients(List<OAuthClient> oAuth2Clients) {
+    public OAuthClients(Pager pager, List<OAuthClient> oAuth2Clients) {
+        super(pager);
         this.oAuth2Clients = oAuth2Clients;
     }
 

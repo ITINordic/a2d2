@@ -1,5 +1,8 @@
 package com.itinordic.a2d2.dataelement;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
 /**
@@ -8,11 +11,12 @@ import java.util.List;
  * Copyright (c) 2019, ITINordic
  * All rights reserved.
  */
-public class DataElements {
+public class DataElements extends PagingBase {
 
     public final List<DataElement> dataElements;
 
-    public DataElements(List<DataElement> dataElements) {
+    public DataElements(Pager pager, List<DataElement> dataElements) {
+        super(pager);
         this.dataElements = dataElements;
     }
 }

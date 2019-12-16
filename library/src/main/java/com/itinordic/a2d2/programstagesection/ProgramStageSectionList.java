@@ -1,5 +1,8 @@
 package com.itinordic.a2d2.programstagesection;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
 /**
@@ -8,11 +11,13 @@ import java.util.List;
  * Copyright (c) 2019, ITINordic
  * All rights reserved.
  */
-public class ProgramStageSectionList {
+public class ProgramStageSectionList extends PagingBase {
 
     public final List<ProgramStageSection> programStageSections;
 
-    public ProgramStageSectionList(List<ProgramStageSection> programStageSections) {
+    public ProgramStageSectionList(Pager pager, List<ProgramStageSection> programStageSections) {
+
+        super(pager);
         this.programStageSections = programStageSections;
     }
 

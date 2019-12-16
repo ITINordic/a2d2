@@ -24,13 +24,17 @@
 
 package com.itinordic.a2d2.trackedentityinstance;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
-public class TrackedEntityInstanceList {
+public class TrackedEntityInstanceList extends PagingBase {
 
     public final List<TrackedEntityInstance> trackedEntityInstances;
 
-    public TrackedEntityInstanceList(List<TrackedEntityInstance> trackedEntityInstances) {
+    public TrackedEntityInstanceList(Pager pager, List<TrackedEntityInstance> trackedEntityInstances) {
+        super(pager);
         this.trackedEntityInstances = trackedEntityInstances;
     }
 

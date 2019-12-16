@@ -29,7 +29,10 @@
 
 package com.itinordic.a2d2.token;
 
-public class AccessToken {
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
+public class AccessToken extends PagingBase {
 
     public final String expires_in;
     public final String scope;
@@ -37,7 +40,8 @@ public class AccessToken {
     public final String refresh_token;
     public final String token_type;
 
-    public AccessToken(String expires_in, String scope, String access_token, String refresh_token, String token_type) {
+    public AccessToken(Pager pager, String expires_in, String scope, String access_token, String refresh_token, String token_type) {
+        super(pager);
         this.expires_in = expires_in;
         this.scope = scope;
         this.access_token = access_token;

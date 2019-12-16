@@ -28,13 +28,17 @@
 
 package com.itinordic.a2d2.organisationunit;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
-public class OrganisationUnitList {
+public class OrganisationUnitList extends PagingBase {
 
     public final List<OrganisationUnit> organisationUnits;
 
-    public OrganisationUnitList(List<OrganisationUnit> organisationUnits) {
+    public OrganisationUnitList(Pager pager, List<OrganisationUnit> organisationUnits) {
+        super(pager);
         this.organisationUnits = organisationUnits;
     }
 }

@@ -24,16 +24,21 @@
 
 package com.itinordic.a2d2.program;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
 /**
  * Created by regnatpopulus on 28/09/2018.
  * dev@itinordic.com
  */
-public class UserPrograms {
+public class UserPrograms extends PagingBase {
     public final List<Program> programs;
 
-    public UserPrograms(List<Program> programs) {
+    public UserPrograms(Pager pager, List<Program> programs) {
+
+        super(pager);
         this.programs = programs;
     }
 

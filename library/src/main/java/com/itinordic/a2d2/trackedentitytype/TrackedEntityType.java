@@ -26,6 +26,8 @@ package com.itinordic.a2d2.trackedentitytype;
 
 import com.itinordic.a2d2.common.Style;
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
 import com.itinordic.a2d2.trackedentitytypeattribute.TrackedEntityTypeAttribute;
 
 import java.util.List;
@@ -34,7 +36,7 @@ import java.util.List;
  * Created by regnatpopulus on 27/09/2018.
  * dev@itinordic.com
  */
-public class TrackedEntityType {
+public class TrackedEntityType extends PagingBase {
 
     public final String id;
     public final String created;
@@ -48,7 +50,8 @@ public class TrackedEntityType {
     public final MetadataAccess access;
     public final List<TrackedEntityTypeAttribute> trackedEntityTypeAttributes;
 
-    public TrackedEntityType(String id, String created, String lastUpdated, String code, String name, String displayName, String description, String displayDescription, Style style, MetadataAccess access, List<TrackedEntityTypeAttribute> trackedEntityTypeAttributes) {
+    public TrackedEntityType(Pager pager, String id, String created, String lastUpdated, String code, String name, String displayName, String description, String displayDescription, Style style, MetadataAccess access, List<TrackedEntityTypeAttribute> trackedEntityTypeAttributes) {
+        super(pager);
         this.id = id;
         this.created = created;
         this.lastUpdated = lastUpdated;
