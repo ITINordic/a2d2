@@ -1,5 +1,8 @@
 package com.itinordic.a2d2.programrulevariable;
 
+import com.itinordic.a2d2.paging.Pager;
+import com.itinordic.a2d2.paging.PagingBase;
+
 import java.util.List;
 
 /**
@@ -8,11 +11,12 @@ import java.util.List;
  * Copyright (c) 2019, ITINordic
  * All rights reserved.
  */
-public class ProgramRuleVariables {
+public class ProgramRuleVariables extends PagingBase {
 
-    public final List<ProgramRuleVariables> programRuleVariables;
+    public final List<ProgramRuleVariable> programRuleVariables;
 
-    public ProgramRuleVariables(List<ProgramRuleVariables> programRuleVariables) {
+    public ProgramRuleVariables(Pager pager, List<ProgramRuleVariable> programRuleVariables) {
+        super(pager);
         this.programRuleVariables = programRuleVariables;
     }
 }

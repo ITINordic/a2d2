@@ -34,5 +34,6 @@ import retrofit2.Response;
 public interface ProgramStageTask {
 
     Flowable<Response<ProgramStage>> getProgramStage(String programStageUid);
+    Flowable<Response<ProgramStages>> getProgramStages(String fields, boolean paging);
 
 }

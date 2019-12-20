@@ -28,12 +28,19 @@ public abstract class PagingBase {
         return Flowable.generate(() -> handle, (flowableHandler, emitter) -> {
             flowableHandler.getResponse().blockingSubscribe(resultTypeResponse -> {
                 emitter.onNext(resultTypeResponse);
-                final String nextPage = resultTypeResponse.body().getPager().getNextPage();
-                if(nextPage == null) {
+                final Pager pager = resultTypeResponse.body().getPager();
+                if(pager == null) {
                     emitter.onComplete();
-                } else {
-                    flowableHandler.setResponse(getNextPage.apply(nextPage));
+                }else {
+                    final String nextPage = pager.getNextPage();
+                    if (nextPage == null) {
+                        emitter.onComplete();
+                    } else {
+                        flowableHandler.setResponse(getNextPage.apply(nextPage));
+                    }
                 }
+            }, throwable -> {
+                emitter.onError(throwable);
             });
         });
     }

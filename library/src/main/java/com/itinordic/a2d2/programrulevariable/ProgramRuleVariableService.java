@@ -29,6 +29,7 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by regnatpopulus on 2019-05-27.
@@ -38,6 +39,9 @@ public interface ProgramRuleVariableService {
 
     @GET("api/programRuleVariables")
     Flowable<Response<ProgramRuleVariables>> getProgramRuleVariables(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+
+    @GET
+    Flowable<Response<ProgramRuleVariables>> getNextPage(@Url String url);
 
     @GET("api/programRuleVariables/{id}")
     Flowable<Response<ProgramRuleVariable>> getProgramRuleVariable(@Path("id") String programUid);

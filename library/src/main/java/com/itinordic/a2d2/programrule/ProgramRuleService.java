@@ -29,6 +29,7 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by regnatpopulus on 2019-05-27.
@@ -41,5 +42,8 @@ public interface ProgramRuleService {
 
     @GET("api/programRules/{id}")
     Flowable<Response<ProgramRule>> getProgramRule(@Path("id") String programRuleUid);
+
+    @GET
+    Flowable<Response<ProgramRules>> getNextPage(@Url String url);
 
 }

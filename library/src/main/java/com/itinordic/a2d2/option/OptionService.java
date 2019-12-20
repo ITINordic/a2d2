@@ -29,6 +29,7 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by regnatpopulus on 04/11/2018.
@@ -41,4 +42,7 @@ public interface OptionService {
 
     @GET("api/options")
     Flowable<Response<OptionList>> getOptions(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+
+    @GET
+    Flowable<Response<OptionList>> getNextPage(@Url String url);
 }

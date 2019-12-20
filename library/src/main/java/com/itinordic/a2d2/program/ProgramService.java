@@ -29,6 +29,7 @@ import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -39,6 +40,9 @@ public interface ProgramService {
 
     @GET("api/programs")
     Flowable<Response<UserPrograms>> getUserPrograms(@Query("fields" ) String fields,  @Query("paging" ) boolean paging);
+
+    @GET
+    Flowable<Response<UserPrograms>> getNextPage(@Url String url);
 
     @GET("api/programs/{id}")
     Flowable<Response<Program>> getProgram(@Path("id") String programUid);

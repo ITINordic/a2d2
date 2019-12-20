@@ -27,6 +27,7 @@ import androidx.annotation.NonNull;
  **/
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import javax.inject.Inject;
 
@@ -49,6 +50,11 @@ public class ProgramStageTaskImpl implements ProgramStageTask {
     @Override
     public Flowable<Response<ProgramStage>> getProgramStage(String programStageUid) {
         return programStageService.getProgramStage(programStageUid);
+    }
+
+    @Override
+    public Flowable<Response<ProgramStages>> getProgramStages(String fields, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(programStageService.getProgramStages(fields,paging), programStageService::getNextPage);
     }
 
 

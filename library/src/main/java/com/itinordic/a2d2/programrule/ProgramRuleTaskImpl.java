@@ -27,6 +27,7 @@ package com.itinordic.a2d2.programrule;
 import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import javax.inject.Inject;
 
@@ -48,7 +49,7 @@ public class ProgramRuleTaskImpl implements ProgramRuleTask {
 
     @Override
     public Flowable<Response<ProgramRules>> getProgramRules(String fields, boolean paging) {
-        return programRuleService.getProgramRules(fields,paging);
+        return PagingBase.concatResponseAndGetNext(programRuleService.getProgramRules(fields,paging), programRuleService::getNextPage);
     }
 
     @Override

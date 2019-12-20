@@ -25,6 +25,7 @@
 package com.itinordic.a2d2.optionset;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import javax.inject.Inject;
 
@@ -53,7 +54,7 @@ public class OptionSetTaskImpl implements OptionSetTask {
 
     @Override
     public Flowable<Response<OptionSetList>> getOptionSets(String fields, boolean paging) {
-        return optionSetService.getOptionSets(fields,paging);
+        return PagingBase.concatResponseAndGetNext(optionSetService.getOptionSets(fields, paging), optionSetService::getNextPage);
     }
 
     //builder that returns a new Task instance when it is passed a URL

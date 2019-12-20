@@ -25,6 +25,7 @@
 package com.itinordic.a2d2.program;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import java.util.List;
 
@@ -33,6 +34,7 @@ import javax.inject.Inject;
 import androidx.annotation.NonNull;
 import io.reactivex.Flowable;
 import retrofit2.Response;
+import retrofit2.http.Url;
 
 /**
  * Created by regnatpopulus on 28/09/2018.
@@ -50,8 +52,9 @@ public class ProgramTaskImpl implements ProgramTask {
 
     @Override
     public Flowable<Response<UserPrograms>> getUserPrograms(String fields, boolean paging) {
-        return programService.getUserPrograms(fields,paging);
+        return PagingBase.concatResponseAndGetNext(programService.getUserPrograms(fields,paging), programService::getNextPage);
     }
+
 
     @Override
     public Flowable<Response<Program>> getProgram(String programUid) {

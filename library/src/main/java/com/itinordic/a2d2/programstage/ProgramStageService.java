@@ -28,6 +28,8 @@ import io.reactivex.Flowable;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by regnatpopulus on 2019-05-27.
@@ -39,4 +41,9 @@ public interface ProgramStageService {
     @GET("api/programStages/{id}")
     Flowable<Response<ProgramStage>> getProgramStage(@Path("id") String programStageUid);
 
+    @GET("api/programStages")
+    Flowable<Response<ProgramStages>> getProgramStages(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+
+    @GET
+    Flowable<Response<ProgramStages>> getNextPage(@Url String url);
 }

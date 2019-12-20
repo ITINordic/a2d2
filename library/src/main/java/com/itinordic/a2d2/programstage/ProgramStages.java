@@ -1,4 +1,4 @@
-package com.itinordic.a2d2.programrule;
+package com.itinordic.a2d2.programstage;
 
 import com.itinordic.a2d2.paging.Pager;
 import com.itinordic.a2d2.paging.PagingBase;
@@ -11,12 +11,12 @@ import java.util.List;
  * Copyright (c) 2019, ITINordic
  * All rights reserved.
  */
-public class ProgramRules extends PagingBase {
+public class ProgramStages extends PagingBase {
 
-    public final List<ProgramRule> programRules;
+    public final List<ProgramStage> programStages;
 
-    public ProgramRules(Pager pager, List<ProgramRule> programRules) {
+    public ProgramStages(Pager pager, List<ProgramStage> programStages) {
         super(pager);
-        this.programRules = programRules;
+        this.programStages = programStages;
     }
 }

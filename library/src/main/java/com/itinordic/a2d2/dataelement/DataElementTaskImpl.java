@@ -27,6 +27,7 @@ package com.itinordic.a2d2.dataelement;
 import androidx.annotation.NonNull;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import javax.inject.Inject;
 
@@ -51,7 +52,7 @@ public class DataElementTaskImpl implements DataElementTask {
 
     @Override
     public Flowable<Response<DataElements>> getDataElements(String fields, boolean paging) {
-        return dataElementService.getDataElements(fields,paging);
+        return PagingBase.concatResponseAndGetNext(dataElementService.getDataElements(fields, paging), dataElementService::getNextPage);
     }
 
     @Override
