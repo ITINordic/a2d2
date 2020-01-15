@@ -1,14 +1,15 @@
 package com.itinordic.a2d2.paging;
 
+import android.util.Log;
+
 import java.util.function.Function;
 
-import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 
 public abstract class PagingBase {
+    public static final String TAG = PagingBase.class.getName();
     public Pager getPager() {
         return pager;
     }
@@ -23,41 +24,76 @@ public abstract class PagingBase {
 
     private Pager pager;
 
-    static public <ResultType extends PagingBase> Flowable<Response<ResultType>> concatResponseAndGetNext(Flowable<Response<ResultType>> response, Function<String, Flowable<Response<ResultType>>> getNextPage) {
-        Handler<Flowable<Response<ResultType>>> handle = new Handler<>(response);
-        return Flowable.generate(() -> handle, (flowableHandler, emitter) -> {
-            flowableHandler.getResponse().blockingSubscribe(resultTypeResponse -> {
-                emitter.onNext(resultTypeResponse);
-                final Pager pager = resultTypeResponse.body().getPager();
-                if(pager == null) {
-                    emitter.onComplete();
-                }else {
-                    final String nextPage = pager.getNextPage();
-                    if (nextPage == null) {
+    static public <ResultType extends PagingBase> Flowable<Response<ResultType>> concatResponseAndGetNext(Flowable<Response<ResultType>> first, Function<String, Flowable<Response<ResultType>>> getNextPage) {
+        return Flowable.<Single<Response<ResultType>>, Response<ResultType>>generate(
+                () -> {
+                    Log.d(TAG, "Start loading first page");
+                    final Response<ResultType> response = first.blockingFirst();
+                    final Pager pager = response.body().getPager();
+                    Log.d(TAG, String.format("Finish loading first no %d", pager == null ? 1 : pager.getPage()));
+                    return response;
+                },
+                (item, emitter) -> {
+                    try {
+                        emitter.onNext(Single.just(item));
+                        final Pager pager = item.body().getPager();
+                        if(pager != null) {
+                            final String nextPage = pager.getNextPage();
+                            if (nextPage != null) {
+                                Log.d(TAG, "Start loading next page");
+                                final Response<ResultType> next = getNextPage.apply(nextPage).blockingFirst();
+                                Log.d(TAG, String.format("Finish loading next page no %d", next.body().getPager().getPage()));
+                                return next;
+                            }
+                        }
                         emitter.onComplete();
-                    } else {
-                        flowableHandler.setResponse(getNextPage.apply(nextPage));
+                    } catch (Exception e) {
+                        emitter.onError(e);
                     }
-                }
-            }, throwable -> {
-                emitter.onError(throwable);
-            });
-        });
+                    return null;
+                }).concatMapSingle(b -> b, 4);
+
     }
 
-    private static class Handler<T> {
-        public T getResponse() {
-            return response;
+
+
+//    static public <ResultType extends PagingBase> Flowable<Response<ResultType>> concatResponseAndGetNext(Flowable<Response<ResultType>> first, Function<String, Flowable<Response<ResultType>>> getNextPage) {
+//        return Flowable.<Maybe<Response<ResultType>>, Box<Flowable<Response<ResultType>>>>generate(() -> new Box<>(first), (box, emitter) -> {
+//            try {
+//                final Maybe<Response<ResultType>> value = box.get().firstElement();
+//                if(value == null) {
+//                emitter.onNext(value);
+//                value.
+//            } catch (Exception e) {
+//                emitter.onError(e);
+//            }
+//        }).concatMapMaybe(o -> o, 2);
+//    }
+
+    private static class Box<T> {
+        synchronized public T get() {
+            previous = item;
+            item = null;
+            return previous;
         }
 
-        public void setResponse(T response) {
-            this.response = response;
+        synchronized public void set(T item) {
+            this.item = item;
         }
 
-        private T response;
+        private T item;
+        private T previous;
 
-        private Handler(T response) {
-            this.response = response;
+        private Box(T item) {
+            this.item = item;
+        }
+
+        synchronized public T getPrevious() {
+            return previous;
+        }
+
+        synchronized public void setPrevious(T previous) {
+            this.previous = previous;
         }
     }
 }
