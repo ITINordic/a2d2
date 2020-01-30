@@ -1,6 +1,7 @@
 package com.itinordic.a2d2.paging;
 
-import android.util.Log;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.util.function.Function;
 
@@ -9,7 +10,7 @@ import io.reactivex.Single;
 import retrofit2.Response;
 
 public abstract class PagingBase {
-    public static final String TAG = PagingBase.class.getName();
+    public static Log log = LogFactory.getLog(PagingBase.class.getName());
     public Pager getPager() {
         return pager;
     }
@@ -27,10 +28,10 @@ public abstract class PagingBase {
     static public <ResultType extends PagingBase> Flowable<Response<ResultType>> concatResponseAndGetNext(Flowable<Response<ResultType>> first, Function<String, Flowable<Response<ResultType>>> getNextPage) {
         return Flowable.<Single<Response<ResultType>>, Response<ResultType>>generate(
                 () -> {
-                    Log.d(TAG, "Start loading first page");
+                    log.debug("Start loading first page");
                     final Response<ResultType> response = first.blockingFirst();
                     final Pager pager = response.body().getPager();
-                    Log.d(TAG, String.format("Finish loading first no %d", pager == null ? 1 : pager.getPage()));
+                    log.debug(String.format("Finish loading first no %d", pager == null ? 1 : pager.getPage()));
                     return response;
                 },
                 (item, emitter) -> {
@@ -40,9 +41,9 @@ public abstract class PagingBase {
                         if(pager != null) {
                             final String nextPage = pager.getNextPage();
                             if (nextPage != null) {
-                                Log.d(TAG, "Start loading next page");
+                                log.debug("Start loading next page");
                                 final Response<ResultType> next = getNextPage.apply(nextPage).blockingFirst();
-                                Log.d(TAG, String.format("Finish loading next page no %d", next.body().getPager().getPage()));
+                                log.debug(String.format("Finish loading next page no %d", next.body().getPager().getPage()));
                                 return next;
                             }
                         }
