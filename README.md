@@ -17,7 +17,7 @@ From that point on you will be able to access the dhis2 api using the methods de
 
 api.userTaskBuilder().authenticate(username, password);
 
-You will get the User object from the api which you can store in a local database. We do not recommend storage of the password and rather we encourage password based authentication only at initial login in, from which point we have created other 'Task' objects to initialise and retrieve access tokens. We are in beta state with limited documentation. Currently there is an OAuth2 client that can be created at login, and should be used for subsequent calls. We understand DHIS2 supports the sharing of a single client across devices and this should be improved shortly.
+You will get the User object from the api which you can store in a local database. We do not recommend storage of the password and rather we encourage password based authentication only at initial login in, from which point we have created other 'Task' objects to initialise and retrieve access tokens. We are in beta state with limited documentation. Currently there is an OAuth2 client that can be created at login, and should be used for subsequent calls.
 
 Using this API, it is possible to retrieve metadata on programs and events and also to retrieve tracked entity instances. It is easily extensible and is open source. We have not versioned the api calls and it is currently working with 2.30, and 2.31. We have also not seen an incompatibility issues with 2.29. Either way, the simple architecture makes it possibe for others to use and adapt.
 
