@@ -24,8 +24,11 @@
 
 package com.itinordic.a2d2.trackedentityattribute;
 
+import com.itinordic.a2d2.attribute.AttributeValue;
 import com.itinordic.a2d2.metadataaccess.MetadataAccess;
 import com.itinordic.a2d2.optionset.OptionSet;
+
+import java.util.List;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -54,8 +57,9 @@ public class TrackedEntityAttribute {
     public final String dimensionItemType;
     public final boolean optionSetValue;
     public final OptionSet optionSet;
+    public final List<AttributeValue> attributeValues;
 
-    public TrackedEntityAttribute(String lastUpdated, String id, String code, String created, String name, String shortName, String description, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String fieldMask, String dimensionItem, boolean unique, MetadataAccess access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet) {
+    public TrackedEntityAttribute(String lastUpdated, String id, String code, String created, String name, String shortName, String description, String aggregationType, boolean programScope, boolean displayInListNoProgram, String displayName, String displayShortName, String valueType, boolean confidential, String fieldMask, String dimensionItem, boolean unique, MetadataAccess access, String dimensionItemType, boolean optionSetValue, OptionSet optionSet, List<AttributeValue> attributeValues) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.code = code;
@@ -77,5 +81,6 @@ public class TrackedEntityAttribute {
         this.dimensionItemType = dimensionItemType;
         this.optionSetValue = optionSetValue;
         this.optionSet = optionSet;
+        this.attributeValues = attributeValues;
     }
 }
