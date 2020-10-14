@@ -44,6 +44,7 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.subscribers.DefaultSubscriber;
 import retrofit2.Response;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 import static okhttp3.Credentials.basic;
@@ -105,6 +106,12 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
     @Override
     public Flowable<Response<OrganisationUnit>> getOrganisationUnit(String organisationUnitUid) {
         return organisationUnitService.getOrganisationUnit(organisationUnitUid);
+    }
+
+    @Override
+    public Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("filter" ) String filter, @Query("fields" ) String fields, @Query("paging" ) boolean paging) {
+        Flowable<Response<OrganisationUnitList>> response = organisationUnitService.getSearchOrganisationUnitList(filter, fields, paging);
+        return PagingBase.concatResponseAndGetNext(response, organisationUnitService::getNextPage);
     }
 
     //builder that returns a new UserTask instance when it is passed a URL

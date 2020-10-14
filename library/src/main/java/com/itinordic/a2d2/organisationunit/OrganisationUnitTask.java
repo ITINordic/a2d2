@@ -35,6 +35,7 @@ import java.util.List;
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import retrofit2.Response;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 public interface OrganisationUnitTask {
@@ -50,5 +51,5 @@ public interface OrganisationUnitTask {
     Flowable<Response<OrganisationUnit>> getOrganisationUnit(String organisationUnitUid);
 
 
-
+    Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("filter") String filter, @Query("fields") String fields, @Query("paging") boolean paging);
 }
