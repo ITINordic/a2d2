@@ -39,6 +39,7 @@ public class ProgramStage {
     public final String id;
     public final String created;
     public final String name;
+    public final String description;
     public final boolean allowGenerateNextVisit;
     public final boolean preGenerateUID;
     public final String displayName;
@@ -58,11 +59,12 @@ public class ProgramStage {
     public final BaseIdentifiableObject program;
     public final List<ProgramStageDataElement> programStageDataElements;
 
-    public ProgramStage(String lastUpdated, String id, String created, String name, boolean allowGenerateNextVisit, boolean preGenerateUID, String displayName, String publicAccess, boolean externalAccess, boolean openAfterEnrollment, boolean repeatable, String formType, boolean remindCompleted, boolean displayGenerateEventBox, boolean generatedByEnrollmentDate, boolean hideDueDate, boolean blockEntryForm, String minDaysFromStart, boolean autoGenerateEvent, MetadataAccess access, BaseIdentifiableObject program, List<ProgramStageDataElement> programStageDataElements) {
+    public ProgramStage(String lastUpdated, String id, String created, String name, String description, boolean allowGenerateNextVisit, boolean preGenerateUID, String displayName, String publicAccess, boolean externalAccess, boolean openAfterEnrollment, boolean repeatable, String formType, boolean remindCompleted, boolean displayGenerateEventBox, boolean generatedByEnrollmentDate, boolean hideDueDate, boolean blockEntryForm, String minDaysFromStart, boolean autoGenerateEvent, MetadataAccess access, BaseIdentifiableObject program, List<ProgramStageDataElement> programStageDataElements) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
         this.name = name;
+        this.description = description;
         this.allowGenerateNextVisit = allowGenerateNextVisit;
         this.preGenerateUID = preGenerateUID;
         this.displayName = displayName;
