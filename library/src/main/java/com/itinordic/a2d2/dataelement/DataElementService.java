@@ -40,9 +40,14 @@ public interface DataElementService {
     @GET("api/dataElements")
     Flowable<Response<DataElements>> getDataElements(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 
+    @GET("api/dataElements")
+    Flowable<Response<DataElements>> getDataElements(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
+
     @GET("api/dataElements/{id}")
     Flowable<Response<DataElement>> getDataElement(@Path("id") String dataElementUid);
 
     @GET
     Flowable<Response<DataElements>> getNextPage(@Url String url);
+
+
 }

@@ -35,6 +35,8 @@ public interface ProgramRuleTask {
 
     Flowable<Response<ProgramRules>> getProgramRules(String fields, boolean paging);
 
+    Flowable<Response<ProgramRules>> getProgramRules(String fields, String[] filter, boolean paging);
+
     Flowable<Response<ProgramRule>> getProgramRule(String programRuleUid);
 
 }

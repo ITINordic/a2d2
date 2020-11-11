@@ -39,7 +39,10 @@ import retrofit2.http.Url;
 public interface ProgramService {
 
     @GET("api/programs")
-    Flowable<Response<UserPrograms>> getUserPrograms(@Query("fields" ) String fields,  @Query("paging" ) boolean paging);
+    Flowable<Response<UserPrograms>> getUserPrograms(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+
+    @GET("api/programs")
+    Flowable<Response<UserPrograms>> getUserPrograms(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
 
     @GET
     Flowable<Response<UserPrograms>> getNextPage(@Url String url);

@@ -11,6 +11,7 @@ import retrofit2.Response;
 
 public abstract class PagingBase {
     public static Log log = LogFactory.getLog(PagingBase.class.getName());
+
     public Pager getPager() {
         return pager;
     }
@@ -30,20 +31,21 @@ public abstract class PagingBase {
                 () -> {
                     log.debug("Start loading first page");
                     final Response<ResultType> response = first.blockingFirst();
-                    final Pager pager = response.body().getPager();
+                    final Pager pager = getPagerInternal(response);
                     log.debug(String.format("Finish loading first no %d", pager == null ? 1 : pager.getPage()));
                     return response;
                 },
                 (item, emitter) -> {
                     try {
                         emitter.onNext(Single.just(item));
-                        final Pager pager = item.body().getPager();
-                        if(pager != null) {
+                        final Pager pager = getPagerInternal(item);
+                        if (pager != null) {
                             final String nextPage = pager.getNextPage();
                             if (nextPage != null) {
                                 log.debug("Start loading next page");
                                 final Response<ResultType> next = getNextPage.apply(nextPage).blockingFirst();
-                                log.debug(String.format("Finish loading next page no %d", next.body().getPager().getPage()));
+                                final Pager nextPager = getPagerInternal(next);
+                                log.debug(String.format("Finish loading next page no %d", nextPager.getPage()));
                                 return next;
                             }
                         }
@@ -52,10 +54,19 @@ public abstract class PagingBase {
                         emitter.onError(e);
                     }
                     return null;
-                }).concatMapSingle(b -> b, 4);
+                })
+                .concatMapSingle(b -> b, 4)
+                .filter(resultTypeResponse -> resultTypeResponse.body() != null);
 
     }
 
+    private static <ResultType extends PagingBase> Pager getPagerInternal(Response<ResultType> response) {
+        if (response.body() == null) {
+            return null;
+        }
+        return response.body().getPager();
+
+    }
 
 
 //    static public <ResultType extends PagingBase> Flowable<Response<ResultType>> concatResponseAndGetNext(Flowable<Response<ResultType>> first, Function<String, Flowable<Response<ResultType>>> getNextPage) {

@@ -56,6 +56,12 @@ public class DataElementTaskImpl implements DataElementTask {
     }
 
     @Override
+    public Flowable<Response<DataElements>> getDataElements(String fields, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(dataElementService.getDataElements(fields, filter, paging), dataElementService::getNextPage);
+    }
+
+
+    @Override
     public Flowable<Response<DataElement>> getDataElement(String dataElementUid) {
         return dataElementService.getDataElement(dataElementUid);
     }

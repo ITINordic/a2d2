@@ -44,6 +44,9 @@ public interface ProgramStageService {
     @GET("api/programStages")
     Flowable<Response<ProgramStages>> getProgramStages(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 
+    @GET("api/programStages")
+    Flowable<Response<ProgramStages>> getProgramStages(@Query("fields" ) String fields, @Query("filter") String[] filter, @Query("paging" ) boolean paging);
+
     @GET
     Flowable<Response<ProgramStages>> getNextPage(@Url String url);
 }

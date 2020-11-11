@@ -41,4 +41,7 @@ public interface TrackedEntityAttributeService {
 
     @GET("api/trackedEntityAttributes")
     Flowable<Response<TrackedEntityAttributeList>> getTrackedEntityAttributes(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
+
+    @GET("api/trackedEntityAttributes")
+    Flowable<Response<TrackedEntityAttributeList>> getTrackedEntityAttributes(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
 }

@@ -52,6 +52,11 @@ public class ProgramRuleActionTaskImpl implements ProgramRuleActionTask {
     }
 
     @Override
+    public Flowable<Response<ProgramRuleActions>> getProgramRuleActions(String fields, String[] filter, boolean paging) {
+        return programRuleActionService.getProgramRuleActions(fields, filter, paging);
+    }
+
+    @Override
     public Flowable<Response<ProgramRuleAction>> getProgramRuleAction(String programRuleActionUid) {
         return programRuleActionService.getProgramRuleAction(programRuleActionUid);
     }

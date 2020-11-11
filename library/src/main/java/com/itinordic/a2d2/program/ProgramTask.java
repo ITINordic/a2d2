@@ -34,6 +34,7 @@ import retrofit2.Response;
 public interface ProgramTask {
 
     Flowable<Response<UserPrograms>> getUserPrograms(String fields, boolean paging);
+    Flowable<Response<UserPrograms>> getUserPrograms(String fields, String[] filter, boolean paging);
     Flowable<Response<Program>> getProgram(String programUid);
 
 }

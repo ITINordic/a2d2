@@ -109,8 +109,8 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
     }
 
     @Override
-    public Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("filter" ) String filter, @Query("fields" ) String fields, @Query("paging" ) boolean paging) {
-        Flowable<Response<OrganisationUnitList>> response = organisationUnitService.getSearchOrganisationUnitList(filter, fields, paging);
+    public Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(String fields, String[] filter, boolean paging) {
+        Flowable<Response<OrganisationUnitList>> response = organisationUnitService.getSearchOrganisationUnitList(fields, filter, paging);
         return PagingBase.concatResponseAndGetNext(response, organisationUnitService::getNextPage);
     }
 

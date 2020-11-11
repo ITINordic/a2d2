@@ -40,6 +40,9 @@ public interface ProgramRuleVariableService {
     @GET("api/programRuleVariables")
     Flowable<Response<ProgramRuleVariables>> getProgramRuleVariables(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 
+    @GET("api/programRuleVariables")
+    Flowable<Response<ProgramRuleVariables>> getProgramRuleVariables(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
+
     @GET
     Flowable<Response<ProgramRuleVariables>> getNextPage(@Url String url);
 

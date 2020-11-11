@@ -34,6 +34,7 @@ import retrofit2.Response;
 public interface ProgramRuleActionTask {
 
     Flowable<Response<ProgramRuleActions>> getProgramRuleActions(String fields, boolean paging);
+    Flowable<Response<ProgramRuleActions>> getProgramRuleActions(String fields, String[] filter, boolean paging);
 
     Flowable<Response<ProgramRuleAction>> getProgramRuleAction(String programRuleActionUid);
 

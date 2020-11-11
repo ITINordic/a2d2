@@ -34,6 +34,7 @@ import retrofit2.Response;
 public interface ProgramRuleVariableTask {
 
     Flowable<Response<ProgramRuleVariables>> getProgramRuleVariables(String fields, boolean paging);
+    Flowable<Response<ProgramRuleVariables>> getProgramRuleVariables(String fields, String[] filter, boolean paging);
 
     Flowable<Response<ProgramRuleVariable>> getProgramRuleVariable(String programRuleVariableUid);
 

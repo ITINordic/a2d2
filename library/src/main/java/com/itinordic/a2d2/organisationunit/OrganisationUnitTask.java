@@ -51,5 +51,5 @@ public interface OrganisationUnitTask {
     Flowable<Response<OrganisationUnit>> getOrganisationUnit(String organisationUnitUid);
 
 
-    Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("filter") String filter, @Query("fields") String fields, @Query("paging") boolean paging);
+    Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(String fields, String[] filter, boolean paging);
 }

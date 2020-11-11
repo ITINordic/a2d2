@@ -57,7 +57,10 @@ public class ProgramStageTaskImpl implements ProgramStageTask {
         return PagingBase.concatResponseAndGetNext(programStageService.getProgramStages(fields,paging), programStageService::getNextPage);
     }
 
-
+    @Override
+    public Flowable<Response<ProgramStages>> getProgramStages(String fields, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(programStageService.getProgramStages(fields, filter, paging), programStageService::getNextPage);
+    }
     //builder that returns a new ProgramStageTask instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;

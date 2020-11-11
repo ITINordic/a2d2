@@ -34,7 +34,7 @@ import retrofit2.Response;
 public interface DataElementTask {
 
     Flowable<Response<DataElements>> getDataElements(String fields, boolean paging);
-
+    Flowable<Response<DataElements>> getDataElements(String fields, String[] filter, boolean paging);
     Flowable<Response<DataElement>> getDataElement(String dataElementUid);
 
 }

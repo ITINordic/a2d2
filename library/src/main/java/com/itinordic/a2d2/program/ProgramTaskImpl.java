@@ -55,6 +55,10 @@ public class ProgramTaskImpl implements ProgramTask {
         return PagingBase.concatResponseAndGetNext(programService.getUserPrograms(fields,paging), programService::getNextPage);
     }
 
+    @Override
+    public Flowable<Response<UserPrograms>> getUserPrograms(String fields, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(programService.getUserPrograms(fields, filter, paging), programService::getNextPage);
+    }
 
     @Override
     public Flowable<Response<Program>> getProgram(String programUid) {

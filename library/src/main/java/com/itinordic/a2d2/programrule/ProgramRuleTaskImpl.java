@@ -53,6 +53,11 @@ public class ProgramRuleTaskImpl implements ProgramRuleTask {
     }
 
     @Override
+    public Flowable<Response<ProgramRules>> getProgramRules(String fields, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(programRuleService.getProgramRules(fields, filter, paging), programRuleService::getNextPage);
+    }
+
+    @Override
     public Flowable<Response<ProgramRule>> getProgramRule(String programUid) {
         return programRuleService.getProgramRule(programUid);
     }
