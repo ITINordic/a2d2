@@ -57,6 +57,11 @@ public class OptionTaskImpl implements OptionTask{
         return PagingBase.concatResponseAndGetNext(optionService.getOptions(fields, paging), optionService::getNextPage);
     }
 
+    @Override
+    public Flowable<Response<OptionList>> getOptions(String fields, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(optionService.getOptions(fields, filter, paging), optionService::getNextPage);
+    }
+
     //builder that returns a new Task instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;

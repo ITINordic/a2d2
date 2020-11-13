@@ -37,4 +37,5 @@ public interface OptionTask {
 
     Flowable<Response<OptionList>> getOptions(String fields, boolean paging);
 
+    Flowable<Response<OptionList>> getOptions(String fields, String[] filter, boolean paging);
 }

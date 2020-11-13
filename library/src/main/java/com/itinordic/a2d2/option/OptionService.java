@@ -43,6 +43,9 @@ public interface OptionService {
     @GET("api/options")
     Flowable<Response<OptionList>> getOptions(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 
+    @GET("api/options")
+    Flowable<Response<OptionList>> getOptions(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
+
     @GET
     Flowable<Response<OptionList>> getNextPage(@Url String url);
 }
