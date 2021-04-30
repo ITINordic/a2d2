@@ -37,10 +37,11 @@ public class OrganisationUnit {
     public final String level;
     public final OrganisationUnit parent;
     public final List<OrganisationUnit> children;
+    public final List<OrganisationUnit> ancestors;
     public final String code;
     public final boolean leaf;
 
-    public OrganisationUnit(String id, String name, String displayName, MetadataAccess access, String level, OrganisationUnit parent, List<OrganisationUnit> children, String code, boolean leaf) {
+    public OrganisationUnit(String id, String name, String displayName, MetadataAccess access, String level, OrganisationUnit parent, List<OrganisationUnit> children, List<OrganisationUnit> ancestors, String code, boolean leaf) {
         this.id = id;
         this.name = name;
         this.displayName = displayName;
@@ -48,6 +49,7 @@ public class OrganisationUnit {
         this.level = level;
         this.parent = parent;
         this.children = children;
+        this.ancestors = ancestors;
         this.code = code;
         this.leaf = leaf;
     }

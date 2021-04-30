@@ -58,6 +58,9 @@ public interface OrganisationUnitService {
     Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("fields" ) String fields, @Query("paging" ) boolean paging);
 
     @GET("api/organisationUnits")
+    Flowable<Response<OrganisationUnitList>> getCaptureOrganisationUnitList(@Query("fields" ) String fields, @Query("paging" ) boolean paging, @Query("userOnly" ) boolean userOnly);
+
+    @GET("api/organisationUnits")
     Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
 
     @GET

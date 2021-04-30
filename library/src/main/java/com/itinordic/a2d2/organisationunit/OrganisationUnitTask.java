@@ -52,4 +52,7 @@ public interface OrganisationUnitTask {
 
 
     Flowable<Response<OrganisationUnitList>> getSearchOrganisationUnitList(String fields, String[] filter, boolean paging);
+
+    Flowable<Response<OrganisationUnitList>> getCaptureOrganisationUnitList(String fields, boolean paging, boolean userOnly);
+
 }

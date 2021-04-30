@@ -114,6 +114,12 @@ public class OrganisationUnitTaskImpl implements OrganisationUnitTask {
         return PagingBase.concatResponseAndGetNext(response, organisationUnitService::getNextPage);
     }
 
+    @Override
+    public Flowable<Response<OrganisationUnitList>> getCaptureOrganisationUnitList(String fields, boolean paging, boolean userOnly) {
+        Flowable<Response<OrganisationUnitList>> response = organisationUnitService.getCaptureOrganisationUnitList(fields, paging, userOnly);
+        return PagingBase.concatResponseAndGetNext(response, organisationUnitService::getNextPage);
+    }
+
     //builder that returns a new UserTask instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;
