@@ -12,6 +12,8 @@ publishing {
     }
 }
 
+sourceCompatibility = JavaVersion.VERSION_1_8
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
