@@ -41,8 +41,9 @@ public class ProgramStageDataElement {
     public final MetadataAccess access;
     public final BaseIdentifiableObject programStage;
     public final BaseIdentifiableObject dataElement;
+    public final boolean allowFutureDate;
 
-    public ProgramStageDataElement(String lastUpdated, String id, String created, boolean displayInReports, boolean renderOptionsAsRadio, boolean compulsory, String sortOrder, MetadataAccess access, BaseIdentifiableObject programStage, BaseIdentifiableObject dataElement) {
+    public ProgramStageDataElement(String lastUpdated, String id, String created, boolean displayInReports, boolean renderOptionsAsRadio, boolean compulsory, String sortOrder, MetadataAccess access, BaseIdentifiableObject programStage, BaseIdentifiableObject dataElement, boolean allowFutureDate) {
         this.lastUpdated = lastUpdated;
         this.id = id;
         this.created = created;
@@ -53,5 +54,6 @@ public class ProgramStageDataElement {
         this.access = access;
         this.programStage = programStage;
         this.dataElement = dataElement;
+        this.allowFutureDate = allowFutureDate;
     }
 }
