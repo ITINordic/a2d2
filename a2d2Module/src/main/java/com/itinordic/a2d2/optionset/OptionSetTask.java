@@ -40,4 +40,6 @@ public interface OptionSetTask {
 
     Flowable<Response<OptionSetList>> getOptionSets(String fields, boolean paging);
 
+    Flowable<Response<OptionSetList>> getOptionSetsByFilter(String fields, String[] filter, boolean paging);
+
 }

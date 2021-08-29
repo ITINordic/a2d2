@@ -57,6 +57,11 @@ public class OptionSetTaskImpl implements OptionSetTask {
         return PagingBase.concatResponseAndGetNext(optionSetService.getOptionSets(fields, paging), optionSetService::getNextPage);
     }
 
+    @Override
+    public Flowable<Response<OptionSetList>> getOptionSetsByFilter(String fields, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(optionSetService.getOptionSetsByFilter(fields, filter, paging), optionSetService::getNextPage);
+    }
+
     //builder that returns a new Task instance when it is passed a URL
     public static class Builder {
         private a2d2Component component;

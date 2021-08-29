@@ -24,6 +24,8 @@
 
 package com.itinordic.a2d2.trackedentityinstance;
 
+import androidx.annotation.NonNull;
+
 import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAttributeValue;
 
 import java.util.List;
@@ -34,6 +36,8 @@ import java.util.List;
  */
 public class TrackedEntityInstance {
 
+
+    public final String trackedEntity;
     public final String orgUnit;
     public final String created;
     public final String createdAtClient;
@@ -46,7 +50,7 @@ public class TrackedEntityInstance {
     public final String featureType;
     public final List<TrackedEntityInstanceAttributeValue> attributes;
 
-    public TrackedEntityInstance(String orgUnit,
+    public TrackedEntityInstance(String trackedEntity, String orgUnit,
                                  String created, String createdAtClient,
                                  String trackedEntityInstance,
                                  String lastUpdated,
@@ -56,6 +60,7 @@ public class TrackedEntityInstance {
                                  boolean deleted,
                                  String featureType,
                                  List<TrackedEntityInstanceAttributeValue> attributes) {
+        this.trackedEntity = trackedEntity;
         this.orgUnit = orgUnit;
         this.created = created;
         this.createdAtClient = createdAtClient;
@@ -67,5 +72,51 @@ public class TrackedEntityInstance {
         this.deleted = deleted;
         this.featureType = featureType;
         this.attributes = attributes;
+    }
+
+    public static class Builder {
+
+        private String trackedEntity;
+        private String orgUnit;
+        private List<TrackedEntityInstanceAttributeValue> attributes;
+
+        public Builder() {
+        }
+
+        @NonNull
+        public Builder trackedEntity(@NonNull String trackedEntity) {
+            this.trackedEntity = trackedEntity;
+            return this;
+        }
+
+        @NonNull
+        public Builder orgUnit(@NonNull String orgUnit) {
+            this.orgUnit = orgUnit;
+            return this;
+        }
+
+        @NonNull
+        public Builder attributes(@NonNull List<TrackedEntityInstanceAttributeValue> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
+        public TrackedEntityInstance build() {
+            if (trackedEntity == null) {
+                throw new IllegalStateException("trackedEntity must be set");
+            }
+
+            if (orgUnit == null) {
+                throw new IllegalStateException("orgUnit must be set");
+            }
+
+            if (attributes == null || attributes.size()==0 ) {
+                throw new IllegalStateException("instance attribute value list must be set");
+            }
+
+            return new TrackedEntityInstance(trackedEntity, orgUnit, null, null,
+                    null, null, null, null,
+                    false, false, null, attributes);
+        }
     }
 }

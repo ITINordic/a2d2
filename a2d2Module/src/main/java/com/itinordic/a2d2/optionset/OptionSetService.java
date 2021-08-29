@@ -25,6 +25,7 @@
 package com.itinordic.a2d2.optionset;
 
 import com.itinordic.a2d2.paging.PagingBase;
+import com.itinordic.a2d2.program.UserPrograms;
 
 import io.reactivex.Flowable;
 import retrofit2.Response;
@@ -44,6 +45,10 @@ public interface OptionSetService {
 
     @GET("api/optionSets")
     Flowable<Response<OptionSetList>> getOptionSets(@Query("fields") String fields, @Query("paging" ) boolean paging);
+
+    @GET("api/optionSets")
+    Flowable<Response<OptionSetList>> getOptionSetsByFilter(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
+
 
     @GET
     Flowable<Response<OptionSetList>> getNextPage(@Url String url);}

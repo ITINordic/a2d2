@@ -24,14 +24,22 @@
 
 package com.itinordic.a2d2.trackedentityinstance;
 
+import com.itinordic.a2d2.oauthclient.OAuthClient;
+
 import io.reactivex.Flowable;
 import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface TrackedEntityInstanceService {
 
     @GET("api/trackedEntityInstances")
     Flowable<Response<TrackedEntityInstanceList>> getUserTrackedEntityInstances(@Query("fields" ) String fields, @Query("ou" ) String ou);
+
+    @POST("api/oAuth2Clients")
+    Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances(@Body TrackedEntityInstanceList trackedEntityInstanceList);
 
 }
