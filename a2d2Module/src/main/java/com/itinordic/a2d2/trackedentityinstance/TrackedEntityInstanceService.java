@@ -39,7 +39,7 @@ public interface TrackedEntityInstanceService {
     @GET("api/trackedEntityInstances")
     Flowable<Response<TrackedEntityInstanceList>> getUserTrackedEntityInstances(@Query("fields" ) String fields, @Query("ou" ) String ou);
 
-    @POST("api/oAuth2Clients")
+    @POST("api/trackedEntityInstances")
     Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances(@Body TrackedEntityInstanceList trackedEntityInstanceList);
 
 }

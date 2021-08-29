@@ -33,6 +33,7 @@ public class TrackedEntityInstanceList extends PagingBase {
 
     public final List<TrackedEntityInstance> trackedEntityInstances;
 
+
     public TrackedEntityInstanceList(Pager pager, List<TrackedEntityInstance> trackedEntityInstances) {
         super(pager);
         this.trackedEntityInstances = trackedEntityInstances;

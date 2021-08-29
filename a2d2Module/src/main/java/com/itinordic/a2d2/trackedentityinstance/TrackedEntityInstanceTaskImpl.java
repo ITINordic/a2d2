@@ -52,6 +52,11 @@ public class TrackedEntityInstanceTaskImpl implements TrackedEntityInstanceTask{
         return trackedEntityInstanceService.getUserTrackedEntityInstances(fields,ou);
     }
 
+    @Override
+    public Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances(TrackedEntityInstanceList trackedEntityInstanceList) {
+        return trackedEntityInstanceService.addTrackedEntityInstances(trackedEntityInstanceList);
+    }
+
     public static class Builder{
 
 

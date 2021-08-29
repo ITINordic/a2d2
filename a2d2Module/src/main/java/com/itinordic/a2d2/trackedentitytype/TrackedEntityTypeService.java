@@ -24,11 +24,14 @@
 
 package com.itinordic.a2d2.trackedentitytype;
 
+import com.itinordic.a2d2.program.UserPrograms;
+
 import io.reactivex.Flowable;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 /**
  * Created by regnatpopulus on 30/09/2018.
@@ -42,4 +45,10 @@ public interface TrackedEntityTypeService {
 
     @GET("api/trackedEntityTypes")
     Flowable<Response<TrackedEntityTypeList>> getUserTrackedEntityTypes(@Query("fields" ) String fields);
+
+    @GET("api/trackedEntityTypes")
+    Flowable<Response<TrackedEntityTypeList>> getTrackedEntityTypesByFilter(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
+
+    @GET
+    Flowable<Response<TrackedEntityTypeList>> getNextPage(@Url String url);
 }

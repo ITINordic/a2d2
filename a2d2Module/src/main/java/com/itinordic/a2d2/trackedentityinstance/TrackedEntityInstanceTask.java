@@ -31,5 +31,7 @@ public interface TrackedEntityInstanceTask {
 
     Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstances(String fields, String ou);
 
+    Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances( TrackedEntityInstanceList trackedEntityInstanceList);
+
 
 }
