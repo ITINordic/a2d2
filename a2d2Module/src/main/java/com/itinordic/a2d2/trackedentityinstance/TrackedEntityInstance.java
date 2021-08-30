@@ -26,6 +26,7 @@ package com.itinordic.a2d2.trackedentityinstance;
 
 import androidx.annotation.NonNull;
 
+import com.itinordic.a2d2.programenrolment.ProgramEnrolment;
 import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAttributeValue;
 
 import java.util.List;
@@ -49,6 +50,7 @@ public class TrackedEntityInstance {
     public final boolean deleted;
     public final String featureType;
     public final List<TrackedEntityInstanceAttributeValue> attributes;
+    public final List<ProgramEnrolment> enrollments;
 
     public TrackedEntityInstance(String trackedEntity, String orgUnit,
                                  String created, String createdAtClient,
@@ -59,7 +61,7 @@ public class TrackedEntityInstance {
                                  boolean inactive,
                                  boolean deleted,
                                  String featureType,
-                                 List<TrackedEntityInstanceAttributeValue> attributes) {
+                                 List<TrackedEntityInstanceAttributeValue> attributes, List<ProgramEnrolment> enrollments) {
         this.trackedEntity = trackedEntity;
         this.orgUnit = orgUnit;
         this.created = created;
@@ -72,6 +74,7 @@ public class TrackedEntityInstance {
         this.deleted = deleted;
         this.featureType = featureType;
         this.attributes = attributes;
+        this.enrollments = enrollments;
     }
 
     public static class Builder {
@@ -80,6 +83,7 @@ public class TrackedEntityInstance {
         private String orgUnit;
         private List<TrackedEntityInstanceAttributeValue> attributes;
         private String trackedEntityType;
+        private List<ProgramEnrolment> enrollments;
 
 
         public Builder() {
@@ -108,6 +112,11 @@ public class TrackedEntityInstance {
             return this;
         }
 
+        public Builder enrollments(List<ProgramEnrolment> enrollments) {
+            this.enrollments = enrollments;
+            return this;
+        }
+
         public TrackedEntityInstance build() {
             if (trackedEntityType == null) {
                 throw new IllegalStateException("trackedEntityType must be set");
@@ -123,7 +132,7 @@ public class TrackedEntityInstance {
 
             return new TrackedEntityInstance(trackedEntity, orgUnit, null, null,
                     null, null, trackedEntityType, null,
-                    false, false, null, attributes);
+                    false, false, null, attributes, enrollments);
         }
     }
 }

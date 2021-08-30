@@ -2,7 +2,7 @@ package com.itinordic.a2d2.programevent;
 
 import androidx.annotation.NonNull;
 
-import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstance;
+import java.util.List;
 
 public class ProgramEvent {
 
@@ -12,15 +12,17 @@ public class ProgramEvent {
     public final String status;
     public final String storedBy;
     public final String programStage;
+    public final List<ProgramEventDataValue> dataValues;
 
 
-    public ProgramEvent(String program, String orgUnit, String eventDate, String status, String storedBy, String programStage) {
+    public ProgramEvent(String program, String orgUnit, String eventDate, String status, String storedBy, String programStage, List<ProgramEventDataValue> dataValues) {
         this.program = program;
         this.orgUnit = orgUnit;
         this.eventDate = eventDate;
         this.status = status;
         this.storedBy = storedBy;
         this.programStage = programStage;
+        this.dataValues = dataValues;
     }
 
     public static class Builder
@@ -32,6 +34,7 @@ public class ProgramEvent {
         private String status;
         private String storedBy;
         private String programStage;
+        private List<ProgramEventDataValue> dataValues;
 
         @NonNull
         public Builder program(@NonNull String program) {
@@ -69,8 +72,13 @@ public class ProgramEvent {
             return this;
         }
 
+        public Builder dataValues(List<ProgramEventDataValue> dataValues) {
+            this.dataValues = dataValues;
+            return this;
+        }
+
         public ProgramEvent build(){
-            return new ProgramEvent(program, orgUnit, eventDate, status, storedBy, programStage);
+            return new ProgramEvent(program, orgUnit, eventDate, status, storedBy, programStage, dataValues);
         }
     }
 }
