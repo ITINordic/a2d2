@@ -24,6 +24,9 @@
 
 package com.itinordic.a2d2.trackedentityinstance;
 
+import androidx.annotation.NonNull;
+
+import com.itinordic.a2d2.programenrolment.ProgramEnrolment;
 import com.itinordic.a2d2.trackedentityinstanceattributevalue.TrackedEntityInstanceAttributeValue;
 
 import java.util.List;
@@ -34,6 +37,9 @@ import java.util.List;
  */
 public class TrackedEntityInstance {
 
+
+    public final String id;
+    public final String trackedEntity;
     public final String orgUnit;
     public final String created;
     public final String createdAtClient;
@@ -45,8 +51,9 @@ public class TrackedEntityInstance {
     public final boolean deleted;
     public final String featureType;
     public final List<TrackedEntityInstanceAttributeValue> attributes;
+    public final List<ProgramEnrolment> enrollments;
 
-    public TrackedEntityInstance(String orgUnit,
+    public TrackedEntityInstance(String id, String trackedEntity, String orgUnit,
                                  String created, String createdAtClient,
                                  String trackedEntityInstance,
                                  String lastUpdated,
@@ -55,7 +62,9 @@ public class TrackedEntityInstance {
                                  boolean inactive,
                                  boolean deleted,
                                  String featureType,
-                                 List<TrackedEntityInstanceAttributeValue> attributes) {
+                                 List<TrackedEntityInstanceAttributeValue> attributes, List<ProgramEnrolment> enrollments) {
+        this.id = id;
+        this.trackedEntity = trackedEntity;
         this.orgUnit = orgUnit;
         this.created = created;
         this.createdAtClient = createdAtClient;
@@ -67,5 +76,76 @@ public class TrackedEntityInstance {
         this.deleted = deleted;
         this.featureType = featureType;
         this.attributes = attributes;
+        this.enrollments = enrollments;
+    }
+
+    public static class Builder {
+        private String id;
+        private String trackedEntityInstance;
+        private String trackedEntity;
+        private String orgUnit;
+        private List<TrackedEntityInstanceAttributeValue> attributes;
+        private String trackedEntityType;
+        private List<ProgramEnrolment> enrollments;
+
+
+        public Builder() {
+        }
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder trackedEntityInstance(String trackedEntityInstance) {
+            this.trackedEntityInstance = trackedEntityInstance;
+            return this;
+        }
+
+        public Builder trackedEntity(String trackedEntity) {
+            this.trackedEntity = trackedEntity;
+            return this;
+        }
+
+        @NonNull
+        public Builder trackedEntityType(@NonNull String trackedEntityType) {
+            this.trackedEntityType = trackedEntityType;
+            return this;
+        }
+
+        @NonNull
+        public Builder orgUnit(@NonNull String orgUnit) {
+            this.orgUnit = orgUnit;
+            return this;
+        }
+
+        @NonNull
+        public Builder attributes(@NonNull List<TrackedEntityInstanceAttributeValue> attributes) {
+            this.attributes = attributes;
+            return this;
+        }
+
+        public Builder enrollments(List<ProgramEnrolment> enrollments) {
+            this.enrollments = enrollments;
+            return this;
+        }
+
+        public TrackedEntityInstance build() {
+            if (trackedEntityType == null) {
+                throw new IllegalStateException("trackedEntityType must be set");
+            }
+
+            if (orgUnit == null) {
+                throw new IllegalStateException("orgUnit must be set");
+            }
+
+            if (attributes == null || attributes.size()==0 ) {
+                throw new IllegalStateException("instance attribute value list must be set");
+            }
+
+            return new TrackedEntityInstance(id, trackedEntity, orgUnit, null, null,
+                    trackedEntityInstance, null, trackedEntityType, null,
+                    false, false, null, attributes, enrollments);
+        }
     }
 }

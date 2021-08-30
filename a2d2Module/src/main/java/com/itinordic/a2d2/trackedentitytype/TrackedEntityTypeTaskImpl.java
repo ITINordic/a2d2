@@ -25,6 +25,7 @@
 package com.itinordic.a2d2.trackedentitytype;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import javax.inject.Inject;
 
@@ -55,6 +56,11 @@ public class TrackedEntityTypeTaskImpl implements TrackedEntityTypeTask {
     @Override
     public Flowable<Response<TrackedEntityTypeList>> getUserTrackedEntityTypes(String fields) {
         return trackedEntityTypeService.getUserTrackedEntityTypes(fields);
+    }
+
+    @Override
+    public Flowable<Response<TrackedEntityTypeList>> getTrackedEntityTypesByFilter(String fields, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(trackedEntityTypeService.getTrackedEntityTypesByFilter(fields, filter, paging), trackedEntityTypeService::getNextPage);
     }
 
     //builder that returns a new Task instance when it is passed a URL

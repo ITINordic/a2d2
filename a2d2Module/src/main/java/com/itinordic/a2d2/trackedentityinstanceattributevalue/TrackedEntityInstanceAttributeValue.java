@@ -24,6 +24,10 @@
 
 package com.itinordic.a2d2.trackedentityinstanceattributevalue;
 
+import androidx.annotation.NonNull;
+
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstance;
+
 public class TrackedEntityInstanceAttributeValue {
 
     public final String lastUpdated;
@@ -48,5 +52,43 @@ public class TrackedEntityInstanceAttributeValue {
         this.valueType = valueType;
         this.attribute = attribute;
         this.value = value;
+    }
+
+    public static class Builder {
+
+        private String lastUpdated;
+        private String storedBy;
+        private String displayName;
+        private String created;
+        private String valueType;
+        private String attribute;
+        private String value;
+
+        @NonNull
+        public Builder attribute(@NonNull String attribute) {
+            this.attribute = attribute;
+            return this;
+        }
+
+        @NonNull
+        public Builder value(@NonNull String value) {
+            this.value = value;
+            return this;
+        }
+
+        public TrackedEntityInstanceAttributeValue build(){
+
+            if (attribute == null) {
+                throw new IllegalStateException("attribute must be set");
+            }
+
+            return new TrackedEntityInstanceAttributeValue(null,
+                    null,
+                    null,
+                    null,
+                    null,
+                     attribute,
+                     value);
+        }
     }
 }
