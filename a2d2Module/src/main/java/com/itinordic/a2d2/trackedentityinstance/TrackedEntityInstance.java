@@ -79,13 +79,20 @@ public class TrackedEntityInstance {
         private String trackedEntity;
         private String orgUnit;
         private List<TrackedEntityInstanceAttributeValue> attributes;
+        private String trackedEntityType;
+
 
         public Builder() {
         }
 
-        @NonNull
-        public Builder trackedEntity(@NonNull String trackedEntity) {
+        public Builder trackedEntity(String trackedEntity) {
             this.trackedEntity = trackedEntity;
+            return this;
+        }
+
+        @NonNull
+        public Builder trackedEntityType(@NonNull String trackedEntityType) {
+            this.trackedEntityType = trackedEntityType;
             return this;
         }
 
@@ -102,8 +109,8 @@ public class TrackedEntityInstance {
         }
 
         public TrackedEntityInstance build() {
-            if (trackedEntity == null) {
-                throw new IllegalStateException("trackedEntity must be set");
+            if (trackedEntityType == null) {
+                throw new IllegalStateException("trackedEntityType must be set");
             }
 
             if (orgUnit == null) {
@@ -115,7 +122,7 @@ public class TrackedEntityInstance {
             }
 
             return new TrackedEntityInstance(trackedEntity, orgUnit, null, null,
-                    null, null, null, null,
+                    null, null, trackedEntityType, null,
                     false, false, null, attributes);
         }
     }
