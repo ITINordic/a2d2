@@ -38,6 +38,7 @@ import java.util.List;
 public class TrackedEntityInstance {
 
 
+    public final String id;
     public final String trackedEntity;
     public final String orgUnit;
     public final String created;
@@ -52,7 +53,7 @@ public class TrackedEntityInstance {
     public final List<TrackedEntityInstanceAttributeValue> attributes;
     public final List<ProgramEnrolment> enrollments;
 
-    public TrackedEntityInstance(String trackedEntity, String orgUnit,
+    public TrackedEntityInstance(String id, String trackedEntity, String orgUnit,
                                  String created, String createdAtClient,
                                  String trackedEntityInstance,
                                  String lastUpdated,
@@ -62,6 +63,7 @@ public class TrackedEntityInstance {
                                  boolean deleted,
                                  String featureType,
                                  List<TrackedEntityInstanceAttributeValue> attributes, List<ProgramEnrolment> enrollments) {
+        this.id = id;
         this.trackedEntity = trackedEntity;
         this.orgUnit = orgUnit;
         this.created = created;
@@ -78,7 +80,8 @@ public class TrackedEntityInstance {
     }
 
     public static class Builder {
-
+        private String id;
+        private String trackedEntityInstance;
         private String trackedEntity;
         private String orgUnit;
         private List<TrackedEntityInstanceAttributeValue> attributes;
@@ -87,6 +90,16 @@ public class TrackedEntityInstance {
 
 
         public Builder() {
+        }
+
+        public Builder id(String id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder trackedEntityInstance(String trackedEntityInstance) {
+            this.trackedEntityInstance = trackedEntityInstance;
+            return this;
         }
 
         public Builder trackedEntity(String trackedEntity) {
@@ -130,8 +143,8 @@ public class TrackedEntityInstance {
                 throw new IllegalStateException("instance attribute value list must be set");
             }
 
-            return new TrackedEntityInstance(trackedEntity, orgUnit, null, null,
-                    null, null, trackedEntityType, null,
+            return new TrackedEntityInstance(id, trackedEntity, orgUnit, null, null,
+                    trackedEntityInstance, null, trackedEntityType, null,
                     false, false, null, attributes, enrollments);
         }
     }

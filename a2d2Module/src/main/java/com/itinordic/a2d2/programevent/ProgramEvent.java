@@ -6,28 +6,36 @@ import java.util.List;
 
 public class ProgramEvent {
 
+    public final String event;
+    public final String trackedEntityInstance;
     public final String program;
     public final String orgUnit;
     public final String eventDate;
     public final String status;
     public final String storedBy;
     public final String programStage;
+    public final String enrollment;
     public final List<ProgramEventDataValue> dataValues;
 
 
-    public ProgramEvent(String program, String orgUnit, String eventDate, String status, String storedBy, String programStage, List<ProgramEventDataValue> dataValues) {
+    public ProgramEvent(String event, String trackedEntityInstance, String program, String orgUnit, String eventDate, String status, String storedBy, String programStage, String enrollment, List<ProgramEventDataValue> dataValues) {
+        this.event = event;
+        this.trackedEntityInstance = trackedEntityInstance;
         this.program = program;
         this.orgUnit = orgUnit;
         this.eventDate = eventDate;
         this.status = status;
         this.storedBy = storedBy;
         this.programStage = programStage;
+        this.enrollment = enrollment;
         this.dataValues = dataValues;
     }
 
     public static class Builder
     {
 
+        private String event;
+        private String trackedEntityInstance;
         private String program;
         private String orgUnit;
         private String eventDate;
@@ -35,10 +43,30 @@ public class ProgramEvent {
         private String storedBy;
         private String programStage;
         private List<ProgramEventDataValue> dataValues;
+        private String enrollment;
 
         @NonNull
         public Builder program(@NonNull String program) {
             this.program = program;
+            return this;
+        }
+
+
+        @NonNull
+        public Builder event(@NonNull String event) {
+            this.event = event;
+            return this;
+        }
+
+        @NonNull
+        public Builder trackedEntityInstance(@NonNull String trackedEntityInstance) {
+            this.trackedEntityInstance = trackedEntityInstance;
+            return this;
+        }
+
+        @NonNull
+        public Builder enrollment(@NonNull String enrollment) {
+            this.enrollment = enrollment;
             return this;
         }
 
@@ -78,7 +106,7 @@ public class ProgramEvent {
         }
 
         public ProgramEvent build(){
-            return new ProgramEvent(program, orgUnit, eventDate, status, storedBy, programStage, dataValues);
+            return new ProgramEvent(event, trackedEntityInstance, program, orgUnit, eventDate, status, storedBy, programStage, enrollment, dataValues);
         }
     }
 }
