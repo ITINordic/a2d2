@@ -35,6 +35,8 @@ import com.itinordic.a2d2.option.OptionTask;
 import com.itinordic.a2d2.optionset.OptionSetTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.program.ProgramTask;
+import com.itinordic.a2d2.programenrolment.ProgramEnrolmentTask;
+import com.itinordic.a2d2.programevent.ProgramEventTask;
 import com.itinordic.a2d2.programrule.ProgramRuleTask;
 import com.itinordic.a2d2.programruleaction.ProgramRuleActionTask;
 import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableTask;
@@ -89,5 +91,9 @@ public interface a2d2API {
     ProgramStageSectionTask programStageSectionTaskBuilder();
 
     AttributeTask attributeTaskBuilder();
+
+    ProgramEnrolmentTask programEnrolmentTaskBuilder();
+
+    ProgramEventTask programEventTaskBuilder();
 
 }

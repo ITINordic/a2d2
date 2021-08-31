@@ -35,6 +35,8 @@ import com.itinordic.a2d2.option.OptionComponent;
 import com.itinordic.a2d2.optionset.OptionSetComponent;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitComponent;
 import com.itinordic.a2d2.program.ProgramComponent;
+import com.itinordic.a2d2.programenrolment.ProgramEnrolmentComponent;
+import com.itinordic.a2d2.programevent.ProgramEventComponent;
 import com.itinordic.a2d2.programrule.ProgramRuleComponent;
 import com.itinordic.a2d2.programruleaction.ProgramRuleActionComponent;
 import com.itinordic.a2d2.programrulevariable.ProgramRuleVariableComponent;
@@ -79,5 +81,7 @@ public interface a2d2Component {
     ProgramRuleVariableComponent.Builder programRuleVariableComponent();
     ProgramStageSectionComponent.Builder programStageSectionComponent();
     AttributeComponent.Builder attributeComponent();
+    ProgramEnrolmentComponent.Builder programEnrolmentComponent();
+    ProgramEventComponent.Builder programEventComponent();
 
 }

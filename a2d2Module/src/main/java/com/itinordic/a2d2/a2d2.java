@@ -39,6 +39,10 @@ import com.itinordic.a2d2.organisationunit.OrganisationUnitTask;
 import com.itinordic.a2d2.organisationunit.OrganisationUnitTaskImpl;
 import com.itinordic.a2d2.program.ProgramTask;
 import com.itinordic.a2d2.program.ProgramTaskImpl;
+import com.itinordic.a2d2.programenrolment.ProgramEnrolmentTask;
+import com.itinordic.a2d2.programenrolment.ProgramEnrolmentTaskImpl;
+import com.itinordic.a2d2.programevent.ProgramEventTask;
+import com.itinordic.a2d2.programevent.ProgramEventTaskImpl;
 import com.itinordic.a2d2.programrule.ProgramRuleTask;
 import com.itinordic.a2d2.programrule.ProgramRuleTaskImpl;
 import com.itinordic.a2d2.programruleaction.ProgramRuleActionTask;
@@ -213,5 +217,13 @@ public final class a2d2 implements a2d2API {
         return new AttributeTaskImpl.Builder().a2d2Component(a2d2component).build();
     }
 
+    @Override
+    public ProgramEnrolmentTask programEnrolmentTaskBuilder() {
+        return new ProgramEnrolmentTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
 
+    @Override
+    public ProgramEventTask programEventTaskBuilder() {
+        return new ProgramEventTaskImpl.Builder().a2d2Component(a2d2component).build();
+    }
 }
