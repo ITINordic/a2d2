@@ -59,8 +59,8 @@ public class TrackedEntityInstanceTaskImpl implements TrackedEntityInstanceTask{
     }
 
     @Override
-    public Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstanceByFilter(String fields, String[] filter, boolean paging) {
-        return PagingBase.concatResponseAndGetNext(trackedEntityInstanceService.getTrackedEntityInstancesByFilter(fields, filter, paging), trackedEntityInstanceService::getNextPage);
+    public Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstanceByFilter( String ouMode, String trackedEntityType, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(trackedEntityInstanceService.getTrackedEntityInstancesByFilter(ouMode, trackedEntityType, filter, paging), trackedEntityInstanceService::getNextPage);
     }
 
     public static class Builder{

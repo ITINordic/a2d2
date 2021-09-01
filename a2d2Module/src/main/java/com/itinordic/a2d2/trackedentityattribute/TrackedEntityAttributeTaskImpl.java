@@ -59,8 +59,8 @@ public class TrackedEntityAttributeTaskImpl implements TrackedEntityAttributeTas
     }
 
     @Override
-    public Flowable<Response<TrackedEntityAttributeList>> getTrackedEntityAttributes(String fields,  String[] filter, boolean paging) {
-        return trackedEntityAttributeService.getTrackedEntityAttributes(fields,paging);
+    public Flowable<Response<TrackedEntityAttributeList>> getTrackedEntityAttributes(String fields, String[] filter, boolean paging) {
+        return trackedEntityAttributeService.getTrackedEntityAttributes(fields,filter,paging);
     }
 
     //builder that returns a new Task instance when it is passed a URL

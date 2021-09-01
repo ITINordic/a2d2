@@ -25,12 +25,20 @@
 package com.itinordic.a2d2.programevent;
 
 import com.itinordic.a2d2.programenrolment.ProgramEnrolmentList;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceList;
 
 import io.reactivex.Flowable;
 import retrofit2.Response;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ProgramEventTask {
 
     Flowable<Response<ProgramEventList>> addEvents(ProgramEventList programEventList);
+
+    Flowable<Response<ProgramEvent>> updateEvent(String id, ProgramEvent programEvent);
+
+    Flowable<Response<ProgramEventList>> getEventsByFilter(String fields, String ouMode,String trackedEntityInstance,String programStage, @Query("paging" ) boolean paging);
 
 }

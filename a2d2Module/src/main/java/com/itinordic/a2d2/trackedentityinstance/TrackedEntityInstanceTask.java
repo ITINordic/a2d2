@@ -35,6 +35,6 @@ public interface TrackedEntityInstanceTask {
 
     Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances( TrackedEntityInstanceList trackedEntityInstanceList);
 
-    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstanceByFilter(String fields, String[] filter, boolean paging);
+    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstanceByFilter(String ouMode, String trackedEntityType, String[] filter, boolean paging);
 
 }

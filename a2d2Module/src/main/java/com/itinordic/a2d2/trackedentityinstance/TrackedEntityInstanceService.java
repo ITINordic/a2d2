@@ -45,7 +45,7 @@ public interface TrackedEntityInstanceService {
     Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances(@Body TrackedEntityInstanceList trackedEntityInstanceList);
 
     @GET("api/trackedEntityInstances")
-    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstancesByFilter(@Query("fields" ) String fields, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
+    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstancesByFilter (@Query("ouMode" ) String ouMode, @Query("trackedEntityType" ) String trackedEntityType, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
 
     @GET
     Flowable<Response<TrackedEntityInstanceList>> getNextPage(@Url String url);
