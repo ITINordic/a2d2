@@ -25,6 +25,7 @@
 package com.itinordic.a2d2.trackedentityinstance;
 
 import com.itinordic.a2d2.oauthclient.OAuthClient;
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeList;
 
 import io.reactivex.Flowable;
 import retrofit2.Response;
@@ -33,6 +34,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 
 public interface TrackedEntityInstanceService {
 
@@ -42,4 +44,9 @@ public interface TrackedEntityInstanceService {
     @POST("api/trackedEntityInstances")
     Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances(@Body TrackedEntityInstanceList trackedEntityInstanceList);
 
+    @GET("api/trackedEntityInstances")
+    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstancesByFilter (@Query("ouMode" ) String ouMode, @Query("trackedEntityType" ) String trackedEntityType, @Query("filter" ) String[] filter, @Query("paging" ) boolean paging);
+
+    @GET
+    Flowable<Response<TrackedEntityInstanceList>> getNextPage(@Url String url);
 }

@@ -25,11 +25,16 @@
 package com.itinordic.a2d2.programevent;
 
 import com.itinordic.a2d2.programenrolment.ProgramEnrolmentList;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceList;
 
 import io.reactivex.Flowable;
 import retrofit2.Response;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 /**
  * Created by regnatpopulus on 27/09/2018.
@@ -40,5 +45,12 @@ public interface ProgramEventService {
 
     @POST("api/events")
     Flowable<Response<ProgramEventList>> addEvents(@Body ProgramEventList programEventList);
+
+    @PUT("api/events/{id}")
+    Flowable<Response<ProgramEvent>> updateEvent(@Path("id") String id, @Body ProgramEvent programEvent);
+
+    @GET("api/events")
+    Flowable<Response<ProgramEventList>> getEventsByFilter(@Query("fields" ) String fields, @Query("ouMode" ) String ouMode, @Query("trackedEntityInstance" ) String trackedEntityInstance, @Query("programStage" ) String programStage, @Query("paging" ) boolean paging);
+
 
 }

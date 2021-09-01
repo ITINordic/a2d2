@@ -30,6 +30,7 @@ import com.itinordic.a2d2.a2d2Component;
 import com.itinordic.a2d2.programenrolment.ProgramEnrolmentList;
 import com.itinordic.a2d2.programenrolment.ProgramEnrolmentService;
 import com.itinordic.a2d2.programenrolment.ProgramEnrolmentTask;
+import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceList;
 
 import javax.inject.Inject;
 
@@ -52,6 +53,16 @@ public class ProgramEventTaskImpl implements ProgramEventTask {
     @Override
     public Flowable<Response<ProgramEventList>> addEvents(ProgramEventList programEventList) {
         return programEventService.addEvents(programEventList);
+    }
+
+    @Override
+    public Flowable<Response<ProgramEvent>> updateEvent(String id, ProgramEvent programEvent) {
+        return programEventService.updateEvent(id,programEvent);
+    }
+
+    @Override
+    public Flowable<Response<ProgramEventList>> getEventsByFilter(String fields, String ouMode, String trackedEntityInstance, String programStage, boolean paging) {
+        return programEventService.getEventsByFilter(fields,ouMode,trackedEntityInstance,programStage,paging);
     }
 
 

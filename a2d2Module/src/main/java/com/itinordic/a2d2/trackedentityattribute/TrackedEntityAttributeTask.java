@@ -37,5 +37,5 @@ public interface TrackedEntityAttributeTask {
 
     Flowable<Response<TrackedEntityAttributeList>> getTrackedEntityAttributes(String fields, boolean paging);
 
-    Flowable<Response<TrackedEntityAttributeList>> getTrackedEntityAttributes(String fields,  String[] filter, boolean paging);
+    Flowable<Response<TrackedEntityAttributeList>> getTrackedEntityAttributes(String fields, String[] filter, boolean paging);
 }

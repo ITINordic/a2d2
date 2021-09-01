@@ -25,6 +25,7 @@
 package com.itinordic.a2d2.trackedentityinstance;
 
 import com.itinordic.a2d2.a2d2Component;
+import com.itinordic.a2d2.paging.PagingBase;
 
 import javax.inject.Inject;
 
@@ -55,6 +56,11 @@ public class TrackedEntityInstanceTaskImpl implements TrackedEntityInstanceTask{
     @Override
     public Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances(TrackedEntityInstanceList trackedEntityInstanceList) {
         return trackedEntityInstanceService.addTrackedEntityInstances(trackedEntityInstanceList);
+    }
+
+    @Override
+    public Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstanceByFilter( String ouMode, String trackedEntityType, String[] filter, boolean paging) {
+        return PagingBase.concatResponseAndGetNext(trackedEntityInstanceService.getTrackedEntityInstancesByFilter(ouMode, trackedEntityType, filter, paging), trackedEntityInstanceService::getNextPage);
     }
 
     public static class Builder{
