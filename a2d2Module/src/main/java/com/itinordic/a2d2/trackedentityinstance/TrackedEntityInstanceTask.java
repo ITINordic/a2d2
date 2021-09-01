@@ -24,6 +24,8 @@
 
 package com.itinordic.a2d2.trackedentityinstance;
 
+import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeList;
+
 import io.reactivex.Flowable;
 import retrofit2.Response;
 
@@ -33,5 +35,6 @@ public interface TrackedEntityInstanceTask {
 
     Flowable<Response<TrackedEntityInstanceList>> addTrackedEntityInstances( TrackedEntityInstanceList trackedEntityInstanceList);
 
+    Flowable<Response<TrackedEntityInstanceList>> getTrackedEntityInstanceByFilter(String fields, String[] filter, boolean paging);
 
 }
