@@ -19,9 +19,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     // ReactiveX
-    implementation "io.reactivex.rxjava2:rxandroid:${libraries.rxandroid}"
-    implementation "io.reactivex.rxjava2:rxjava:${libraries.rxjava}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${libraries.retrofitrxjava}"
+    implementation "io.reactivex.rxjava3:rxandroid:${libraries.rxandroid}"
+    implementation "io.reactivex.rxjava3:rxjava:${libraries.rxjava}"
+    implementation "com.squareup.retrofit2:adapter-rxjava3:${libraries.retrofitrxjava}"
 
     // Jake Wharton libraries
     implementation "com.jakewharton.timber:timber:${libraries.timber}"

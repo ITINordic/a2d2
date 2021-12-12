@@ -32,7 +32,7 @@ import com.itinordic.a2d2.common.BaseIdentifiableObject;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Response;
 
 public interface UserRoleTask {

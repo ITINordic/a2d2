@@ -26,7 +26,7 @@ package com.itinordic.a2d2.optionset;
 
 import java.util.List;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 
 /**

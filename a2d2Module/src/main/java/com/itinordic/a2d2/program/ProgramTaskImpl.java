@@ -32,7 +32,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 import retrofit2.http.Url;
 

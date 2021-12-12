@@ -31,7 +31,7 @@ import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
 import dagger.Subcomponent;
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 
 public class TrackedEntityInstanceTaskImpl implements TrackedEntityInstanceTask{

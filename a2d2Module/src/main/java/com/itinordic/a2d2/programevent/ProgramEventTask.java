@@ -27,7 +27,7 @@ package com.itinordic.a2d2.programevent;
 import com.itinordic.a2d2.programenrolment.ProgramEnrolmentList;
 import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceList;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Path;

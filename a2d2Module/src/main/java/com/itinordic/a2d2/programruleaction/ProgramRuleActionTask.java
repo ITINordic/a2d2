@@ -24,7 +24,7 @@
 
 package com.itinordic.a2d2.programruleaction;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 
 /**

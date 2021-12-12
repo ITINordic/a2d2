@@ -34,7 +34,7 @@ import com.itinordic.a2d2.trackedentityinstance.TrackedEntityInstanceList;
 
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 
 public class ProgramEventTaskImpl implements ProgramEventTask {

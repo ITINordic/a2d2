@@ -28,8 +28,8 @@
 
 package com.itinordic.a2d2.token;
 
-import io.reactivex.Flowable;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Field;

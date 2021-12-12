@@ -30,7 +30,7 @@ import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeService;
 import javax.inject.Inject;
 
 import androidx.annotation.NonNull;
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 
 /**

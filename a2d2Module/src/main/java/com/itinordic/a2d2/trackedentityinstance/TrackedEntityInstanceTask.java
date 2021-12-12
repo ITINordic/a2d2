@@ -26,7 +26,7 @@ package com.itinordic.a2d2.trackedentityinstance;
 
 import com.itinordic.a2d2.trackedentitytype.TrackedEntityTypeList;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 
 public interface TrackedEntityInstanceTask {

@@ -27,7 +27,7 @@ package com.itinordic.a2d2.optionset;
 import com.itinordic.a2d2.paging.PagingBase;
 import com.itinordic.a2d2.program.UserPrograms;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

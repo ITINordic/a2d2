@@ -32,7 +32,7 @@ import androidx.annotation.NonNull;
 import com.itinordic.a2d2.a2d2Component;
 import javax.inject.Inject;
 
-import io.reactivex.Flowable;
+import io.reactivex.rxjava3.core.Flowable;
 import retrofit2.Response;
 
 import static okhttp3.Credentials.basic;

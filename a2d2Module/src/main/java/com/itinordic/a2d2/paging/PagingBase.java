@@ -5,8 +5,8 @@ import org.apache.commons.logging.LogFactory;
 
 import java.util.function.Function;
 
-import io.reactivex.Flowable;
-import io.reactivex.Single;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
 import retrofit2.Response;
 
 public abstract class PagingBase {
