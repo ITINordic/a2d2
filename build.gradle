@@ -34,7 +34,7 @@ ext {
             rxandroid        : "2.1.1",
             timber           : "4.7.0",
             retrofit         : "2.6.1",
-            okhttp           : "3.14.1",
+            okhttp           : "3.14.7",
             moshi            : "1.8.0",
             moshiconverter   : "2.6.1",
             retrofitrxjava   : "2.4.0",
