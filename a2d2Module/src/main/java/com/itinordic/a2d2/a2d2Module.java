@@ -58,9 +58,11 @@ public class a2d2Module {
 
     @Provides @Singleton
     Retrofit provideRetrofit(){
-
+        HttpUrl httpUrl = serverUrl.newBuilder()
+                .addPathSegment("")
+                .build();
         return  new Retrofit.Builder()
-                .baseUrl(serverUrl)
+                .baseUrl(httpUrl)
                 .client(okHttpClient)
                 .addConverterFactory(MoshiConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
