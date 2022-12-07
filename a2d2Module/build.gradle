@@ -9,26 +9,26 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     // ReactiveX
-    implementation "io.reactivex.rxjava2:rxandroid:${libraries.rxandroid}"
-    implementation "io.reactivex.rxjava2:rxjava:${libraries.rxjava}"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:${libraries.retrofitrxjava}"
+    implementation "io.reactivex.rxjava2:rxandroid:${rxandroid}"
+    implementation "io.reactivex.rxjava2:rxjava:${rxjava}"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofitrxjava}"
 
     // Jake Wharton libraries
-    implementation "com.jakewharton.timber:timber:${libraries.timber}"
+    implementation "com.jakewharton.timber:timber:${timber}"
 
     //square libs
-    implementation "com.squareup.retrofit2:retrofit:${libraries.retrofit}"
-    implementation "com.squareup.okhttp3:okhttp:${libraries.okhttp}"
+    implementation "com.squareup.retrofit2:retrofit:${retrofit}"
+    implementation "com.squareup.okhttp3:okhttp:${okhttp}"
 
     //moshi
-    implementation "com.squareup.moshi:moshi:${libraries.moshi}"
-    implementation "com.squareup.retrofit2:converter-moshi:${libraries.moshiconverter}"
+    implementation "com.squareup.moshi:moshi:${moshi}"
+    implementation "com.squareup.retrofit2:converter-moshi:${moshiconverter}"
 
     //dagger
-    implementation "com.google.dagger:dagger:${libraries.dagger}"
-    annotationProcessor "com.google.dagger:dagger-compiler:${libraries.daggercompiler}"
+    implementation "com.google.dagger:dagger:${dagger}"
+    annotationProcessor "com.google.dagger:dagger-compiler:${daggercompiler}"
 
-    implementation "androidx.annotation:annotation:${libraries.annotations}"
+    implementation "androidx.annotation:annotation:${annotations}"
 
     // https://mvnrepository.com/artifact/commons-logging/commons-logging
     implementation 'commons-logging:commons-logging:1.2'
