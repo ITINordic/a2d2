@@ -1,15 +1,5 @@
 plugins {
     id 'java-library'
-    id 'maven-publish'
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            artifactId parent.name
-            from components.java
-        }
-    }
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
