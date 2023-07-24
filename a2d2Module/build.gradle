@@ -52,3 +52,7 @@ artifacts {
     archives javadocJar
 }
 
+android {
+    namespace 'com.itinordic.a2d2'
+}
+
