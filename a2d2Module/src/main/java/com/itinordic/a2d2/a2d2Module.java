@@ -48,7 +48,11 @@ public class a2d2Module {
     private OkHttpClient okHttpClient;
 
     public a2d2Module (HttpUrl serverUrl, OkHttpClient okHttpClient) {
-        this.serverUrl = serverUrl;
+
+        this.serverUrl = serverUrl.pathSegments()
+                .get(serverUrl.pathSegments().size() - 1) == "" ?
+                serverUrl :
+                serverUrl.newBuilder().addPathSegment("").build();
         this.okHttpClient = okHttpClient;
     }
 
